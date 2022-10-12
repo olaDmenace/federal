@@ -19,7 +19,7 @@ function LoginForm() {
             <fieldset className='flex justify-between items-center gap-16 w-2/3 md:1/3'>
                 <label class="label cursor-pointer" className='space-x-3 flex items-center'>
                     <input type="checkbox" class="checkbox checkbox-primary"/>
-                    <span class="label-text text-white">Remember me</span> 
+                    <span class="label-text text-primary">Remember me</span> 
                 </label>
                 <Link to={'/ResetPassword'}><p>Forgot Password</p></Link>
             </fieldset>
