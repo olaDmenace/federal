@@ -9,21 +9,21 @@ function RegisterForm() {
   return (
     <div className='space-y-10'>
         <form action="" className='flex flex-col gap-5 place-items-center'>
-            <fieldset className='flex items-center border py-2 px-2 rounded-md active:outline w-2/3 md:1/3 gap-1'>
-                <UserIcon className='h-8 text-accent' />
-                <input type="text" placeholder="Full Name" className='bg-transparent placeholder:text-accent outline-none h-10 w-full' />
+            <fieldset className='flex items-center border py-2 px-2 rounded-md active:outline w-4/5 md:w-2/3 gap-1'>
+                <UserIcon className='h-8 text-place' />
+                <input type="text" placeholder="Full Name" className='bg-transparent placeholder:text-place outline-none h-10 w-full' />
             </fieldset>
-            <fieldset className='flex items-center border py-2 px-2 rounded-md active:outline w-2/3 md:1/3 gap-1'>
-                <MailIcon className='h-8 text-accent' />
-                <input type="email" placeholder="user@mail.com" className='bg-transparent placeholder:text-accent outline-none h-10 w-full' />
+            <fieldset className='flex items-center border py-2 px-2 rounded-md active:outline w-4/5 md:w-2/3 gap-1'>
+                <MailIcon className='h-8 text-place' />
+                <input type="email" placeholder="user@mail.com" className='bg-transparent placeholder:text-place outline-none h-10 w-full' />
             </fieldset>
-            <fieldset className='flex items-center border py-2 px-2 rounded-md active:outline w-2/3 md:1/3 gap-1'>
-                <LockClosedIcon className='h-8 text-accent' />
-                <input type="password" placeholder="Password" className='bg-transparent placeholder:text-accent outline-none h-10 w-full' />
+            <fieldset className='flex items-center border py-2 px-2 rounded-md active:outline w-4/5  md:w-2/3 gap-1'>
+                <LockClosedIcon className='h-8 text-place' />
+                <input type="password" placeholder="Password" className='bg-transparent placeholder:text-place outline-none h-10 w-full' />
             </fieldset>
-            <fieldset className='flex items-center border py-2 px-2 rounded-md active:outline w-2/3 md:1/3 gap-1'>
-                <UserAddIcon className='h-8 text-accent' />
-                <select name="" id="" className='bg-transparent placeholder:text-accent outline-none h-10 w-full text-accent' >
+            <fieldset className='flex items-center border py-2 px-2 rounded-md active:outline w-4/5 md:w-2/3 gap-1'>
+                <UserAddIcon className='h-8 text-place' />
+                <select name="" id="" className='bg-transparent outline-none h-10 w-full text-accent' >
                     <option value="" disabled selected hidden>Role</option>
                     <option value="">Health & Safety Officer</option>
                     <option value="">Human Resources</option>

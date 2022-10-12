@@ -12,7 +12,7 @@ function ResetPassword() {
         <input class='input input-bordered input-primary w-2/3 md:1/3' placeholder="mail@email.com" type="email" name="" id="" />
         <button class="btn btn-primary block self-center mx-auto">Send</button>
       </div><br></br>
-      <Link to={'/register'}><span className='font-bold underline underline-offset-4 pt-10'>Log In</span></Link>
+      <Link to={'/'}><span className='font-bold underline underline-offset-4 pt-10'>Log In</span></Link>
     </div>
   )
 }
