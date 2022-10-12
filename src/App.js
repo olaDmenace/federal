@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Login from './Membership/Login/Login'
+import Register from './Membership/Register/Register'
+import Verify from './Membership/Register/VerifyMail'
+import ResetPassword from './Membership/UserRecovery/ResetPassword'
+import CreatePassword from './Membership/UserRecovery/CreateNewPassword'
+import Membership from './Membership/Membership'
+import Dashboard from './dashboard/Dashboard'
+import TruckVisibilityReport from './dashboard/dashboard/TruckVisibiltyReport'
+import TruckProgramming from './dashboard/operations/TruckProgramming'
+import Journeymanagement from './dashboard/operations/Journeymanagement'
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <Reg /> */}
+      <BrowserRouter>
+        <Routes>
+          <Route path='' element={<Membership/>}>
+            <Route path='/login' element={<Login/>} />
+            <Route path='/register' element={<Register/>} />
+            <Route path='/verify' element={<Verify/>}/>
+            <Route path='/ResetPassword' element={<ResetPassword/>}/>
+            <Route path='/CreatePassword' element={<CreatePassword/>}/>
+          </Route>
+          <Route path='/dashboard' element={<Dashboard/>}>
+            <Route path='' element={<TruckVisibilityReport/>}/>
+            <Route path='TruckProgramming' element={<TruckProgramming/>} />
+            <Route path='JourneyManagement' element={<Journeymanagement/>}/>
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
