@@ -9,7 +9,7 @@ function Membership() {
       <div className='hidden lg:block basis-1/2'>
         <Left/>
       </div>
-      <div className='grid min-h-screen w-full basis-1/2 py-28 gap-14 text-center text-primary'>
+      <div className='grid h-screen w-full basis-1/2 py-28 gap-14 text-center text-primary scrollbar-thin scrollbar-track-green-100 scrollbar-thumb-green-900'>
         <img className='mx-auto' src={Logo} alt="" />
         <Outlet/>
       </div>

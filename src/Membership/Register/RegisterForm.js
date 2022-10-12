@@ -43,7 +43,7 @@ function RegisterForm() {
             </fieldset>
             <button className='' class="btn btn-primary">Sign In</button>
         </form>
-        <p className='text-center'>Already have an account? <Link to={'/login'}><span className='font-bold underline underline-offset-4'>Sign In</span></Link></p>
+        <p className='text-center'>Already have an account? <Link to={'/'}><span className='font-bold underline underline-offset-4'>Sign In</span></Link></p>
     </div>
   )
 }
