@@ -17,12 +17,12 @@ function App() {
       {/* <Reg /> */}
       <BrowserRouter>
         <Routes>
-          <Route path='' element={<Membership/>}>
-            <Route path='/login' element={<Login/>} />
-            <Route path='/register' element={<Register/>} />
-            <Route path='/verify' element={<Verify/>}/>
-            <Route path='/ResetPassword' element={<ResetPassword/>}/>
-            <Route path='/CreatePassword' element={<CreatePassword/>}/>
+          <Route path='/' element={<Membership/>}>
+            <Route path='' index element={<Login/>} />
+            <Route path='register' element={<Register/>} />
+            <Route path='verify' element={<Verify/>}/>
+            <Route path='ResetPassword' element={<ResetPassword/>}/>
+            <Route path='CreatePassword' element={<CreatePassword/>}/>
           </Route>
           <Route path='/dashboard' element={<Dashboard/>}>
             <Route path='' element={<TruckVisibilityReport/>}/>
