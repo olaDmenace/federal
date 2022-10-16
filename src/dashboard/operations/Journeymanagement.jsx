@@ -1,5 +1,6 @@
 import React from 'react'
 import CustomerDetails from './CustomerDetails'
+import CustomerListDetails from './CustomerListDetails'
 import ProductDetails from './ProductDetails'
 import TripDetails from './TripDetails'
 
@@ -24,6 +25,7 @@ function Journeymanagement() {
         <TripDetails/>
         <ProductDetails/>
         <CustomerDetails/>
+        <CustomerListDetails/>
         <div class='btn-group mx-auto pt-5'>
             <button disabled class='btn'>Previous</button>
             <button class='btn btn-active'>Next</button>

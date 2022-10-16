@@ -34,7 +34,7 @@ function CustomerDetails() {
                         <input class='input input-primary w-full' type="text" name="" id="" />
                     </label><label>
                         Upload Waybill
-                        <input type='file'></input>
+                        <input className='pt-4' type='file'></input>
                     </label>
                 </div>
                 <div className='grid text-primary gap-5 w-full md:grid-cols-2 items-end'>

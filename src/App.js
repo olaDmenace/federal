@@ -11,6 +11,13 @@ import TruckProgramming from './dashboard/operations/TruckProgramming'
 import Journeymanagement from './dashboard/operations/Journeymanagement'
 
 
+
+/* ***IMPORTANT NOTICE***
+    This project is a React JS project buitl with Daisy UI Tailwind CSS UI component.
+    Below is a list of routes and links on the app. 
+*/
+
+
 function App() {
   return (
     <div className="App">

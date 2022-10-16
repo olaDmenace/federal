@@ -1,21 +1,43 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {UserIcon, MailIcon, UserAddIcon} from '@heroicons/react/solid'
 import {LockClosedIcon} from '@heroicons/react/outline'
 import { Link } from 'react-router-dom'
 import PageTitle from '../../utils/PageTitle'
 
+
+/*
+    This component is the form that handles user registration.
+    It also includes a Fetch API for handling communication between
+    component (website) and the database.
+ */
+
 function RegisterForm() {
     PageTitle('A&C Registration')
+
+    const [name, setName] = useState('')
+    const [mail, setMail] = useState('')
+    const [password, setPassword] = useState('')
+    const [role, setRole] = useState('')
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+    }
+
+    // const handleChange = (e) => {
+    //     console.log(e.target.value)
+    // }
+
   return (
     <div className='space-y-10'>
         <form action="" className='flex flex-col gap-5 place-items-center'>
             <fieldset className='flex items-center border py-2 px-2 rounded-md active:outline w-4/5 md:w-2/3 gap-1'>
                 <UserIcon className='h-8 text-place' />
-                <input type="text" placeholder="Full Name" className='bg-transparent placeholder:text-place outline-none h-10 w-full' />
+                <input type="text" autoFocus autoComplete='no' placeholder="Full Name" className='bg-transparent placeholder:text-place outline-none h-10 w-full' />
             </fieldset>
             <fieldset className='flex items-center border py-2 px-2 rounded-md active:outline w-4/5 md:w-2/3 gap-1'>
                 <MailIcon className='h-8 text-place' />
-                <input type="email" placeholder="user@mail.com" className='bg-transparent placeholder:text-place outline-none h-10 w-full' />
+                <input type="email" autoComplete='no' placeholder="user@mail.com" className='bg-transparent placeholder:text-place outline-none h-10 w-full' />
             </fieldset>
             <fieldset className='flex items-center border py-2 px-2 rounded-md active:outline w-4/5  md:w-2/3 gap-1'>
                 <LockClosedIcon className='h-8 text-place' />

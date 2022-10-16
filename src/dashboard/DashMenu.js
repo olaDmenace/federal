@@ -3,6 +3,7 @@ import Dash from '../images/Dash.png'
 import Logo from '../images/LogoDark.png'
 import {ChevronDownIcon, ChipIcon, CogIcon, CreditCardIcon, GlobeIcon, LoginIcon, ShieldCheckIcon, UserGroupIcon} from '@heroicons/react/outline'
 import { useState } from 'react'
+import { Link, NavLink } from 'react-router-dom'
 
 
 function DashMenu() {
@@ -19,11 +20,11 @@ function DashMenu() {
             <img className='w-1/2 mx-auto' src={Logo} alt="" />
             <div className='space-y-16 pl-12'>
                 <div className='relative space-y-5 w-4/5'>
-                    <div className='items-center flex hover:text-white gap-2'>
+                    <NavLink to={''} className='items-center flex text-white gap-2'>
                         <ChipIcon className='h-8 stroke-1' />
                         <h4>Dashboard</h4>
-                    </div>
-                    <div className='items-center relative flex hover:text-white gap-7 '>
+                    </NavLink>
+                    {/* <div className='items-center relative flex text-white gap-7 '>
                         <div className='flex gap-2 items-center'>
                             <GlobeIcon className='h-8 stroke-1' />
                             <h4>Operations</h4>
@@ -37,24 +38,24 @@ function DashMenu() {
                         </div>
                         <ChevronDownIcon onClick={operationsSubMenu} className='h-6 stroke-1 hover:scale-125 transition duration-500' />
                     </div>
-                    <div className='items-center flex hover:text-white gap-2'>
+                    <div className='items-center flex text-white gap-2'>
                         <ShieldCheckIcon className='h-8 stroke-1' />
                         <h4>Health & Safety</h4>
                     </div>
-                    <div className='items-center flex hover:text-white gap-2'>
+                    <div className='items-center flex text-white gap-2'>
                         <CreditCardIcon className='h-8 stroke-1' />
                         <h4>Finances</h4>
                     </div>
-                    <div className='items-center flex hover:text-white gap-2'>
+                    <div className='items-center flex text-white gap-2'>
                         <UserGroupIcon className='h-8 stroke-1' />
                         <h4>Human Resources</h4>
                     </div>
-                    <div className='items-center flex hover:text-white gap-2'>
+                    <div className='items-center flex text-white gap-2'>
                         <CogIcon className='h-8 stroke-1' />
                         <h4>Settings</h4>
-                    </div>
+                    </div> */}
                 </div>
-                <div className='items-center relative flex hover:text-white gap-2'>
+                <div className='items-center relative flex text-white gap-2'>
                     <LoginIcon className='h-8 stroke-1' />
                     <h4>Logout</h4>
                 </div>
