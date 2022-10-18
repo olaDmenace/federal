@@ -9,6 +9,7 @@ import Dashboard from './dashboard/Dashboard'
 import TruckVisibilityReport from './dashboard/dashboard/TruckVisibiltyReport'
 import TruckProgramming from './dashboard/operations/TruckProgramming'
 import Journeymanagement from './dashboard/operations/Journeymanagement'
+import AssetRegister from './dashboard/operations/assetRegister/AssetRegister'
 
 
 
@@ -35,6 +36,7 @@ function App() {
             <Route path='' element={<TruckVisibilityReport/>}/>
             <Route path='TruckProgramming' element={<TruckProgramming/>} />
             <Route path='JourneyManagement' element={<Journeymanagement/>}/>
+            <Route path='AssetRegister' element={<AssetRegister />}/>
           </Route>
         </Routes>
       </BrowserRouter>

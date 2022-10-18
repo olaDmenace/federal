@@ -1,18 +1,13 @@
-import { LocationMarkerIcon, ThumbUpIcon } from '@heroicons/react/outline'
+import FormTitle from '../FormTitle'
+import { LocationMarkerIcon } from '@heroicons/react/outline'
 import React from 'react'
-import PopUp from '../../utils/PopUp'
+import PageTitle from '../../utils/PageTitle'
 
 function TruckProgramming() {
+    PageTitle('Axle & Cartage - Truck Programming')
   return (
     <div className='space-y-2'>
-        {/* <h2 className='text-3xl text-primary font-semibold'>Truck Programming Form</h2> */}
-        <div className='flex justify-between items-center'>
-            <h2 className='text-2xl text-primary font-semibold'>Truck Programming</h2>
-            <div className='inlne flex items-center gap-3'>
-                <button>Save as Draft</button>
-                <button class='btn btn-primary'>Completed</button>
-            </div>
-        </div>
+        <FormTitle Title={'Truck Programming'} />
         <hr />
         <form action="" className='grid text-primary gap-5 w-full'>
             <div className='grid gap-3 md:grid-cols-2 lg:grid-cols-3 items-end'>
@@ -153,16 +148,6 @@ function TruckProgramming() {
             </fieldset>
             <button class='btn btn-primary mx-auto' type="submit">Submit</button>
         </form>
-        <div className=''>
-        {/* <PopUp>
-            <div className='bg-white text-center mx-auto z-10 w-4/5 md:w-1/2 h-4/5 md:h-2/3 py-10 gap-5 rounded-md grid'>
-                <ThumbUpIcon className='h-36 stroke-1 mx-auto stroke-primary' />
-                <h1 className='text-primary text-5xl font-extrabold'>Submitted</h1>
-                <p>Welldone! Truck programming sucessful!</p>
-                <button class='btn btn-primary mx-auto'>Download</button>
-            </div>
-        </PopUp> */}
-        </div>
     </div>
   )
 }

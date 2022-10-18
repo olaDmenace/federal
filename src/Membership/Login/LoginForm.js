@@ -21,8 +21,6 @@ function LoginForm({setAuth}) {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        setEmail('')
-        setPassword('')
         console.log(email, password)
         endpoint.post(loginURL, data).then ((res) =>{
             setSuccess(res.data.message)
@@ -30,6 +28,8 @@ function LoginForm({setAuth}) {
             setTimeout(() => {
                 navigate('/dashboard')
             }, 3000)
+            setEmail('')
+            setPassword('')
         })
         .catch((err) =>{
             console.log(err)
