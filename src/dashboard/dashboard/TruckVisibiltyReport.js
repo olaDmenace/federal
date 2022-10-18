@@ -6,7 +6,7 @@ import Map from '../../images/Map.png'
 
 function TruckVisibiltyReport() {
   return (
-    <div className='md:flex gap-5'>
+    <div className='md:flex gap-5 px-5 md:px-10'>
       <div className='space-y-3 basis-1/2'>
         <h2 className='text-3xl text-primary font-semibold'>Truck Visibilty Report</h2>
         <div className='relative flex items-center gap-3'>
