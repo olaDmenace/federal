@@ -5,6 +5,9 @@ import FormA from './FormA'
 import FormA2 from './FormA2'
 import FormA3 from './FormA3'
 import FormA4 from './FormA4'
+import FormB from './FormB'
+import FormC from './FormC'
+
 
 function AssetRegister() {
     PageTitle('Axle & Cartage - Register New Asset')
@@ -27,7 +30,7 @@ function AssetRegister() {
                     <option value="">Form C</option>
                 </select>
             </label>
-            <FormA4 />
+            <FormC />
         </div>
     )
 }

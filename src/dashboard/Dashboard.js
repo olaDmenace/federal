@@ -13,7 +13,7 @@ function Dashboard() {
       </div>
       <div className='md:col-span-3 py-8 space-y-3 w-full'>
         <Notification/>
-        <div>
+        <div className='w-5/6 mx-auto'>
           <Outlet/>
         </div>
       </div>
