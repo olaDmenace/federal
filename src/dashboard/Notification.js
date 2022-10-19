@@ -5,7 +5,7 @@ import { BellIcon } from '@heroicons/react/outline'
 function Notification() {
   return (
     <>
-        <div className='flex gap-5 items-center justify-end'>
+        <div className='flex gap-5 items-center justify-end mx-10'>
             <div class='indicator'>
                 <span class="indicator-item indicator-end badge badge-primary">9</span> 
                 <BellIcon className='w-12 stroke-1'/>

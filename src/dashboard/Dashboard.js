@@ -11,7 +11,7 @@ function Dashboard() {
           <DashMenu/>
         </div>
       </div>
-      <div className='md:col-span-3 py-8 space-y-3 w-screen'>
+      <div className='md:col-span-3 py-8 space-y-3 w-full'>
         <Notification/>
         <div className='w-5/6 mx-auto'>
           <Outlet/>
