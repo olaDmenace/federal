@@ -24,7 +24,7 @@ function Journeymanagement() {
                 <ReportedShortage />
             </div>
             <div class='btn-group mx-auto pt-5'>
-                <button disabled class='btn'>Previous</button>
+                <button disabled class='btn'>Prev</button>
                 <button class='btn btn-active'>Next</button>
             </div>
         </div>
