@@ -7,6 +7,7 @@ import FormA4 from './FormA4'
 function FormA() {
     const [form, setForm] = useState(0)
     const [formData, setFormData] = useState({
+        // FormA1
         truckNumber: '',
         fleetNumber: '',
         chasis: '',
@@ -25,6 +26,7 @@ function FormA() {
         ownership: '',
         owner: '',
         adddetails: '',
+        // FormA2
         refNumber: '',
         issDate: '',
         exDate: '',
@@ -58,6 +60,24 @@ function FormA() {
         hdpRefNumber: '',
         hdpIssDate: '',
         hdpExDate: '',
+        // FormA3
+        lPmDate: '',
+        nPmDate: '',
+        inSerDate: '',
+        inSerOd: '',
+        estServiceMon: '',
+        estServiceMet: '',
+        estResaleVal: '',
+        estServiceLifeMonth: '',
+        oServiceOd: '',
+        purchaseVendor: '',
+        purchaseDate: '',
+        purchasePrice: '',
+        odometer: '',
+        notes: '',
+        expDate: '',
+        maxMeterVal: '',
+        // FormA4
     })
     const formDisplay = () => {
         if (form === 0) {
