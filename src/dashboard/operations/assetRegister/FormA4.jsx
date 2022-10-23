@@ -1,6 +1,6 @@
 import React from 'react'
 
-function FormA4() {
+function FormA4({ formData, setFormData }) {
     return (
         <div className='py-5 text-primary space-y-3'>
             <h4 className='text-lg font-semibold'>Specifications</h4>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-function FormA3({ formData, SetFormData }) {
+function FormA3({ formData, setFormData }) {
     return (
         <div className='py-5 text-primary space-y-3'>
             <form className='grid text-primary gap-5 w-full' action="">

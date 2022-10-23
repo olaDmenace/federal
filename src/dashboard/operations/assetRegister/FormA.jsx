@@ -6,6 +6,8 @@ import FormA4 from './FormA4'
 
 function FormA() {
     const [form, setForm] = useState(0)
+
+    // Collects and holds the data from the children form
     const [formData, setFormData] = useState({
         // FormA1
         truckNumber: '',
@@ -78,7 +80,17 @@ function FormA() {
         expDate: '',
         maxMeterVal: '',
         // FormA4
+        driveType: '',
+        brake: '',
+        rearAxle: '',
+        fuelType: '',
+        fuelTankCapacity1: '',
+        fuelTankCapacity2: '',
+        oilCapacity: '',
+        maintenanceVendor: ''
     })
+
+    // Controls which form is displayed on the page
     const formDisplay = () => {
         if (form === 0) {
             return <FormA1 formData={formData} setFormData={setFormData} />
