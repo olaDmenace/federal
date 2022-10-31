@@ -11,6 +11,7 @@ import TruckProgramming from './dashboard/operations/TruckProgramming'
 import Journeymanagement from './dashboard/operations/JourneyManagement/Journeymanagement'
 import AssetRegister from './dashboard/operations/assetRegister/AssetRegister'
 import TruckAssignment from './dashboard/operations/truckAssignment/TruckAssignment'
+import ShortageResolution from './dashboard/operations/shortageResolution/ShortageResolution'
 
 
 
@@ -39,6 +40,7 @@ function App() {
             <Route path='JourneyManagement' element={<Journeymanagement />} />
             <Route path='AssetRegister' element={<AssetRegister />} />
             <Route path='TruckAssignment' element={<TruckAssignment />} />
+            <Route path='ShortageResolution' element={<ShortageResolution />} />
           </Route>
         </Routes>
       </BrowserRouter>

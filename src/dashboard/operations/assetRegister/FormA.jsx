@@ -99,7 +99,7 @@ function FormA() {
         } else if (form === 2) {
             return <FormA3 formData={formData} setFormData={setFormData} />
         } else {
-            return <FormA4 />
+            return <FormA4 formData={formData} setFormData={setFormData} />
         }
     }
 

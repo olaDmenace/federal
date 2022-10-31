@@ -1,6 +1,8 @@
 import React from 'react'
 
 function FormA4({ formData, setFormData }) {
+    console.log(formData)
+
     return (
         <div className='py-5 text-primary space-y-3'>
             <h4 className='text-lg font-semibold'>Specifications</h4>
@@ -37,7 +39,7 @@ function FormA4({ formData, setFormData }) {
                         </label>
                         <label htmlFor="">
                             Fuel Tank 1 Capacity
-                            <input className='input input-primary w-full' type="text" name="" id="" />
+                            <input className='input input-primary w-full' type="text" name="" id="" value={formData.fuelTankCapacity1} onChange={(e) => setFormData({ ...formData, fuelTankCapacity1: e.target.value })} />
                         </label>
                         <label htmlFor="">
                             Fuel Tank 2 Capacity
