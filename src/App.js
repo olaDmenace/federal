@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Login from './Membership/Login/Login'
 import Register from './Membership/Register/Register'
 import Verify from './Membership/Register/VerifyMail'
@@ -12,7 +12,8 @@ import Journeymanagement from './dashboard/operations/JourneyManagement/Journeym
 import AssetRegister from './dashboard/operations/assetRegister/AssetRegister'
 import TruckAssignment from './dashboard/operations/truckAssignment/TruckAssignment'
 import ShortageResolution from './dashboard/operations/shortageResolution/ShortageResolution'
-
+import { useSelector } from 'react-redux'
+import { selectUser } from './utils/features/userSlice'
 
 
 /* ***IMPORTANT NOTICE***
@@ -22,6 +23,10 @@ import ShortageResolution from './dashboard/operations/shortageResolution/Shorta
 
 
 function App() {
+
+  const user = useSelector(selectUser)
+
+
   return (
     <div className="App">
       {/* <Reg /> */}
@@ -34,7 +39,7 @@ function App() {
             <Route path='ResetPassword' element={<ResetPassword />} />
             <Route path='CreatePassword' element={<CreatePassword />} />
           </Route>
-          <Route path='/dashboard' element={<Dashboard />}>
+          <Route path='/dashboard' element={user ? <Dashboard /> : <Navigate to={'/'} />}>
             <Route path='' element={<TruckVisibilityReport />} />
             <Route path='TruckProgramming' element={<TruckProgramming />} />
             <Route path='JourneyManagement' element={<Journeymanagement />} />

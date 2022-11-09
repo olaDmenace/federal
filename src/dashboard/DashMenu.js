@@ -1,30 +1,37 @@
 import React from 'react'
 import Dash from '../images/Dash.png'
 import Logo from '../images/LogoDark.png'
-import {ChevronDownIcon, ChipIcon, CogIcon, CreditCardIcon, GlobeIcon, LoginIcon, ShieldCheckIcon, UserGroupIcon} from '@heroicons/react/outline'
+import { ChevronDownIcon, ChipIcon, CogIcon, CreditCardIcon, GlobeIcon, LoginIcon, ShieldCheckIcon, UserGroupIcon } from '@heroicons/react/outline'
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-
+import { useDispatch } from 'react-redux'
+import { logout } from '../utils/features/userSlice'
 
 function DashMenu() {
 
     const [operations, setOperations] = useState(false)
-    const operationsSubMenu = (show) =>{
+    const operationsSubMenu = (show) => {
         setOperations(show => !show)
     }
 
-  return (
-    <div>
-        <div className='h-screen w-full bg-primary relative grid py-10 gap-10'>
-            <img className='mix-blend-overlay h-screen w-full absolute' src={Dash} alt="" />
-            <img className='w-1/2 mx-auto' src={Logo} alt="" />
-            <div className='space-y-16 pl-12'>
-                <div className='relative space-y-5 w-4/5'>
-                    <NavLink to={''} className='items-center flex text-white gap-2'>
-                        <ChipIcon className='h-8 stroke-1' />
-                        <h4>Dashboard</h4>
-                    </NavLink>
-                    {/* <div className='items-center relative flex text-white gap-7 '>
+    const dispatch = useDispatch()
+    const handleLogout = (e) => {
+        e.preventDefault()
+        dispatch(logout())
+    }
+
+    return (
+        <div>
+            <div className='h-screen w-full bg-primary relative grid py-10 gap-10'>
+                <img className='mix-blend-overlay h-screen w-full absolute' src={Dash} alt="" />
+                <img className='w-1/2 mx-auto' src={Logo} alt="" />
+                <div className='space-y-16 pl-12'>
+                    <div className='relative space-y-5 w-4/5'>
+                        <NavLink to={''} className='items-center flex text-white gap-2'>
+                            <ChipIcon className='h-8 stroke-1' />
+                            <h4>Dashboard</h4>
+                        </NavLink>
+                        {/* <div className='items-center relative flex text-white gap-7 '>
                         <div className='flex gap-2 items-center'>
                             <GlobeIcon className='h-8 stroke-1' />
                             <h4>Operations</h4>
@@ -54,15 +61,15 @@ function DashMenu() {
                         <CogIcon className='h-8 stroke-1' />
                         <h4>Settings</h4>
                     </div> */}
-                </div>
-                <div className='items-center relative flex text-white gap-2'>
-                    <LoginIcon className='h-8 stroke-1' />
-                    <h4>Logout</h4>
+                    </div>
+                    <div className='items-center relative flex text-white gap-2 cursor-pointer' onClick={(e) => handleLogout(e)}>
+                        <LoginIcon className='h-8 stroke-1' />
+                        <h4>Logout</h4>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-  )
+    )
 }
 
 export default DashMenu
