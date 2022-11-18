@@ -39,7 +39,7 @@ function App() {
             <Route path='ResetPassword' element={<ResetPassword />} />
             <Route path='CreatePassword' element={<CreatePassword />} />
           </Route>
-          <Route path='/dashboard' element={user ? <Dashboard /> : <Navigate to={'/'} />}>
+          <Route path='/dashboard' element={<Dashboard />}>
             <Route path='' element={<TruckVisibilityReport />} />
             <Route path='TruckProgramming' element={<TruckProgramming />} />
             <Route path='JourneyManagement' element={<Journeymanagement />} />

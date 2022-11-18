@@ -12,23 +12,27 @@ function FormA() {
         // FormA1
         truckNumber: '',
         fleetNumber: '',
-        chasis: '',
+        tractorChasis: '',
         engineNumber: '',
-        vin: '',
-        licensePlate: '',
-        yearManufacture: '',
-        brand: '',
-        model: '',
-        regState: '',
-        upload: '',
-        opeStatus: '',
-        assigneeLC: '',
-        assigneeJO: '',
-        assigneeDO: '',
-        ownership: '',
-        owner: '',
-        adddetails: '',
+        identificationNumber: '',
+        // licensePlate: '',
+        manufactureDate: '',
+        brand: {
+            manufacturer: '',
+            model: ''
+        },
+        registrationState: '',
+        // upload: '',
+        status: '',
+        logisticsCoordinatorId: '',
+        journeyOfficerId: '',
+        deliveryOfficerId: '',
+        // ownership: '',
+        // owner: '',
+        additionalDetails: '',
+
         // FormA2
+
         refNumber: '',
         issDate: '',
         exDate: '',
@@ -62,33 +66,45 @@ function FormA() {
         hdpRefNumber: '',
         hdpIssDate: '',
         hdpExDate: '',
+
         // FormA3
-        lPmDate: '',
-        nPmDate: '',
-        inSerDate: '',
-        inSerOd: '',
-        estServiceMon: '',
-        estServiceMet: '',
-        estResaleVal: '',
-        estServiceLifeMonth: '',
-        oServiceOd: '',
-        purchaseVendor: '',
-        purchaseDate: '',
-        purchasePrice: '',
-        odometer: '',
-        notes: '',
-        expDate: '',
-        maxMeterVal: '',
+
+        maintenanceInfo: {
+            lastPreventiveMaintenance: '',
+            nextPreventiveMaintenance: '',
+            inServiceDate: '',
+            inServiceOdometer: '',
+            estimatedServiceLive: '',
+            // estServiceMet: '',
+            estimatedResaleValue: '',
+            outOfServiceDate: '',
+            outOfServiceOdometer: '',
+        },
+        purchaseInfo: {
+            vendorName: '',
+            purchaseDate: '',
+            purchaseValue: '',
+            odometer: '',
+            notes: '',
+            warrantyExpiryDate: '',
+            warrantyMaxOdometer: '',
+        },
+
         // FormA4
-        driveType: '',
-        brake: '',
-        rearAxle: '',
-        fuelType: '',
-        fuelTankCapacity1: '',
-        fuelTankCapacity2: '',
-        oilCapacity: '',
-        maintenanceVendor: ''
+
+        specification: {
+            driveType: '',
+            brakeSystem: '',
+            rearAxle: '',
+            fuelType: '',
+            fisrtTankCapacity: '',
+            secondTankCapacity: '',
+            oilCapacity: '',
+            maintenanceVendor: ''
+        }
     })
+
+    console.log(formData)
 
     // Controls which form is displayed on the page
     const formDisplay = () => {
@@ -101,6 +117,12 @@ function FormA() {
         } else {
             return <FormA4 formData={formData} setFormData={setFormData} />
         }
+    }
+
+
+    // Handles the submit event
+    const handleSubmit = (e) => {
+        e.preventDefault()
     }
 
     return (
