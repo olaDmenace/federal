@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { logout } from '../utils/features/userSlice'
+import DashMenuItem from './DashMenuItem'
 
 function DashMenu() {
 
@@ -31,6 +32,17 @@ function DashMenu() {
                             <ChipIcon className='h-8 stroke-1' />
                             <h4>Dashboard</h4>
                         </NavLink>
+                        <div onClick={operationsSubMenu} className='items-center relative flex text-white gap-7 '>
+                            <DashMenuItem onClick={operationsSubMenu} Icon={<GlobeIcon className='h-8 stroke-1' />} Title={'Operations'} />
+                            {operations && <div className='absolute bg-white text-primary px-3 py-10 top-1/4 left-[70%] w-60 space-y-3 rounded-r-lg border-r border border-primary'>
+                                <NavLink to={'/dashboard/TruckProgramming'} className='hover:font-bold hover:ease-in-out duration-150 block'>Truck Programming</NavLink>
+                                <NavLink to={'/dashboard/JourneyManagement'} className='hover:font-bold hover:ease-in-out duration-150 block'>Journey Management</NavLink>
+                                <p className='hover:font-bold hover:ease-in-out duration-150'>Waybill Management</p>
+                                <p className='hover:font-bold hover:ease-in-out duration-150'>Trip Expense Request</p>
+                                <p className='hover:font-bold hover:ease-in-out duration-150'>Shortage Resolution</p>
+                            </div>}
+                        </div>
+                        <DashMenuItem Icon={<ShieldCheckIcon className='h-8 stroke-1' />} Title={'Health & Safety'} />
                         {/* <div className='items-center relative flex text-white gap-7 '>
                         <div className='flex gap-2 items-center'>
                             <GlobeIcon className='h-8 stroke-1' />
