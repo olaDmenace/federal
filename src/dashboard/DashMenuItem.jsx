@@ -4,10 +4,10 @@ import { NavLink } from 'react-router-dom'
 const DashMenuItem = (props) => {
     return (
         <div>
-            <NavLink to={''} className='items-center flex text-white gap-2'>
+            <div className='items-center flex text-white gap-2'>
                 {props.Icon}
                 <h4>{props.Title}</h4>
-            </NavLink>
+            </div>
         </div>
     )
 }

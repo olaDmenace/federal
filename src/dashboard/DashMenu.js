@@ -1,7 +1,7 @@
 import React from 'react'
 import Dash from '../images/Dash.png'
 import Logo from '../images/LogoDark.png'
-import { ChevronDownIcon, ChipIcon, CogIcon, CreditCardIcon, GlobeIcon, LoginIcon, ShieldCheckIcon, UserGroupIcon } from '@heroicons/react/outline'
+import { ChevronDownIcon, ChipIcon, CogIcon, CreditCardIcon, GlobeIcon, LoginIcon, ShieldCheckIcon, UserGroupIcon, UsersIcon } from '@heroicons/react/outline'
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
@@ -32,17 +32,18 @@ function DashMenu() {
                             <ChipIcon className='h-8 stroke-1' />
                             <h4>Dashboard</h4>
                         </NavLink>
-                        <div onClick={operationsSubMenu} className='items-center relative flex text-white gap-7 '>
+                        <div onClick={operationsSubMenu} className='items-center relative flex text-white gap-7 cursor-pointer'>
                             <DashMenuItem onClick={operationsSubMenu} Icon={<GlobeIcon className='h-8 stroke-1' />} Title={'Operations'} />
                             {operations && <div className='absolute bg-white text-primary px-3 py-10 top-1/4 left-[70%] w-60 space-y-3 rounded-r-lg border-r border border-primary'>
                                 <NavLink to={'/dashboard/TruckProgramming'} className='hover:font-bold hover:ease-in-out duration-150 block'>Truck Programming</NavLink>
                                 <NavLink to={'/dashboard/JourneyManagement'} className='hover:font-bold hover:ease-in-out duration-150 block'>Journey Management</NavLink>
                                 <p className='hover:font-bold hover:ease-in-out duration-150'>Waybill Management</p>
                                 <p className='hover:font-bold hover:ease-in-out duration-150'>Trip Expense Request</p>
-                                <p className='hover:font-bold hover:ease-in-out duration-150'>Shortage Resolution</p>
+                                <NavLink to={'/dashboard/ShortageResolution'} className='hover:font-bold hover:ease-in-out duration-150 block'>Shortage Resolution</NavLink>
                             </div>}
                         </div>
                         <DashMenuItem Icon={<ShieldCheckIcon className='h-8 stroke-1' />} Title={'Health & Safety'} />
+                        <NavLink to={'/dashboard/AssetRegister'} className='block'><DashMenuItem Icon={<UsersIcon className='h-8 stroke-1' />} Title={'Operations Support'} /></NavLink>
                         {/* <div className='items-center relative flex text-white gap-7 '>
                         <div className='flex gap-2 items-center'>
                             <GlobeIcon className='h-8 stroke-1' />
