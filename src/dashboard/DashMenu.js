@@ -34,13 +34,14 @@ function DashMenu() {
                         </NavLink>
                         <div onClick={operationsSubMenu} className='items-center relative flex text-white gap-7 cursor-pointer'>
                             <DashMenuItem onClick={operationsSubMenu} Icon={<GlobeIcon className='h-8 stroke-1' />} Title={'Operations'} />
-                            {operations && <div className='absolute bg-white text-primary px-3 py-10 top-1/4 left-[70%] w-60 space-y-3 rounded-r-lg border-r border border-primary'>
+                            {operations && <div className='absolute bg-white text-primary px-3 py-10 -top-1/4 left-3/4 w-60 space-y-3 rounded-r-lg border-r border border-primary'>
                                 <NavLink to={'/dashboard/TruckProgramming'} className='hover:font-bold hover:ease-in-out duration-150 block'>Truck Programming</NavLink>
                                 <NavLink to={'/dashboard/JourneyManagement'} className='hover:font-bold hover:ease-in-out duration-150 block'>Journey Management</NavLink>
+                                <NavLink to={'/dashboard/TripExpense'} className='hover:font-bold hover:ease-in-out duration-150 block'>Trip Expense Request</NavLink>
                                 <p className='hover:font-bold hover:ease-in-out duration-150'>Waybill Management</p>
-                                <p className='hover:font-bold hover:ease-in-out duration-150'>Trip Expense Request</p>
                                 <NavLink to={'/dashboard/ShortageResolution'} className='hover:font-bold hover:ease-in-out duration-150 block'>Shortage Resolution</NavLink>
                             </div>}
+                            <ChevronDownIcon onClick={operationsSubMenu} className='h-6 stroke-1 hover:scale-125 transition duration-500' />
                         </div>
                         <DashMenuItem Icon={<ShieldCheckIcon className='h-8 stroke-1' />} Title={'Health & Safety'} />
                         <NavLink to={'/dashboard/AssetRegister'} className='block'><DashMenuItem Icon={<UsersIcon className='h-8 stroke-1' />} Title={'Operations Support'} /></NavLink>
