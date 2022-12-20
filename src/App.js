@@ -15,6 +15,7 @@ import ShortageResolution from './dashboard/operations/shortageResolution/Shorta
 import TripExpense from './dashboard/operations/tripExpense/TripExpense'
 import { useSelector } from 'react-redux'
 import { selectUser } from './utils/features/userSlice'
+import AbsenceForm from './dashboard/hr/AbsenceForm'
 
 
 /* ***IMPORTANT NOTICE***
@@ -48,6 +49,7 @@ function App() {
             <Route path='TruckAssignment' element={<TruckAssignment />} />
             <Route path='ShortageResolution' element={<ShortageResolution />} />
             <Route path='TripExpense' element={<TripExpense />} />
+            <Route path={'AbsenceForm'} element={<AbsenceForm />} />
           </Route>
         </Routes>
       </BrowserRouter>
