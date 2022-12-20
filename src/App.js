@@ -17,6 +17,7 @@ import { useSelector } from 'react-redux'
 import { selectUser } from './utils/features/userSlice'
 import AbsenceForm from './dashboard/hr/AbsenceForm'
 import ConsequenceManagement from './dashboard/hr/ConsequenceManagement'
+import TrainingForm from './dashboard/hr/TrainingForm'
 
 
 /* ***IMPORTANT NOTICE***
@@ -52,6 +53,7 @@ function App() {
             <Route path='TripExpense' element={<TripExpense />} />
             <Route path={'AbsenceForm'} element={<AbsenceForm />} />
             <Route path={'ConsequenceManagement'} element={<ConsequenceManagement />} />
+            <Route path={'Training'} element={<TrainingForm />} />
           </Route>
         </Routes>
       </BrowserRouter>

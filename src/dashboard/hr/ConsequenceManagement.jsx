@@ -66,10 +66,6 @@ const ConsequenceManagement = () => {
                         Alternative Do: If Sanctioned
                         <input className='w-full input input-primary' placeholder='John Doe' type="text" name="" id="" />
                     </label>
-                    {/* <label htmlFor="">
-                        Alternative Do: Authorized Leave
-                        <input className='w-full input input-primary' placeholder='John Doe' type="text" name="" id="" />
-                    </label> */}
                 </fieldset>
                 <button className='btn btn-primary mx-auto'>Submit</button>
             </form>
