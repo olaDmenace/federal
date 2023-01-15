@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { UserIcon, MailIcon, UserAddIcon } from '@heroicons/react/solid'
 import { LockClosedIcon } from '@heroicons/react/outline'
 import { Link, Navigate } from 'react-router-dom'
@@ -17,10 +17,23 @@ function RegisterForm() {
 
     const [name, setName] = useState('')
     const [mail, setMail] = useState('')
+    const [phone, setPhone] = useState('')
+    const [role, setRole] = useState('')
+    const [gender, setGender] = useState(0)
     const [password, setPassword] = useState('')
     const [successMSG, setSuccessMSG] = useState('')
-    const [role, setRole] = useState('')
     const signupURL = '/user'
+    const userRole = '/role'
+
+    [useEffect(() => {
+        endpoint.get(`/role`).then((res) => {
+            console.log(res)
+        }).catch((err) => {
+            console.log(err)
+        })
+    }, [])
+    ]
+
 
 
     const handleSubmit = (e) => {
@@ -29,20 +42,24 @@ function RegisterForm() {
         const data = {
             firstName: firstName,
             lastName: lastName,
-            otherName: otherName,
             email: mail,
-            password: password,
-            roleId: role
+            phoneNumber: phone,
+            roleId: role,
+            otherNames: otherName,
+            gender: 0,
+            password: password
         }
         endpoint.post(signupURL, data).then((res) => {
             setName('')
             setMail('')
-            setPassword('')
+            setPhone('')
             setRole('')
+            setGender()
+            setPassword('')
             console.log(res)
-            // setTimeout(() => {
-            //     Navigate('/')
-            // }, 3000)
+            setTimeout(() => {
+                Navigate('/verify')
+            }, 3000)
         }).catch((err) => {
             console.log(err)
         })
@@ -54,28 +71,28 @@ function RegisterForm() {
             <form onSubmit={handleSubmit} action="" className='flex flex-col gap-5 place-items-center'>
                 <fieldset className='flex items-center border py-2 px-2 rounded-md active:outline w-4/5 md:w-2/3 gap-1'>
                     <UserIcon className='h-8 text-place' />
-                    <input type="text" autoFocus autoComplete='no' placeholder="Full Name" className='bg-transparent placeholder:text-place outline-none h-10 w-full' />
+                    <input type="text" autoFocus autoComplete='no' placeholder="Full Name" value={name} onChange={(e) => { setName(e.target.value) }} className='bg-transparent placeholder:text-place outline-none h-10 w-full' />
                 </fieldset>
                 <fieldset className='flex items-center border py-2 px-2 rounded-md active:outline w-4/5 md:w-2/3 gap-1'>
                     <MailIcon className='h-8 text-place' />
-                    <input type="email" autoComplete='no' placeholder="user@mail.com" className='bg-transparent placeholder:text-place outline-none h-10 w-full' />
+                    <input type="email" autoComplete='no' placeholder="user@mail.com" value={mail} onChange={(e) => { setMail(e.target.value) }} className='bg-transparent placeholder:text-place outline-none h-10 w-full' />
                 </fieldset>
                 <fieldset className='flex items-center border py-2 px-2 rounded-md active:outline w-4/5  md:w-2/3 gap-1'>
                     <LockClosedIcon className='h-8 text-place' />
-                    <input type="password" placeholder="Password" className='bg-transparent placeholder:text-place outline-none h-10 w-full' />
+                    <input type="password" placeholder="Password" value={password} onChange={(e) => { setPassword(e.target.value) }} className='bg-transparent placeholder:text-place outline-none h-10 w-full' />
                 </fieldset>
                 <fieldset className='flex items-center border py-2 px-2 rounded-md active:outline w-4/5 md:w-2/3 gap-1'>
                     <UserAddIcon className='h-8 text-place' />
-                    <select name="" id="" className='bg-transparent outline-none h-10 w-full text-accent' >
-                        <option defaultValue={'role'}>Role</option>
-                        <option value="">Health & Safety Officer</option>
-                        <option value="">Human Resources</option>
-                        <option value="">Delivery Officer</option>
-                        <option value="">Journey Officer</option>
-                        <option value="">Logistics Coordinator</option>
-                        <option value="">Terminal Officer</option>
-                        <option value="">Waybill Officer</option>
-                        <option value="">Finance Officer</option>
+                    <select name="" id="" className='bg-transparent outline-none h-10 w-full text-accent' value={role} onChange={(e) => { setRole(e.target.value) }}>
+                        <option defaultValue='0'>Role</option>
+                        <option value="1">Health & Safety Officer</option>
+                        <option value="2">Human Resources</option>
+                        <option value="3">Delivery Officer</option>
+                        <option value="4">Journey Officer</option>
+                        <option value="5">Logistics Coordinator</option>
+                        <option value="6">Terminal Officer</option>
+                        <option value="7">Waybill Officer</option>
+                        <option value="8">Finance Officer</option>
                     </select>
                 </fieldset>
                 <fieldset className='grid items-center'>

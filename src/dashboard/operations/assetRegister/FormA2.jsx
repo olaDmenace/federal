@@ -6,11 +6,11 @@ function FormA2({ formData, setFormData }) {
             <h4 className='text-lg font-semibold'>Truck Document</h4>
             <form action="" className='grid text-primary gap-5 w-full'>
                 <fieldset>
-                    <h6 className='font-semibold text-lg'>Vehicle License</h6>value={formData.refNumber} onChange={(e) => setFormData({ ...formData, refNumber: e.target.value })} 
+                    <h6 className='font-semibold text-lg'>Vehicle License</h6>
                     <fieldset className='grid gap-3 md:grid-cols-2 lg:grid-cols-3 items-end'>
                         <label htmlFor="">
                             Reference Number
-                            <input className='input input-primary w-full' type="text" name="" id="" />
+                            <input value={formData.refNumber} onChange={(e) => setFormData({ ...formData, refNumber: e.target.value })} className='input input-primary w-full' type="text" name="" id="" />
                         </label>
                         <label htmlFor="">
                             Issue Date

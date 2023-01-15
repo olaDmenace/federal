@@ -12,17 +12,17 @@ function FormA() {
         // FormA1
         truckNumber: '',
         fleetNumber: '',
+        licensePlateNumber: '',
         tractorChasis: '',
         engineNumber: '',
         identificationNumber: '',
-        // licensePlate: '',
         manufactureDate: '',
         brand: {
-            manufacturer: '',
-            model: ''
+            model: '',
+            manufacturer: ''
         },
         registrationState: '',
-        // upload: '',
+        pictureUrl: '',
         status: '',
         logisticsCoordinatorId: '',
         journeyOfficerId: '',
@@ -33,39 +33,68 @@ function FormA() {
 
         // FormA2
 
-        refNumber: '',
-        issDate: '',
-        exDate: '',
-        hpRefNumber: '',
-        hpIssDate: '',
-        hpExDate: '',
-        poRefNumber: '',
-        poIssDate: '',
-        poExDate: '',
-        cpRefNumber: '',
-        cpIssDate: '',
-        cpExDate: '',
-        rwRefNumber: '',
-        rwIssDate: '',
-        rwExDate: '',
-        hdRefNumber: '',
-        hdIssDate: '',
-        hdExDate: '',
-        aRefNumber: '',
-        aIssDate: '',
-        aExDate: '',
-        cmRefNumber: '',
-        cmIssDate: '',
-        cmExDate: '',
-        irRefNumber: '',
-        irIssDate: '',
-        irExDate: '',
-        tiRefNumber: '',
-        tiIssDate: '',
-        tiExDate: '',
-        hdpRefNumber: '',
-        hdpIssDate: '',
-        hdpExDate: '',
+        truckDocuments: [
+            {
+                type: 0,
+                referenceNumber: "",
+                dateIssued: "",
+                expiryDate: ""
+            },
+            {
+                type: 1,
+                referenceNumber: "",
+                dateIssued: "",
+                expiryDate: ""
+            },
+            {
+                type: 2,
+                referenceNumber: "",
+                dateIssued: "",
+                expiryDate: ""
+            },
+            {
+                type: 3,
+                referenceNumber: "",
+                dateIssued: "",
+                expiryDate: ""
+            },
+            {
+                type: 4,
+                referenceNumber: "",
+                dateIssued: "",
+                expiryDate: ""
+            },
+            {
+                type: 5,
+                referenceNumber: "",
+                dateIssued: "",
+                expiryDate: ""
+            },
+            {
+                type: 6,
+                referenceNumber: "",
+                dateIssued: "",
+                expiryDate: ""
+            },
+            {
+                type: 7,
+                referenceNumber: "",
+                dateIssued: "",
+                expiryDate: ""
+            },
+            {
+                type: 8,
+                referenceNumber: "",
+                dateIssued: "",
+                expiryDate: ""
+            },
+            {
+                type: 9,
+                referenceNumber: "",
+                dateIssued: "",
+                expiryDate: ""
+            }
+        ],
 
         // FormA3
 
@@ -73,21 +102,21 @@ function FormA() {
             lastPreventiveMaintenance: '',
             nextPreventiveMaintenance: '',
             inServiceDate: '',
-            inServiceOdometer: '',
-            estimatedServiceLive: '',
+            inServiceOdometer: 0,
+            estimatedServiceLive: 0,
             // estServiceMet: '',
-            estimatedResaleValue: '',
+            estimatedResaleValue: 0,
             outOfServiceDate: '',
-            outOfServiceOdometer: '',
+            outOfServiceOdometer: 0,
         },
         purchaseInfo: {
             vendorName: '',
             purchaseDate: '',
-            purchaseValue: '',
-            odometer: '',
+            purchaseValue: 0,
+            odometer: 0,
             notes: '',
             warrantyExpiryDate: '',
-            warrantyMaxOdometer: '',
+            warrantyMaxOdometer: 0
         },
 
         // FormA4
@@ -95,16 +124,17 @@ function FormA() {
         specification: {
             driveType: '',
             brakeSystem: '',
-            rearAxle: '',
+            rearAxle: 0,
             fuelType: '',
-            fisrtTankCapacity: '',
-            secondTankCapacity: '',
-            oilCapacity: '',
+            fisrtTankCapacity: 0,
+            secondTankCapacity: 0,
+            tankCapacityMetric: "",
+            oilCapacity: 0,
+            oilCapacityMetric: "",
             maintenanceVendor: ''
         }
     })
 
-    console.log(formData)
 
     // Controls which form is displayed on the page
     const formDisplay = () => {
@@ -121,28 +151,24 @@ function FormA() {
 
 
     // Handles the submit event
-    const handleSubmit = (e) => {
-        e.preventDefault()
+    function handleSubmit() {
+        console.log(formData)
     }
+
 
     return (
         <div className='grid'>
             <div>{formDisplay()}</div>
             <div className="btn-group mx-auto pt-5">
-                <button disabled={form === 0} className="btn btn-active" onClick={() => { setForm((currFage) => currFage - 1) }}>Prev</button>
+                <button className={form === 0 ? 'btn btn-disabled' : 'btn btn-primary'} onClick={() => { setForm((currFage) => currFage - 1) }}>Prev</button>
                 <button
                     className="btn btn-active"
-                    onClick={() => {
-                        if (form === 3) {
-                            // innerHTML.text = 'Submit'
-                        } else
-                            setForm((currForm) => currForm + 1)
-                    }
+                    onClick={() => { form === 3 ? handleSubmit() : setForm((currForm) => currForm + 1) }
                     }>
                     {form === 3 ? 'Submit' : 'Next'}
                 </button>
             </div>
-        </div >
+        </div>
     )
 }
 

@@ -33,13 +33,14 @@ function FormA1({ formData, setFormData }) {
                     </label>
                     <label htmlFor="">
                         License Plate
-                        <input value={formData.licensePlate} onChange={(e) => setFormData({ ...formData, licensePlate: e.target.value })} className='input input-primary w-full' type="text" name="" id="" />
+                        <input value={formData.licensePlateNumber} onChange={(e) => setFormData({ ...formData, licensePlateNumber: e.target.value })} className='input input-primary w-full' type="text" name="" id="" />
                     </label>
                     <label htmlFor="">
                         Year Manufacture
-                        <select value={formData.manufactureDate} onChange={(e) => setFormData({ ...formData, manufactureDate: e.target.value })} className='select select-primary w-full'>
+                        <input value={formData.manufactureDate} onChange={(e) => setFormData({ ...formData, manufactureDate: e.target.value })} className='input input-primary w-full' type="date" name="" id="" />
+                        {/* <select  className='select select-primary w-full'>
                             <option selected disabled value="">Select Year</option>
-                        </select>
+                        </select> */}
                     </label>
                     <label htmlFor="">
                         Brand
@@ -56,7 +57,7 @@ function FormA1({ formData, setFormData }) {
                         <input value={formData.registrationState} onChange={(e) => setFormData({ ...formData, registrationState: e.target.value })} className='input input-primary w-full' type="text" name="" id="" />
                     </label>
                 </fieldset>
-                <input value={formData.upload} onChange={(e) => setFormData({ ...formData, upload: e.target.value })} className='py-5' type="file" src="" alt="" />
+                <input value={formData.pictureUrl} onChange={(e) => setFormData({ ...formData, pictureUrl: e.target.value })} className='py-5' type="file" src="" alt="" />
                 <fieldset className='grid gap-3 md:grid-cols-2 lg:grid-cols-3 items-end'>
                     <label htmlFor="">
                         Operational Status
