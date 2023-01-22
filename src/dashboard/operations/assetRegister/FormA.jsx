@@ -140,9 +140,9 @@ function FormA() {
             fuelType: '',
             fisrtTankCapacity: 0,
             secondTankCapacity: 0,
-            tankCapacityMetric: "",
+            // tankCapacityMetric: "",
             oilCapacity: 0,
-            oilCapacityMetric: "",
+            // oilCapacityMetric: "",
             maintenanceVendor: ''
         }
     })

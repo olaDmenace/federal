@@ -10,19 +10,19 @@ function FormA4({ formData, setFormData }) {
                     <fieldset className='grid gap-3 md:grid-cols-2 lg:grid-cols-3 items-end'>
                         <label htmlFor="">
                             Drive Type
-                            <select className='select select-primary w-full' name="" id="">
+                            <select value={formData.specification.driveType} onChange={(e) => setFormData({ ...formData, specification: { ...formData.specification, driveType: e.target.value } })} className='select select-primary w-full' name="" id="">
                                 <option selected disabled value="">Select</option>
                             </select>
                         </label>
                         <label htmlFor="">
                             Brake
-                            <select className='select select-primary w-full' name="" id="">
+                            <select value={formData.specification.brakeSystem} onChange={(e) => setFormData({ ...formData, specification: { ...formData.specification, brakeSystem: e.target.value } })} className='select select-primary w-full' name="" id="">
                                 <option selected disabled value="">Select</option>
                             </select>
                         </label>
                         <label htmlFor="">
                             Rear Axle
-                            <input className='input input-primary w-full' type="text" name="" id="" />
+                            <input value={formData.specification.rearAxle} onChange={(e) => setFormData({ ...formData, specification: { ...formData.specification, rearAxle: e.target.value } })} className='input input-primary w-full' type="text" name="" id="" />
                         </label>
                     </fieldset>
                 </fieldset>
@@ -31,17 +31,17 @@ function FormA4({ formData, setFormData }) {
                     <fieldset className='grid gap-3 md:grid-cols-2 lg:grid-cols-3 items-end'>
                         <label htmlFor="">
                             Fuel Type
-                            <select className='select select-primary w-full' name="" id="">
+                            <select value={formData.specification.fuelType} onChange={(e) => setFormData({ ...formData, specification: { ...formData.specification, fuelType: e.target.value } })} className='select select-primary w-full' name="" id="">
                                 <option selected disabled value="">Select</option>
                             </select>
                         </label>
                         <label htmlFor="">
                             Fuel Tank 1 Capacity
-                            <input className='input input-primary w-full' type="text" name="" id="" value={formData.fuelTankCapacity1} onChange={(e) => setFormData({ ...formData, fuelTankCapacity1: e.target.value })} />
+                            <input value={formData.specification.fisrtTankCapacity} onChange={(e) => setFormData({ ...formData, specification: { ...formData.specification, fisrtTankCapacity: e.target.value } })} className='input input-primary w-full' type="text" name="" id="" />
                         </label>
                         <label htmlFor="">
                             Fuel Tank 2 Capacity
-                            <input className='input input-primary w-full' type="text" name="" id="" />
+                            <input value={formData.specification.secondTankCapacity} onChange={(e) => setFormData({ ...formData, specification: { ...formData.specification, secondTankCapacity: e.target.value } })} className='input input-primary w-full' type="text" name="" id="" />
                         </label>
                     </fieldset>
                 </fieldset>
@@ -49,14 +49,14 @@ function FormA4({ formData, setFormData }) {
                     <h6 className='font-semibold text-lg'>Oil</h6>
                     <label htmlFor="">
                         Oil Capacity
-                        <input className='input input-primary w-full' type="text" name="" id="" />
+                        <input value={formData.specification.oilCapacity} onChange={(e) => setFormData({ ...formData, specification: { ...formData.specification, oilCapacity: e.target.value } })} className='input input-primary w-full' type="text" name="" id="" />
                     </label>
                 </fieldset>
                 <fieldset>
                     <h6 className='font-semibold text-lg'>Maintenance</h6>
                     <label htmlFor="">
                         Maintenance Vendor
-                        <select className='select select-primary w-full' name="" id="">
+                        <select value={formData.specification.maintenanceVendor} onChange={(e) => setFormData({ ...formData, specification: { ...formData.specification, maintenanceVendor: e.target.value } })} className='select select-primary w-full' name="" id="">
                             <option selected disabled value="">Select</option>
                         </select>
                     </label>
