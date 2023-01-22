@@ -9,11 +9,11 @@ function FormA3({ formData, setFormData }) {
                     <fieldset className='grid gap-3 md:grid-cols-2 items-end'>
                         <label htmlFor="">
                             Last PM Date
-                            <input value={formData.lastPreventiveMaintenance} onChange={(e) => setFormData({ ...formData, lastPreventiveMaintenance: e.target.value })} className='input input-primary w-full' type="date" name="" id="" />
+                            <input value={formData.maintenanceInfo.lastPreventiveMaintenance} onChange={(e) => setFormData({ ...formData, maintenanceInfo: { ...formData.maintenanceInfo, lastPreventiveMaintenance: e.target.value } })} className='input input-primary w-full' type="date" name="" id="" />
                         </label>
                         <label htmlFor="">
                             Next PM Date
-                            <input value={formData.nextPreventiveMaintenance} onChange={(e) => setFormData({ ...formData, nextPreventiveMaintenance: e.target.value })} className='input input-primary w-full' type="date" name="" id="" />
+                            <input value={formData.maintenanceInfo.nextPreventiveMaintenance} onChange={(e) => setFormData({ ...formData, maintenanceInfo: { ...formData.maintenanceInfo, nextPreventiveMaintenance: e.target.value } })} className='input input-primary w-full' type="date" name="" id="" />
                         </label>
                     </fieldset>
                 </fieldset>
@@ -22,11 +22,11 @@ function FormA3({ formData, setFormData }) {
                     <fieldset className='grid gap-3 md:grid-cols-2 items-end'>
                         <label htmlFor="">
                             In-Service Date
-                            <input value={formData.inServiceDate} onChange={(e) => setFormData({ ...formData, inServiceDate: e.target.value })} className='input input-primary w-full' type="date" name="" id="" />
+                            <input value={formData.maintenanceInfo.inServiceDate} onChange={(e) => setFormData({ ...formData, maintenanceInfo: { ...formData.maintenanceInfo, inServiceDate: e.target.value } })} className='input input-primary w-full' type="date" name="" id="" />
                         </label>
                         <label htmlFor="">
                             In-Service Odometer
-                            <input value={formData.inServiceOdometer} onChange={(e) => setFormData({ ...formData, inServiceOdometer: e.target.value })} className='input input-primary w-full' type="text" name="" id="" />
+                            <input value={formData.maintenanceInfo.inServiceOdometer} onChange={(e) => setFormData({ ...formData, maintenanceInfo: { ...formData.maintenanceInfo, inServiceOdometer: e.target.value } })} className='input input-primary w-full' type="text" name="" id="" />
                         </label>
                     </fieldset>
                 </fieldset>
@@ -35,15 +35,15 @@ function FormA3({ formData, setFormData }) {
                     <fieldset className='grid gap-3 md:grid-cols-2 lg:grid-cols-3 items-end'>
                         <label htmlFor="">
                             Estimated Service Life in Months
-                            <input value={formData.estimatedServiceLive} onChange={(e) => setFormData({ ...formData, estimatedServiceLive: e.target.value })} className='input input-primary w-full' type="text" name="" id="" />
+                            <input value={formData.maintenanceInfo.estimatedServiceLive} onChange={(e) => setFormData({ ...formData, maintenanceInfo: { ...formData.maintenanceInfo, estimatedServiceLive: e.target.value } })} className='input input-primary w-full' type="text" name="" id="" />
                         </label>
                         <label htmlFor="">
                             Estimated Service Life in Meter
-                            <input value={formData.estServiceMet} onChange={(e) => setFormData({ ...formData, estServiceMet: e.target.value })} className='input input-primary w-full' type="text" name="" id="" />
+                            <input value={formData.maintenanceInfo.estServiceMet} onChange={(e) => setFormData({ ...formData, maintenanceInfo: { ...formData.maintenanceInfo, estServiceMet: e.target.value } })} className='input input-primary w-full' type="text" name="" id="" />
                         </label>
                         <label htmlFor="">
                             Estimated Resale Value
-                            <input value={formData.estimatedResaleValue} onChange={(e) => setFormData({ ...formData, estimatedResaleValue: e.target.value })} className='input input-primary w-full' type="text" name="" id="" />
+                            <input value={formData.maintenanceInfo.estimatedResaleValue} onChange={(e) => setFormData({ ...formData, maintenanceInfo: { ...formData.maintenanceInfo, estimatedResaleValue: e.target.value } })} className='input input-primary w-full' type="text" name="" id="" />
                         </label>
                     </fieldset>
                 </fieldset>
@@ -52,11 +52,11 @@ function FormA3({ formData, setFormData }) {
                     <fieldset className='grid gap-3 md:grid-cols-2 items-end'>
                         <label htmlFor="">
                             Estimated Service Life in Months
-                            <input value={formData.outOfServiceDate} onChange={(e) => setFormData({ ...formData, outOfServiceDate: e.target.value })} className='input input-primary w-full' type="date" name="" id="" />
+                            <input value={formData.maintenanceInfo.outOfServiceDate} onChange={(e) => setFormData({ ...formData, maintenanceInfo: { ...formData.maintenanceInfo, outOfServiceDate: e.target.value } })} className='input input-primary w-full' type="date" name="" id="" />
                         </label>
                         <label htmlFor="">
                             Out-of-Service Odometer
-                            <input value={formData.outOfServiceOdometer} onChange={(e) => setFormData({ ...formData, outOfServiceOdometer: e.target.value })} className='input input-primary w-full' type="text" name="" id="" />
+                            <input value={formData.maintenanceInfo.outOfServiceOdometer} onChange={(e) => setFormData({ ...formData, maintenanceInfo: { ...formData.maintenanceInfo, outOfServiceOdometer: e.target.value } })} className='input input-primary w-full' type="text" name="" id="" />
                         </label>
                     </fieldset>
                 </fieldset>
@@ -65,24 +65,24 @@ function FormA3({ formData, setFormData }) {
                     <fieldset className='grid gap-3 md:grid-cols-2 items-end'>
                         <label htmlFor="">
                             Purchase Vendor
-                            <input value={formData.vendorName} onChange={(e) => setFormData({ ...formData, vendorName: e.target.value })} className='input input-primary w-full' type="text" name="" id="" />
+                            <input value={formData.purchaseInfo.vendorName} onChange={(e) => setFormData({ ...formData, purchaseInfo: { ...formData.purchaseInfo, vendorName: e.target.value } })} className='input input-primary w-full' type="text" name="" id="" />
                         </label>
                         <label htmlFor="">
                             Purchase Date
-                            <input value={formData.purchaseDate} onChange={(e) => setFormData({ ...formData, purchaseDate: e.target.value })} className='input input-primary w-full' type="date" name="" id="" />
+                            <input value={formData.purchaseInfo.purchaseDate} onChange={(e) => setFormData({ ...formData, purchaseInfo: { ...formData.purchaseInfo, purchaseDate: e.target.value } })} className='input input-primary w-full' type="date" name="" id="" />
                         </label>
                         <label htmlFor="">
                             Purchase Price
-                            <input value={formData.purchaseValue} onChange={(e) => setFormData({ ...formData, purchaseValue: e.target.value })} className='input input-primary w-full' type="text" name="" id="" />
+                            <input value={formData.purchaseInfo.purchaseValue} onChange={(e) => setFormData({ ...formData, purchaseInfo: { ...formData.purchaseInfo, purchaseValue: e.target.value } })} className='input input-primary w-full' type="text" name="" id="" />
                         </label>
                         <label htmlFor="">
                             Odometer
-                            <input value={formData.odometer} onChange={(e) => setFormData({ ...formData, odometer: e.target.value })} className='input input-primary w-full' type="text" name="" id="" />
+                            <input value={formData.purchaseInfo.odometer} onChange={(e) => setFormData({ ...formData, purchaseInfo: { ...formData.purchaseInfo, odometer: e.target.value } })} className='input input-primary w-full' type="text" name="" id="" />
                         </label>
                     </fieldset>
                     <label htmlFor="">
                         Notes
-                        <textarea value={formData.notes} onChange={(e) => setFormData({ ...formData, notes: e.target.value })} className='textarea textarea-primary w-full' name="" id="" rows="4"></textarea>
+                        <textarea value={formData.purchaseInfo.notes} onChange={(e) => setFormData({ ...formData, purchaseInfo: { ...formData.purchaseInfo, notes: e.target.value } })} className='textarea textarea-primary w-full' name="" id="" rows="4"></textarea>
                     </label>
                 </fieldset>
                 <fieldset>
@@ -90,11 +90,11 @@ function FormA3({ formData, setFormData }) {
                     <fieldset className='grid gap-3 md:grid-cols-2 items-end'>
                         <label htmlFor="">
                             Expiration Date
-                            <input value={formData.warrantyExpiryDate} onChange={(e) => setFormData({ ...formData, warrantyExpiryDate: e.target.value })} className='input input-primary w-full' type="date" name="" id="" />
+                            <input value={formData.purchaseInfo.warrantyExpiryDate} onChange={(e) => setFormData({ ...formData, purchaseInfo: { ...formData.purchaseInfo, warrantyExpiryDate: e.target.value } })} className='input input-primary w-full' type="date" name="" id="" />
                         </label>
                         <label htmlFor="">
                             Max Meter Value
-                            <input value={formData.warrantyMaxOdometer} onChange={(e) => setFormData({ ...formData, warrantyMaxOdometer: e.target.value })} className='input input-primary w-full' type="text" name="" id="" />
+                            <input value={formData.purchaseInfo.warrantyMaxOdometer} onChange={(e) => setFormData({ ...formData, purchaseInfo: { ...formData.purchaseInfo, warrantyMaxOdometer: e.target.value } })} className='input input-primary w-full' type="text" name="" id="" />
                         </label>
                     </fieldset>
                 </fieldset>

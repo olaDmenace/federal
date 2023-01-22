@@ -44,11 +44,11 @@ function FormA1({ formData, setFormData }) {
                     </label>
                     <label htmlFor="">
                         Brand
-                        <input value={formData.brand.manufacturer} onChange={(e) => setFormData({ ...formData, manufacturer: e.target.value })} className='input input-primary w-full' type="text" name="" id="" />
+                        <input value={formData.brand.model} onChange={(e) => setFormData({ ...formData, brand: { ...formData.brand, model: e.target.value } })} className='input input-primary w-full' type="text" name="" id="" />
                     </label>
                     <label htmlFor="">
                         Model
-                        <select value={formData.brand.model} onChange={(e) => setFormData({ ...formData, model: e.target.value })} className='select select-primary w-full' name="" id="">
+                        <select value={formData.brand.manufacturer} onChange={(e) => setFormData({ ...formData, model: e.target.value })} className='select select-primary w-full' name="" id="">
                             <option selected disabled value="">Select Model</option>
                         </select>
                     </label>

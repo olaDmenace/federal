@@ -1,28 +1,43 @@
 import React from 'react'
 
 function FormA2({ formData, setFormData }) {
+    const titles = new Map()
+    titles.set(0, "Vehicle License")
+    titles.set(1, 'Hackney Permit')
+    titles.set(2, 'Proof of Ownership')
+    titles.set(3, 'Carriage Permit')
+    titles.set(4, 'Road Worthiness')
+    titles.set(5, 'Heavy Duty Permit')
+    titles.set(6, 'All of Registration Number')
+    titles.set(7, 'CMR')
+    titles.set(8, 'Info Req for Clearance/Attestation')
+    titles.set(9, 'Carriage Permit')
+    titles.set(10, 'Truck Insurance')
+    titles.set(11, 'Heavy Duty Permit')
     return (
         <div className='py-5 text-primary space-y-3'>
             <h4 className='text-lg font-semibold'>Truck Document</h4>
             <form action="" className='grid text-primary gap-5 w-full'>
-                <fieldset>
-                    <h6 className='font-semibold text-lg'>Vehicle License</h6>
-                    <fieldset className='grid gap-3 md:grid-cols-2 lg:grid-cols-3 items-end'>
-                        <label htmlFor="">
-                            Reference Number
-                            <input value={formData.refNumber} onChange={(e) => setFormData({ ...formData, refNumber: e.target.value })} className='input input-primary w-full' type="text" name="" id="" />
-                        </label>
-                        <label htmlFor="">
-                            Issue Date
-                            <input value={formData.issDate} onChange={(e) => setFormData({ ...formData, issDate: e.target.value })} className='input input-primary w-full' type="date" name="" id="" />
-                        </label>
-                        <label htmlFor="">
-                            Expiry Date
-                            <input value={formData.exDate} onChange={(e) => setFormData({ ...formData, exDate: e.target.value })} className='input input-primary w-full' type="date" name="" id="" />
-                        </label>
+                {formData.truckDocuments.map((v, i) =>
+                    <fieldset type={v.type} key={i}>
+                        <h6 className='font-semibold text-lg'>{titles?.get(v?.type)}</h6>
+                        <fieldset className='grid gap-3 md:grid-cols-2 lg:grid-cols-3 items-end'>
+                            <label htmlFor="">
+                                Reference Number
+                                <input value={formData.truckDocuments[v.referenceNumber]} onChange={(e) => setFormData({ ...formData, truckDocuments: [{ ...formData.truckDocuments.v, referenceNumber: e.target.value }] })} className='input input-primary w-full' type="text" name="" id="" />
+                            </label>
+                            <label htmlFor="">
+                                Issue Date
+                                <input value={formData.truckDocuments[v.dateIssued]} onChange={(e) => setFormData({ ...formData, truckDocuments: [{ ...formData.truckDocuments.v, dateIssued: e.target.value }] })} className='input input-primary w-full' type="date" name="" id="" />
+                            </label>
+                            <label htmlFor="">
+                                Expiry Date
+                                <input value={formData.truckDocuments[v.expiryDate]} onChange={(e) => setFormData({ ...formData, truckDocuments: [{ ...formData.truckDocuments.v, expiryDate: e.target.value }] })} className='input input-primary w-full' type="date" name="" id="" />
+                            </label>
+                        </fieldset>
                     </fieldset>
-                </fieldset>
-                <fieldset>
+                )}
+                {/* <fieldset>
                     <h6 className='font-semibold text-lg'>Hackney Permit</h6>
                     <fieldset className='grid gap-3 md:grid-cols-2 lg:grid-cols-3 items-end'>
                         <label htmlFor="">
@@ -89,7 +104,8 @@ function FormA2({ formData, setFormData }) {
                             <input value={formData.rwExDate} onChange={(e) => setFormData({ ...formData, rwExDate: e.target.value })} className='input input-primary w-full' type="date" name="" id="" />
                         </label>
                     </fieldset>
-                </fieldset><fieldset>
+                </fieldset>
+                <fieldset>
                     <h6 className='font-semibold text-lg'>Heavy Duty Permit</h6>
                     <fieldset className='grid gap-3 md:grid-cols-2 lg:grid-cols-3 items-end'>
                         <label htmlFor="">
@@ -190,7 +206,7 @@ function FormA2({ formData, setFormData }) {
                             <input value={formData.hdpExDate} onChange={(e) => setFormData({ ...formData, hdpExDate: e.target.value })} className='input input-primary w-full' type="date" name="" id="" />
                         </label>
                     </fieldset>
-                </fieldset>
+                </fieldset> */}
             </form>
         </div>
     )

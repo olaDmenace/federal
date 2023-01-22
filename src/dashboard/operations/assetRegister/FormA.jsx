@@ -93,6 +93,18 @@ function FormA() {
                 referenceNumber: "",
                 dateIssued: "",
                 expiryDate: ""
+            },
+            {
+                type: 10,
+                referenceNumber: "",
+                dateIssued: "",
+                expiryDate: ""
+            },
+            {
+                type: 11,
+                referenceNumber: "",
+                dateIssued: "",
+                expiryDate: ""
             }
         ],
 
@@ -104,7 +116,7 @@ function FormA() {
             inServiceDate: '',
             inServiceOdometer: 0,
             estimatedServiceLive: 0,
-            // estServiceMet: '',
+            estServiceMet: '',
             estimatedResaleValue: 0,
             outOfServiceDate: '',
             outOfServiceOdometer: 0,
