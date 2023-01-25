@@ -165,6 +165,8 @@ function FormA() {
     // Handles the submit event
     function handleSubmit() {
         console.log(formData)
+
+        // formData.truckDocuments = [vehli, hacper]
     }
 
 
