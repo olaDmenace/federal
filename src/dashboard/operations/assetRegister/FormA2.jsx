@@ -1,11 +1,6 @@
 import React from 'react'
-import { useState } from 'react'
 
 function FormA2({ formData, setFormData }) {
-
-    const [vehLi, setVehLi] = useState({ type: 0 })
-
-
     const titles = new Map()
     titles.set(0, "Vehicle License")
     titles.set(1, 'Hackney Permit')
@@ -23,7 +18,7 @@ function FormA2({ formData, setFormData }) {
     const mutateField = (type, valToChange, newVal) => {
         let i = 0
         while (i < formData.truckDocuments.length) {
-            if (formData.truckDocuments[i].type == type) {
+            if (formData.truckDocuments[i].type === type) {
                 formData.truckDocuments[i][valToChange] = newVal
                 break;
             }

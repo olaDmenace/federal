@@ -18,7 +18,7 @@ import { selectUser } from './utils/features/userSlice'
 import AbsenceForm from './dashboard/hr/AbsenceForm'
 import ConsequenceManagement from './dashboard/hr/ConsequenceManagement'
 import TrainingForm from './dashboard/hr/TrainingForm'
-
+import Employee from './dashboard/hr/Employee'
 
 /* ***IMPORTANT NOTICE***
     This project is a React JS project buitl with Daisy UI Tailwind CSS UI component.
@@ -54,6 +54,7 @@ function App() {
             <Route path={'AbsenceForm'} element={<AbsenceForm />} />
             <Route path={'ConsequenceManagement'} element={<ConsequenceManagement />} />
             <Route path={'Training'} element={<TrainingForm />} />
+            <Route path='Employee' element={<Employee />} />
           </Route>
         </Routes>
       </BrowserRouter>

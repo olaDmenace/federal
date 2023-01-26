@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import endpoint from '../../../utils/endpoints/endpoint'
 import FormA1 from './FormA1'
 import FormA2 from './FormA2'
 import FormA3 from './FormA3'
@@ -161,12 +162,19 @@ function FormA() {
         }
     }
 
+    const truck = '/truck'
+
 
     // Handles the submit event
-    function handleSubmit() {
+    function handleSubmit(e) {
         console.log(formData)
-
-        // formData.truckDocuments = [vehli, hacper]
+        endpoint.post(truck, formData).then(
+            res => {
+                console.log(res)
+            }
+        ).then((err) => {
+            console.log(err)
+        })
     }
 
 
