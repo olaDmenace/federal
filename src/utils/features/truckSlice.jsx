@@ -8,13 +8,13 @@ export const truckSlice = createSlice({
     reducers: {
         truck: (state, action) => {
             localStorage.setItem('response', action.payload.response)
-            state.truck = action.payload.truck
+            state.truck = action.payload
         }
     }
 })
 
 export const { truck } = truckSlice.actions;
 
-export const selectTruck = (state) => state.truck.truck
+export const selectTruck = (state) => state.truck
 
 export default truckSlice.reducer

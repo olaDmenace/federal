@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import endpoint from '../../utils/endpoints/endpoint'
 import { truck } from '../../utils/features/truckSlice'
+import { logout } from '../../utils/features/userSlice'
 import PageTitle from '../../utils/PageTitle'
 import FormTitle from '../FormTitle'
 
@@ -16,42 +18,47 @@ const AbsenceForm = () => {
         startDate: "",
         endDate: "",
         truckId: "",
-        alternativeDeliveryOfficerId: "",
-        deliveryOfficerId: "",
-        journeyOfficerId: "",
-        logisticsCoordinatorId: ""
+        alternativeDeliveryOfficerId: ""
+        // deliveryOfficerId: "",
+        // journeyOfficerId: "",
+        // logisticsCoordinatorId: ""
     })
+
+    const navigate = useNavigate()
+    // Collects data from the '/truck' endpoint to be mapped
+    const [trucks, setTrucks] = useState([])
+
+    // Store the data that was collected so it can be shown in other fields
+    const [final, setFinal] = useState()
 
     useEffect(() => {
         endpoint.get('/truck').then(res => {
-            console.log(res)
-            dispatch(truck(res.data))
+            if (res.status === 401) {
+                dispatch(logout())
+                return
+            }
+            console.log(res.data.data)
+            setTrucks(res.data.data)
+            dispatch(truck(res.data.data))
         }).catch(err => {
             console.log(err)
         })
-        // fetch('https://dummyjson.com/products/').then(res => {
-        //     console.log(res)
-        //     return res.json()
-        // }).then(data => {
-        //     console.log(data)
-        //     dispatch(truck(data.products))
-        // }).catch(err => {
-        //     console.log(err)
-        // })
     }, [])
 
 
+
     const url = 'human-resource/delivery-officer/absence'
+    const finalData = JSON.stringify(data)
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log(data)
-        // endpoint.post(url, data).then(
-        //     res => {
-        //         console.log(res)
-        //     }
-        // ).then((err) => {
-        //     console.log(err)
-        // })
+        endpoint.post(url, finalData).then(
+            res => {
+                console.log(res)
+            }
+        ).then((err) => {
+            console.log(err)
+        })
     }
     return (
         <div>
@@ -61,19 +68,23 @@ const AbsenceForm = () => {
                 <fieldset className='grid md:grid-cols-2 gap-3 items-end'>
                     <label htmlFor="">
                         Truck Number
-                        <input className='w-full input input-primary' value={data.truckId} onChange={(e) => setData({ ...data, truckId: e.target.value })} placeholder='ID-112200' type="text" name="" id="" />
+                        <select className='w-full input input-primary' value={data.truckId} onChange={(e) => setData({ ...data, truckId: e.target.value })} name="" id="">
+                            <option disabled value="">Select Truck</option>
+                            {trucks.map(item => <option value={item.truckId} key={item.truckId}>{item.truckNumber}</option>)}
+                        </select>
+                        {/* {truck.map(item => <input className='w-full input input-primary' value={data.truckId} onChange={(e) => setData({ ...data, truckId: e.target.value })} placeholder='ID-112200' type="text" name="" id="" />)} */}
                     </label>
                     <label htmlFor="">
                         Deliver Officer
-                        <input className='w-full input input-primary' value={data.deliveryOfficerId} onChange={(e) => setData({ ...data, deliveryOfficerId: e.target.value })} placeholder='John Doe' type="text" name="" id="" />
+                        {trucks.filter((t) => t.truckId === data.truckId).map(item => <input className='w-full input input-primary' value={item.deliveryOfficer} placeholder='John Doe' type="text" name="" id="" />)}
                     </label>
                     <label htmlFor="">
                         Journey Officer
-                        <input className='w-full input input-primary' value={data.journeyOfficerId} onChange={(e) => setData({ ...data, journeyOfficerId: e.target.value })} placeholder='John Doe' type="text" name="" id="" />
+                        {trucks.filter((t) => t.truckId === data.truckId).map(item => <input className='w-full input input-primary' value={item.journeyOfficer} placeholder='John Doe' type="text" name="" id="" />)}
                     </label>
                     <label htmlFor="">
                         Logistics Coordinator
-                        <input className='w-full input input-primary' value={data.logisticsCoordinatorId} onChange={(e) => setData({ ...data, logisticsCoordinatorId: e.target.value })} placeholder='John Doe' type="text" name="" id="" />
+                        {trucks.filter((t) => t.truckId === data.truckId).map(item => <input className='w-full input input-primary' value={item.logisticsCoordinator} placeholder='John Doe' type="text" name="" id="" />)}
                     </label>
                     <label htmlFor="">
                         Absence Reason
