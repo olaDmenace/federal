@@ -1,3 +1,5 @@
+import { XCircleIcon } from '@heroicons/react/outline'
+import { ThumbUpIcon } from '@heroicons/react/solid'
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -5,6 +7,7 @@ import endpoint from '../../utils/endpoints/endpoint'
 import { truck } from '../../utils/features/truckSlice'
 import { logout } from '../../utils/features/userSlice'
 import PageTitle from '../../utils/PageTitle'
+import PopUp from '../../utils/PopUp'
 import FormTitle from '../FormTitle'
 
 const AbsenceForm = () => {
@@ -18,7 +21,7 @@ const AbsenceForm = () => {
         startDate: "",
         endDate: "",
         truckId: "",
-        alternativeDeliveryOfficerId: ""
+        alternativeDeliveryOfficerId: null
         // deliveryOfficerId: "",
         // journeyOfficerId: "",
         // logisticsCoordinatorId: ""
@@ -47,21 +50,46 @@ const AbsenceForm = () => {
 
 
 
+
+    const [reply, setReply] = useState({
+        icon: '',
+        message: ''
+    })
+
+    const [show, setShow] = useState(false)
+
     const url = 'human-resource/delivery-officer/absence'
-    const finalData = JSON.stringify(data)
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log(data)
-        endpoint.post(url, finalData).then(
-            res => {
-                console.log(res)
+        data.startDate = new Date(data.startDate).toISOString()
+        data.endDate = new Date(data.endDate).toISOString()
+        endpoint.post(url, data).then(res => {
+            if (res.status === 200) {
+                setReply({
+                    icon: <ThumbUpIcon className='mx-auto h-24 text-primary' />,
+                    message: res.data.message
+                })
+            } else {
+                setReply({
+                    icon: <XCircleIcon className='mx-auto h-24 text-red-500' />,
+                    message: res.data.message
+                })
             }
-        ).then((err) => {
+            return console.log(res)
+        }).then((err) => {
             console.log(err)
         })
     }
+
+
     return (
         <div>
+            {show && <PopUp>
+                {reply.icon}
+                <p className='mx-auto text-center text-primary bg-transparent'>{reply.message}</p>
+                <button className='btn btn-primary' onClick={(e) => setShow(false)}>Dashboard</button>
+            </PopUp>}
             <FormTitle Title={'Delivery Officer Absence Form'} />
             <hr className='pb-5' />
             <form action="" className='grid text-primary gap-5 w-full'>
@@ -76,15 +104,21 @@ const AbsenceForm = () => {
                     </label>
                     <label htmlFor="">
                         Deliver Officer
-                        {trucks.filter((t) => t.truckId === data.truckId).map(item => <input className='w-full input input-primary' value={item.deliveryOfficer} placeholder='John Doe' type="text" name="" id="" />)}
+                        <div className='border border-primary h-12 rounded-lg grid items-center'>
+                            {trucks.filter((t) => t.truckId === data.truckId).map(item => <span className='px-4'>{item.deliveryOfficer}</span>)}
+                        </div>
                     </label>
                     <label htmlFor="">
                         Journey Officer
-                        {trucks.filter((t) => t.truckId === data.truckId).map(item => <input className='w-full input input-primary' value={item.journeyOfficer} placeholder='John Doe' type="text" name="" id="" />)}
+                        <div className='border border-primary h-12 rounded-lg grid items-center'>
+                            {trucks.filter((t) => (t.truckId === data.truckId)).map(item => <span className='px-4'>{item.journeyOfficer}</span>)}
+                        </div>
                     </label>
                     <label htmlFor="">
                         Logistics Coordinator
-                        {trucks.filter((t) => t.truckId === data.truckId).map(item => <input className='w-full input input-primary' value={item.logisticsCoordinator} placeholder='John Doe' type="text" name="" id="" />)}
+                        <div className='border border-primary h-12 rounded-lg grid items-center'>
+                            {trucks.filter((t) => (t.truckId === data.truckId)).map(item => <span className='px-4'>{item.logisticsCoordinator}</span>)}
+                        </div>
                     </label>
                     <label htmlFor="">
                         Absence Reason

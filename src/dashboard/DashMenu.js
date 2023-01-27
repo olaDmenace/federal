@@ -1,7 +1,7 @@
 import React from 'react'
 import Dash from '../images/Dash.png'
 import Logo from '../images/LogoDark.png'
-import { ChevronDownIcon, ChipIcon, CogIcon, CreditCardIcon, GlobeIcon, LoginIcon, ShieldCheckIcon, UserGroupIcon, UsersIcon } from '@heroicons/react/outline'
+import { ChevronDownIcon, ChipIcon, CogIcon, CreditCardIcon, GlobeIcon, IdentificationIcon, LoginIcon, ShieldCheckIcon, UserGroupIcon, UsersIcon } from '@heroicons/react/outline'
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
@@ -27,7 +27,7 @@ function DashMenu() {
                 <img className='mix-blend-overlay h-screen w-full absolute' src={Dash} alt="" />
                 <img className='w-1/2 mx-auto' src={Logo} alt="" />
                 <div className='space-y-16 pl-12'>
-                    <div className='relative space-y-5 w-4/5'>
+                    <div className='relative grid gap-5 w-4/5'>
                         <NavLink to={''} className='items-center flex text-white gap-2'>
                             <ChipIcon className='h-8 stroke-1' />
                             <h4>Dashboard</h4>
@@ -75,6 +75,14 @@ function DashMenu() {
                         <CogIcon className='h-8 stroke-1' />
                         <h4>Settings</h4>
                     </div> */}
+                        <NavLink to={''}><DashMenuItem Icon={<IdentificationIcon className='h-8 stroke-1' />} Title={'Human Capital'} /></NavLink>
+                        <div className='grid gap-5 absolute bg-white w-72 p-5 rounded-r top-[85%] left-[100%]'>
+                            <NavLink to={'/dashboard/AbsenceForm'} className='text-primary hover:font-bold ease-in-out duration-150'>Delivery Officer Absence Form</NavLink>
+                            <NavLink to={'/dashboard/ConsequenceManagement'} className='text-primary hover:font-bold ease-in-out duration-150'>Consequence Management</NavLink>
+                            <NavLink to={'/dashboard/Training'} className='text-primary hover:font-bold ease-in-out duration-150'>Training Form</NavLink>
+                            <NavLink to={'/dashboard/Employee'} className='text-primary hover:font-bold ease-in-out duration-150'>Employee Details</NavLink>
+
+                        </div>
                     </div>
                     <div className='items-center relative flex text-white gap-2 cursor-pointer' onClick={(e) => handleLogout(e)}>
                         <LoginIcon className='h-8 stroke-1' />

@@ -47,9 +47,11 @@ const ConsequenceManagement = () => {
         icon: '',
         message: ''
     })
+
+    const [show, setShow] = useState(false)
+
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(data, typeof data.violationDate)
         data.violationDate = new Date(data.violationDate).toISOString()
         data.sanctionDate = new Date(data.sanctionDate).toISOString()
         data.sanctionEndDate = new Date(data.sanctionEndDate).toISOString()
@@ -72,7 +74,6 @@ const ConsequenceManagement = () => {
         })
     }
 
-    const [show, setShow] = useState(false)
 
     return (
         <div>
