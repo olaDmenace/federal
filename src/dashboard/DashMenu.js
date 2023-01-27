@@ -21,6 +21,8 @@ function DashMenu() {
         dispatch(logout())
     }
 
+    const [hr, setHr] = useState(false)
+
     return (
         <div>
             <div className='h-screen w-full bg-primary relative grid py-10 gap-10'>
@@ -75,14 +77,14 @@ function DashMenu() {
                         <CogIcon className='h-8 stroke-1' />
                         <h4>Settings</h4>
                     </div> */}
-                        <NavLink to={''}><DashMenuItem Icon={<IdentificationIcon className='h-8 stroke-1' />} Title={'Human Capital'} /></NavLink>
-                        <div className='grid gap-5 absolute bg-white w-72 p-5 rounded-r top-[85%] left-[100%]'>
+                        <NavLink to={''} onClick={() => setHr(!hr)}><DashMenuItem Icon={<IdentificationIcon className='h-8 stroke-1' />} Title={'Human Capital'} /></NavLink>
+                        {hr && <div className='grid gap-5 absolute bg-white w-72 p-5 rounded-r top-[85%] left-[100%]'>
                             <NavLink to={'/dashboard/AbsenceForm'} className='text-primary hover:font-bold ease-in-out duration-150'>Delivery Officer Absence Form</NavLink>
                             <NavLink to={'/dashboard/ConsequenceManagement'} className='text-primary hover:font-bold ease-in-out duration-150'>Consequence Management</NavLink>
                             <NavLink to={'/dashboard/Training'} className='text-primary hover:font-bold ease-in-out duration-150'>Training Form</NavLink>
                             <NavLink to={'/dashboard/Employee'} className='text-primary hover:font-bold ease-in-out duration-150'>Employee Details</NavLink>
 
-                        </div>
+                        </div>}
                     </div>
                     <div className='items-center relative flex text-white gap-2 cursor-pointer' onClick={(e) => handleLogout(e)}>
                         <LoginIcon className='h-8 stroke-1' />
