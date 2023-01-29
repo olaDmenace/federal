@@ -42,7 +42,7 @@ function LoginForm({ setAuth }) {
                 res.data.data
             ))
             setTimeout(() => {
-                navigate('/dashboard')
+                navigate('/welcome')
             }, 3000)
         })
             .catch((err) => {

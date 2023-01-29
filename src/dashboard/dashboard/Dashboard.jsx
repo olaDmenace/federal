@@ -8,16 +8,16 @@ const Dashboard = () => {
         <div className='grid gap-5 my-10'>
             <Notification />
             <div className='grid gap-5 md:grid-cols-2 lg:grid-cols-3 w-11/12 m-auto'>
-                <DashCard icon={LocationMarkerIcon} title={'Journey Management'} />
-                <DashCard icon={IdentificationIcon} title={'Human Capital'} />
-                <DashCard icon={ClipboardCheckIcon} title={'Parts & Inventory'} />
-                <DashCard icon={ShieldCheckIcon} title={'Health & Safety'} />
-                <DashCard icon={CreditCardIcon} title={'Finances'} />
-                <DashCard icon={LinkIcon} title={'Asset Register'} />
-                <DashCard icon={UsersIcon} title={'Operations Support'} />
-                <DashCard icon={AdjustmentsIcon} title={'Maintenance Booking'} />
-                <DashCard icon={BellIcon} title={'Reminder'} />
-                <DashCard icon={ExclamationCircleIcon} title={'RTA/Incidents'} />
+                <DashCard Link={'/dashboard/JourneyManagement'} icon={LocationMarkerIcon} title={'Journey Management'} />
+                <DashCard Link={'/dashboard/AssetRegister'} icon={LinkIcon} title={'Asset Register'} />
+                <DashCard Link={''} icon={IdentificationIcon} title={'Human Capital'} />
+                <DashCard Link={''} icon={ClipboardCheckIcon} title={'Parts & Inventory'} />
+                <DashCard Link={''} icon={ShieldCheckIcon} title={'Health & Safety'} />
+                <DashCard Link={''} icon={CreditCardIcon} title={'Finances'} />
+                <DashCard Link={''} icon={UsersIcon} title={'Operations Support'} />
+                <DashCard Link={''} icon={AdjustmentsIcon} title={'Maintenance Booking'} />
+                <DashCard Link={''} icon={BellIcon} title={'Reminder'} />
+                <DashCard Link={''} icon={ExclamationCircleIcon} title={'RTA/Incidents'} />
             </div>
         </div>
     )
