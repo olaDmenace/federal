@@ -77,7 +77,7 @@ function DashMenu() {
                         <CogIcon className='h-8 stroke-1' />
                         <h4>Settings</h4>
                     </div> */}
-                        <NavLink to={''} onClick={() => setHr(!hr)}><DashMenuItem Icon={<IdentificationIcon className='h-8 stroke-1' />} Title={'Human Capital'} /></NavLink>
+                        <div onClick={() => setHr(!hr)}><DashMenuItem Icon={<IdentificationIcon className='h-8 stroke-1' />} Title={'Human Capital'} /></div>
                         {hr && <div className='grid gap-5 absolute bg-white w-72 p-5 rounded-r top-[85%] left-[100%]'>
                             <NavLink to={'/dashboard/AbsenceForm'} className='text-primary hover:font-bold ease-in-out duration-150'>Delivery Officer Absence Form</NavLink>
                             <NavLink to={'/dashboard/ConsequenceManagement'} className='text-primary hover:font-bold ease-in-out duration-150'>Consequence Management</NavLink>

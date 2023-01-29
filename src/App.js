@@ -19,6 +19,7 @@ import AbsenceForm from './dashboard/hr/AbsenceForm'
 import ConsequenceManagement from './dashboard/hr/ConsequenceManagement'
 import TrainingForm from './dashboard/hr/TrainingForm'
 import Employee from './dashboard/hr/Employee'
+import UserDashboard from './dashboard/dashboard/Dashboard.jsx'
 
 /* ***IMPORTANT NOTICE***
     This project is a React JS project buitl with Daisy UI Tailwind CSS UI component.
@@ -43,8 +44,9 @@ function App() {
             <Route path='ResetPassword' element={<ResetPassword />} />
             <Route path='CreatePassword' element={<CreatePassword />} />
           </Route>
+          <Route path='/welcome' element={<UserDashboard />} />
           <Route path='/dashboard' element={<Dashboard />}>
-            <Route path='' element={<TruckVisibilityReport />} />
+            <Route path='TruckVisibility' element={<TruckVisibilityReport />} />
             <Route path='TruckProgramming' element={<TruckProgramming />} />
             <Route path='JourneyManagement' element={<Journeymanagement />} />
             <Route path='AssetRegister' element={<AssetRegister />} />
