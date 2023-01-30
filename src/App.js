@@ -46,7 +46,7 @@ function App() {
           </Route>
           <Route path='/welcome' element={<UserDashboard />} />
           <Route path='/dashboard' element={<Dashboard />}>
-            <Route path='TruckVisibility' element={<TruckVisibilityReport />} />
+            <Route path='' element={<TruckVisibilityReport />} />
             <Route path='TruckProgramming' element={<TruckProgramming />} />
             <Route path='JourneyManagement' element={<Journeymanagement />} />
             <Route path='AssetRegister' element={<AssetRegister />} />
