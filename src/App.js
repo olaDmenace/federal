@@ -42,28 +42,25 @@ function App() {
             <Route path="ResetPassword" element={<ResetPassword />} />
             <Route path="CreatePassword" element={<CreatePassword />} />
           </Route>
-          <Route path="/welcome" element={<UserDashboard />} />
-          <Route path="/dashboard" element={<Dashboard />}>
-            <Route path="TruckVisibility" element={<TruckVisibilityReport />} />
-            <Route path="TruckProgramming" element={<TruckProgramming />} />
-            <Route path="JourneyManagement" element={<Journeymanagement />} />
-            <Route path="AssetRegister" element={<AssetRegister />} />
-            <Route path="TruckAssignment" element={<TruckAssignment />} />
-            <Route path="ShortageResolution" element={<ShortageResolution />} />
-            <Route path="TripExpense" element={<TripExpense />} />
-            <Route path={"AbsenceForm"} element={<AbsenceForm />} />
-            <Route
-              path={"ConsequenceManagement"}
-              element={<ConsequenceManagement />}
-            />
-            <Route path={"Training"} element={<TrainingForm />} />
-            <Route path="Employee" element={<Employee />} />
+          <Route path='/welcome' element={<UserDashboard />} />
+          <Route path='/dashboard' element={<Dashboard />}>
+            <Route path='' element={<TruckVisibilityReport />} />
+            <Route path='TruckProgramming' element={<TruckProgramming />} />
+            <Route path='JourneyManagement' element={<Journeymanagement />} />
+            <Route path='AssetRegister' element={<AssetRegister />} />
+            <Route path='TruckAssignment' element={<TruckAssignment />} />
+            <Route path='ShortageResolution' element={<ShortageResolution />} />
+            <Route path='TripExpense' element={<TripExpense />} />
+            <Route path={'AbsenceForm'} element={<AbsenceForm />} />
+            <Route path={'ConsequenceManagement'} element={<ConsequenceManagement />} />
+            <Route path={'Training'} element={<TrainingForm />} />
+            <Route path='Employee' element={<Employee />} />
             <Route path="tif" element={<Tif />} />
           </Route>
         </Routes>
       </BrowserRouter>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
