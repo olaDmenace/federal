@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 
 const DashCard = (props) => {
     return (
@@ -10,4 +10,4 @@ const DashCard = (props) => {
     )
 }
 
-export default DashCard
+export default DashCard;
