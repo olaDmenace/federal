@@ -2,17 +2,16 @@ import FormTitle from "../FormTitle";
 import { LocationMarkerIcon } from "@heroicons/react/outline";
 import React, { useState, useEffect } from "react";
 import endpoint from "../../utils/endpoints/endpoint";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import PageTitle from "../../utils/PageTitle";
-import { truck } from "../../utils/features/truckSlice";
 
 function TruckProgramming() {
   PageTitle("Axle & Cartage - Truck Programming");
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const [data, setData] = useState({
-    truckId: " ",
+    truckId: "",
     isDedicatedDestination: true,
     customers: "",
     loadingLocationId: "",
@@ -23,12 +22,14 @@ function TruckProgramming() {
     productId: "",
   });
 
+
+  const [trucks, setTrucks] = useState([])
   useEffect(() => {
     endpoint
-      .get("/truck/programme")
+      .get("/truck")
       .then((res) => {
-        console.log(res);
-        dispatch(truck(res.data));
+        console.log(res.data.data);
+        setTrucks(res.data.data)
       })
       .catch((err) => {
         console.log(err);
@@ -46,91 +47,62 @@ function TruckProgramming() {
       <form action="" className="grid text-primary gap-5 w-full">
         <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3 items-end">
           <label htmlFor="">
-            Track Number
+            Truck Number
             <br />
             <select
-              class="select select-primary w-full"
+              className="select select-primary w-full"
               id=""
               value={data.truckId}
-              onChange={(e) => setData({ ...data, truckId: +e.target.value })}
-              placeholder="ID-112200"
+              onChange={(e) => setData({ ...data, truckId: e.target.value })}
               type="text"
               name=""
             >
               <option value="">Select Reason</option>
-              <option value="0">ID-112200</option>
-              <option value="1">ID-112200</option>
-              <option value="2">ID-112200</option>
-              <option value="3">ID-112200</option>
-              <option value="4">ID-112200</option>
-              <option value="5">ID-112200</option>
+              {trucks.map(item => <option value={item.truckId} key={item.truckId}>{item.truckNumber}</option>)}
             </select>
           </label>
           <label htmlFor="">
-            Track Odometer
+            Truck Odometer
             <br />
-            <input
-              class="input input-primary w-full"
-              placeholder="27 Km"
-              type="text"
-              name=""
-              id=""
-            />
+            <div className='border border-primary h-12 rounded-lg grid items-center'>
+              {trucks.filter((t) => t.truckId === data.truckId).map(item => <p className="px-4">{item.truckNumber}</p>)}
+            </div>
           </label>
           <label htmlFor="">
-            Track Milage to Next PM
+            Truck Milage to Next PM
             <br />
-            <input
-              class="input input-primary w-full"
-              placeholder="4 mpg"
-              type="text"
-              name=""
-              id=""
-            />
+            <input className="input input-primary w-full" type="text" />
+            {/* <div className='border border-primary h-12 rounded-lg grid items-center'>
+              {trucks.filter((t) => (t.truckId === data.truckId)).map(item => <span className="px-4">{Date(item.nextPreventiveMaintenance).slice(0, 15)}</span>)}
+            </div> */}
           </label>
           <label htmlFor="">
             Next PM Due Date
             <br />
-            <input
-              class="input input-primary w-full"
-              placeholder="27Km"
-              type="date"
-              name=""
-              id=""
-            />
+            <div className='border border-primary h-12 rounded-lg grid items-center'>
+              {trucks.filter((t) => (t.truckId === data.truckId)).map(item => <span className="px-4">{Date(item.nextPreventiveMaintenance).slice(4, 15)}</span>)}
+            </div>
           </label>
           <label htmlFor="">
             Truck Capacity
             <br />
-            <input
-              class="input input-primary w-full"
-              placeholder="35,000 LTRs"
-              type="text"
-              name=""
-              id=""
-            />
+            <div className='border border-primary h-12 rounded-lg grid items-center'>
+              {trucks.filter((t) => (t.truckId === data.truckId)).map(item => <span className="px-4">{item.truckCapacity}</span>)}
+            </div>
           </label>
           <label htmlFor="">
             Volume Unit
             <br />
-            <input
-              class="input input-primary w-full"
-              placeholder="MT, KG, LTR"
-              type="text"
-              name=""
-              id=""
-            />
+            <div className='border border-primary h-12 rounded-lg grid items-center'>
+              {trucks.filter((t) => (t.truckId === data.truckId)).map(item => <span className="px-4">{item.volumeUnit}</span>)}
+            </div>
           </label>
           <label htmlFor="">
             Brand
             <br />
-            <input
-              class="input input-primary w-full"
-              placeholder="ISUZU"
-              type="text"
-              name=""
-              id=""
-            />
+            <div className='border border-primary h-12 rounded-lg grid items-center'>
+              {trucks.filter((t) => (t.truckId === data.truckId)).map(item => <span className="px-4">{item.brand.model}</span>)}
+            </div>
           </label>
           <label htmlFor="">
             Product Type
@@ -166,7 +138,7 @@ function TruckProgramming() {
               id=""
               value={data.isDedicatedDestination}
               onChange={(e) =>
-                setData({ ...data, isDedicatedDestination: +e.target.value })
+                setData({ ...data, isDedicatedDestination: e.target.value })
               }
             >
               <option value={true}>Yes</option>
@@ -388,8 +360,8 @@ function TruckProgramming() {
         >
           Submit
         </button>
-      </form>
-    </div>
+      </form >
+    </div >
   );
 }
 
