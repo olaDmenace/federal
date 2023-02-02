@@ -24,6 +24,10 @@ function TruckProgramming() {
 
 
   const [trucks, setTrucks] = useState([])
+  const [products, setProducts] = useState([])
+  const [depots, setDepots] = useState([])
+  const [states, setStates] = useState([])
+  const [customers, setCustomers] = useState([])
   useEffect(() => {
     endpoint
       .get("/truck")
@@ -34,11 +38,49 @@ function TruckProgramming() {
       .catch((err) => {
         console.log(err);
       });
+
+
+    endpoint.get('/variable/products').then(res => {
+      console.log(res.data.data)
+      setProducts(res.data.data)
+    }).catch(err => {
+      console.log(err)
+    })
+
+
+    endpoint.get('/variable/depots').then(res => {
+      console.log(res.data.data)
+      setDepots(res.data.data)
+    }).catch(err => {
+      console.log(err)
+    })
+
+
+    endpoint.get('/variable/customers').then(res => {
+      console.log(res.data.data)
+      setCustomers(res.data.data)
+    }).catch(err => {
+      console.log(err)
+    })
+
+    const data = {
+      country: 'Nigeria'
+    }
+    endpoint.post('https://countriesnow.space/api/v0.1/countries/states', data).then(res => {
+      console.log(res.data.data.states)
+      setStates(res.data.data.states)
+    }).catch(err => {
+      console.log(err)
+    })
   }, []);
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(data);
   };
+
+  const tripType = []
 
   return (
     <div className="space-y-2">
@@ -51,7 +93,6 @@ function TruckProgramming() {
             <br />
             <select
               className="select select-primary w-full"
-              id=""
               value={data.truckId}
               onChange={(e) => setData({ ...data, truckId: e.target.value })}
               type="text"
@@ -65,7 +106,7 @@ function TruckProgramming() {
             Truck Odometer
             <br />
             <div className='border border-primary h-12 rounded-lg grid items-center'>
-              {trucks.filter((t) => t.truckId === data.truckId).map(item => <p className="px-4">{item.truckNumber}</p>)}
+              {trucks.filter((t) => t.truckId === data.truckId).map(item => <p key={item.truckId} className="px-4">{item.truckNumber}</p>)}
             </div>
           </label>
           <label htmlFor="">
@@ -80,34 +121,38 @@ function TruckProgramming() {
             Next PM Due Date
             <br />
             <div className='border border-primary h-12 rounded-lg grid items-center'>
-              {trucks.filter((t) => (t.truckId === data.truckId)).map(item => <span className="px-4">{Date(item.nextPreventiveMaintenance).slice(4, 15)}</span>)}
+              {trucks.filter((t) => (t.truckId === data.truckId)).map(item => <span key={item.truckId} className="px-4">{Date(item.nextPreventiveMaintenance).slice(4, 15)}</span>)}
             </div>
           </label>
           <label htmlFor="">
             Truck Capacity
             <br />
             <div className='border border-primary h-12 rounded-lg grid items-center'>
-              {trucks.filter((t) => (t.truckId === data.truckId)).map(item => <span className="px-4">{item.truckCapacity}</span>)}
+              {trucks.filter((t) => (t.truckId === data.truckId)).map(item => <span key={item.truckId} className="px-4">{item.truckCapacity}</span>)}
             </div>
           </label>
           <label htmlFor="">
             Volume Unit
             <br />
             <div className='border border-primary h-12 rounded-lg grid items-center'>
-              {trucks.filter((t) => (t.truckId === data.truckId)).map(item => <span className="px-4">{item.volumeUnit}</span>)}
+              {trucks.filter((t) => (t.truckId === data.truckId)).map(item => <span key={item.truckId} className="px-4">{item.volumeUnit}</span>)}
             </div>
           </label>
           <label htmlFor="">
             Brand
             <br />
             <div className='border border-primary h-12 rounded-lg grid items-center'>
-              {trucks.filter((t) => (t.truckId === data.truckId)).map(item => <span className="px-4">{item.brand.model}</span>)}
+              {trucks.filter((t) => (t.truckId === data.truckId)).map(item => <span key={item.truckId} className="px-4">{item.brand.model}</span>)}
             </div>
           </label>
           <label htmlFor="">
             Product Type
             <br />
-            <input
+            <select className="select select-primary w-full" value={data.productId} onChange={(e) => setData({ ...data, productId: e.target.value })} name="" id="">
+              <option value="">Select Type</option>
+              {products.map(item => <option key={item.productId} value={item.productId}>{item.productType}</option>)}
+            </select>
+            {/* <input
               class="input input-primary w-full"
               placeholder="PMS"
               type="text"
@@ -115,7 +160,7 @@ function TruckProgramming() {
               id=""
               value={data.productId}
               onChange={(e) => setData({ ...data, productId: e.target.value })}
-            />
+            /> */}
           </label>
           <label htmlFor="" className="relative">
             Current Position
@@ -146,7 +191,7 @@ function TruckProgramming() {
             </select>
           </label>
           <label htmlFor="">
-            Programmed Destination
+            <span className="flex gap-2 h-1">Programmed Destination<p className="text-red-900">AR</p></span>
             <br />
             <input
               class="input input-primary w-full"
@@ -169,6 +214,7 @@ function TruckProgramming() {
               <option selected disabled>
                 Trip Type
               </option>
+              <option value=""></option>
             </select>
           </label>
           <label htmlFor="">
@@ -181,22 +227,25 @@ function TruckProgramming() {
             </select>
           </label>
           <label htmlFor="">
-            Restrictions
-            <br />
-            <select class="select select-primary w-full" name="" id="">
-              <option selected disabled>
-                Select Restrictions
-              </option>
-            </select>
+            <span className="flex gap-2 h-1">Restrictions<p className="text-red-900">AR</p></span>
+            <br /> <input
+              class="input input-primary w-full"
+              placeholder=""
+              type="text"
+              name=""
+              id=""
+            />
           </label>
           <label htmlFor="">
-            Truck Loading Configuration
+            <span className="flex gap-2 h-1">Truck Loading Configuration<p className="text-red-900">AR</p></span>
             <br />
-            <select class="select select-primary w-full" name="" id="">
-              <option selected disabled>
-                Select Loading Position
-              </option>
-            </select>
+            <input
+              class="input input-primary w-full"
+              placeholder=""
+              type="text"
+              name=""
+              id=""
+            />
           </label>
           <label htmlFor="">
             Loading Location
@@ -210,7 +259,8 @@ function TruckProgramming() {
                 setData({ ...data, loadingLocationId: e.target.value })
               }
             >
-              <option>34, Muritala Muhammed</option>
+              <option>Select Loding Location</option>
+              {depots.map(depot => <option key={depot.depotId} value={depot.depotId}>{depot.depotName}</option>)}
             </select>
           </label>
           <label htmlFor="">
@@ -225,9 +275,10 @@ function TruckProgramming() {
                 setData({ ...data, returningLocationId: e.target.value })
               }
             >
-              <option value="1" selected disabled>
+              <option value="" selected disabled>
                 Select Returning Destination
               </option>
+              {depots.map(depot => <option key={depot.depotId} value={depot.depotId}>{depot.depotName}</option>)}
             </select>
           </label>
         </div>
@@ -235,38 +286,26 @@ function TruckProgramming() {
           <label htmlFor="">
             Journey Officer
             <br />
-            <input
-              class="input input-primary w-full"
-              placeholder="Jane Doe"
-              type="text"
-              name=""
-              id=""
-            />
+            <div className='border border-primary h-12 rounded-lg grid items-center'>
+              {trucks.filter((t) => t.truckId === data.truckId).map(item => <p key={item.journeyOfficerId} className="px-4">{item.journeyOfficer}</p>)}
+            </div>
           </label>
           <label htmlFor="">
             Logistics Officer
             <br />
-            <input
-              class="input input-primary w-full"
-              placeholder="John Doe"
-              type="text"
-              name=""
-              id=""
-            />
+            <div className='border border-primary h-12 rounded-lg grid items-center'>
+              {trucks.filter((t) => t.truckId === data.truckId).map(item => <p key={item.logisticsCoordinatorId} className="px-4">{item.logisticsCoordinator}</p>)}
+            </div>
           </label>
           <label htmlFor="">
             Delivery Officer
             <br />
-            <input
-              class="input input-primary w-full"
-              placeholder="John Smith"
-              type="text"
-              name=""
-              id=""
-            />
+            <div className='border border-primary h-12 rounded-lg grid items-center'>
+              {trucks.filter((t) => t.truckId === data.truckId).map(item => <p key={item.deliveryOfficerId} className="px-4">{item.deliveryOfficer}</p>)}
+            </div>
           </label>
           <label htmlFor="">
-            Trip Officer
+            Trip ID
             <br />
             <input
               class="input input-primary w-full"
@@ -285,40 +324,27 @@ function TruckProgramming() {
           <label htmlFor="">
             Customer Type
             <br />
-            <input
-              class="input input-primary w-full"
-              type="text"
-              name=""
-              id=""
-            />
+            <select className="select select-primary w-full" name="" id="">
+              <option value="">Select Customer Type</option>
+              {customers.map(item => <option key={item.customerId} value={item.customerId}>{item.customerType}</option>)}
+            </select>
           </label>
           <label htmlFor="">
             Customer Name
-            <br />
-            <input
-              class="input input-primary w-full"
-              placeholder="Jane Smith"
-              type="text"
-              name=""
-              id=""
-              value={data.customers}
-              onChange={(e) => setData({ ...data, customers: e.target.value })}
-            />
+            <br /><select className="select select-primary w-full" name="" id="">
+              <option value="">Select Customer</option>
+              {customers.map(item => <option key={item.customerId} value={item.customerId}>{item.customerName}</option>)}
+            </select>
           </label>
           <label htmlFor="">
             Customer Destination State
             <br />
-            <input
-              class="input input-primary w-full"
-              placeholder="Jane Smith"
-              type="text"
-              name=""
-              id=""
-              value={data.destinationState}
-              onChange={(e) =>
-                setData({ ...data, destinationState: e.target.value })
-              }
-            />
+            <select class="select select-primary w-full" name="" id="">
+              <option selected disabled>
+                Select State
+              </option>
+              {states.map(item => <option value={item.state_code}>{item.name}</option>)}
+            </select>
           </label>
           <label htmlFor="">
             Programmed Number of Customers
@@ -360,8 +386,8 @@ function TruckProgramming() {
         >
           Submit
         </button>
-      </form >
-    </div >
+      </form>
+    </div>
   );
 }
 

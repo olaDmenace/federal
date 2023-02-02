@@ -4,13 +4,10 @@ import Logo from "../images/LogoDark.png";
 import {
   ChevronDownIcon,
   ChipIcon,
-  CogIcon,
-  CreditCardIcon,
   GlobeIcon,
   IdentificationIcon,
   LoginIcon,
   ShieldCheckIcon,
-  UserGroupIcon,
   UsersIcon,
 } from "@heroicons/react/outline";
 import { useState } from "react";
