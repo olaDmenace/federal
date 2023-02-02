@@ -88,7 +88,7 @@ const AbsenceForm = () => {
             {show && <PopUp>
                 {reply.icon}
                 <p className='mx-auto text-center text-primary bg-transparent'>{reply.message}</p>
-                <button className='btn btn-primary' onClick={(e) => setShow(false)}>Dashboard</button>
+                <button className='btn btn-primary' onClick={(e) => setShow(false)}>Confirm</button>
             </PopUp>}
             <FormTitle Title={'Delivery Officer Absence Form'} />
             <hr className='pb-5' />

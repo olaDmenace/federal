@@ -1,9 +1,11 @@
 import FormTitle from "../FormTitle";
-import { LocationMarkerIcon } from "@heroicons/react/outline";
+import { LocationMarkerIcon, XCircleIcon } from "@heroicons/react/outline";
 import React, { useState, useEffect } from "react";
 import endpoint from "../../utils/endpoints/endpoint";
 // import { useDispatch } from "react-redux";
 import PageTitle from "../../utils/PageTitle";
+import PopUp from "../../utils/PopUp";
+import { ThumbUpIcon } from "@heroicons/react/solid";
 
 function TruckProgramming() {
   PageTitle("Axle & Cartage - Truck Programming");
@@ -79,10 +81,27 @@ function TruckProgramming() {
   }, []);
 
 
+
+  const [show, setShow] = useState(false)
+  const [reply, setReply] = useState({
+    icon: '',
+    message: ''
+  })
   const handleSubmit = (e) => {
     e.preventDefault();
     endpoint.post('/truck/programme', data).then(res => {
       console.log(res)
+      if (res.status === 200) {
+        setReply({
+          icon: <ThumbUpIcon className='mx-auto h-24 text-primary' />,
+          message: res.data.message
+        })
+      } else {
+        setReply({
+          icon: <XCircleIcon className='mx-auto h-24 text-red-500' />,
+          message: res.data.message
+        })
+      }
     }).catch(err => {
       console.log(err)
     })
@@ -118,6 +137,11 @@ function TruckProgramming() {
 
   return (
     <div className="space-y-2">
+      {show && <PopUp>
+        {reply.icon}
+        <p className='mx-auto text-center text-primary bg-transparent'>{reply.message}</p>
+        <button className='btn btn-primary' onClick={(e) => setShow(false)}>Confirm</button>
+      </PopUp>}
       <FormTitle Title={"Truck Programming"} />
       <hr />
       <form action="" className="grid text-primary gap-5 w-full">
