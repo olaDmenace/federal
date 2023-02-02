@@ -13,13 +13,17 @@ function TruckProgramming() {
   const [data, setData] = useState({
     truckId: "",
     isDedicatedDestination: true,
-    customers: "",
+    customerId: "",
     loadingLocationId: "",
     returningLocationId: "",
+    restrictions: "",
+    programmedDestination: "",
     tripType: 0,
     finalDestination: "",
     destinationState: "",
     productId: "",
+    bridgingDepotId: "",
+    numberOfCustomers: 0
   });
 
 
@@ -77,10 +81,40 @@ function TruckProgramming() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    endpoint.post('/truck/programme', data).then(res => {
+      console.log(res)
+    }).catch(err => {
+      console.log(err)
+    })
     console.log(data);
   };
 
-  const tripType = []
+  const tripType = [{ tripTypeId: 1, tripTypeName: 'Bridging' },
+  { tripTypeId: 2, tripTypeName: 'Long Haul' },
+  { tripTypeId: 3, tripTypeName: 'Rescue (Loaded Truck)' },
+  { tripTypeId: 4, tripTypeName: 'Rescue (Empty Truck)' },
+  { tripTypeId: 5, tripTypeName: 'Training' },
+  { tripTypeId: 6, tripTypeName: 'Road Test' }
+  ]
+
+  const operationalStatus = [{ oprationalStatusId: 0, operationalStatus: 'Truck Programmed' },
+  { oprationalStatusId: 1, operationalStatus: 'Assigned to a Trip' },
+  { oprationalStatusId: 2, operationalStatus: 'Enroute Depot' },
+  { oprationalStatusId: 3, operationalStatus: 'At the Loading Depot' },
+  { oprationalStatusId: 4, operationalStatus: 'Truck Loaded' },
+  { oprationalStatusId: 5, operationalStatus: 'Enroute Bridging Depot' },
+  { oprationalStatusId: 6, operationalStatus: 'Enroute Customer Location' },
+  { oprationalStatusId: 7, operationalStatus: 'At the Depot' },
+  { oprationalStatusId: 8, operationalStatus: 'Truck Flashed' },
+  { oprationalStatusId: 9, operationalStatus: 'At the Customer 1 Location' },
+  { oprationalStatusId: 10, operationalStatus: 'At the Customer 2 Location' },
+  { oprationalStatusId: 11, operationalStatus: 'At the Customer 3 Location' },
+  { oprationalStatusId: 12, operationalStatus: 'Goods Delivered to Customer 1' },
+  { oprationalStatusId: 13, operationalStatus: 'Goods Delivered to Customer 2' },
+  { oprationalStatusId: 14, operationalStatus: 'Goods Delivered to Customer 3' },
+  { oprationalStatusId: 15, operationalStatus: 'Inbound' },
+  { oprationalStatusId: 16, operationalStatus: 'End Journey' },
+  { oprationalStatusId: 17, operationalStatus: 'Available for Loading' }]
 
   return (
     <div className="space-y-2">
@@ -197,7 +231,8 @@ function TruckProgramming() {
               class="input input-primary w-full"
               placeholder="40, Toyin Street, Ikeja"
               type="text"
-              name=""
+              name={data.programmedDestination}
+              onChange={(e) => setData({ ...data, programmedDestination: e.target.value })}
               id=""
             />
           </label>
@@ -209,21 +244,22 @@ function TruckProgramming() {
               name=""
               id=""
               value={data.tripType}
-              onChange={(e) => setData({ ...data, tripType: e.target.value })}
+              onChange={(e) => setData({ ...data, tripType: +e.target.value })}
             >
               <option selected disabled>
                 Trip Type
               </option>
-              <option value=""></option>
+              {tripType.map(t => <option value={t.tripTypeId}>{t.tripTypeName}</option>)}
             </select>
           </label>
           <label htmlFor="">
             Bridging Depot
             <br />
-            <select class="select select-primary w-full" name="" id="">
+            <select class="select select-primary w-full" value={data.bridgingDepotId} onChange={(e) => setData({ ...data, bridgingDepotId: e.target.value })} name="" id="">
               <option selected disabled>
-                354 Oshodi
+                Select Bridging Depot
               </option>
+              {depots.map(t => <option value={t.depotId}>{t.depotName}</option>)}
             </select>
           </label>
           <label htmlFor="">
@@ -232,7 +268,8 @@ function TruckProgramming() {
               class="input input-primary w-full"
               placeholder=""
               type="text"
-              name=""
+              name={data.restrictions}
+              onChange={(e) => setData({ ...data, restrictions: e.target.value })}
               id=""
             />
           </label>
@@ -275,7 +312,7 @@ function TruckProgramming() {
                 setData({ ...data, returningLocationId: e.target.value })
               }
             >
-              <option value="" selected disabled>
+              <option selected disabled>
                 Select Returning Destination
               </option>
               {depots.map(depot => <option key={depot.depotId} value={depot.depotId}>{depot.depotName}</option>)}
@@ -331,7 +368,7 @@ function TruckProgramming() {
           </label>
           <label htmlFor="">
             Customer Name
-            <br /><select className="select select-primary w-full" name="" id="">
+            <br /><select className="select select-primary w-full" value={data.customerId} onChange={(e) => setData({ ...data, customerId: e.target.value })} name="" id="">
               <option value="">Select Customer</option>
               {customers.map(item => <option key={item.customerId} value={item.customerId}>{item.customerName}</option>)}
             </select>
@@ -339,11 +376,11 @@ function TruckProgramming() {
           <label htmlFor="">
             Customer Destination State
             <br />
-            <select class="select select-primary w-full" name="" id="">
+            <select class="select select-primary w-full" value={data.destinationState} onChange={(e) => setData({ ...data, destinationState: e.target.value })} name="" id="">
               <option selected disabled>
                 Select State
               </option>
-              {states.map(item => <option value={item.state_code}>{item.name}</option>)}
+              {states.map(item => <option key={item.state_code} value={item.name}>{item.name}</option>)}
             </select>
           </label>
           <label htmlFor="">
@@ -354,6 +391,8 @@ function TruckProgramming() {
               type="number"
               name=""
               id=""
+              value={data.numberOfCustomers}
+              onChange={(e) => setData({ ...data, numberOfCustomers: +e.target.value })}
             />
           </label>
           <label htmlFor="">
@@ -376,6 +415,7 @@ function TruckProgramming() {
               <option selected disabled>
                 Select Status
               </option>
+              {operationalStatus.map(t => <option value={t.oprationalStatusId}>{t.operationalStatus}</option>)}
             </select>
           </label>
         </fieldset>
