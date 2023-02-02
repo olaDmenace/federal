@@ -147,9 +147,6 @@ function TruckProgramming() {
             Truck Milage to Next PM
             <br />
             <input className="input input-primary w-full" type="text" />
-            {/* <div className='border border-primary h-12 rounded-lg grid items-center'>
-              {trucks.filter((t) => (t.truckId === data.truckId)).map(item => <span className="px-4">{Date(item.nextPreventiveMaintenance).slice(0, 15)}</span>)}
-            </div> */}
           </label>
           <label htmlFor="">
             Next PM Due Date
@@ -186,15 +183,6 @@ function TruckProgramming() {
               <option value="">Select Type</option>
               {products.map(item => <option key={item.productId} value={item.productId}>{item.productType}</option>)}
             </select>
-            {/* <input
-              class="input input-primary w-full"
-              placeholder="PMS"
-              type="text"
-              name=""
-              id=""
-              value={data.productId}
-              onChange={(e) => setData({ ...data, productId: e.target.value })}
-            /> */}
           </label>
           <label htmlFor="" className="relative">
             Current Position
