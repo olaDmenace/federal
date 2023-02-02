@@ -6,6 +6,7 @@ import endpoint from "../../utils/endpoints/endpoint";
 import PageTitle from "../../utils/PageTitle";
 import PopUp from "../../utils/PopUp";
 import { ThumbUpIcon } from "@heroicons/react/solid";
+import LoadingSpinner from "../../utils/LoadingSpinner";
 
 function TruckProgramming() {
   PageTitle("Axle & Cartage - Truck Programming");
@@ -82,6 +83,7 @@ function TruckProgramming() {
 
 
 
+  const [isLoading, setIsLoading] = useState(false)
   const [show, setShow] = useState(false)
   const [reply, setReply] = useState({
     icon: '',
@@ -89,6 +91,7 @@ function TruckProgramming() {
   })
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsLoading(true)
     endpoint.post('/truck/programme', data).then(res => {
       console.log(res)
       if (res.status === 200) {
@@ -102,6 +105,7 @@ function TruckProgramming() {
           message: res.data.message
         })
       }
+      setIsLoading(!isLoading)
     }).catch(err => {
       console.log(err)
     })
@@ -431,13 +435,14 @@ function TruckProgramming() {
             </select>
           </label>
         </fieldset>
-        <button
+        {isLoading && <LoadingSpinner />}
+        {!isLoading && <button
           onClick={handleSubmit}
           class="btn btn-primary mx-auto"
           type="submit"
         >
           Submit
-        </button>
+        </button>}
       </form>
     </div>
   );
