@@ -1,6 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import endpoint from '../../../utils/endpoints/endpoint'
 
 function FormA1({ formData, setFormData }) {
+
+    // Fetch list of Users (JO, DO & LC)
+    useEffect(() => {
+        // SearchTerm = delivery & UserType=1 & PageNumber=1 & PageSize=1
+        endpoint.get('/user?SearchTerm=delivery&UserType=1&PageNumber=100&PageSize=100').then(res => {
+            console.log(res)
+        }).catch(err => {
+            console.log(err)
+        })
+    }, [])
+
+    // Fetch list of owners
+    const [owners, setOwners] = useState([])
+    useEffect(() => {
+        endpoint.get('/variable/owners').then(res => {
+            setOwners(res.data.data)
+        }).catch(err => {
+            console.log(err)
+        })
+    }, [])
+
     return (
         <div className='py-5 text-primary space-y-3'>
             <h4 className='text-lg font-semibold'>Form A - Tractor</h4>
@@ -9,9 +31,7 @@ function FormA1({ formData, setFormData }) {
                 <fieldset className='grid gap-3 md:grid-cols-2 lg:grid-cols-3 items-end'>
                     <label className='text-primary'>
                         Truck Number
-                        <select value={formData.truckNumber} onChange={(e) => setFormData({ ...formData, truckNumber: e.target.value })} class='select select-primary w-full' name="" id="">
-                            <option selected disabled value="">Select Truck Number</option>
-                        </select>
+                        <input value={formData.truckNumber} onChange={(e) => setFormData({ ...formData, truckNumber: e.target.value })} class='input input-primary w-full' type="text" name="" id="" />
                     </label>
                     <label className='text-primary'>
                         Fleet No. - Tractor
@@ -48,9 +68,7 @@ function FormA1({ formData, setFormData }) {
                     </label>
                     <label htmlFor="">
                         Model
-                        <select value={formData.brand.manufacturer} onChange={(e) => setFormData({ ...formData, model: e.target.value })} className='select select-primary w-full' name="" id="">
-                            <option selected disabled value="">Select Model</option>
-                        </select>
+                        <input value={formData.brand.manufacturer} onChange={(e) => setFormData({ ...formData, model: e.target.value })} className='input input-primary w-full' type="text" name="" id="" />
                     </label>
                     <label htmlFor="">
                         Registration State/Province
@@ -59,12 +77,12 @@ function FormA1({ formData, setFormData }) {
                 </fieldset>
                 <input value={formData.pictureUrl} onChange={(e) => setFormData({ ...formData, pictureUrl: e.target.value })} className='py-5' type="file" src="" alt="" />
                 <fieldset className='grid gap-3 md:grid-cols-2 lg:grid-cols-3 items-end'>
-                    <label htmlFor="">
+                    {/* <label htmlFor="">
                         Operational Status
                         <select value={formData.status} onChange={(e) => setFormData({ ...formData, status: e.target.value })} className='select select-primary w-full' name="" id="">
                             <option selected disabled value="">Select Status</option>
                         </select>
-                    </label>
+                    </label> */}
                     <label htmlFor="">
                         Current Assignee - LC
                         <input value={formData.logisticsCoordinatorId} onChange={(e) => setFormData({ ...formData, logisticsCoordinatorId: e.target.value })} className='input input-primary w-full' type="text" name="" id="" />
@@ -78,16 +96,20 @@ function FormA1({ formData, setFormData }) {
                         <input value={formData.deliveryOfficerId} onChange={(e) => setFormData({ ...formData, deliveryOfficerId: e.target.value })} className='input input-primary w-full' type="text" name="" id="" />
                     </label>
                     <label htmlFor="">
-                        Ownership
-                        <select value={formData.ownership} onChange={(e) => setFormData({ ...formData, ownership: e.target.value })} className='select select-primary w-full' name="" id="">
-                            <option selected disabled value="">Select Ownership</option>
-                        </select>
-                    </label>
-                    <label htmlFor="">
                         Owner
                         <select value={formData.owner} onChange={(e) => setFormData({ ...formData, owner: e.target.value })} className='select select-primary w-full' name="" id="">
                             <option selected disabled value="">Select Owner</option>
+                            {owners.map(owner => <option key={owner.ownerId} value={owner.ownerId}>{owner.ownerName}</option>)}
                         </select>
+                    </label>
+                    <label htmlFor="">
+                        Ownership
+                        {/* <select value={formData.ownership} onChange={(e) => setFormData({ ...formData, ownership: e.target.value })} className='select select-primary w-full' name="" id="">
+                            <option selected disabled value="">Select Ownership</option>
+                        </select> */}
+                        <div className='border border-primary h-12 rounded-lg grid items-center'>
+                            {owners.filter((t) => t.ownerId === formData.owner).map(item => <p key={item.ownerId} className='px-4'>{item.ownerShip}</p>)}
+                        </div>
                     </label>
                 </fieldset>
                 <label htmlFor="">

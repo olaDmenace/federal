@@ -14,6 +14,7 @@ function AssetRegister() {
     const [formA, setFormA] = useState(false)
     const [formB, setFormB] = useState(false)
     const [formC, setFormC] = useState(false)
+    const [hide, setHide] = useState(true)
 
     useEffect(() => {
         select === 'FormA' ? setFormA(true) : setFormA(false)
@@ -23,13 +24,14 @@ function AssetRegister() {
 
     const handleChange = (e) => {
         setSelect(e.target.value)
+        setHide(false)
     }
 
     return (
         <div className='space-y-2'>
             <FormTitle Title={'Asset Register'} />
             <hr className='pb-5' />
-            <label className='text-primary'>
+            {hide && <label className='text-primary'>
                 Reminder Type
                 <select class='select select-primary w-full' value={select} onChange={handleChange} name="" id="">
                     <option selected disabled>Select Reminder</option>
@@ -37,7 +39,7 @@ function AssetRegister() {
                     <option value="FormB">Form B</option>
                     <option value="FormC">Form C</option>
                 </select>
-            </label>
+            </label>}
             {formA && <FormA />}
             {formB && <FormB />}
             {formC && <FormC />}
