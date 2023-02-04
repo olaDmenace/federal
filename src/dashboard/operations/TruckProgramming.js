@@ -21,7 +21,7 @@ function TruckProgramming() {
     returningLocationId: "",
     restrictions: "",
     programmedDestination: "",
-    tripType: 0,
+    tripType: "",
     finalDestination: "",
     destinationState: "",
     productId: "",
@@ -139,6 +139,7 @@ function TruckProgramming() {
   { oprationalStatusId: 16, operationalStatus: 'End Journey' },
   { oprationalStatusId: 17, operationalStatus: 'Available for Loading' }]
 
+
   return (
     <div className="space-y-2">
       {show && <PopUp>
@@ -205,12 +206,19 @@ function TruckProgramming() {
             </div>
           </label>
           <label htmlFor="">
-            Product Type
+            Product Name
             <br />
             <select className="select select-primary w-full" value={data.productId} onChange={(e) => setData({ ...data, productId: e.target.value })} name="" id="">
               <option value="">Select Type</option>
-              {products.map(item => <option key={item.productId} value={item.productId}>{item.productType}</option>)}
+              {products.map(item => <option key={item.productId} value={item.productId}>{item.productName}</option>)}
             </select>
+          </label>
+          <label htmlFor="">
+            Product Type
+            <br />
+            <div className="border border-primary h-12 rounded-lg grid items-center px-4">
+              {products.filter((t) => t.productId === data.productId).map(item => <p key={item.productId}>{item.productType}</p>)}
+            </div>
           </label>
           <label htmlFor="" className="relative">
             Current Position
@@ -262,7 +270,7 @@ function TruckProgramming() {
               value={data.tripType}
               onChange={(e) => setData({ ...data, tripType: +e.target.value })}
             >
-              <option selected disabled>
+              <option value='' selected disabled>
                 Trip Type
               </option>
               {tripType.map(t => <option value={t.tripTypeId}>{t.tripTypeName}</option>)}
@@ -271,10 +279,11 @@ function TruckProgramming() {
           <label htmlFor="">
             Bridging Depot
             <br />
-            <select class="select select-primary w-full" value={data.bridgingDepotId} onChange={(e) => setData({ ...data, bridgingDepotId: e.target.value })} name="" id="">
+            <select class="select select-primary w-full" value={data.bridgingDepotId} onChange={(e) => setData({ ...data, bridgingDepotId: e.target.value })} name="" id="" disabled={data.tripType !== 1}>
               <option selected disabled>
                 Select Bridging Depot
               </option>
+              <option value="">Select Bridging Depot</option>
               {depots.map(t => <option value={t.depotId}>{t.depotName}</option>)}
             </select>
           </label>
@@ -350,14 +359,7 @@ function TruckProgramming() {
               {trucks.filter((t) => t.truckId === data.truckId).map(item => <p key={item.logisticsCoordinatorId} className="px-4">{item.logisticsCoordinator}</p>)}
             </div>
           </label>
-          <label htmlFor="">
-            Delivery Officer
-            <br />
-            <div className='border border-primary h-12 rounded-lg grid items-center'>
-              {trucks.filter((t) => t.truckId === data.truckId).map(item => <p key={item.deliveryOfficerId} className="px-4">{item.deliveryOfficer}</p>)}
-            </div>
-          </label>
-          <label htmlFor="">
+          {/* <label htmlFor="">
             Trip ID
             <br />
             <input
@@ -367,27 +369,37 @@ function TruckProgramming() {
               name=""
               id=""
             />
-          </label>
+          </label> */}
         </fieldset>
+        <label htmlFor="">
+          Delivery Officer
+          <br />
+          <div className='border border-primary h-12 rounded-lg grid items-center'>
+            {trucks.filter((t) => t.truckId === data.truckId).map(item => <p key={item.deliveryOfficerId} className="px-4">{item.deliveryOfficer}</p>)}
+          </div>
+        </label>
         <h2 className="text-xl -mb-4 text-primary font-semibold">
           Trip/Customer Details
         </h2>
         <hr />
         <fieldset className="grid gap-3 md:grid-cols-2 lg:grid-cols-3 items-end">
           <label htmlFor="">
-            Customer Type
-            <br />
-            <select className="select select-primary w-full" name="" id="">
-              <option value="">Select Customer Type</option>
-              {customers.map(item => <option key={item.customerId} value={item.customerId}>{item.customerType}</option>)}
-            </select>
-          </label>
-          <label htmlFor="">
             Customer Name
             <br /><select className="select select-primary w-full" value={data.customerId} onChange={(e) => setData({ ...data, customerId: e.target.value })} name="" id="">
               <option value="">Select Customer</option>
               {customers.map(item => <option key={item.customerId} value={item.customerId}>{item.customerName}</option>)}
             </select>
+          </label>
+          <label htmlFor="">
+            Customer Type
+            <br />
+            {/* <select className="select select-primary w-full" name="" id="">
+              <option value="">Select Customer Type</option>
+              {customers.map(item => <option key={item.customerId} value={item.customerId}>{item.customerType}</option>)}
+            </select> */}
+            <div className="border border-primary h-12 rounded-lg grid items-center px-4">
+              {customers.filter((t) => t.customerId === data.customerId).map(item => <p>{item.customerType}</p>)}
+            </div>
           </label>
           <label htmlFor="">
             Customer Destination State
@@ -399,6 +411,17 @@ function TruckProgramming() {
               {states.map(item => <option key={item.state_code} value={item.name}>{item.name}</option>)}
             </select>
           </label>
+          {/* <label htmlFor="">
+            Current Truck Operational Status <br />
+            <select class="select select-primary w-full" name="" id="">
+              <option selected disabled>
+                Select Status
+              </option>
+              {operationalStatus.map(t => <option value={t.oprationalStatusId}>{t.operationalStatus}</option>)}
+            </select>
+          </label> */}
+        </fieldset>
+        <fieldset className="grid gap-3 md:grid-cols-2 items-end">
           <label htmlFor="">
             Programmed Number of Customers
             <br />
@@ -424,15 +447,6 @@ function TruckProgramming() {
                 setData({ ...data, finalDestination: e.target.value })
               }
             />
-          </label>
-          <label htmlFor="">
-            Current Truck Operational Status <br />
-            <select class="select select-primary w-full" name="" id="">
-              <option selected disabled>
-                Select Status
-              </option>
-              {operationalStatus.map(t => <option value={t.oprationalStatusId}>{t.operationalStatus}</option>)}
-            </select>
           </label>
         </fieldset>
         {isLoading && <LoadingSpinner />}
