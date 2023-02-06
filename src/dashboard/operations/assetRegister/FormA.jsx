@@ -4,6 +4,11 @@ import FormA1 from './FormA1'
 import FormA2 from './FormA2'
 import FormA3 from './FormA3'
 import FormA4 from './FormA4'
+import LoadingSpinner from '../../../utils/LoadingSpinner'
+import PopUp from '../../../utils/PopUp'
+import { ThumbUpIcon } from '@heroicons/react/solid'
+import { XCircleIcon } from '@heroicons/react/outline'
+
 
 function FormA() {
     const [form, setForm] = useState(0)
@@ -24,12 +29,12 @@ function FormA() {
         },
         registrationState: '',
         pictureUrl: '',
-        status: '',
+        status: 0,
         logisticsCoordinatorId: '',
         journeyOfficerId: '',
         deliveryOfficerId: '',
-        // ownership: '',
-        // owner: '',
+        ownership: '',
+        ownerId: '',
         additionalDetails: '',
 
         // FormA2
@@ -141,9 +146,9 @@ function FormA() {
             fuelType: '',
             fisrtTankCapacity: 0,
             secondTankCapacity: 0,
-            // tankCapacityMetric: "",
+            tankCapacityMetric: "",
             oilCapacity: 0,
-            // oilCapacityMetric: "",
+            oilCapacityMetric: "",
             maintenanceVendor: ''
         }
     })
@@ -164,24 +169,46 @@ function FormA() {
 
     const truck = '/truck'
 
+    const [loading, setLoading] = useState(false)
+    const [show, setShow] = useState(false)
+    const [reply, setReply] = useState({
+        icon: '',
+        message: ''
+    })
 
     // Handles the submit event
     function handleSubmit(e) {
-        console.log(formData)
+        setLoading(!loading)
         endpoint.post(truck, formData).then(
             res => {
-                console.log(res)
+                if (res.status === 200) {
+                    setReply({
+                        icon: <ThumbUpIcon className='mx-auto h-24 text-primary' />,
+                        message: res.data.message
+                    })
+                } else {
+                    setReply({
+                        icon: <XCircleIcon className='mx-auto h-24 text-red-500' />,
+                        message: res.data.message
+                    })
+                }
             }
         ).then((err) => {
-            console.log(err)
+            // console.log(err)
         })
+        setLoading(!loading)
     }
 
 
     return (
         <div className='grid'>
+            {show && <PopUp>
+                {reply.icon}
+                <p className='mx-auto text-center text-primary bg-transparent'>{reply.message}</p>
+                <button className='btn btn-primary' onClick={(e) => setShow(false)}>Confirm</button>
+            </PopUp>}
             <div>{formDisplay()}</div>
-            <div className="btn-group mx-auto pt-5">
+            {!loading && <div className="btn-group mx-auto pt-5">
                 <button className={form === 0 ? 'btn btn-disabled' : 'btn btn-primary'} onClick={() => { setForm((currFage) => currFage - 1) }}>Prev</button>
                 <button
                     className="btn btn-active"
@@ -189,7 +216,8 @@ function FormA() {
                     }>
                     {form === 3 ? 'Submit' : 'Next'}
                 </button>
-            </div>
+            </div>}
+            {loading && <LoadingSpinner />}
         </div>
     )
 }
