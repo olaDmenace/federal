@@ -90,11 +90,13 @@ function TruckProgramming() {
     message: ''
   })
   const handleSubmit = (e) => {
+    console.log(data)
     e.preventDefault();
     setIsLoading(true)
     endpoint.post('/truck/programme', data).then(res => {
       console.log(res)
       if (res.status === 200) {
+        setShow(true)
         setReply({
           icon: <ThumbUpIcon className='mx-auto h-24 text-primary' />,
           message: res.data.message
@@ -109,7 +111,6 @@ function TruckProgramming() {
     }).catch(err => {
       console.log(err)
     })
-    console.log(data);
   };
 
   const tripType = [{ tripTypeId: 1, tripTypeName: 'Bridging' },
@@ -140,12 +141,18 @@ function TruckProgramming() {
   { oprationalStatusId: 17, operationalStatus: 'Available for Loading' }]
 
 
+  const closePop = (e) => {
+    setIsLoading(!isLoading)
+    setShow(false)
+  }
+
+
   return (
     <div className="space-y-2">
       {show && <PopUp>
         {reply.icon}
         <p className='mx-auto text-center text-primary bg-transparent'>{reply.message}</p>
-        <button className='btn btn-primary' onClick={(e) => setShow(false)}>Confirm</button>
+        <button className='btn btn-primary' onClick={(e) => closePop()}>Confirm</button>
       </PopUp>}
       <FormTitle Title={"Truck Programming"} />
       <hr />
@@ -241,7 +248,7 @@ function TruckProgramming() {
               id=""
               value={data.isDedicatedDestination}
               onChange={(e) =>
-                setData({ ...data, isDedicatedDestination: e.target.value })
+                setData({ ...data, isDedicatedDestination: e.target.value === "true" })
               }
             >
               <option value={true}>Yes</option>

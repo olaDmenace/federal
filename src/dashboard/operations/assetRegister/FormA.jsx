@@ -167,8 +167,6 @@ function FormA() {
         }
     }
 
-    const truck = '/truck'
-
     const [loading, setLoading] = useState(false)
     const [show, setShow] = useState(false)
     const [reply, setReply] = useState({
@@ -179,33 +177,42 @@ function FormA() {
     // Handles the submit event
     function handleSubmit(e) {
         setLoading(!loading)
-        endpoint.post(truck, formData).then(
+        console.log(formData)
+        endpoint.post('/truck', formData).then(
             res => {
+                console.log(res)
                 if (res.status === 200) {
+                    setShow(!show)
                     setReply({
                         icon: <ThumbUpIcon className='mx-auto h-24 text-primary' />,
                         message: res.data.message
                     })
+                    setLoading(!loading)
                 } else {
                     setReply({
                         icon: <XCircleIcon className='mx-auto h-24 text-red-500' />,
                         message: res.data.message
                     })
+                    setLoading(!loading)
                 }
             }
         ).then((err) => {
             // console.log(err)
         })
-        setLoading(!loading)
     }
 
+
+    function closePop(e) {
+        setShow(false)
+        setLoading(!loading)
+    }
 
     return (
         <div className='grid'>
             {show && <PopUp>
                 {reply.icon}
                 <p className='mx-auto text-center text-primary bg-transparent'>{reply.message}</p>
-                <button className='btn btn-primary' onClick={(e) => setShow(false)}>Confirm</button>
+                <button className='btn btn-primary' onClick={(e) => closePop()}>Confirm</button>
             </PopUp>}
             <div>{formDisplay()}</div>
             {!loading && <div className="btn-group mx-auto pt-5">
