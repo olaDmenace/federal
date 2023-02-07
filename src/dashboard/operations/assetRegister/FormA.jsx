@@ -180,6 +180,7 @@ function FormA() {
         console.log(formData)
         endpoint.post('/truck', formData).then(
             res => {
+                setShow(true)
                 console.log(res)
                 if (res.status === 200) {
                     setShow(!show)
