@@ -34,6 +34,8 @@ const AbsenceForm = () => {
     // Store the data that was collected so it can be shown in other fields
     const [final, setFinal] = useState()
 
+    const [delivery, setDelivery] = useState([])
+
     useEffect(() => {
         endpoint.get('/truck').then(res => {
             if (res.status === 401) {
@@ -45,6 +47,13 @@ const AbsenceForm = () => {
             dispatch(truck(res.data.data))
         }).catch(err => {
             console.log(err)
+        })
+
+        endpoint.get('/user?UserType=1').then(res => {
+            console.log(res.data)
+            setDelivery(res.data.data)
+        }).catch(err => {
+
         })
     }, [])
 
@@ -65,6 +74,7 @@ const AbsenceForm = () => {
         data.startDate = new Date(data.startDate).toISOString()
         data.endDate = new Date(data.endDate).toISOString()
         endpoint.post(url, data).then(res => {
+            setShow(true)
             if (res.status === 200) {
                 setReply({
                     icon: <ThumbUpIcon className='mx-auto h-24 text-primary' />,
@@ -141,8 +151,12 @@ const AbsenceForm = () => {
                         <input className='w-full input input-primary' value={data.endDate} onChange={(e) => setData({ ...data, endDate: e.target.value })} type="date" name="" id="" />
                     </label>
                     <label htmlFor="">
-                        Alternative Do: Authorized Leave
-                        <input className='w-full input input-primary' value={data.alternativeDeliveryOfficerId} onChange={(e) => setData({ ...data, alternativeDeliveryOfficerId: e.target.value })} placeholder='John Doe' type="text" name="" id="" />
+                        Alternative DO: Authorized Leave
+                        <select value={data.alternativeDeliveryOfficerId} onChange={(e) => setData({ ...data, alternativeDeliveryOfficerId: e.target.value })} className='select select-primary w-full' name="" id="">
+                            <option value="">Select DO</option>
+                            {delivery.map(item => <option value={item.userId}>{`${item.firstName} ${item.lastName}`}</option>)}
+                        </select>
+                        {/* <input className='w-full input input-primary' value={data.alternativeDeliveryOfficerId} onChange={(e) => setData({ ...data, alternativeDeliveryOfficerId: e.target.value })} placeholder='John Doe' type="text" name="" id="" /> */}
                     </label>
                 </fieldset>
                 <label htmlFor="">

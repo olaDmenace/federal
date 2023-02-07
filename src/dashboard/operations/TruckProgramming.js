@@ -90,11 +90,13 @@ function TruckProgramming() {
     message: ''
   })
   const handleSubmit = (e) => {
+    console.log(data)
     e.preventDefault();
     setIsLoading(true)
     endpoint.post('/truck/programme', data).then(res => {
       console.log(res)
       if (res.status === 200) {
+        setShow(true)
         setReply({
           icon: <ThumbUpIcon className='mx-auto h-24 text-primary' />,
           message: res.data.message
@@ -109,7 +111,6 @@ function TruckProgramming() {
     }).catch(err => {
       console.log(err)
     })
-    console.log(data);
   };
 
   const tripType = [{ tripTypeId: 1, tripTypeName: 'Bridging' },
@@ -120,24 +121,30 @@ function TruckProgramming() {
   { tripTypeId: 6, tripTypeName: 'Road Test' }
   ]
 
-  const operationalStatus = [{ oprationalStatusId: 0, operationalStatus: 'Truck Programmed' },
-  { oprationalStatusId: 1, operationalStatus: 'Assigned to a Trip' },
-  { oprationalStatusId: 2, operationalStatus: 'Enroute Depot' },
-  { oprationalStatusId: 3, operationalStatus: 'At the Loading Depot' },
-  { oprationalStatusId: 4, operationalStatus: 'Truck Loaded' },
-  { oprationalStatusId: 5, operationalStatus: 'Enroute Bridging Depot' },
-  { oprationalStatusId: 6, operationalStatus: 'Enroute Customer Location' },
-  { oprationalStatusId: 7, operationalStatus: 'At the Depot' },
-  { oprationalStatusId: 8, operationalStatus: 'Truck Flashed' },
-  { oprationalStatusId: 9, operationalStatus: 'At the Customer 1 Location' },
-  { oprationalStatusId: 10, operationalStatus: 'At the Customer 2 Location' },
-  { oprationalStatusId: 11, operationalStatus: 'At the Customer 3 Location' },
-  { oprationalStatusId: 12, operationalStatus: 'Goods Delivered to Customer 1' },
-  { oprationalStatusId: 13, operationalStatus: 'Goods Delivered to Customer 2' },
-  { oprationalStatusId: 14, operationalStatus: 'Goods Delivered to Customer 3' },
-  { oprationalStatusId: 15, operationalStatus: 'Inbound' },
-  { oprationalStatusId: 16, operationalStatus: 'End Journey' },
-  { oprationalStatusId: 17, operationalStatus: 'Available for Loading' }]
+  // const operationalStatus = [{ oprationalStatusId: 0, operationalStatus: 'Truck Programmed' },
+  // { oprationalStatusId: 1, operationalStatus: 'Assigned to a Trip' },
+  // { oprationalStatusId: 2, operationalStatus: 'Enroute Depot' },
+  // { oprationalStatusId: 3, operationalStatus: 'At the Loading Depot' },
+  // { oprationalStatusId: 4, operationalStatus: 'Truck Loaded' },
+  // { oprationalStatusId: 5, operationalStatus: 'Enroute Bridging Depot' },
+  // { oprationalStatusId: 6, operationalStatus: 'Enroute Customer Location' },
+  // { oprationalStatusId: 7, operationalStatus: 'At the Depot' },
+  // { oprationalStatusId: 8, operationalStatus: 'Truck Flashed' },
+  // { oprationalStatusId: 9, operationalStatus: 'At the Customer 1 Location' },
+  // { oprationalStatusId: 10, operationalStatus: 'At the Customer 2 Location' },
+  // { oprationalStatusId: 11, operationalStatus: 'At the Customer 3 Location' },
+  // { oprationalStatusId: 12, operationalStatus: 'Goods Delivered to Customer 1' },
+  // { oprationalStatusId: 13, operationalStatus: 'Goods Delivered to Customer 2' },
+  // { oprationalStatusId: 14, operationalStatus: 'Goods Delivered to Customer 3' },
+  // { oprationalStatusId: 15, operationalStatus: 'Inbound' },
+  // { oprationalStatusId: 16, operationalStatus: 'End Journey' },
+  // { oprationalStatusId: 17, operationalStatus: 'Available for Loading' }]
+
+
+  const closePop = (e) => {
+    setIsLoading(!isLoading)
+    setShow(false)
+  }
 
 
   return (
@@ -145,7 +152,7 @@ function TruckProgramming() {
       {show && <PopUp>
         {reply.icon}
         <p className='mx-auto text-center text-primary bg-transparent'>{reply.message}</p>
-        <button className='btn btn-primary' onClick={(e) => setShow(false)}>Confirm</button>
+        <button className='btn btn-primary' onClick={(e) => closePop()}>Confirm</button>
       </PopUp>}
       <FormTitle Title={"Truck Programming"} />
       <hr />
@@ -241,7 +248,7 @@ function TruckProgramming() {
               id=""
               value={data.isDedicatedDestination}
               onChange={(e) =>
-                setData({ ...data, isDedicatedDestination: e.target.value })
+                setData({ ...data, isDedicatedDestination: e.target.value === "true" })
               }
             >
               <option value={true}>Yes</option>

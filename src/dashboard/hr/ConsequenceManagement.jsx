@@ -27,6 +27,7 @@ const ConsequenceManagement = () => {
     })
 
     const [trucks, setTrucks] = useState([])
+    const [delivery, setDelivery] = useState([])
     const dispatch = useDispatch()
     useEffect(() => {
         endpoint.get('/truck').then(res => {
@@ -39,6 +40,13 @@ const ConsequenceManagement = () => {
             // dispatch(truck(res.data.data))
         }).catch(err => {
             console.log(err)
+        })
+
+        endpoint.get('/user?UserType=1').then(res => {
+            console.log(res.data)
+            setDelivery(res.data.data)
+        }).catch(err => {
+
         })
     }, [])
 
@@ -166,8 +174,12 @@ const ConsequenceManagement = () => {
                         </select>
                     </label>
                     <label htmlFor="">
-                        Alternative Do: If Sanctioned
-                        <input className='w-full input input-primary' value={data.alternativeDeliveryOfficerId} onChange={(e) => setData({ ...data, alternativeDeliveryOfficerId: e.target.value })} placeholder='John Doe' type="text" name="" id="" />
+                        Alternative DO: If Sanctioned
+                        <select className='w-full select select-primary' value={data.alternativeDeliveryOfficerId} onChange={(e) => setData({ ...data, alternativeDeliveryOfficerId: e.target.value })} name="" id="">
+                            <option value="">Select Delivery Officer</option>
+                            {delivery.map(item => <option value={item.userId}>{`${item.firstName} ${item.lastName}`}</option>)}
+                        </select>
+                        {/* <input placeholder='John Doe' type="text" name="" id="" /> */}
                     </label>
                 </fieldset>
                 <button onClick={handleSubmit} className='btn btn-primary mx-auto'>Submit</button>
