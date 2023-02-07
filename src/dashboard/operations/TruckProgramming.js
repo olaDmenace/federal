@@ -121,24 +121,24 @@ function TruckProgramming() {
   { tripTypeId: 6, tripTypeName: 'Road Test' }
   ]
 
-  const operationalStatus = [{ oprationalStatusId: 0, operationalStatus: 'Truck Programmed' },
-  { oprationalStatusId: 1, operationalStatus: 'Assigned to a Trip' },
-  { oprationalStatusId: 2, operationalStatus: 'Enroute Depot' },
-  { oprationalStatusId: 3, operationalStatus: 'At the Loading Depot' },
-  { oprationalStatusId: 4, operationalStatus: 'Truck Loaded' },
-  { oprationalStatusId: 5, operationalStatus: 'Enroute Bridging Depot' },
-  { oprationalStatusId: 6, operationalStatus: 'Enroute Customer Location' },
-  { oprationalStatusId: 7, operationalStatus: 'At the Depot' },
-  { oprationalStatusId: 8, operationalStatus: 'Truck Flashed' },
-  { oprationalStatusId: 9, operationalStatus: 'At the Customer 1 Location' },
-  { oprationalStatusId: 10, operationalStatus: 'At the Customer 2 Location' },
-  { oprationalStatusId: 11, operationalStatus: 'At the Customer 3 Location' },
-  { oprationalStatusId: 12, operationalStatus: 'Goods Delivered to Customer 1' },
-  { oprationalStatusId: 13, operationalStatus: 'Goods Delivered to Customer 2' },
-  { oprationalStatusId: 14, operationalStatus: 'Goods Delivered to Customer 3' },
-  { oprationalStatusId: 15, operationalStatus: 'Inbound' },
-  { oprationalStatusId: 16, operationalStatus: 'End Journey' },
-  { oprationalStatusId: 17, operationalStatus: 'Available for Loading' }]
+  // const operationalStatus = [{ oprationalStatusId: 0, operationalStatus: 'Truck Programmed' },
+  // { oprationalStatusId: 1, operationalStatus: 'Assigned to a Trip' },
+  // { oprationalStatusId: 2, operationalStatus: 'Enroute Depot' },
+  // { oprationalStatusId: 3, operationalStatus: 'At the Loading Depot' },
+  // { oprationalStatusId: 4, operationalStatus: 'Truck Loaded' },
+  // { oprationalStatusId: 5, operationalStatus: 'Enroute Bridging Depot' },
+  // { oprationalStatusId: 6, operationalStatus: 'Enroute Customer Location' },
+  // { oprationalStatusId: 7, operationalStatus: 'At the Depot' },
+  // { oprationalStatusId: 8, operationalStatus: 'Truck Flashed' },
+  // { oprationalStatusId: 9, operationalStatus: 'At the Customer 1 Location' },
+  // { oprationalStatusId: 10, operationalStatus: 'At the Customer 2 Location' },
+  // { oprationalStatusId: 11, operationalStatus: 'At the Customer 3 Location' },
+  // { oprationalStatusId: 12, operationalStatus: 'Goods Delivered to Customer 1' },
+  // { oprationalStatusId: 13, operationalStatus: 'Goods Delivered to Customer 2' },
+  // { oprationalStatusId: 14, operationalStatus: 'Goods Delivered to Customer 3' },
+  // { oprationalStatusId: 15, operationalStatus: 'Inbound' },
+  // { oprationalStatusId: 16, operationalStatus: 'End Journey' },
+  // { oprationalStatusId: 17, operationalStatus: 'Available for Loading' }]
 
 
   const closePop = (e) => {
