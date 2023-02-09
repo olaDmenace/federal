@@ -20,7 +20,7 @@ import ConsequenceManagement from "./dashboard/hr/ConsequenceManagement";
 import TrainingForm from "./dashboard/hr/TrainingForm";
 import Employee from "./dashboard/hr/Employee";
 import UserDashboard from "./dashboard/dashboard/Dashboard.jsx";
-import Tif from "./dashboard/healthandsafety/tif";
+import TifForm from "./dashboard/healthandsafety/TifForm";
 import MaintenanceExpenses from "./dashboard/operation support/maintenanceExpenses/MaintenanceExpenses";
 import InventoryRequest from "./dashboard/operation support/inventoryRequest/InventoryRequest";
 import MaintenanceBooking from "./dashboard/operation support/maintenanceBooking/maintenanceBooking";
@@ -64,7 +64,7 @@ function App() {
             />
             <Route path={"Training"} element={<TrainingForm />} />
             <Route path="Employee" element={<Employee />} />
-            <Route path="tif" element={<Tif />} />
+            <Route path="tifForm" element={<TifForm />} />
             <Route
               path="maintenanceExpenses"
               element={<MaintenanceExpenses />}
