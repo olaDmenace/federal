@@ -104,7 +104,7 @@ function DashMenu() {
               {showDropDown === "Submenu 2" && (
                 <div className="absolute bg-white text-primary px-3 py-10 -top-1/4 left-3/4 w-60 space-y-3 rounded-r-lg border-r border border-primary">
                   <NavLink
-                    to={"/dashboard/Tif"}
+                    to={"/dashboard/tifForm"}
                     className="hover:font-bold hover:ease-in-out duration-150 block"
                   >
                     Pre Trip Inspection Form
