@@ -9,26 +9,26 @@ function Tif({ truckPro, setTruckPro, data, setData }) {
 
   const [inspect, setInspect] = useState([]);
 
-  useEffect(() => {
-    endpoint
-      .post("/truck/inspect")
-      .then((res) => {
-        console.log(res.data.data);
-        setInspect(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    endpoint
-      .get("/truck/programme")
-      .then((res) => {
-        console.log(res.data.data);
-        setTruckPro(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  // useEffect(() => {
+  //   endpoint
+  //     .post("/truck/inspect")
+  //     .then((res) => {
+  //       console.log(res.data.data);
+  //       setInspect(res.data.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  //   endpoint
+  //     .get("/truck/programme")
+  //     .then((res) => {
+  //       console.log(res.data.data);
+  //       setTruckPro(res.data.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
 
   const activeForm = () => {
     if (form === 0) {

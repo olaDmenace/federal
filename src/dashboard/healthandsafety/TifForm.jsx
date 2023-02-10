@@ -11,165 +11,156 @@ function TifForm() {
   PageTitle("Axle & Cartage - TifForm");
 
   const [data, setData] = useState({
-    truckId: "",
-    truckNumber: "",
-    logisticsCoordinatorId: "",
-    logisticsCoordinator: "",
-    journeyOfficerId: "",
-    journeyOfficer: "",
-    deliveryOfficerId: "",
-    deliveryOfficer: "",
-    productId: "",
-    type: 0,
-    productType: "",
     truckProgrammingId: "",
-
-    q1: {
-      question:
-        "1. Vehicle license, Road worthiness and Insurance Certificates Valid?",
-      answer: "",
-    },
-    q2: {
-      question: " 2. Valid Drivers’ license?",
-      answer: "",
-    },
-    q3: {
-      question:
-        " 3. Complete PPE? (Hard Helmet, Safety boots, and Hi-Vis clothing, Company T-Shirt and Identity cards)",
-      answer: "",
-    },
-    q4: {
-      question: "4. Assistant Available?",
-      answer: "",
-    },
-    q5: {
-      question: "5. Truck free from oil and gas leaks?",
-      answer: "",
-    },
-    q6: {
-      question:
-        "6. Windscreen free of cracks and the wipers in good condition?",
-      answer: "",
-    },
-    q7: {
-      question: "7. Is the horn & reverse alarm functional?",
-      answer: "",
-    },
-    q8: {
-      question: "8. Driving mirrors free of cracks and firmly fixed?",
-      answer: "",
-    },
-    q9: {
-      question:
-        "9. All Tyres including the 2 spares in good condition and of a minimum thread depth of 2mm?",
-      answer: "",
-    },
-    q10: {
-      question: "10. Correct wheel nuts and studs are fitted?",
-      answer: "",
-    },
-    q11: {
-      question: "11. Seat belts in the truck fitted and functioning properly?",
-      answer: "",
-    },
-    q12: {
-      question:
-        "12. Does the engine start using the ignition key? (No pushing, non-usage of wires)",
-      answer: "",
-    },
-    q13: {
-      question:
-        "13. Vehicle equipped with two (unexpired) 9kg fire extinguisher and caution sign?",
-      answer: "",
-    },
-    q14: {
-      question: "14. Vehicle have 2 standard wheel chocks with handles?",
-      answer: "",
-    },
-    q15: {
-      question:
-        "15. Are the following Hydraulic Jack, Wheel Spanner, Tyre Lifter,  Tyre chains and Padlocks, Tyre Gauge, Tyre Pump Offloading Adaptor,  Towing Chain and Harness present and effective?",
-      answer: "",
-    },
-    q16: {
-      question:
-        "16. Battery secured and terminals properly tightened? Also state the voltage on each Battery in the comment section (Use the meter provided)",
-      answer: "",
-    },
-    q17: {
-      question: "17. Calibration chart valid?",
-      answer: "",
-    },
-    q18: {
-      question: "18. Emergency shut-off switch functional?",
-      answer: "",
-    },
-    q19: {
-      question: "19. Door handle have handlebars and door staircase?",
-      answer: "",
-    },
-    q20: {
-      question: "20. Fifth wheel/turn table kingpin locked?",
-      answer: "",
-    },
-    q21: {
-      question: "21. Is the tank free of rust, corrosion and damage?",
-      answer: "",
-    },
-    q22: {
-      question: "22. Are the dashboard control panels in good condition?",
-      answer: "",
-    },
-    q23: {
-      question: "23. Battery master switch available and functional?",
-      answer: "",
-    },
-    q24: {
-      question: "24. Spark arrestor available?",
-      answer: "",
-    },
-    q25: {
-      question: "25. Emergency notification number available ?",
-      answer: "",
-    },
-    q26: {
-      question: "26. Headlamp, indicator lights and brake light functional?",
-      answer: "",
-    },
-    q27: {
-      question: "27. Adjustable seat & head restrain functional?",
-      answer: "",
-    },
-    q28: {
-      question: "28. Is the emergency shutdown button functional?",
-      answer: "",
-    },
-    q29: {
-      question:
-        "29. Mudguards, handrails and API setting available and functioning?",
-      answer: "",
-    },
-    q30: {
-      question: "30. Are the reflective stickers in good condition?",
-      answer: "",
-    },
-    q31: {
-      question: "31. First Aid Kit available",
-      answer: "",
-    },
-    q32: {
-      question: "32. Warning Triangles available",
-      answer: "",
-    },
-    q33: {
-      question: "33. Jack And Handle available",
-      answer: "",
-    },
-    q34: {
-      question: "34. Wheel Spanner available",
-      answer: "",
-    },
-    comments: "",
+    productType: '',
+    assessments: [
+      {
+        question:
+          "1. Vehicle license, Road worthiness and Insurance Certificates Valid?",
+        answer: "",
+      },
+      {
+        question: " 2. Valid Drivers’ license?",
+        answer: "",
+      },
+      {
+        question:
+          " 3. Complete PPE? (Hard Helmet, Safety boots, and Hi-Vis clothing, Company T-Shirt and Identity cards)",
+        answer: "",
+      },
+      {
+        question: "4. Assistant Available?",
+        answer: "",
+      },
+      {
+        question: "5. Truck free from oil and gas leaks?",
+        answer: "",
+      },
+      {
+        question:
+          "6. Windscreen free of cracks and the wipers in good condition?",
+        answer: "",
+      },
+      {
+        question: "7. Is the horn & reverse alarm functional?",
+        answer: "",
+      },
+      {
+        question: "8. Driving mirrors free of cracks and firmly fixed?",
+        answer: "",
+      },
+      {
+        question:
+          "9. All Tyres including the 2 spares in good condition and of a minimum thread depth of 2mm?",
+        answer: "",
+      },
+      {
+        question: "10. Correct wheel nuts and studs are fitted?",
+        answer: "",
+      },
+      {
+        question: "11. Seat belts in the truck fitted and functioning properly?",
+        answer: "",
+      },
+      {
+        question:
+          "12. Does the engine start using the ignition key? (No pushing, non-usage of wires)",
+        answer: "",
+      },
+      {
+        question:
+          "13. Vehicle equipped with two (unexpired) 9kg fire extinguisher and caution sign?",
+        answer: "",
+      },
+      {
+        question: "14. Vehicle have 2 standard wheel chocks with handles?",
+        answer: "",
+      },
+      {
+        question:
+          "15. Are the following Hydraulic Jack, Wheel Spanner, Tyre Lifter,  Tyre chains and Padlocks, Tyre Gauge, Tyre Pump Offloading Adaptor,  Towing Chain and Harness present and effective?",
+        answer: "",
+      },
+      {
+        question:
+          "16. Battery secured and terminals properly tightened? Also state the voltage on each Battery in the comment section (Use the meter provided)",
+        answer: "",
+      },
+      {
+        question: "17. Calibration chart valid?",
+        answer: "",
+      },
+      {
+        question: "18. Emergency shut-off switch functional?",
+        answer: "",
+      },
+      {
+        question: "19. Door handle have handlebars and door staircase?",
+        answer: "",
+      },
+      {
+        question: "20. Fifth wheel/turn table kingpin locked?",
+        answer: "",
+      },
+      {
+        question: "21. Is the tank free of rust, corrosion and damage?",
+        answer: "",
+      },
+      {
+        question: "22. Are the dashboard control panels in good condition?",
+        answer: "",
+      },
+      {
+        question: "23. Battery master switch available and functional?",
+        answer: "",
+      },
+      {
+        question: "24. Spark arrestor available?",
+        answer: "",
+      },
+      {
+        question: "25. Emergency notification number available ?",
+        answer: "",
+      },
+      {
+        question: "26. Headlamp, indicator lights and brake light functional?",
+        answer: "",
+      },
+      {
+        question: "27. Adjustable seat & head restrain functional?",
+        answer: "",
+      },
+      {
+        question: "28. Is the emergency shutdown button functional?",
+        answer: "",
+      },
+      {
+        question:
+          "29. Mudguards, handrails and API setting available and functioning?",
+        answer: "",
+      },
+      {
+        question: "30. Are the reflective stickers in good condition?",
+        answer: "",
+      },
+      {
+        question: "31. First Aid Kit available",
+        answer: "",
+      },
+      {
+        question: "32. Warning Triangles available",
+        answer: "",
+      },
+      {
+        question: "33. Jack And Handle available",
+        answer: "",
+      },
+      {
+        question: "34. Wheel Spanner available",
+        answer: "",
+      }
+    ],
+    comments: ""
   });
 
   const [truckPro, setTruckPro] = useState([]);
@@ -180,6 +171,7 @@ function TifForm() {
       .then((res) => {
         console.log(res.data.data);
         setTruckPro(res.data.data);
+        // console.log(res.data.data.product.productType)
       })
       .catch((err) => {
         console.log(err);
@@ -189,9 +181,35 @@ function TifForm() {
   const [hide, setHide] = useState(true);
 
   const handleChange = (e) => {
-    setTruckPro(e.target.value);
-    setHide(false);
+    console.log(data)
   };
+
+  const questions = new Map()
+  questions.set(0, "Vehicle License")
+  questions.set(1, 'Hackney Permit')
+  questions.set(2, 'Proof of Ownership')
+  questions.set(3, 'Carriage Permit')
+  questions.set(4, 'Road Worthiness')
+  questions.set(5, 'Heavy Duty Permit')
+  questions.set(6, 'All of Registration Number')
+  questions.set(7, 'CMR')
+  questions.set(8, 'Info Req for Clearance/Attestation')
+  questions.set(9, 'Carriage Permit')
+  questions.set(10, 'Truck Insurance')
+  questions.set(11, 'Heavy Duty Permit')
+
+  const mutateField = (type, valToChange, newVal) => {
+    let i = 0
+    while (i < data.truckDocuments.length) {
+      if (data.assessments[i].type === type) {
+        data.assessments[i][valToChange] = newVal
+        break;
+      }
+      i += 1
+    }
+    setData({ ...data })
+  }
+
 
   return (
     <div className="space-y-2">
@@ -206,21 +224,19 @@ function TifForm() {
             className="w-full select select-primary"
             name=""
             id=""
-            value={data.truckId}
+            value={data.truckProgrammingId}
             onChange={(e) =>
               setData({
                 ...data,
-                truckId: e.target.value,
+                truckProgrammingId: e.target.value,
               })
             }
           >
-            <option value={truckPro.productType} onChange={handleChange}>
-              {" "}
+            <option value=''>
               Select Truck Numbers
             </option>
-
             {truckPro.map((item) => (
-              <option value={item.truck.truckId} key={item.truck.truckId}>
+              <option value={item.truckProgrammingId} key={item.truckProgrammingId}>
                 {item.truck.truckNumber}
               </option>
             ))}
@@ -231,8 +247,7 @@ function TifForm() {
           Product Type
           <br />
           <div className="border border-primary h-12 rounded-lg grid items-center px-4">
-            {truckPro
-              .filter((i) => i.truck.truckId === data.truckId)
+            {truckPro.filter((i) => i.truckProgrammingId === data.truckProgrammingId)
               .map((item) => (
                 <p key={item.product.productId}>{item.product.productType}</p>
               ))}
@@ -250,7 +265,7 @@ function TifForm() {
           />
         </label>
       </fieldset>
-      {hide && (
+      {/* {hide && (
         <div>
           {truckPro.filter((i) => i.product.productType === "LFG") ? (
             <Tif2
@@ -269,7 +284,8 @@ function TifForm() {
           )}
           {handleChange}
         </div>
-      )}
+      )} */}
+      <button className="btn btn-primary" onClick={handleChange}>Submit</button>
     </div>
   );
 }
