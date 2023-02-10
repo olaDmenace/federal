@@ -1,52 +1,31 @@
 import React, { useState } from "react";
-import PageTitle from "../../utils/PageTitle";
-import WhiteProduct from "./WhiteProduct";
-import LPG from "./LPG";
-import FormTitle from "../FormTitle";
-import WhiteProduct2 from "./WhiteProduct2";
-import LPG2 from "./LPG2";
-import endpoint from "../../utils/endpoints/endpoint";
 
-function Tif() {
-  PageTitle("Axle & Cartage - Pre Trip Inspection Form");
+import PageTitle from "../../../utils/PageTitle";
+import Form1 from "./Form1";
+import Form2 from "./Form2";
+import Form3 from "./Form3";
+import Form4 from "./Form4";
+import FormTitle from "../../FormTitle";
+
+function MaintenanceInspection() {
+  PageTitle("Axle & Cartage - maintenance Inspection ");
   const [form, setForm] = useState(0);
-  const [Data, setData] = useState({
-    truckProgrammingId: "",
-    answer: "",
-    question: "",
-    comments: "",
-  });
 
   const activeForm = () => {
     if (form === 0) {
-      return <WhiteProduct whiteData={Data} setWhiteData={setData} />;
+      return <Form1 />;
     } else if (form === 1) {
-      return <WhiteProduct2 whiteData={Data} setWhiteData={setData} />;
+      return <Form2 />;
     } else if (form === 2) {
-      return <LPG whiteData={Data} setWhiteData={setData} />;
+      return <Form3 />;
     } else {
-      return <LPG2 whiteData={Data} setWhiteData={setData} />;
+      return <Form4 />;
     }
   };
 
-  const truck = "/truck/inspect";
-
-  // Handles the submit event
-  function handleSubmit(e) {
-    console.log(Data);
-    endpoint
-      .post(truck, Data)
-      .then((res) => {
-        console.log(res);
-      })
-      .then((err) => {
-        console.log(err);
-      });
-  }
-
   return (
     <div className="space-y-2 grid">
-      <FormTitle Title={"Pre Trip Inspection Form"} />
+      <FormTitle Title={"Maintenance Inspection Form"} />
       <hr />
       <ul className="steps steps-horizontal w-full pt-5">
         <li className="step step-primary"></li>
@@ -70,7 +49,7 @@ function Tif() {
         <button
           class="btn btn-active"
           onClick={() => {
-            form === 3 ? handleSubmit() : setForm((currForm) => currForm + 1);
+            setForm((currForm) => currForm + 1);
           }}
         >
           {form === 3 ? "Submit" : "Next"}
@@ -80,4 +59,4 @@ function Tif() {
   );
 }
 
-export default Tif;
+export default MaintenanceInspection;

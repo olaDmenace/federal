@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const LPG2 = ({ data, setData }) => {
+const WhiteProduct2 = ({ data, setData }) => {
   const [otherQ16, setOtherQ16] = useState("");
   const [otherQ17, setOtherQ17] = useState("");
   const [otherQ18, setOtherQ18] = useState("");
@@ -948,4 +948,4 @@ const LPG2 = ({ data, setData }) => {
   );
 };
 
-export default LPG2;
+export default WhiteProduct2;

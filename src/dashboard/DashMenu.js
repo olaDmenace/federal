@@ -104,7 +104,7 @@ function DashMenu() {
               {showDropDown === "Submenu 2" && (
                 <div className="absolute bg-white text-primary px-3 py-10 -top-1/4 left-3/4 w-60 space-y-3 rounded-r-lg border-r border border-primary">
                   <NavLink
-                    to={"/dashboard/Tif"}
+                    to={"/dashboard/tifForm"}
                     className="hover:font-bold hover:ease-in-out duration-150 block"
                   >
                     Pre Trip Inspection Form
@@ -113,12 +113,61 @@ function DashMenu() {
               )}
               <ChevronDownIcon className="h-6 stroke-1 hover:scale-125 transition duration-500" />
             </div>
-            <NavLink to={"/dashboard/AssetRegister"} className="block">
+            {/*Operation support*/}
+            <div
+              onClick={() =>
+                setshowDropDown(
+                  showDropDown === "Submenu 3" ? undefined : "Submenu 3"
+                )
+              }
+              className="items-center relative flex text-white gap-7 cursor-pointer"
+            >
               <DashMenuItem
                 Icon={<UsersIcon className="h-8 stroke-1" />}
                 Title={"Operations Support"}
               />
-            </NavLink>
+              {showDropDown === "Submenu 3" && (
+                <div className="absolute bg-white text-primary px-3 py-10 -top-1/4 left-3/4 w-60 space-y-3 rounded-r-lg border-r border border-primary">
+                  <NavLink
+                    to={"/dashboard/maintenanceExpenses"}
+                    className="hover:font-bold hover:ease-in-out duration-150 block"
+                  >
+                    Maintenance Expenses
+                  </NavLink>
+                  <NavLink
+                    to={"/dashboard/inventoryRequest"}
+                    className="hover:font-bold hover:ease-in-out duration-150 block"
+                  >
+                    Inventory Request
+                  </NavLink>
+                  <NavLink
+                    to={"/dashboard/maintenanceBooking"}
+                    className="hover:font-bold hover:ease-in-out duration-150 block"
+                  >
+                    Maintenance Booking
+                  </NavLink>
+                  <NavLink
+                    to={"/dashboard/maintenanceInspection"}
+                    className="hover:font-bold hover:ease-in-out duration-150 block"
+                  >
+                    Maintenance Inspection
+                  </NavLink>
+                  <NavLink
+                    to={"/dashboard/partsAndInventory"}
+                    className="hover:font-bold hover:ease-in-out duration-150 block"
+                  >
+                    Part and Inventory
+                  </NavLink>
+                  <NavLink
+                    to={"/dashboard/utilities"}
+                    className="hover:font-bold hover:ease-in-out duration-150 block"
+                  >
+                    Utilities
+                  </NavLink>
+                </div>
+              )}
+              <ChevronDownIcon className="h-6 stroke-1 hover:scale-125 transition duration-500" />
+            </div>
             {/* <NavLink to={"/dashboard/AssetRegister"}></NavLink> */}
             {/* <div className='items-center relative flex text-white gap-7 '>
                         <div className='flex gap-2 items-center'>
@@ -150,47 +199,53 @@ function DashMenu() {
                         <CogIcon className='h-8 stroke-1' />
                         <h4>Settings</h4>
                     </div> */}
-            <div
-              onClick={() =>
-                setshowDropDown(
-                  showDropDown === "Submenu 3" ? undefined : "Submenu 3"
-                )
-              }
-            >
-              <DashMenuItem
-                Icon={<IdentificationIcon className="h-8 stroke-1" />}
-                Title={"Human Capital"}
-              />
-            </div>
-            {showDropDown === "Submenu 3" && (
-              <div className="grid gap-5 absolute bg-white w-72 p-5 rounded-r top-[85%] left-[100%]">
-                <NavLink
-                  to={"/dashboard/AbsenceForm"}
-                  className="text-primary hover:font-bold ease-in-out duration-150"
-                >
-                  Delivery Officer Absence Form
-                </NavLink>
-                <NavLink
-                  to={"/dashboard/ConsequenceManagement"}
-                  className="text-primary hover:font-bold ease-in-out duration-150"
-                >
-                  Consequence Management
-                </NavLink>
-                <NavLink
-                  to={"/dashboard/Training"}
-                  className="text-primary hover:font-bold ease-in-out duration-150"
-                >
-                  Training Form
-                </NavLink>
-                <NavLink
-                  to={"/dashboard/Employee"}
-                  className="text-primary hover:font-bold ease-in-out duration-150"
-                >
-                  Employee Details
-                </NavLink>
+            {/*Human Capital*/}
+            <section id="humancapital">
+              <div
+                onClick={() =>
+                  setshowDropDown(
+                    showDropDown === "Submenu 4" ? undefined : "Submenu 4"
+                  )
+                }
+                className="items-center relative flex text-white gap-7 cursor-pointer"
+              >
+                <DashMenuItem
+                  Icon={<IdentificationIcon className="h-8 stroke-1" />}
+                  Title={"Human Capital"}
+                />
+                {showDropDown === "Submenu 4" && (
+                  <div className="absolute bg-white text-primary px-3 py-10 -top-1/4 left-3/4 w-full space-y-5 rounded-r-lg border-r border border-primary">
+                    <NavLink
+                      to={"/dashboard/AbsenceForm"}
+                      className="hover:font-bold hover:ease-in-out duration-150 block"
+                    >
+                      Delivery Officer Absence Form
+                    </NavLink>
+                    <NavLink
+                      to={"/dashboard/ConsequenceManagement"}
+                      className="hover:font-bold hover:ease-in-out duration-150 block"
+                    >
+                      Consequence Management
+                    </NavLink>
+                    <NavLink
+                      to={"/dashboard/Training"}
+                      className="hover:font-bold hover:ease-in-out duration-150 block"
+                    >
+                      Training Form
+                    </NavLink>
+                    <NavLink
+                      to={"/dashboard/Employee"}
+                      className="hover:font-bold hover:ease-in-out duration-150 block"
+                    >
+                      Employee Details
+                    </NavLink>
+                  </div>
+                )}
+                <ChevronDownIcon className="h-6 stroke-1 hover:scale-125 transition duration-500" />
               </div>
-            )}
+            </section>
           </div>
+
           <div
             className="items-center relative flex text-white gap-2 cursor-pointer"
             onClick={(e) => handleLogout(e)}
