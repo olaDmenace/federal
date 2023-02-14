@@ -5,7 +5,7 @@ import CustomerDetails from './CustomerDetails'
 import CustomerListDetails from './CustomerListDetails'
 import ProductDetails from './ProductDetails'
 import ReportedShortage from './ReportedShortage'
-import TripDetails from './TripDetails'
+// import TripDetails from './TripDetails'
 
 
 function Journeymanagement() {
@@ -24,10 +24,6 @@ function Journeymanagement() {
         }
     }
 
-    const stitch = (arg) => {
-        return true
-    }
-
     return (
         <div className='space-y-2 grid'>
             <FormTitle Title={'Journey Management'} />
@@ -44,7 +40,7 @@ function Journeymanagement() {
                 </div>
             </div>
             <div class='btn-group mx-auto pt-5'>
-                <button disabled={form === 0} onClick={() => { setForm((currForm) => currForm - 1) }} class='btn btn-active'>Prev</button>
+                <button disabled={form === 0} onClick={() => { setForm((currForm) => currForm - 1) }} className={form === 0 ? 'btn btn-disabled' : 'btn btn-active'}>Prev</button>
                 <button class='btn btn-active' onClick={() => { setForm((currForm) => currForm + 1) }}>
                     {form === 3 ? 'Submit' : 'Next'}
                 </button>
