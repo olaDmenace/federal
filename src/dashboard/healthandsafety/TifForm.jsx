@@ -3,164 +3,189 @@ import PageTitle from "../../utils/PageTitle";
 import FormTitle from "../FormTitle";
 
 import endpoint from "../../utils/endpoints/endpoint";
-import Tif from "./FormA/tif";
-import Tif2 from "./FormB/tif2";
+
 import LPG from "./FormB/LPG";
+import WhiteProduct from "./FormA/WhiteProduct";
 
 function TifForm() {
   PageTitle("Axle & Cartage - TifForm");
 
   const [data, setData] = useState({
     truckProgrammingId: "",
-    productType: '',
+    productType: "",
     assessments: [
       {
-        question:
-          "1. Vehicle license, Road worthiness and Insurance Certificates Valid?",
+        type: 0,
+        question: "",
         answer: "",
       },
       {
-        question: " 2. Valid Drivers’ license?",
+        type: 1,
+        question: "",
         answer: "",
       },
       {
-        question:
-          " 3. Complete PPE? (Hard Helmet, Safety boots, and Hi-Vis clothing, Company T-Shirt and Identity cards)",
+        type: 2,
+        question: "",
         answer: "",
       },
       {
-        question: "4. Assistant Available?",
+        type: 3,
+        question: "",
         answer: "",
       },
       {
-        question: "5. Truck free from oil and gas leaks?",
+        type: 4,
+        question: "",
         answer: "",
       },
       {
-        question:
-          "6. Windscreen free of cracks and the wipers in good condition?",
+        type: 5,
+        question: "",
         answer: "",
       },
       {
-        question: "7. Is the horn & reverse alarm functional?",
+        type: 6,
+        question: "",
         answer: "",
       },
       {
-        question: "8. Driving mirrors free of cracks and firmly fixed?",
+        type: 7,
+        question: "",
         answer: "",
       },
       {
-        question:
-          "9. All Tyres including the 2 spares in good condition and of a minimum thread depth of 2mm?",
+        type: 8,
+        question: "",
         answer: "",
       },
       {
-        question: "10. Correct wheel nuts and studs are fitted?",
+        type: 9,
+        question: "",
         answer: "",
       },
       {
-        question: "11. Seat belts in the truck fitted and functioning properly?",
+        type: 10,
+        question: "",
         answer: "",
       },
       {
-        question:
-          "12. Does the engine start using the ignition key? (No pushing, non-usage of wires)",
+        type: 11,
+        question: "",
         answer: "",
       },
       {
-        question:
-          "13. Vehicle equipped with two (unexpired) 9kg fire extinguisher and caution sign?",
+        type: 12,
+        question: "",
         answer: "",
       },
       {
-        question: "14. Vehicle have 2 standard wheel chocks with handles?",
+        type: 13,
+        question: "",
         answer: "",
       },
       {
-        question:
-          "15. Are the following Hydraulic Jack, Wheel Spanner, Tyre Lifter,  Tyre chains and Padlocks, Tyre Gauge, Tyre Pump Offloading Adaptor,  Towing Chain and Harness present and effective?",
+        type: 14,
+        question: "",
         answer: "",
       },
       {
-        question:
-          "16. Battery secured and terminals properly tightened? Also state the voltage on each Battery in the comment section (Use the meter provided)",
+        type: 15,
+        question: "",
         answer: "",
       },
       {
-        question: "17. Calibration chart valid?",
+        type: 16,
+        question: "",
         answer: "",
       },
       {
-        question: "18. Emergency shut-off switch functional?",
+        type: 17,
+        question: "",
         answer: "",
       },
       {
-        question: "19. Door handle have handlebars and door staircase?",
+        type: 18,
+        question: "",
         answer: "",
       },
       {
-        question: "20. Fifth wheel/turn table kingpin locked?",
+        type: 19,
+        question: "",
         answer: "",
       },
       {
-        question: "21. Is the tank free of rust, corrosion and damage?",
+        type: 20,
+        question: "",
         answer: "",
       },
       {
-        question: "22. Are the dashboard control panels in good condition?",
+        type: 21,
+        question: "",
         answer: "",
       },
       {
-        question: "23. Battery master switch available and functional?",
+        type: 22,
+        question: "",
         answer: "",
       },
       {
-        question: "24. Spark arrestor available?",
+        type: 23,
+        question: "",
         answer: "",
       },
       {
-        question: "25. Emergency notification number available ?",
+        type: 24,
+        question: "",
         answer: "",
       },
       {
-        question: "26. Headlamp, indicator lights and brake light functional?",
+        type: 25,
+        question: "",
         answer: "",
       },
       {
-        question: "27. Adjustable seat & head restrain functional?",
+        type: 26,
+        question: "",
         answer: "",
       },
       {
-        question: "28. Is the emergency shutdown button functional?",
+        type: 27,
+        question: "",
         answer: "",
       },
       {
-        question:
-          "29. Mudguards, handrails and API setting available and functioning?",
+        type: 28,
+        question: "",
         answer: "",
       },
       {
-        question: "30. Are the reflective stickers in good condition?",
+        type: 29,
+        question: "",
         answer: "",
       },
       {
-        question: "31. First Aid Kit available",
+        type: 30,
+        question: "",
         answer: "",
       },
       {
-        question: "32. Warning Triangles available",
+        type: 31,
+        question: "",
         answer: "",
       },
       {
-        question: "33. Jack And Handle available",
+        type: 32,
+        question: "",
         answer: "",
       },
       {
-        question: "34. Wheel Spanner available",
+        type: 33,
+        question: "",
         answer: "",
-      }
+      },
     ],
-    comments: ""
+    comments: "",
   });
 
   const [truckPro, setTruckPro] = useState([]);
@@ -181,35 +206,8 @@ function TifForm() {
   const [hide, setHide] = useState(true);
 
   const handleChange = (e) => {
-    console.log(data)
+    console.log(data);
   };
-
-  const questions = new Map()
-  questions.set(0, "Vehicle License")
-  questions.set(1, 'Hackney Permit')
-  questions.set(2, 'Proof of Ownership')
-  questions.set(3, 'Carriage Permit')
-  questions.set(4, 'Road Worthiness')
-  questions.set(5, 'Heavy Duty Permit')
-  questions.set(6, 'All of Registration Number')
-  questions.set(7, 'CMR')
-  questions.set(8, 'Info Req for Clearance/Attestation')
-  questions.set(9, 'Carriage Permit')
-  questions.set(10, 'Truck Insurance')
-  questions.set(11, 'Heavy Duty Permit')
-
-  const mutateField = (type, valToChange, newVal) => {
-    let i = 0
-    while (i < data.truckDocuments.length) {
-      if (data.assessments[i].type === type) {
-        data.assessments[i][valToChange] = newVal
-        break;
-      }
-      i += 1
-    }
-    setData({ ...data })
-  }
-
 
   return (
     <div className="space-y-2">
@@ -232,11 +230,12 @@ function TifForm() {
               })
             }
           >
-            <option value=''>
-              Select Truck Numbers
-            </option>
+            <option value="">Select Truck Numbers</option>
             {truckPro.map((item) => (
-              <option value={item.truckProgrammingId} key={item.truckProgrammingId}>
+              <option
+                value={item.truckProgrammingId}
+                key={item.truckProgrammingId}
+              >
                 {item.truck.truckNumber}
               </option>
             ))}
@@ -247,7 +246,8 @@ function TifForm() {
           Product Type
           <br />
           <div className="border border-primary h-12 rounded-lg grid items-center px-4">
-            {truckPro.filter((i) => i.truckProgrammingId === data.truckProgrammingId)
+            {truckPro
+              .filter((i) => i.truckProgrammingId === data.truckProgrammingId)
               .map((item) => (
                 <p key={item.product.productId}>{item.product.productType}</p>
               ))}
@@ -265,17 +265,17 @@ function TifForm() {
           />
         </label>
       </fieldset>
-      {/* {hide && (
+      {
         <div>
           {truckPro.filter((i) => i.product.productType === "LFG") ? (
-            <Tif2
+            <LPG
               data={data}
               setData={setData}
               truckPro={truckPro}
               setTruckPro={setTruckPro}
             />
           ) : (
-            <Tif
+            <WhiteProduct
               data={data}
               setData={setData}
               truckPro={truckPro}
@@ -284,8 +284,8 @@ function TifForm() {
           )}
           {handleChange}
         </div>
-      )} */}
-      <button className="btn btn-primary" onClick={handleChange}>Submit</button>
+      }
+      <button className="btn btn-primary">Submit</button>
     </div>
   );
 }
