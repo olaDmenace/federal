@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import PageTitle from '../../../utils/PageTitle'
 import FormTitle from '../../FormTitle'
+import TruckProgramming from '../TruckProgramming'
 import CustomerDetails from './CustomerDetails'
 import CustomerListDetails from './CustomerListDetails'
 import ProductDetails from './ProductDetails'
@@ -14,13 +15,15 @@ function Journeymanagement() {
 
     const activeForm = () => {
         if (form === 0) {
-            return (<ProductDetails />)
+            return (<TruckProgramming />)
         } else if (form === 1) {
-            return (<CustomerDetails />)
+            return (<ProductDetails />)
         } else if (form === 2) {
+            return (<CustomerDetails />)
+        } else if (form === 3) {
             return (<CustomerListDetails />)
         } else {
-            return (<ReportedShortage />)
+            return <ReportedShortage />
         }
     }
 
@@ -33,6 +36,7 @@ function Journeymanagement() {
                 <li className={form >= 1 ? 'step step-primary' : 'step'}></li>
                 <li className={form >= 2 ? 'step step-primary' : 'step'}></li>
                 <li className={form >= 3 ? 'step step-primary' : 'step'}></li>
+                <li className={form >= 4 ? 'step step-primary' : 'step'}></li>
             </ul>
             <div className='flex gap-10 pb-10'>
                 <div>
@@ -42,7 +46,7 @@ function Journeymanagement() {
             <div class='btn-group mx-auto pt-5'>
                 <button disabled={form === 0} onClick={() => { setForm((currForm) => currForm - 1) }} className={form === 0 ? 'btn btn-disabled' : 'btn btn-active'}>Prev</button>
                 <button class='btn btn-active' onClick={() => { setForm((currForm) => currForm + 1) }}>
-                    {form === 3 ? 'Submit' : 'Next'}
+                    {form === 4 ? 'Submit' : 'Next'}
                 </button>
             </div>
         </div>

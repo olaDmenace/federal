@@ -184,19 +184,19 @@ function TifForm() {
     console.log(data)
   };
 
-  const questions = new Map()
-  questions.set(0, "Vehicle License")
-  questions.set(1, 'Hackney Permit')
-  questions.set(2, 'Proof of Ownership')
-  questions.set(3, 'Carriage Permit')
-  questions.set(4, 'Road Worthiness')
-  questions.set(5, 'Heavy Duty Permit')
-  questions.set(6, 'All of Registration Number')
-  questions.set(7, 'CMR')
-  questions.set(8, 'Info Req for Clearance/Attestation')
-  questions.set(9, 'Carriage Permit')
-  questions.set(10, 'Truck Insurance')
-  questions.set(11, 'Heavy Duty Permit')
+  // const questions = new Map()
+  // questions.set(0, "Vehicle License")
+  // questions.set(1, 'Hackney Permit')
+  // questions.set(2, 'Proof of Ownership')
+  // questions.set(3, 'Carriage Permit')
+  // questions.set(4, 'Road Worthiness')
+  // questions.set(5, 'Heavy Duty Permit')
+  // questions.set(6, 'All of Registration Number')
+  // questions.set(7, 'CMR')
+  // questions.set(8, 'Info Req for Clearance/Attestation')
+  // questions.set(9, 'Carriage Permit')
+  // questions.set(10, 'Truck Insurance')
+  // questions.set(11, 'Heavy Duty Permit')
 
   const mutateField = (type, valToChange, newVal) => {
     let i = 0
@@ -265,7 +265,7 @@ function TifForm() {
           />
         </label>
       </fieldset>
-      {/* {hide && (
+      {hide && (
         <div>
           {truckPro.filter((i) => i.product.productType === "LFG") ? (
             <Tif2
@@ -284,8 +284,8 @@ function TifForm() {
           )}
           {handleChange}
         </div>
-      )} */}
-      <button className="btn btn-primary" onClick={handleChange}>Submit</button>
+      )}
+      {/* <button className="btn btn-primary" onClick={handleChange}>Submit</button> */}
     </div>
   );
 }

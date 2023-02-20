@@ -7,6 +7,7 @@ import PageTitle from "../../utils/PageTitle";
 import PopUp from "../../utils/PopUp";
 import { ThumbUpIcon } from "@heroicons/react/solid";
 import LoadingSpinner from "../../utils/LoadingSpinner";
+import { useLocation } from "react-router-dom";
 
 function TruckProgramming() {
   PageTitle("Axle & Cartage - Truck Programming");
@@ -121,31 +122,13 @@ function TruckProgramming() {
   { tripTypeId: 6, tripTypeName: 'Road Test' }
   ]
 
-  // const operationalStatus = [{ oprationalStatusId: 0, operationalStatus: 'Truck Programmed' },
-  // { oprationalStatusId: 1, operationalStatus: 'Assigned to a Trip' },
-  // { oprationalStatusId: 2, operationalStatus: 'Enroute Depot' },
-  // { oprationalStatusId: 3, operationalStatus: 'At the Loading Depot' },
-  // { oprationalStatusId: 4, operationalStatus: 'Truck Loaded' },
-  // { oprationalStatusId: 5, operationalStatus: 'Enroute Bridging Depot' },
-  // { oprationalStatusId: 6, operationalStatus: 'Enroute Customer Location' },
-  // { oprationalStatusId: 7, operationalStatus: 'At the Depot' },
-  // { oprationalStatusId: 8, operationalStatus: 'Truck Flashed' },
-  // { oprationalStatusId: 9, operationalStatus: 'At the Customer 1 Location' },
-  // { oprationalStatusId: 10, operationalStatus: 'At the Customer 2 Location' },
-  // { oprationalStatusId: 11, operationalStatus: 'At the Customer 3 Location' },
-  // { oprationalStatusId: 12, operationalStatus: 'Goods Delivered to Customer 1' },
-  // { oprationalStatusId: 13, operationalStatus: 'Goods Delivered to Customer 2' },
-  // { oprationalStatusId: 14, operationalStatus: 'Goods Delivered to Customer 3' },
-  // { oprationalStatusId: 15, operationalStatus: 'Inbound' },
-  // { oprationalStatusId: 16, operationalStatus: 'End Journey' },
-  // { oprationalStatusId: 17, operationalStatus: 'Available for Loading' }]
-
 
   const closePop = (e) => {
     setIsLoading(!isLoading)
     setShow(false)
   }
 
+  const location = useLocation()
 
   return (
     <div className="space-y-2">
@@ -154,8 +137,10 @@ function TruckProgramming() {
         <p className='mx-auto text-center text-primary bg-transparent'>{reply.message}</p>
         <button className='btn btn-primary' onClick={(e) => closePop()}>Confirm</button>
       </PopUp>}
-      <FormTitle Title={"Truck Programming"} />
-      <hr />
+      {location.pathname === '/dashboard/TruckProgramming' ? <div>
+        <FormTitle Title={"Truck Programming"} />
+        <hr />
+      </div> : ''}
       <form action="" className="grid text-primary gap-5 w-full">
         <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3 items-end">
           <label htmlFor="">
@@ -456,14 +441,16 @@ function TruckProgramming() {
             />
           </label>
         </fieldset>
-        {isLoading && <LoadingSpinner />}
-        {!isLoading && <button
-          onClick={handleSubmit}
-          class="btn btn-primary mx-auto"
-          type="submit"
-        >
-          Submit
-        </button>}
+        {location.pathname === '/dashboard/TruckProgramming' ? <div className="mx-auto">
+          {isLoading && <LoadingSpinner />}
+          {!isLoading && <button
+            onClick={handleSubmit}
+            class="btn btn-primary mx-auto"
+            type="submit"
+          >
+            Submit
+          </button>}
+        </div> : ''}
       </form>
     </div>
   );
