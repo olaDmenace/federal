@@ -159,7 +159,7 @@ function TifForm() {
 
   useEffect(() => {
     getTruckNumbers();
-    Assessments();
+    // Assessments();
   }, []);
   const getTruckNumbers = () => {
     endpoint
@@ -174,18 +174,26 @@ function TifForm() {
       });
   };
 
-  const Assessments = (arg) => {
-    endpoint
-      .get("/truck/assessments/{arg:data.truckProgrammingId}")
-      .then((res) => {
-        console.log(res.data, "assessment success");
-        setTruckAssess(res.data);
-        // console.log(res.data.data.product.productType)
-      })
-      .catch((err) => {
-        console.log(err, "assessment error");
-      });
-  };
+  useEffect(() => {
+    endpoint.get(`/truck/assessments/${data.truckProgrammingId}`).then(res => {
+      console.log(res.data)
+    }).catch(err => {
+      console.log(err)
+    })
+  })
+
+  // const Assessments = (arg) => {
+  //   endpoint
+  //     .get("/truck/assessments/{arg:data.truckProgrammingId}")
+  //     .then((res) => {
+  //       console.log(res.data, "assessment success");
+  //       setTruckAssess(res.data);
+  //       // console.log(res.data.data.product.productType)
+  //     })
+  //     .catch((err) => {
+  //       console.log(err, "assessment error");
+  //     });
+  // };
 
   const [hide, setHide] = useState(true);
 
