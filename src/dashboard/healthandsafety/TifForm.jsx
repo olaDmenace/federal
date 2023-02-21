@@ -15,172 +15,138 @@ function TifForm() {
     productType: "",
     assessments: [
       {
-        type: 0,
         question: "",
         answer: "",
       },
       {
-        type: 1,
         question: "",
         answer: "",
       },
       {
-        type: 2,
         question: "",
         answer: "",
       },
       {
-        type: 3,
         question: "",
         answer: "",
       },
       {
-        type: 4,
         question: "",
         answer: "",
       },
       {
-        type: 5,
         question: "",
         answer: "",
       },
       {
-        type: 6,
         question: "",
         answer: "",
       },
       {
-        type: 7,
         question: "",
         answer: "",
       },
       {
-        type: 8,
         question: "",
         answer: "",
       },
       {
-        type: 9,
         question: "",
         answer: "",
       },
       {
-        type: 10,
         question: "",
         answer: "",
       },
       {
-        type: 11,
         question: "",
         answer: "",
       },
       {
-        type: 12,
         question: "",
         answer: "",
       },
       {
-        type: 13,
         question: "",
         answer: "",
       },
       {
-        type: 14,
         question: "",
         answer: "",
       },
       {
-        type: 15,
         question: "",
         answer: "",
       },
       {
-        type: 16,
         question: "",
         answer: "",
       },
       {
-        type: 17,
         question: "",
         answer: "",
       },
       {
-        type: 18,
         question: "",
         answer: "",
       },
       {
-        type: 19,
         question: "",
         answer: "",
       },
       {
-        type: 20,
         question: "",
         answer: "",
       },
       {
-        type: 21,
         question: "",
         answer: "",
       },
       {
-        type: 22,
         question: "",
         answer: "",
       },
       {
-        type: 23,
         question: "",
         answer: "",
       },
       {
-        type: 24,
         question: "",
         answer: "",
       },
       {
-        type: 25,
         question: "",
         answer: "",
       },
       {
-        type: 26,
         question: "",
         answer: "",
       },
       {
-        type: 27,
         question: "",
         answer: "",
       },
       {
-        type: 28,
         question: "",
         answer: "",
       },
       {
-        type: 29,
         question: "",
         answer: "",
       },
       {
-        type: 30,
         question: "",
         answer: "",
       },
       {
-        type: 31,
         question: "",
         answer: "",
       },
       {
-        type: 32,
         question: "",
         answer: "",
       },
       {
-        type: 33,
         question: "",
         answer: "",
       },
@@ -189,19 +155,37 @@ function TifForm() {
   });
 
   const [truckPro, setTruckPro] = useState([]);
+  const [truckAssess, setTruckAssess] = useState([]);
 
   useEffect(() => {
+    getTruckNumbers();
+    Assessments();
+  }, []);
+  const getTruckNumbers = () => {
     endpoint
       .get("/truck/programme")
       .then((res) => {
-        console.log(res.data.data);
+        // console.log(res.data, "Paul as a big head");
         setTruckPro(res.data.data);
         // console.log(res.data.data.product.productType)
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  };
+
+  const Assessments = (arg) => {
+    endpoint
+      .get("/truck/assessments/{arg:data.truckProgrammingId}")
+      .then((res) => {
+        console.log(res.data, "assessment success");
+        setTruckAssess(res.data);
+        // console.log(res.data.data.product.productType)
+      })
+      .catch((err) => {
+        console.log(err, "assessment error");
+      });
+  };
 
   const [hide, setHide] = useState(true);
 

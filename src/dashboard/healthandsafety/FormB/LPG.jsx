@@ -197,17 +197,16 @@ const LPG = ({ data, setData, truckPro }) => {
                 {v.answer === "others" && (
                   <label>
                     Specify Others
-                    <br />
-                    <textarea
+                    <text
                       type="text"
-                      className="w-full textarea textarea-primary"
-                      rows="3"
-                      // value={v.answer}
+                      className="w-full input input-primary"
+                      placeholder="Others"
+                      value={v.answer}
                       onChange={(e) => {
                         mutateField(v.type, "answer", e.target.value);
                         setInput(e.target.value);
                       }}
-                    ></textarea>
+                    />
                   </label>
                 )}
               </label>
