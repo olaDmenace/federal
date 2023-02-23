@@ -38,7 +38,7 @@ function Journeymanagement() {
                 <li className={form >= 3 ? 'step step-primary' : 'step'}></li>
                 <li className={form >= 4 ? 'step step-primary' : 'step'}></li>
             </ul>
-            <div className='flex gap-10 pb-10'>
+            <div className='grid gap-10 pb-10'>
                 <div>
                     {activeForm()}
                 </div>

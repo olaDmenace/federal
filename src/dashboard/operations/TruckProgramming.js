@@ -36,6 +36,15 @@ function TruckProgramming() {
   const [depots, setDepots] = useState([])
   const [states, setStates] = useState([])
   const [customers, setCustomers] = useState([])
+
+  useEffect(() => {
+    endpoint.get('truck/programme').then(res => {
+      console.log(res.data.data)
+    }).catch(res => {
+      console.log(res)
+    })
+  }, [])
+
   useEffect(() => {
     endpoint
       .get("/truck")
