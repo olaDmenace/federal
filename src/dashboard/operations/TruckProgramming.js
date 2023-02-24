@@ -508,12 +508,12 @@ function TruckProgramming({ formData, setFormData }) {
               class="btn btn-primary mx-auto"
               type="submit"
             >
-              Submit
+              Program Truck
             </button>}
           </div> : ''
         }
-      </form >
-    </div >
+      </form>
+    </div>
   );
 }
 
