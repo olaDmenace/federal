@@ -167,7 +167,7 @@ function TruckProgramming({ formData, setFormData }) {
               <option value="">Select Reason</option>
               {trucks.map(item => <option value={item.truckId} key={item.truckId}>{item.truckNumber}</option>)}
             </select> :
-              <select onChange={(e) => setFormData({ ...formData, truckProgrammingId: e.target.value })} className="select select-primary w-full">
+              <select value={formData.truckProgrammingId} onChange={(e) => setFormData({ ...formData, truckProgrammingId: e.target.value })} className="select select-primary w-full">
                 <option value="" className="disabled">Select Truck</option>
                 {prog.map(item => <option value={item.truckProgrammingId} key={item.truckProgrammingId}>{item.truck.truckNumber}</option>)}
               </select>}
@@ -235,7 +235,7 @@ function TruckProgramming({ formData, setFormData }) {
               <option value="">Select Type</option>
               {products.map(item => <option key={item.productId} value={item.productId}>{item.productName}</option>)}
             </select> :
-              prog.filter((t) => t.truckProgrammingId === formData.truckProgrammingId).map(item => <div key={item.truck.truckId} className="px-4 pt-3 h-12 rounded-lg w-full border border-primary">{item.product.productName}</div>)
+              prog.filter((t) => t.truckProgrammingId === formData.truckProgrammingId).map(item => <div key={item.truck.truckId} className="px-4 pt-3 h-12 rounded-lg w-full border border-primary block">{item.product.productName}</div>)
             }
           </label>
           <label htmlFor="">
@@ -508,12 +508,12 @@ function TruckProgramming({ formData, setFormData }) {
               class="btn btn-primary mx-auto"
               type="submit"
             >
-              Submit
+              Program Truck
             </button>}
           </div> : ''
         }
-      </form >
-    </div >
+      </form>
+    </div>
   );
 }
 
