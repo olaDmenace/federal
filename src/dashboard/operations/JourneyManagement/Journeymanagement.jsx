@@ -13,17 +13,44 @@ function Journeymanagement() {
     PageTitle('Axle & Cartage - Journey Management')
     const [form, setForm] = useState(0)
 
+    const [formData, setFormData] = useState({
+        truckProgrammingId: "",
+        quantityLoaded: 0,
+        totalQuantityDelivered: 0,
+        estimatedProductShortage: 0,
+        customerShortageClaim: 0,
+        primaryWayBill: {
+            waybillNumber: "",
+            documentUrl: "",
+            distanceTravelled: 0
+        },
+        secondaryWayBills: [
+            {
+                waybillNumber: "",
+                documentUrl: "",
+                distanceTravelled: 0,
+                customerId: "",
+                deliveryZone: "",
+                quantityLoaded: 0,
+                totalQuantityDelivered: 0,
+                estimatedProductShortage: 0,
+                customerShortageClaim: 0
+            }
+        ],
+        transactionStatus: 0
+    })
+
     const activeForm = () => {
         if (form === 0) {
-            return (<TruckProgramming />)
+            return (<TruckProgramming formData={formData} setFormData={setFormData} />)
         } else if (form === 1) {
-            return (<ProductDetails />)
+            return (<ProductDetails formData={formData} setFormData={setFormData} />)
         } else if (form === 2) {
-            return (<CustomerDetails />)
+            return (<CustomerDetails formData={formData} setFormData={setFormData} />)
         } else if (form === 3) {
-            return (<CustomerListDetails />)
+            return (<CustomerListDetails data={formData} setFormData={setFormData} />)
         } else {
-            return <ReportedShortage />
+            return <ReportedShortage formData={formData} setFormData={setFormData} />
         }
     }
 

@@ -9,7 +9,7 @@ import { ThumbUpIcon } from "@heroicons/react/solid";
 import LoadingSpinner from "../../utils/LoadingSpinner";
 import { useLocation } from "react-router-dom";
 
-function TruckProgramming() {
+function TruckProgramming({ formData, setFormData }) {
   PageTitle("Axle & Cartage - Truck Programming");
 
   // const dispatch = useDispatch();
@@ -36,10 +36,12 @@ function TruckProgramming() {
   const [depots, setDepots] = useState([])
   const [states, setStates] = useState([])
   const [customers, setCustomers] = useState([])
+  const [prog, setProg] = useState([])
 
   useEffect(() => {
     endpoint.get('truck/programme').then(res => {
-      console.log(res.data.data)
+      console.log(res.data)
+      setProg(res.data.data)
     }).catch(res => {
       console.log(res)
     })
@@ -155,7 +157,7 @@ function TruckProgramming() {
           <label htmlFor="">
             Truck Number
             <br />
-            <select
+            {location.pathname === '/dashboard/TruckProgramming' ? <select
               className="select select-primary w-full"
               value={data.truckId}
               onChange={(e) => setData({ ...data, truckId: e.target.value })}
@@ -164,13 +166,21 @@ function TruckProgramming() {
             >
               <option value="">Select Reason</option>
               {trucks.map(item => <option value={item.truckId} key={item.truckId}>{item.truckNumber}</option>)}
-            </select>
+            </select> :
+              <select onChange={(e) => setFormData({ ...formData, truckProgrammingId: e.target.value })} className="select select-primary w-full">
+                <option value="" className="disabled">Select Truck</option>
+                {prog.map(item => <option value={item.truckProgrammingId} key={item.truckProgrammingId}>{item.truck.truckNumber}</option>)}
+              </select>}
           </label>
           <label htmlFor="">
             Truck Odometer
             <br />
             <div className='border border-primary h-12 rounded-lg grid items-center'>
-              {trucks.filter((t) => t.truckId === data.truckId).map(item => <p key={item.truckId} className="px-4">{item.truckNumber}</p>)}
+              {location.pathname === '/dashboard/TruckProgramming' ?
+                trucks.filter((t) => t.truckId === data.truckId).map(item => <p key={item.truckId} className="px-4">{item.truckNumber}</p>)
+                :
+                prog.filter((t) => t.truckProgrammingId === formData.truckProgrammingId).map(item => <p key={item.truck.truckNumber} className="px-4">{item.truck.truckNumber}</p>)
+              }
             </div>
           </label>
           <label htmlFor="">
@@ -189,36 +199,54 @@ function TruckProgramming() {
             Truck Capacity
             <br />
             <div className='border border-primary h-12 rounded-lg grid items-center'>
-              {trucks.filter((t) => (t.truckId === data.truckId)).map(item => <span key={item.truckId} className="px-4">{item.truckCapacity}</span>)}
+              {location.pathname === '/dashboard/TruckProgramming' ?
+                trucks.filter((t) => (t.truckId === data.truckId)).map(item => <span key={item.truckId} className="px-4">{item.truckCapacity}</span>)
+                :
+                prog.filter((t) => t.truckProgrammingId === formData.truckProgrammingId).map(item => <p key={item.truck.truckNumber} className="px-4">{item.truck.truckCapacity}</p>)
+              }
             </div>
           </label>
           <label htmlFor="">
             Volume Unit
             <br />
             <div className='border border-primary h-12 rounded-lg grid items-center'>
-              {trucks.filter((t) => (t.truckId === data.truckId)).map(item => <span key={item.truckId} className="px-4">{item.volumeUnit}</span>)}
+              {location.pathname === '/dashboard/TruckProgramming' ?
+                trucks.filter((t) => (t.truckId === data.truckId)).map(item => <span key={item.truckId} className="px-4">{item.volumeUnit}</span>)
+                :
+                prog.filter((t) => t.truckProgrammingId === formData.truckProgrammingId).map(item => <p key={item.truck.truckNumber} className="px-4">{item.truck.volumeUnit}</p>)
+              }
             </div>
           </label>
           <label htmlFor="">
             Brand
             <br />
             <div className='border border-primary h-12 rounded-lg grid items-center'>
-              {trucks.filter((t) => (t.truckId === data.truckId)).map(item => <span key={item.truckId} className="px-4">{item.brand.model}</span>)}
+              {location.pathname === '/dashboard/TruckProgramming' ?
+                trucks.filter((t) => (t.truckId === data.truckId)).map(item => <span key={item.truckId} className="px-4">{item.brand.model}</span>)
+                :
+                prog.filter((t) => t.truckProgrammingId === formData.truckProgrammingId).map(item => <span key={item.truck.truckId} className="px-4">{item.truck.brand.model}</span>)
+              }
             </div>
           </label>
           <label htmlFor="">
             Product Name
             <br />
-            <select className="select select-primary w-full" value={data.productId} onChange={(e) => setData({ ...data, productId: e.target.value })} name="" id="">
+            {location.pathname === '/dashboard/TruckProgramming' ? <select className="select select-primary w-full" value={data.productId} onChange={(e) => setData({ ...data, productId: e.target.value })} name="" id="">
               <option value="">Select Type</option>
               {products.map(item => <option key={item.productId} value={item.productId}>{item.productName}</option>)}
-            </select>
+            </select> :
+              prog.filter((t) => t.truckProgrammingId === formData.truckProgrammingId).map(item => <div key={item.truck.truckId} className="px-4 pt-3 h-12 rounded-lg w-full border border-primary">{item.product.productName}</div>)
+            }
           </label>
           <label htmlFor="">
             Product Type
             <br />
             <div className="border border-primary h-12 rounded-lg grid items-center px-4">
-              {products.filter((t) => t.productId === data.productId).map(item => <p key={item.productId}>{item.productType}</p>)}
+              {location.pathname === '/dashboard/TruckProgramming' ?
+                products.filter((t) => t.productId === data.productId).map(item => <p key={item.productId}>{item.productType}</p>)
+                :
+                prog.filter((t) => t.truckProgrammingId === formData.truckProgrammingId).map(item => <p key={item.truck.truckId}>{item.product.productType}</p>)
+              }
             </div>
           </label>
           <label htmlFor="" className="relative">
@@ -329,7 +357,7 @@ function TruckProgramming() {
           <label htmlFor="">
             Returning Destination
             <br />
-            <select
+            {location.pathname === '/dashboard/TruckProgramming' ? <select
               class="select select-primary w-full"
               name=""
               id=""
@@ -343,6 +371,9 @@ function TruckProgramming() {
               </option>
               {depots.map(depot => <option key={depot.depotId} value={depot.depotId}>{depot.depotName}</option>)}
             </select>
+              :
+              prog.filter((t) => t.truckProgrammingId === formData.truckProgrammingId).map(item => <div className="w-full border border-primary h-12 px-4 pt-3 rounded-lg" key={item.truck.truckId}>{item.returningDepot}</div>)
+            }
           </label>
         </div>
         <fieldset className="grid md:grid-cols-2 gap-3 w-full">
@@ -350,14 +381,22 @@ function TruckProgramming() {
             Journey Officer
             <br />
             <div className='border border-primary h-12 rounded-lg grid items-center'>
-              {trucks.filter((t) => t.truckId === data.truckId).map(item => <p key={item.journeyOfficerId} className="px-4">{item.journeyOfficer}</p>)}
+              {location.pathname === '/dashboard/TruckProgramming' ?
+                trucks.filter((t) => t.truckId === data.truckId).map(item => <p key={item.journeyOfficerId} className="px-4">{item.journeyOfficer}</p>)
+                :
+                prog.filter((t) => t.truckProgrammingId === formData.truckProgrammingId).map(item => <p key={item.truckProgrammingId} className="px-4">{item.truck.journeyOfficer}</p>)
+              }
             </div>
           </label>
           <label htmlFor="">
             Logistics Officer
             <br />
             <div className='border border-primary h-12 rounded-lg grid items-center'>
-              {trucks.filter((t) => t.truckId === data.truckId).map(item => <p key={item.logisticsCoordinatorId} className="px-4">{item.logisticsCoordinator}</p>)}
+              {location.pathname === '/dashboard/TruckProgramming' ?
+                trucks.filter((t) => t.truckId === data.truckId).map(item => <p key={item.logisticsCoordinatorId} className="px-4">{item.logisticsCoordinator}</p>)
+                :
+                prog.filter((t) => t.truckProgrammingId === formData.truckProgrammingId).map(item => <p key={item.truckProgrammingId} className="px-4">{item.truck.logisticsCoordinator}</p>)
+              }
             </div>
           </label>
           {/* <label htmlFor="">
@@ -376,7 +415,11 @@ function TruckProgramming() {
           Delivery Officer
           <br />
           <div className='border border-primary h-12 rounded-lg grid items-center'>
-            {trucks.filter((t) => t.truckId === data.truckId).map(item => <p key={item.deliveryOfficerId} className="px-4">{item.deliveryOfficer}</p>)}
+            {location.pathname === '/dashboard/TruckProgramming' ?
+              trucks.filter((t) => t.truckId === data.truckId).map(item => <p key={item.deliveryOfficerId} className="px-4">{item.deliveryOfficer}</p>)
+              :
+              prog.filter((t) => t.truckProgrammingId === formData.truckProgrammingId).map(item => <p key={item.truckProgrammingId} className="px-4">{item.truck.deliveryOfficer}</p>)
+            }
           </div>
         </label>
         <h2 className="text-xl -mb-4 text-primary font-semibold">
@@ -386,10 +429,13 @@ function TruckProgramming() {
         <fieldset className="grid gap-3 md:grid-cols-2 lg:grid-cols-3 items-end">
           <label htmlFor="">
             Customer Name
-            <br /><select className="select select-primary w-full" value={data.customerId} onChange={(e) => setData({ ...data, customerId: e.target.value })} name="" id="">
+            <br />
+            {location.pathname === '/dashboard/TruckProgramming' ? <select className="select select-primary w-full" value={data.customerId} onChange={(e) => setData({ ...data, customerId: e.target.value })} name="" id="">
               <option value="">Select Customer</option>
               {customers.map(item => <option key={item.customerId} value={item.customerId}>{item.customerName}</option>)}
-            </select>
+            </select> :
+              prog.filter((t) => t.truckProgrammingId === formData.truckProgrammingId).map(item => <div key={item.truckProgrammingId} className="px-4 pt-3 rounded-lg border border-primary h-12">{item.customer.customerName}</div>)
+            }
           </label>
           <label htmlFor="">
             Customer Type
@@ -399,7 +445,11 @@ function TruckProgramming() {
               {customers.map(item => <option key={item.customerId} value={item.customerId}>{item.customerType}</option>)}
             </select> */}
             <div className="border border-primary h-12 rounded-lg grid items-center px-4">
-              {customers.filter((t) => t.customerId === data.customerId).map(item => <p>{item.customerType}</p>)}
+              {location.pathname === '/dashboard/TruckProgramming' ?
+                customers.filter((t) => t.customerId === data.customerId).map(item => <p>{item.customerType}</p>)
+                :
+                prog.filter((t) => t.truckProgrammingId === formData.truckProgrammingId).map(item => <p key={item.truckProgrammingId} className="px-2 pt-1">{item.customer.customerType}</p>)
+              }
             </div>
           </label>
           <label htmlFor="">
@@ -450,18 +500,20 @@ function TruckProgramming() {
             />
           </label>
         </fieldset>
-        {location.pathname === '/dashboard/TruckProgramming' ? <div className="mx-auto">
-          {isLoading && <LoadingSpinner />}
-          {!isLoading && <button
-            onClick={handleSubmit}
-            class="btn btn-primary mx-auto"
-            type="submit"
-          >
-            Submit
-          </button>}
-        </div> : ''}
-      </form>
-    </div>
+        {
+          location.pathname === '/dashboard/TruckProgramming' ? <div className="mx-auto">
+            {isLoading && <LoadingSpinner />}
+            {!isLoading && <button
+              onClick={handleSubmit}
+              class="btn btn-primary mx-auto"
+              type="submit"
+            >
+              Submit
+            </button>}
+          </div> : ''
+        }
+      </form >
+    </div >
   );
 }
 
