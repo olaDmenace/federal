@@ -102,8 +102,8 @@ function TruckProgramming({ formData, setFormData }) {
     message: ''
   })
   const handleSubmit = (e) => {
-    console.log(data)
-    e.preventDefault();
+    console.log(e.cancelable)
+    e.preventDefault()
     setIsLoading(true)
     endpoint.post('/truck/programme', data).then(res => {
       console.log(res)
@@ -134,7 +134,7 @@ function TruckProgramming({ formData, setFormData }) {
   ]
 
 
-  const closePop = (e) => {
+  const closePop = () => {
     setIsLoading(!isLoading)
     setShow(false)
   }
@@ -152,7 +152,7 @@ function TruckProgramming({ formData, setFormData }) {
         <FormTitle Title={"Truck Programming"} />
         <hr />
       </div> : ''}
-      <form action="" className="grid text-primary gap-5 w-full">
+      <form action="" onSubmit={handleSubmit} className="grid text-primary gap-5 w-full">
         <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3 items-end">
           <label htmlFor="">
             Truck Number
@@ -504,7 +504,7 @@ function TruckProgramming({ formData, setFormData }) {
           location.pathname === '/dashboard/TruckProgramming' ? <div className="mx-auto">
             {isLoading && <LoadingSpinner />}
             {!isLoading && <button
-              onClick={handleSubmit}
+              disabled={data.customerId === ''}
               class="btn btn-primary mx-auto"
               type="submit"
             >

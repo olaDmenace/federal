@@ -190,9 +190,10 @@ function FormA() {
                     })
                     setLoading(!loading)
                 } else {
+                    setShow(!show)
                     setReply({
                         icon: <XCircleIcon className='mx-auto h-24 text-red-500' />,
-                        message: res.data.message
+                        message: 'Please, check your form and try again'
                     })
                     setLoading(!loading)
                 }
@@ -219,6 +220,7 @@ function FormA() {
             {!loading && <div className="btn-group mx-auto pt-5">
                 <button className={form === 0 ? 'btn btn-disabled' : 'btn btn-primary'} onClick={() => { setForm((currFage) => currFage - 1) }}>Prev</button>
                 <button
+                    disabled={!formData}
                     className="btn btn-active"
                     onClick={() => { form === 3 ? handleSubmit() : setForm((currForm) => currForm + 1) }
                     }>
