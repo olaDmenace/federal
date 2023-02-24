@@ -26,7 +26,7 @@ function ProductDetails({ formData, setFormData }) {
                             Product Loaded<br />
                             <select className='select select-primary w-full' name="" id="">
                                 <option value="">Select Product</option>
-                                {products.map(item => <option value="">{item.productName}</option>)}
+                                {products.map(item => <option value="" key={item.productId}>{item.productName}</option>)}
                             </select>
                             {/* <input class='input input-primary w-full' placeholder='PMS' type="text" name="" id="" /> */}
                         </label>

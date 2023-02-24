@@ -235,7 +235,7 @@ function TruckProgramming({ formData, setFormData }) {
               <option value="">Select Type</option>
               {products.map(item => <option key={item.productId} value={item.productId}>{item.productName}</option>)}
             </select> :
-              prog.filter((t) => t.truckProgrammingId === formData.truckProgrammingId).map(item => <div key={item.truck.truckId} className="px-4 pt-3 h-12 rounded-lg w-full border border-primary">{item.product.productName}</div>)
+              prog.filter((t) => t.truckProgrammingId === formData.truckProgrammingId).map(item => <div key={item.truck.truckId} className="px-4 pt-3 h-12 rounded-lg w-full border border-primary block">{item.product.productName}</div>)
             }
           </label>
           <label htmlFor="">
