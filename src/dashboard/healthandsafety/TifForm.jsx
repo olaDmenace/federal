@@ -7,151 +7,20 @@ import endpoint from "../../utils/endpoints/endpoint";
 import LPG from "./FormB/LPG";
 import WhiteProduct from "./FormA/WhiteProduct";
 
-function TifForm() {
+const TifForm = () => {
   PageTitle("Axle & Cartage - TifForm");
 
   const [data, setData] = useState({
     truckProgrammingId: "",
     productType: "",
-    assessments: [
-      {
-        question: "",
-        answer: "",
-      },
-      {
-        question: "",
-        answer: "",
-      },
-      {
-        question: "",
-        answer: "",
-      },
-      {
-        question: "",
-        answer: "",
-      },
-      {
-        question: "",
-        answer: "",
-      },
-      {
-        question: "",
-        answer: "",
-      },
-      {
-        question: "",
-        answer: "",
-      },
-      {
-        question: "",
-        answer: "",
-      },
-      {
-        question: "",
-        answer: "",
-      },
-      {
-        question: "",
-        answer: "",
-      },
-      {
-        question: "",
-        answer: "",
-      },
-      {
-        question: "",
-        answer: "",
-      },
-      {
-        question: "",
-        answer: "",
-      },
-      {
-        question: "",
-        answer: "",
-      },
-      {
-        question: "",
-        answer: "",
-      },
-      {
-        question: "",
-        answer: "",
-      },
-      {
-        question: "",
-        answer: "",
-      },
-      {
-        question: "",
-        answer: "",
-      },
-      {
-        question: "",
-        answer: "",
-      },
-      {
-        question: "",
-        answer: "",
-      },
-      {
-        question: "",
-        answer: "",
-      },
-      {
-        question: "",
-        answer: "",
-      },
-      {
-        question: "",
-        answer: "",
-      },
-      {
-        question: "",
-        answer: "",
-      },
-      {
-        question: "",
-        answer: "",
-      },
-      {
-        question: "",
-        answer: "",
-      },
-      {
-        question: "",
-        answer: "",
-      },
-      {
-        question: "",
-        answer: "",
-      },
-      {
-        question: "",
-        answer: "",
-      },
-      {
-        question: "",
-        answer: "",
-      },
-      {
-        question: "",
-        answer: "",
-      },
-      {
-        question: "",
-        answer: "",
-      },
-      {
-        question: "",
-        answer: "",
-      },
-      {
-        question: "",
-        answer: "",
-      },
-    ],
+    deliveryOfficer: "",
+    journeyOfficer: "",
+    currentTripId: "",
     comments: "",
+  });
+  const [assessments, setAssessments] = useState({
+    questionId: "",
+    answer: "",
   });
 
   const [truckPro, setTruckPro] = useState([]);
@@ -159,14 +28,15 @@ function TifForm() {
 
   useEffect(() => {
     getTruckNumbers();
-    // Assessments();
+    Assessments();
   }, []);
   const getTruckNumbers = () => {
     endpoint
       .get("/truck/programme")
       .then((res) => {
-        // console.log(res.data, "Paul as a big head");
+        console.log(res.data.data, "response");
         setTruckPro(res.data.data);
+
         // console.log(res.data.data.product.productType)
       })
       .catch((err) => {
@@ -174,26 +44,18 @@ function TifForm() {
       });
   };
 
-  useEffect(() => {
-    endpoint.get(`/truck/assessments/${data.truckProgrammingId}`).then(res => {
-      console.log(res.data)
-    }).catch(err => {
-      console.log(err)
-    })
-  })
-
-  // const Assessments = (arg) => {
-  //   endpoint
-  //     .get("/truck/assessments/{arg:data.truckProgrammingId}")
-  //     .then((res) => {
-  //       console.log(res.data, "assessment success");
-  //       setTruckAssess(res.data);
-  //       // console.log(res.data.data.product.productType)
-  //     })
-  //     .catch((err) => {
-  //       console.log(err, "assessment error");
-  //     });
-  // };
+  const Assessments = () => {
+    endpoint
+      .get("/truck/assessments/740591ff-7cfb-4b8e-bce2-425f1871adab")
+      .then((res) => {
+        console.log(res.data.data, "assessment success");
+        setTruckAssess(res.data.data);
+        // console.log(res.data.data.product.productType)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const [hide, setHide] = useState(true);
 
@@ -259,7 +121,8 @@ function TifForm() {
       </fieldset>
       {
         <div>
-          {truckPro.filter((i) => i.product.productType === "LFG") ? (
+          {truckPro.filter((i) => i.product.productType === "LFG").length >
+          0 ? (
             <LPG
               data={data}
               setData={setData}
@@ -272,6 +135,10 @@ function TifForm() {
               setData={setData}
               truckPro={truckPro}
               setTruckPro={setTruckPro}
+              truckAssess={truckAssess}
+              setTruckAssess={setTruckAssess}
+              assessments={assessments}
+              setAssessments={setAssessments}
             />
           )}
           {handleChange}
@@ -280,6 +147,6 @@ function TifForm() {
       <button className="btn btn-primary">Submit</button>
     </div>
   );
-}
+};
 
 export default TifForm;
