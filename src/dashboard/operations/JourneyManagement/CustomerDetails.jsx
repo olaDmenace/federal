@@ -48,11 +48,11 @@ function CustomerDetails({ formData, setFormData }) {
                         </label>
                         <label htmlFor="">
                             ETA Delivery Location<br />
-                            <input class='input input-primary w-full' placeholder='02:00' type="text" name="" id="" />
+                            <input class='input input-primary w-full' placeholder='02:00' type="time" name="" id="" />
                         </label>
                         <label htmlFor="">
                             ETA Return Destination<br />
-                            <input class='input input-primary w-full' placeholder='08:00' type="text" name="" id="" />
+                            <input class='input input-primary w-full' placeholder='08:00' type="time" name="" id="" />
                         </label>
                     </div>
                 </form>

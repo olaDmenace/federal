@@ -167,7 +167,7 @@ function TruckProgramming({ formData, setFormData }) {
               <option value="">Select Reason</option>
               {trucks.map(item => <option value={item.truckId} key={item.truckId}>{item.truckNumber}</option>)}
             </select> :
-              <select onChange={(e) => setFormData({ ...formData, truckProgrammingId: e.target.value })} className="select select-primary w-full">
+              <select value={formData.truckProgrammingId} onChange={(e) => setFormData({ ...formData, truckProgrammingId: e.target.value })} className="select select-primary w-full">
                 <option value="" className="disabled">Select Truck</option>
                 {prog.map(item => <option value={item.truckProgrammingId} key={item.truckProgrammingId}>{item.truck.truckNumber}</option>)}
               </select>}
