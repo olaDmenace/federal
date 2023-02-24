@@ -294,7 +294,7 @@ function TruckProgramming() {
             Current Position
             <br />
             <input
-              class="input input-primary w-full"
+              className="input input-primary w-full"
               placeholder="Lorem Depot"
               type="text"
               name=""
@@ -306,7 +306,7 @@ function TruckProgramming() {
             Dedicated Destination
             <br />
             <select
-              class="select select-primary w-full"
+              className="select select-primary w-full"
               name=""
               id=""
               value={data.isDedicatedDestination}
@@ -327,7 +327,7 @@ function TruckProgramming() {
             </span>
             <br />
             <input
-              class="input input-primary w-full"
+              className="input input-primary w-full"
               placeholder="40, Toyin Street, Ikeja"
               type="text"
               name={data.programmedDestination}
@@ -341,7 +341,7 @@ function TruckProgramming() {
             Programmed Trip Type
             <br />
             <select
-              class="select select-primary w-full"
+              className="select select-primary w-full"
               name=""
               id=""
               value={data.tripType}
@@ -359,7 +359,7 @@ function TruckProgramming() {
             Bridging Depot
             <br />
             <select
-              class="select select-primary w-full"
+              className="select select-primary w-full"
               value={data.bridgingDepotId}
               onChange={(e) =>
                 setData({ ...data, bridgingDepotId: e.target.value })
@@ -383,7 +383,7 @@ function TruckProgramming() {
             </span>
             <br />{" "}
             <input
-              class="input input-primary w-full"
+              className="input input-primary w-full"
               placeholder=""
               type="text"
               name={data.restrictions}
@@ -399,7 +399,7 @@ function TruckProgramming() {
             </span>
             <br />
             <input
-              class="input input-primary w-full"
+              className="input input-primary w-full"
               placeholder=""
               type="text"
               name=""
@@ -410,7 +410,7 @@ function TruckProgramming() {
             Loading Location
             <br />
             <select
-              class="select select-primary w-full"
+              className="select select-primary w-full"
               name=""
               id=""
               value={data.loadingLocationId}
@@ -430,7 +430,7 @@ function TruckProgramming() {
             Returning Destination
             <br />
             <select
-              class="select select-primary w-full"
+              className="select select-primary w-full"
               name=""
               id=""
               value={data.returningLocationId}
@@ -480,7 +480,7 @@ function TruckProgramming() {
             Trip ID
             <br />
             <input
-              class="input input-primary w-full"
+              className="input input-primary w-full"
               placeholder="ID-120021"
               type="text"
               name=""
@@ -543,7 +543,7 @@ function TruckProgramming() {
             Customer Destination State
             <br />
             <select
-              class="select select-primary w-full"
+              className="select select-primary w-full"
               value={data.destinationState}
               onChange={(e) =>
                 setData({ ...data, destinationState: e.target.value })
@@ -563,7 +563,7 @@ function TruckProgramming() {
           </label>
           {/* <label htmlFor="">
             Current Truck Operational Status <br />
-            <select class="select select-primary w-full" name="" id="">
+            <select className="select select-primary w-full" name="" id="">
               <option selected disabled>
                 Select Status
               </option>
@@ -576,7 +576,7 @@ function TruckProgramming() {
             Programmed Number of Customers
             <br />
             <input
-              class="input input-primary w-full"
+              className="input input-primary w-full"
               type="number"
               name=""
               id=""
@@ -590,7 +590,7 @@ function TruckProgramming() {
             Programmed Business Area (Final Destination)
             <br />
             <input
-              class="input input-primary w-full"
+              className="input input-primary w-full"
               type="text"
               name=""
               id=""
@@ -605,7 +605,7 @@ function TruckProgramming() {
         {!isLoading && (
           <button
             onClick={handleSubmit}
-            class="btn btn-primary mx-auto"
+            className="btn btn-primary mx-auto"
             type="submit"
           >
             Submit
