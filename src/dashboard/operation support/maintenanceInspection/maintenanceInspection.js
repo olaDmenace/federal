@@ -36,18 +36,18 @@ function MaintenanceInspection() {
       <div className="flex gap-10 pb-10 overflow-x-scroll scrollbar-thin scrollbar-track-green-100 scrollbar-thumb-green-900">
         <div>{activeForm()}</div>
       </div>
-      <div class="btn-group mx-auto pt-5">
+      <div className="btn-group mx-auto pt-5">
         <button
           disabled={form === 0}
           onClick={() => {
             setForm((currForm) => currForm - 1);
           }}
-          class="btn btn-active"
+          className="btn btn-active"
         >
           Prev
         </button>
         <button
-          class="btn btn-active"
+          className="btn btn-active"
           onClick={() => {
             setForm((currForm) => currForm + 1);
           }}
