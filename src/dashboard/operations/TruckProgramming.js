@@ -1,5 +1,5 @@
 import FormTitle from "../FormTitle";
-import { LocationMarkerIcon, XCircleIcon } from "@heroicons/react/outline";
+import { XCircleIcon } from "@heroicons/react/outline";
 import React, { useState, useEffect } from "react";
 import endpoint from "../../utils/endpoints/endpoint";
 // import { useDispatch } from "react-redux";
@@ -249,7 +249,7 @@ function TruckProgramming({ formData, setFormData }) {
               }
             </div>
           </label>
-          <label htmlFor="" className="relative">
+          <label htmlFor="" className="">
             Current Position
             <br />
             <input
@@ -259,7 +259,7 @@ function TruckProgramming({ formData, setFormData }) {
               name=""
               id=""
             />
-            <LocationMarkerIcon className="srtoke-1 h-6 absolute top-9 right-4" />
+            {/* <LocationMarkerIcon className="srtoke-1 h-6 absolute top-9 right-4" /> */}
           </label>
           <label htmlFor="">
             Dedicated Destination

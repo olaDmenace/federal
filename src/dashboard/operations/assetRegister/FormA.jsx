@@ -106,12 +106,12 @@ function FormA() {
                 dateIssued: "",
                 expiryDate: ""
             },
-            {
-                type: 11,
-                referenceNumber: "",
-                dateIssued: "",
-                expiryDate: ""
-            }
+            // {
+            //     type: 11,
+            //     referenceNumber: "",
+            //     dateIssued: "",
+            //     expiryDate: ""
+            // }
         ],
 
         // FormA3

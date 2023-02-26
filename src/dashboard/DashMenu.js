@@ -27,7 +27,7 @@ function DashMenu() {
 
   return (
     <div>
-      <div className="h-screen w-full bg-primary relative grid py-10 gap-10">
+      <div className="h-screen w-full bg-primary relative grid py-10 gap-10 z-0">
         <img
           className="mix-blend-overlay h-screen w-full absolute"
           src={Dash}
@@ -56,7 +56,7 @@ function DashMenu() {
                 Title={"Operations"}
               />
               {showDropDown === "Submenu 1" && (
-                <div className="absolute bg-white text-primary px-3 py-10 -top-1/4 left-3/4 w-60 space-y-3 rounded-r-lg border-r border border-primary">
+                <div className="absolute bg-white text-primary px-3 py-10 -top-1/4 left-3/4 w-60 space-y-3 rounded-r-lg border-r border z-20 border-primary">
                   <NavLink
                     to={"/dashboard/TruckProgramming"}
                     className="hover:font-bold hover:ease-in-out duration-150 block"
@@ -102,7 +102,7 @@ function DashMenu() {
                 Title={"Health & Safety"}
               />
               {showDropDown === "Submenu 2" && (
-                <div className="absolute bg-white text-primary px-3 py-10 -top-1/4 left-3/4 w-60 space-y-3 rounded-r-lg border-r border border-primary">
+                <div className="absolute bg-white text-primary px-3 py-10 -top-1/4 left-3/4 w-60 space-y-3 z-10 rounded-r-lg border-r border border-primary">
                   <NavLink
                     to={"/dashboard/tifForm"}
                     className="hover:font-bold hover:ease-in-out duration-150 block"
@@ -127,7 +127,7 @@ function DashMenu() {
                 Title={"Operations Support"}
               />
               {showDropDown === "Submenu 3" && (
-                <div className="absolute bg-white text-primary px-3 py-10 -top-1/4 left-3/4 w-60 space-y-3 rounded-r-lg border-r border border-primary">
+                <div className="absolute bg-white text-primary px-3 py-10 -top-1/4 left-3/4 w-60 space-y-3 rounded-r-lg border-r border z-20 border-primary">
                   <NavLink
                     to={"/dashboard/maintenanceExpenses"}
                     className="hover:font-bold hover:ease-in-out duration-150 block"
@@ -214,7 +214,7 @@ function DashMenu() {
                   Title={"Human Capital"}
                 />
                 {showDropDown === "Submenu 4" && (
-                  <div className="absolute bg-white text-primary px-3 py-10 -top-1/4 left-3/4 w-full space-y-5 rounded-r-lg border-r border border-primary">
+                  <div className="absolute bg-white text-primary px-3 py-10 -top-1/4 left-3/4 w-full space-y-5 rounded-r-lg border-r z-20 border border-primary">
                     <NavLink
                       to={"/dashboard/AbsenceForm"}
                       className="hover:font-bold hover:ease-in-out duration-150 block"
