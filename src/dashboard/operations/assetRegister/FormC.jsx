@@ -4,7 +4,7 @@ function FormC() {
     return (
         <div className='py-5 text-primary space-y-3'>
             <h4 className='text-lg font-semibold'>Form C - Equipment</h4>
-            <h6 className='font-semibold text-lg'>Semi-Trailer</h6>
+            <h6 className='font-semibold text-lg'>Other Assets</h6>
             <form action="" className='grid text-primary gap-5 w-full'>
                 <fieldset className='grid gap-3 md:grid-cols-2 lg:grid-cols-3 items-end'>
                     <label htmlFor="">

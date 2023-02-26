@@ -13,7 +13,7 @@ function FormA2({ formData, setFormData }) {
     titles.set(8, 'Info Req for Clearance/Attestation')
     titles.set(9, 'Carriage Permit')
     titles.set(10, 'Truck Insurance')
-    titles.set(11, 'Heavy Duty Permit')
+    // titles.set(11, 'Heavy Duty Permit')
 
     const mutateField = (type, valToChange, newVal) => {
         let i = 0

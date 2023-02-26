@@ -32,7 +32,7 @@ function AssetRegister() {
             <FormTitle Title={'Asset Register'} />
             <hr className='pb-5' />
             {hide && <label className='text-primary'>
-                Reminder Type
+                Asset Type
                 <select class='select select-primary w-full' value={select} onChange={handleChange} name="" id="">
                     <option selected disabled>Select Reminder</option>
                     <option value="FormA">Form A</option>
