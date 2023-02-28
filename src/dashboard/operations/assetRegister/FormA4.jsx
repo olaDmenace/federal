@@ -12,12 +12,18 @@ function FormA4({ formData, setFormData }) {
                             Drive Type
                             <select value={formData.specification.driveType} onChange={(e) => setFormData({ ...formData, specification: { ...formData.specification, driveType: e.target.value } })} className='select select-primary w-full' name="" id="">
                                 <option selected disabled value="">Select</option>
+                                <option value="4X4">4X4</option>
+                                <option value="6X4">6X4</option>
+                                <option value="FWD">FWD</option>
+                                <option value="RWD">RWD</option>
                             </select>
                         </label>
                         <label htmlFor="">
                             Brake
                             <select value={formData.specification.brakeSystem} onChange={(e) => setFormData({ ...formData, specification: { ...formData.specification, brakeSystem: e.target.value } })} className='select select-primary w-full' name="" id="">
                                 <option selected disabled value="">Select</option>
+                                <option value="air">Air</option>
+                                <option value="hydraulic">Hydraulic</option>
                             </select>
                         </label>
                         <label htmlFor="">
@@ -33,6 +39,10 @@ function FormA4({ formData, setFormData }) {
                             Fuel Type
                             <select value={formData.specification.fuelType} onChange={(e) => setFormData({ ...formData, specification: { ...formData.specification, fuelType: e.target.value } })} className='select select-primary w-full' name="" id="">
                                 <option selected disabled value="">Select</option>
+                                <option value="cng">CNG</option>
+                                <option value="ago">AGO</option>
+                                <option value="PMS">PMS</option>
+                                <option value="propane">Propane</option>
                             </select>
                         </label>
                         <label htmlFor="">
