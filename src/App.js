@@ -27,6 +27,8 @@ import MaintenanceBooking from "./dashboard/operation support/maintenanceBooking
 import MaintenanceInspection from "./dashboard/operation support/maintenanceInspection/maintenanceInspection";
 import PartsAndInventory from "./dashboard/operation support/partandInventory/PartsAndInventory";
 import Utilities from "./dashboard/operation support/Utilities/Utilities";
+import WaybillsManagement from "./dashboard/operations/JourneyManagement/WaybillsManagement";
+
 
 /* ***IMPORTANT NOTICE***
     This project is a React JS project buitl with Daisy UI Tailwind CSS UI component.
@@ -77,6 +79,7 @@ function App() {
             />
             <Route path="partsAndInventory" element={<PartsAndInventory />} />
             <Route path="utilities" element={<Utilities />} />
+            <Route path="waybills" element={<WaybillsManagement />} />
           </Route>
         </Routes>
       </BrowserRouter>
