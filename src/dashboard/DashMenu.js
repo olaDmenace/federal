@@ -75,9 +75,11 @@ function DashMenu() {
                   >
                     Trip Expense Request
                   </NavLink>
-                  <p className="hover:font-bold hover:ease-in-out duration-150">
+                  <NavLink
+                    to={'/dashboard/Waybills'}
+                    className="hover:font-bold hover:ease-in-out duration-150 block">
                     Waybill Management
-                  </p>
+                  </NavLink>
                   <NavLink
                     to={"/dashboard/ShortageResolution"}
                     className="hover:font-bold hover:ease-in-out duration-150 block"

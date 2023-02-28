@@ -27,7 +27,7 @@ import MaintenanceBooking from "./dashboard/operation support/maintenanceBooking
 import MaintenanceInspection from "./dashboard/operation support/maintenanceInspection/maintenanceInspection";
 import PartsAndInventory from "./dashboard/operation support/partandInventory/PartsAndInventory";
 import Utilities from "./dashboard/operation support/Utilities/Utilities";
-import WaybillsManagement from "./dashboard/operations/JourneyManagement/WaybillsManagement";
+import WaybillsManagement from "./dashboard/operations/waybills/WaybillsManagement";
 
 
 /* ***IMPORTANT NOTICE***
