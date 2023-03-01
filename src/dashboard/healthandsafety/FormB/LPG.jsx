@@ -1,113 +1,392 @@
 import React, { useState } from "react";
 
-const LPG = ({ data, setData, truckPro }) => {
-  const questions = new Map();
-  questions.set(
-    0,
-    "1. Vehicle license, Road worthiness and Insurance Certificates Valid?"
-  );
+const Lfg = ({
+  data,
+  truckPro,
+  assessments,
+  setAssessment,
+  truckProgrammingId,
+  setTruckProgrammingId,
 
-  questions.set(1, " 2. Valid Drivers’ license?");
-  questions.set(
-    2,
-    " 3. Complete PPE? (Hard Helmet, Safety boots, and Hi-Vis clothing, Company T-Shirt and Identity cards)"
-  );
-  questions.set(3, "4. Assistant Available?");
-  questions.set(4, "5. Truck free from oil and gas leaks?");
-  questions.set(
-    5,
-    "6. Windscreen free of cracks and the wipers in good condition?"
-  );
-  questions.set(6, "7. Is the horn & reverse alarm functional?");
-  questions.set(7, "8. Driving mirrors free of cracks and firmly fixed?");
-  questions.set(
-    8,
-    "9. All Tyres including the 2 spares in good condition and of a minimum thread depth of 2mm?"
-  );
-  questions.set(9, "10. Correct wheel nuts and studs are fitted?");
-  questions.set(
-    10,
-    "11. Seat belts in the truck fitted and functioning properly?"
-  );
-  questions.set(
-    11,
-    "12. Does the engine start using the ignition key? (No pushing, non-usage of wires)"
-  );
-  questions.set(
-    12,
-    "13. Vehicle equipped with two (unexpired) 9kg fire extinguisher and caution sign?"
-  );
-  questions.set(13, "14. Vehicle have 2 standard wheel chocks with handles?");
-  questions.set(
-    14,
-    "15. Are the following Hydraulic Jack, Wheel Spanner, Tyre Lifter,  Tyre chains and Padlocks, Tyre Gauge, Tyre Pump Offloading Adaptor,  Towing Chain and Harness present and effective?"
-  );
-  questions.set(
-    15,
-    "16. Battery secured and terminals properly tightened? Also state the voltage on each Battery in the comment section (Use the meter provided)"
-  );
-  questions.set(16, "17. Calibration chart valid?");
-  questions.set(17, "18. Emergency shut-off switch functional?");
-  questions.set(18, "19. Door handle have handlebars and door staircase?");
-  questions.set(19, "20. Fifth wheel/turn table kingpin locked?");
-  questions.set(20, "21. Is the tank free of rust, corrosion and damage?");
-  questions.set(21, "22. Are the dashboard control panels in good condition?");
-  questions.set(22, "23. Battery master switch available and functional?");
-  questions.set(23, "24. Spark arrestor available?");
-  questions.set(24, "25. Emergency notification number available ?");
-  questions.set(
-    25,
-    "26. Headlamp, indicator lights and brake light functional?"
-  );
-  questions.set(26, "27. Adjustable seat & head restrain functional?");
-  questions.set(27, "28. Is the emergency shutdown button functional?");
-  questions.set(
-    28,
-    "29. Mudguards, handrails and API setting available and functioning?"
-  );
-  questions.set(29, "30. Are the reflective stickers in good condition?");
-  questions.set(30, "31. First Aid Kit available");
-  questions.set(31, "32. Warning Triangles available");
-  questions.set(32, "33. Jack And Handle available");
-  questions.set(33, "34. Wheel Spanner available");
+  truckAssess,
+}) => {
+  const [otherQ1, setOtherQ1] = useState("");
+  const [otherQ2, setOtherQ2] = useState("");
+  const [otherQ3, setOtherQ3] = useState("");
+  const [otherQ4, setOtherQ4] = useState("");
+  const [otherQ5, setOtherQ5] = useState("");
+  const [otherQ6, setOtherQ6] = useState("");
+  const [otherQ7, setOtherQ7] = useState("");
+  const [otherQ8, setOtherQ8] = useState("");
+  const [otherQ9, setOtherQ9] = useState("");
+  const [otherQ10, setOtherQ10] = useState("");
+  const [otherQ11, setOtherQ11] = useState("");
+  const [otherQ12, setOtherQ12] = useState("");
+  const [otherQ13, setOtherQ13] = useState("");
+  const [otherQ14, setOtherQ14] = useState("");
+  const [otherQ15, setOtherQ15] = useState("");
 
-  const mutateField = (type, valToChange, newVal) => {
-    let i = 0;
-    while (i < data.assessments.length) {
-      if (data.assessments[i].type === type) {
-        data.assessments[i][valToChange] = newVal;
-        break;
-      }
-      i += 1;
-    }
-    setData({ ...data });
-  };
-
-  // const [tracking, setTracking] = {
-  //   truckProgrammingId: "",
-  // };
-  const [input, setInput] = useState("");
-
-  // const questionsForm = () => {
-  //   if (data.assessments[v].answer === "others") {
+  // const DynamisLicense = () => {
+  //   if (data.truckId === "others") {
   //     return (
   //       <>
   //         <label>
   //           {" "}
-  //           Specify Others
-  //           <input
-  //             className="w-full input input-primary"
-  //             placeholder="Others"
-  //             // value={value}
-  //             onChange={(e) => {
-  //               mutateField(data.assessments.type, "answer", e.target.value);
-  //             }}
-  //           />
+  //           hello world
+  //           <input />
   //         </label>
   //       </>
   //     );
   //   }
   // };
+
+  const questionsForm = (question) => {
+    if (question === "q1" && assessments[0].answer === "others") {
+      return (
+        <>
+          <label>
+            {" "}
+            Specify Others
+            <input
+              className="w-full input input-primary"
+              placeholder="Others"
+              value={assessments[0].othersInput}
+              onChange={(e) => {
+                console.log("selected >> ", e.target.value);
+                let ques = [...assessments];
+                assessments[0].othersInput = e.target.value;
+                console.log("data to update ", ques);
+                setAssessment(ques);
+                // setOtherQ1(value);
+              }}
+            />
+          </label>
+        </>
+      );
+    }
+    if (question === "q2" && assessments[1].answer === "others") {
+      return (
+        <>
+          <label>
+            {" "}
+            Specify Others
+            <input
+              className="w-full input input-primary"
+              placeholder="Others"
+              value={assessments[1].othersInput}
+              onChange={(e) => {
+                console.log("selected >> ", e.target.value);
+                let ques = [...assessments];
+                assessments[1].othersInput = e.target.value;
+                console.log("data to update ", ques);
+                setAssessment(ques);
+                // setOtherQ1(value);
+              }}
+            />
+          </label>
+        </>
+      );
+    }
+    if (question === "q3" && assessments[2].answer === "others") {
+      return (
+        <>
+          <label>
+            {" "}
+            Specify Others
+            <input
+              className="w-full input input-primary"
+              placeholder="Others"
+              value={assessments[2].othersInput}
+              onChange={(e) => {
+                console.log("selected >> ", e.target.value);
+                let ques = [...assessments];
+                assessments[2].othersInput = e.target.value;
+                console.log("data to update ", ques);
+                setAssessment(ques);
+                // setOtherQ1(value);
+              }}
+            />
+          </label>
+        </>
+      );
+    }
+    if (question === "q4" && assessments[3].answer === "others") {
+      return (
+        <>
+          <label>
+            {" "}
+            Specify Others
+            <input
+              className="w-full input input-primary"
+              placeholder="Others"
+              value={assessments[3].othersInput}
+              onChange={(e) => {
+                console.log("selected >> ", e.target.value);
+                let ques = [...assessments];
+                assessments[3].othersInput = e.target.value;
+                console.log("data to update ", ques);
+                setAssessment(ques);
+                // setOtherQ1(value);
+              }}
+            />
+          </label>
+        </>
+      );
+    }
+    if (question === "q5" && assessments[4].answer === "others") {
+      return (
+        <>
+          <label>
+            {" "}
+            Specify Others
+            <input
+              className="w-full input input-primary"
+              placeholder="Others"
+              value={assessments[4].othersInput}
+              onChange={(e) => {
+                console.log("selected >> ", e.target.value);
+                let ques = [...assessments];
+                assessments[4].othersInput = e.target.value;
+                console.log("data to update ", ques);
+                setAssessment(ques);
+                // setOtherQ1(value);
+              }}
+            />
+          </label>
+        </>
+      );
+    }
+    if (question === "q6" && assessments[5].answer === "others") {
+      return (
+        <>
+          <label>
+            {" "}
+            Specify Others
+            <input
+              className="w-full input input-primary"
+              placeholder="Others"
+              value={assessments[5].othersInput}
+              onChange={(e) => {
+                console.log("selected >> ", e.target.value);
+                let ques = [...assessments];
+                assessments[5].othersInput = e.target.value;
+                console.log("data to update ", ques);
+                setAssessment(ques);
+                // setOtherQ1(value);
+              }}
+            />
+          </label>
+        </>
+      );
+    }
+    if (question === "q7" && assessments[6].answer === "others") {
+      return (
+        <>
+          <label>
+            {" "}
+            Specify Others
+            <input
+              className="w-full input input-primary"
+              placeholder="Others"
+              value={assessments[6].othersInput}
+              onChange={(e) => {
+                console.log("selected >> ", e.target.value);
+                let ques = [...assessments];
+                assessments[6].othersInput = e.target.value;
+                console.log("data to update ", ques);
+                setAssessment(ques);
+                // setOtherQ1(value);
+              }}
+            />
+          </label>
+        </>
+      );
+    }
+    if (question === "q8" && assessments[7].answer === "others") {
+      return (
+        <>
+          <label>
+            {" "}
+            Specify Others
+            <input
+              className="w-full input input-primary"
+              placeholder="Others"
+              value={assessments[7].othersInput}
+              onChange={(e) => {
+                console.log("selected >> ", e.target.value);
+                let ques = [...assessments];
+                assessments[7].othersInput = e.target.value;
+                console.log("data to update ", ques);
+                setAssessment(ques);
+                // setOtherQ1(value);
+              }}
+            />
+          </label>
+        </>
+      );
+    }
+    if (question === "q9" && assessments[8].answer === "others") {
+      return (
+        <>
+          <label>
+            {" "}
+            Specify Others
+            <input
+              className="w-full input input-primary"
+              placeholder="Others"
+              value={assessments[8].othersInput}
+              onChange={(e) => {
+                console.log("selected >> ", e.target.value);
+                let ques = [...assessments];
+                assessments[8].othersInput = e.target.value;
+                console.log("data to update ", ques);
+                setAssessment(ques);
+                // setOtherQ1(value);
+              }}
+            />
+          </label>
+        </>
+      );
+    }
+    if (question === "q10" && assessments[9].answer === "others") {
+      return (
+        <>
+          <label>
+            {" "}
+            Specify Others
+            <input
+              className="w-full input input-primary"
+              placeholder="Others"
+              value={assessments[9].othersInput}
+              onChange={(e) => {
+                console.log("selected >> ", e.target.value);
+                let ques = [...assessments];
+                assessments[9].othersInput = e.target.value;
+                console.log("data to update ", ques);
+                setAssessment(ques);
+                // setOtherQ1(value);
+              }}
+            />
+          </label>
+        </>
+      );
+    }
+    if (question === "q11" && assessments[10].answer === "others") {
+      return (
+        <>
+          <label>
+            {" "}
+            Specify Others
+            <input
+              className="w-full input input-primary"
+              placeholder="Others"
+              value={assessments[10].othersInput}
+              onChange={(e) => {
+                console.log("selected >> ", e.target.value);
+                let ques = [...assessments];
+                assessments[10].othersInput = e.target.value;
+                console.log("data to update ", ques);
+                setAssessment(ques);
+                // setOtherQ1(value);
+              }}
+            />
+          </label>
+        </>
+      );
+    }
+    if (question === "q12" && assessments[11].answer === "others") {
+      return (
+        <>
+          <label>
+            {" "}
+            Specify Others
+            <input
+              className="w-full input input-primary"
+              placeholder="Others"
+              value={assessments[11].othersInput}
+              onChange={(e) => {
+                console.log("selected >> ", e.target.value);
+                let ques = [...assessments];
+                assessments[11].othersInput = e.target.value;
+                console.log("data to update ", ques);
+                setAssessment(ques);
+                // setOtherQ1(value);
+              }}
+            />
+          </label>
+        </>
+      );
+    }
+    if (question === "q13" && assessments[12].answer === "others") {
+      return (
+        <>
+          <label>
+            {" "}
+            Specify Others
+            <input
+              className="w-full input input-primary"
+              placeholder="Others"
+              value={assessments[12].othersInput}
+              onChange={(e) => {
+                console.log("selected >> ", e.target.value);
+                let ques = [...assessments];
+                assessments[12].othersInput = e.target.value;
+                console.log("data to update ", ques);
+                setAssessment(ques);
+                // setOtherQ1(value);
+              }}
+            />
+          </label>
+        </>
+      );
+    }
+    if (question === "q14" && assessments[13].answer === "others") {
+      return (
+        <>
+          <label>
+            {" "}
+            Specify Others
+            <input
+              className="w-full input input-primary"
+              placeholder="Others"
+              value={assessments[13].othersInput}
+              onChange={(e) => {
+                console.log("selected >> ", e.target.value);
+                let ques = [...assessments];
+                assessments[13].othersInput = e.target.value;
+                console.log("data to update ", ques);
+                setAssessment(ques);
+                // setOtherQ1(value);
+              }}
+            />
+          </label>
+        </>
+      );
+    }
+    if (question === "q15" && assessments[14].answer === "others") {
+      return (
+        <>
+          <label>
+            {" "}
+            Specify Others
+            <input
+              className="w-full input input-primary"
+              placeholder="Others"
+              value={assessments[14].othersInput}
+              onChange={(e) => {
+                console.log("selected >> ", e.target.value);
+                let ques = [...assessments];
+                assessments[14].othersInput = e.target.value;
+                console.log("data to update ", ques);
+                setAssessment(ques);
+                // setOtherQ1(value);
+              }}
+            />
+          </label>
+        </>
+      );
+    }
+  };
 
   return (
     <div>
@@ -115,51 +394,61 @@ const LPG = ({ data, setData, truckPro }) => {
         {" "}
         <form action="" className="grid text-primary gap-5 w-full">
           <h2 className="text-xl -mb-4 text-primary font-semibold">
-            TIF - LPG
+            TIF - LFG
           </h2>
           <hr />
+
           <fieldset className="grid gap-3 md:grid-cols-2 lg:grid-cols-3 items-end">
             <label htmlFor="">
               Trip ID
               <br />
-              <input
-                class="input input-primary w-full"
-                type="text"
-                name=""
-                id=""
-              />
+              <div className="border border-primary h-12 rounded-lg grid items-center">
+                {truckPro
+                  .filter((i) => i.truckProgrammingId === truckProgrammingId)
+                  .map((item) => (
+                    <p key={item.truck.currentTripId} className="px-4">
+                      {item.truck.currentTripId}
+                    </p>
+                  ))}
+              </div>
             </label>
             <label htmlFor="">
               Delivery Officer
               <br />
               <div className="border border-primary h-12 rounded-lg grid items-center">
-                {truckPro.map((item) => (
-                  <p key={item.truck.deliveryOfficerId} className="px-4">
-                    {item.truck.deliveryOfficer}
-                  </p>
-                ))}
+                {truckPro
+                  .filter((i) => i.truckProgrammingId === truckProgrammingId)
+                  .map((item) => (
+                    <p key={item.truck.deliveryOfficerId} className="px-4">
+                      {item.truck.deliveryOfficer}
+                    </p>
+                  ))}
               </div>
             </label>
             <label htmlFor="">
               Journey Officer
               <br />
               <div className="border border-primary h-12 rounded-lg grid items-center">
-                {truckPro.map((item) => (
-                  <p key={item.truck.journeyOfficerId} className="px-4">
-                    {item.truck.journeyOfficer}
-                  </p>
-                ))}
+                {truckPro
+                  .filter((i) => i.truckProgrammingId === truckProgrammingId)
+                  .map((item) => (
+                    <p key={item.truck.journeyOfficerId} className="px-4">
+                      {item.truck.journeyOfficer}
+                    </p>
+                  ))}
               </div>
             </label>
             <label htmlFor="">
               Logistics Coordinator
               <br />
               <div className="border border-primary h-12 rounded-lg grid items-center">
-                {truckPro.map((item) => (
-                  <p key={item.truck.logisticsCoordinatorId} className="px-4">
-                    {item.truck.logisticsCoordinator}
-                  </p>
-                ))}
+                {truckPro
+                  .filter((i) => i.truckProgrammingId === truckProgrammingId)
+                  .map((item) => (
+                    <p key={item.truck.logisticsCoordinatorId} className="px-4">
+                      {item.truck.logisticsCoordinator}
+                    </p>
+                  ))}
               </div>
             </label>
             <label htmlFor="">
@@ -176,59 +465,366 @@ const LPG = ({ data, setData, truckPro }) => {
           <hr />
 
           <fieldset className="grid gap-3 md:grid-cols-1 lg:grid-cols-1 items-end">
-            {data.assessments.map((v, i) => (
-              <label htmlFor="" type={v.type} key={i}>
-                {questions?.get(v?.type)}
-                <br />
-                <select
-                  className="w-full select select-primary"
-                  name=""
-                  id=""
-                  value={v.answer}
-                  onChange={(e) => {
-                    mutateField(v.type, "answer", e.target.value);
-                    setInput(e.target.value);
-                  }}
-                >
-                  <option value="yes"> Yes</option>
-                  <option value="no"> No</option>
-                  <option value="others"> Others</option>
-                </select>
-                {v.answer === "others" && (
-                  <label>
-                    Specify Others
-                    <text
-                      type="text"
-                      className="w-full input input-primary"
-                      placeholder="Others"
-                      value={v.answer}
-                      onChange={(e) => {
-                        mutateField(v.type, "answer", e.target.value);
-                        setInput(e.target.value);
-                      }}
-                    />
-                  </label>
-                )}
-              </label>
-            ))}
-
             <label htmlFor="">
-              General comments
+              {data.q1.question}
               <br />
-              <textarea
-                className="w-full textarea textarea-primary"
+              <select
+                className="w-full select select-primary"
                 name=""
-                type="text"
-                id="  "
-                rows="5"
-                value={data.comments}
+                id=""
+                value={assessments[0].answer}
                 onChange={(e) => {
-                  let comment = { ...data };
-                  comment.comments = e.target.value;
-                  console.log("data to update ", comment);
-                  setData(comment);
+                  console.log("selected >> ", e.target.value);
+                  // let value = e.target.value;
+                  let ques = [...assessments];
+
+                  ques[0].answer = e.target.value;
+
+                  setAssessment(ques);
                 }}
-              ></textarea>
+              >
+                <option value=""> select</option>
+                <option value="yes"> Yes</option>
+                <option value="no"> No</option>
+                <option value="others">others</option>
+              </select>
+            </label>
+            {questionsForm("q1")}
+            <label htmlFor="">
+              {data.q2.question}
+              <br />
+              <select
+                className="w-full select select-primary"
+                name=""
+                id=""
+                value={assessments[1].answer}
+                onChange={(e) => {
+                  console.log("selected >> ", e.target.value);
+                  // let value = e.target.value;
+                  let ques = [...assessments];
+                  ques[1].answer = e.target.value;
+
+                  setAssessment(ques);
+                }}
+              >
+                <option value=""> select</option>
+                <option value="yes"> Yes</option>
+                <option value="no"> No</option>
+                <option value="others"> Others</option>
+              </select>
+            </label>
+            {questionsForm("q2")}
+            <label htmlFor="">
+              {data.q3.question}
+              <br />
+              <select
+                className="w-full select select-primary"
+                name=""
+                id=""
+                value={assessments[2].answer}
+                onChange={(e) => {
+                  console.log("selected >> ", e.target.value);
+                  // let value = e.target.value;
+                  let ques = [...assessments];
+                  ques[2].answer = e.target.value;
+                  setAssessment(ques);
+                }}
+              >
+                {" "}
+                <option value=""> select</option>{" "}
+                <option value="yes"> Yes</option>
+                <option value="no"> No</option>
+                <option value="others"> Others</option>
+              </select>
+              {questionsForm("q3")}
+            </label>
+            <label htmlFor="">
+              {data.q4.question}
+              <br />
+              <select
+                className="w-full select select-primary"
+                name=""
+                id=""
+                value={assessments[3].answer}
+                onChange={(e) => {
+                  console.log("selected >> ", e.target.value);
+                  // let value = e.target.value;
+                  let ques = [...assessments];
+                  ques[3].answer = e.target.value;
+
+                  setAssessment(ques);
+                }}
+              >
+                <option value=""> select</option>
+                <option value="yes"> Yes</option>
+                <option value="no"> No</option>
+                <option value="others"> Others</option>
+              </select>
+              {questionsForm("q4")}
+            </label>
+            <label htmlFor="">
+              {data.q5.question}
+              <br />
+              <select
+                className="w-full select select-primary"
+                name=""
+                id=""
+                value={assessments[4].answer}
+                onChange={(e) => {
+                  console.log("selected >> ", e.target.value);
+                  // let value = e.target.value;
+                  let ques = [...assessments];
+                  ques[4].answer = e.target.value;
+
+                  setAssessment(ques);
+                }}
+              >
+                <option value=""> select</option>
+                <option value="yes"> Yes</option>
+                <option value="no"> No</option>
+                <option value="others"> Others</option>
+              </select>
+              {questionsForm("q5")}
+            </label>
+            <label htmlFor="">
+              {data.q6.question}
+              <br />
+              <select
+                className="w-full select select-primary"
+                name=""
+                id=""
+                value={assessments[5].answer}
+                onChange={(e) => {
+                  console.log("selected >> ", e.target.value);
+                  // let value = e.target.value;
+                  let ques = [...assessments];
+                  ques[5].answer = e.target.value;
+
+                  setAssessment(ques);
+                }}
+              >
+                <option value=""> select</option>
+                <option value="yes"> Yes</option>
+                <option value="no"> No</option>
+                <option value="others"> Others</option>
+              </select>
+              {questionsForm("q6")}
+            </label>
+            <label htmlFor="">
+              {data.q7.question}
+              <br />
+              <select
+                className="w-full select select-primary"
+                name=""
+                id=""
+                value={assessments[6].answer}
+                onChange={(e) => {
+                  console.log("selected >> ", e.target.value);
+                  // let value = e.target.value;
+                  let ques = [...assessments];
+                  ques[6].answer = e.target.value;
+
+                  setAssessment(ques);
+                }}
+              >
+                <option value=""> select</option>
+                <option value="yes"> Yes</option>
+                <option value="no"> No</option>
+                <option value="others"> Others</option>
+              </select>
+              {questionsForm("q7")}
+            </label>
+            <label htmlFor="">
+              {data.q8.question}
+              <br />
+              <select
+                className="w-full select select-primary"
+                name=""
+                id=""
+                value={assessments[7].answer}
+                onChange={(e) => {
+                  console.log("selected >> ", e.target.value);
+                  // let value = e.target.value;
+                  let ques = [...assessments];
+                  ques[7].answer = e.target.value;
+
+                  setAssessment(ques);
+                }}
+              >
+                <option value=""> select</option>
+                <option value="yes"> Yes</option>
+                <option value="no"> No</option>
+                <option value="others"> Others</option>
+              </select>
+              {questionsForm("q8")}
+            </label>
+            <label htmlFor="">
+              {data.q9.question}
+              <br />
+              <select
+                className="w-full select select-primary"
+                name=""
+                id=""
+                value={assessments[8].answer}
+                onChange={(e) => {
+                  console.log("selected >> ", e.target.value);
+                  // let value = e.target.value;
+                  let ques = [...assessments];
+                  ques[8].answer = e.target.value;
+
+                  setAssessment(ques);
+                }}
+              >
+                <option value=""> select</option>
+                <option value="yes"> Yes</option>
+                <option value="no"> No</option>
+                <option value="others"> Others</option>
+              </select>
+              {questionsForm("q9")}
+            </label>
+            <label htmlFor="">
+              {data.q10.question}
+              <br />
+              <select
+                className="w-full select select-primary"
+                name=""
+                id=""
+                value={assessments[9].answer}
+                onChange={(e) => {
+                  console.log("selected >> ", e.target.value);
+                  // let value = e.target.value;
+                  let ques = [...assessments];
+                  ques[9].answer = e.target.value;
+
+                  setAssessment(ques);
+                }}
+              >
+                <option value=""> select</option>
+                <option value="yes"> Yes</option>
+                <option value="no"> No</option>
+                <option value="others"> Others</option>
+              </select>
+              {questionsForm("q10")}
+            </label>
+            <label htmlFor="">
+              {data.q11.question}
+              <br />
+              <select
+                className="w-full select select-primary"
+                name=""
+                id=""
+                value={assessments[10].answer}
+                onChange={(e) => {
+                  console.log("selected >> ", e.target.value);
+                  // let value = e.target.value;
+                  let ques = [...assessments];
+                  ques[10].answer = e.target.value;
+
+                  setAssessment(ques);
+                }}
+              >
+                <option value=""> select</option>
+                <option value="yes"> Yes</option>
+                <option value="no"> No</option>
+                <option value="others"> Others</option>
+              </select>
+              {questionsForm("q11")}
+            </label>
+            <label htmlFor="">
+              {data.q12.question}
+              <br />
+              <select
+                className="w-full select select-primary"
+                name=""
+                id=""
+                value={assessments[11].answer}
+                onChange={(e) => {
+                  console.log("selected >> ", e.target.value);
+                  // let value = e.target.value;
+                  let ques = [...assessments];
+                  ques[11].answer = e.target.value;
+
+                  setAssessment(ques);
+                }}
+              >
+                <option value=""> select</option>
+                <option value="yes"> Yes</option>
+                <option value="no"> No</option>
+                <option value="others"> Others</option>
+              </select>
+              {questionsForm("q12")}
+            </label>
+            <label htmlFor="">
+              {data.q13.question}
+              <br />
+              <select
+                className="w-full select select-primary"
+                name=""
+                id=""
+                value={assessments[12].answer}
+                onChange={(e) => {
+                  console.log("selected >> ", e.target.value);
+                  // let value = e.target.value;
+                  let ques = [...assessments];
+                  ques[12].answer = e.target.value;
+
+                  setAssessment(ques);
+                }}
+              >
+                <option value=""> select</option>
+                <option value="yes"> Yes</option>
+                <option value="no"> No</option>
+                <option value="others"> Others</option>
+              </select>
+              {questionsForm("q13")}
+            </label>
+            <label htmlFor="">
+              {data.q14.question}
+              <br />
+              <select
+                className="w-full select select-primary"
+                name=""
+                id=""
+                value={assessments[13].answer}
+                onChange={(e) => {
+                  console.log("selected >> ", e.target.value);
+                  // let value = e.target.value;
+                  let ques = [...assessments];
+                  ques[13].answer = e.target.value;
+
+                  setAssessment(ques);
+                }}
+              >
+                <option value=""> select</option>
+                <option value="yes"> Yes</option>
+                <option value="no"> No</option>
+                <option value="others"> Others</option>
+              </select>
+              {questionsForm("q14")}
+            </label>
+            <label htmlFor="">
+              {data.q15.question}
+              <br />
+              <select
+                className="w-full select select-primary"
+                name=""
+                id=""
+                value={assessments[14].answer}
+                onChange={(e) => {
+                  console.log("selected >> ", e.target.value);
+                  // let value = e.target.value;
+                  let ques = [...assessments];
+                  ques[14].answer = e.target.value;
+
+                  setAssessment(ques);
+                }}
+              >
+                <option value=""> select</option>
+                <option value="yes"> Yes</option>
+                <option value="no"> No</option>
+                <option value="others"> Others</option>
+              </select>
+              {questionsForm("q15")}
             </label>
           </fieldset>
         </form>
@@ -236,4 +832,4 @@ const LPG = ({ data, setData, truckPro }) => {
     </div>
   );
 };
-export default LPG;
+export default Lfg;
