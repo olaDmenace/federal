@@ -17,7 +17,6 @@ import { selectUser } from "./utils/features/userSlice";
 import AbsenceForm from "./dashboard/hr/AbsenceForm";
 import ConsequenceManagement from "./dashboard/hr/ConsequenceManagement";
 import TrainingForm from "./dashboard/hr/TrainingForm";
-import Employee from "./dashboard/hr/Employee";
 import UserDashboard from "./dashboard/dashboard/Dashboard.jsx";
 import TifForm from "./dashboard/healthandsafety/TifForm";
 import MaintenanceExpenses from "./dashboard/operation support/maintenanceExpenses/MaintenanceExpenses";
@@ -28,6 +27,7 @@ import PartsAndInventory from "./dashboard/operation support/partandInventory/Pa
 import Utilities from "./dashboard/operation support/Utilities/Utilities";
 import WaybillsManagement from "./dashboard/operations/waybills/WaybillsManagement";
 import TruckAssignment from "./dashboard/operations/truckAssignment/TruckAssignment";
+import Employee from "./dashboard/hr/Employee";
 
 /* ***IMPORTANT NOTICE***
     This project is a React JS project buitl with Daisy UI Tailwind CSS UI component.
