@@ -311,7 +311,6 @@ const TifForm = () => {
       .get("/truck/programme")
       .then((res) => {
         setTruckPro(res.data.data);
-        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -320,7 +319,7 @@ const TifForm = () => {
 
   useEffect(() => {
     endpoint
-      .get("truck/assessments/740591ff-7cfb-4b8e-bce2-425f1871adab")
+      .get("truck/assessments/e0617b6c-17f6-45ab-8034-7f4c87e8c829")
       .then((res) => {
         console.log(res.data);
         setTruckAssess(res.data.data);
@@ -340,7 +339,7 @@ const TifForm = () => {
           Truck Numbers
           <select
             type="text"
-            className="w-full select select-primary"
+            className="w-full disabled: select select-primary"
             name=""
             id=""
             value={truckProgrammingId}
@@ -395,9 +394,8 @@ const TifForm = () => {
                   truckPro={truckPro}
                   setTruckPro={setTruckPro}
                   truckProgrammingId={truckProgrammingId}
+                  setTruckProgrammingId={setTruckProgrammingId}
                   truckAssess={truckAssess}
-                  assessments={assessments}
-                  setAssessment={setAssessment}
                   comments={comments}
                   setComment={setComment}
                 />
@@ -408,6 +406,7 @@ const TifForm = () => {
                   truckPro={truckPro}
                   setTruckPro={setTruckPro}
                   truckProgrammingId={truckProgrammingId}
+                  setTruckProgrammingId={setTruckProgrammingId}
                   truckAssess={truckAssess}
                   assessments={assessments}
                   setAssessment={setAssessment}
