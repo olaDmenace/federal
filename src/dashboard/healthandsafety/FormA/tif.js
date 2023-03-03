@@ -19,6 +19,7 @@ function Tif({
   setAssessment,
   comments,
   setComment,
+  setTruckProgrammingId,
 }) {
   ("Axle & Cartage - Pre Trip Inspection Form");
   const [form, setForm] = useState(0);
@@ -59,12 +60,26 @@ function Tif({
     message: "",
   });
 
+  const resetForm = () => {
+    const newAssessments = assessments.map((assessment) => {
+      return {
+        ...assessment,
+        answer: "",
+        othersInput: "",
+      };
+    });
+    setAssessment(newAssessments);
+  };
+
   // Handles the submit event
 
   function handleSubmit(e) {
     console.log(e.cancelable);
     e.preventDefault();
     setIsLoading(true);
+    setComment("");
+    resetForm();
+
     endpoint
       .post("/truck/inspect", {
         truckProgrammingId,

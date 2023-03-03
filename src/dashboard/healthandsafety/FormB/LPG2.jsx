@@ -1,33 +1,11 @@
-import React, { useState } from "react";
-
 const Lfg2 = ({
   data,
-  setData,
+
   assessments,
   setAssessment,
   comments,
   setComment,
 }) => {
-  const [otherQ16, setOtherQ16] = useState("");
-  const [otherQ17, setOtherQ17] = useState("");
-  const [otherQ18, setOtherQ18] = useState("");
-  const [otherQ19, setOtherQ19] = useState("");
-  const [otherQ20, setOtherQ20] = useState("");
-  const [otherQ21, setOtherQ21] = useState("");
-  const [otherQ22, setOtherQ22] = useState("");
-  const [otherQ23, setOtherQ23] = useState("");
-  const [otherQ24, setOtherQ24] = useState("");
-  const [otherQ25, setOtherQ25] = useState("");
-  const [otherQ26, setOtherQ26] = useState("");
-  const [otherQ27, setOtherQ27] = useState("");
-  const [otherQ28, setOtherQ28] = useState("");
-  const [otherQ29, setOtherQ29] = useState("");
-  const [otherQ30, setOtherQ30] = useState("");
-  const [otherQ31, setOtherQ31] = useState("");
-  const [otherQ32, setOtherQ32] = useState("");
-  const [otherQ33, setOtherQ33] = useState("");
-  const [otherQ34, setOtherQ34] = useState("");
-
   const questionsForm = (question) => {
     if (question === "q16" && assessments[15].answer == "others") {
       return (
@@ -40,12 +18,10 @@ const Lfg2 = ({
               placeholder="Others"
               value={assessments[15].othersInput}
               onChange={(e) => {
-                console.log("selected >> ", e.target.value);
                 let ques = [...assessments];
                 assessments[15].othersInput = e.target.value;
-                console.log("data to update ", ques);
+
                 setAssessment(ques);
-                // setOtherQ1(value);
               }}
             />
           </label>
@@ -63,12 +39,10 @@ const Lfg2 = ({
               placeholder="Others"
               value={assessments[16].othersInput}
               onChange={(e) => {
-                console.log("selected >> ", e.target.value);
                 let ques = [...assessments];
                 assessments[16].othersInput = e.target.value;
-                console.log("data to update ", ques);
+
                 setAssessment(ques);
-                // setOtherQ1(value);;
               }}
             />
           </label>
@@ -86,12 +60,10 @@ const Lfg2 = ({
               placeholder="Others"
               value={assessments[17].othersInput}
               onChange={(e) => {
-                console.log("selected >> ", e.target.value);
                 let ques = [...assessments];
                 assessments[17].othersInput = e.target.value;
-                console.log("data to update ", ques);
+
                 setAssessment(ques);
-                // setOtherQ1(value);
               }}
             />
           </label>
@@ -109,12 +81,10 @@ const Lfg2 = ({
               placeholder="Others"
               value={assessments[18].othersInput}
               onChange={(e) => {
-                console.log("selected >> ", e.target.value);
                 let ques = [...assessments];
                 assessments[18].othersInput = e.target.value;
-                console.log("data to update ", ques);
+
                 setAssessment(ques);
-                // setOtherQ1(value);
               }}
             />
           </label>
@@ -132,12 +102,10 @@ const Lfg2 = ({
               placeholder="Others"
               value={assessments[19].othersInput}
               onChange={(e) => {
-                console.log("selected >> ", e.target.value);
                 let ques = [...assessments];
                 assessments[19].othersInput = e.target.value;
-                console.log("data to update ", ques);
+
                 setAssessment(ques);
-                // setOtherQ1(value);
               }}
             />
           </label>
@@ -155,12 +123,10 @@ const Lfg2 = ({
               placeholder="Others"
               value={assessments[20].othersInput}
               onChange={(e) => {
-                console.log("selected >> ", e.target.value);
                 let ques = [...assessments];
                 assessments[20].othersInput = e.target.value;
-                console.log("data to update ", ques);
+
                 setAssessment(ques);
-                // setOtherQ1(value);
               }}
             />
           </label>
@@ -178,12 +144,10 @@ const Lfg2 = ({
               placeholder="Others"
               value={assessments[21].othersInput}
               onChange={(e) => {
-                console.log("selected >> ", e.target.value);
                 let ques = [...assessments];
                 assessments[21].othersInput = e.target.value;
-                console.log("data to update ", ques);
+
                 setAssessment(ques);
-                // setOtherQ1(value);
               }}
             />
           </label>
@@ -201,12 +165,10 @@ const Lfg2 = ({
               placeholder="Others"
               value={assessments[22].othersInput}
               onChange={(e) => {
-                console.log("selected >> ", e.target.value);
                 let ques = [...assessments];
                 assessments[22].othersInput = e.target.value;
-                console.log("data to update ", ques);
+
                 setAssessment(ques);
-                // setOtherQ1(value);
               }}
             />
           </label>
@@ -224,12 +186,10 @@ const Lfg2 = ({
               placeholder="Others"
               value={assessments[23].othersInput}
               onChange={(e) => {
-                console.log("selected >> ", e.target.value);
                 let ques = [...assessments];
                 assessments[23].othersInput = e.target.value;
-                console.log("data to update ", ques);
+
                 setAssessment(ques);
-                // setOtherQ1(value);
               }}
             />
           </label>
@@ -247,12 +207,10 @@ const Lfg2 = ({
               placeholder="Others"
               value={assessments[24].othersInput}
               onChange={(e) => {
-                console.log("selected >> ", e.target.value);
                 let ques = [...assessments];
                 assessments[24].othersInput = e.target.value;
-                console.log("data to update ", ques);
+
                 setAssessment(ques);
-                // setOtherQ1(value);
               }}
             />
           </label>
@@ -270,12 +228,10 @@ const Lfg2 = ({
               placeholder="Others"
               value={assessments[25].othersInput}
               onChange={(e) => {
-                console.log("selected >> ", e.target.value);
                 let ques = [...assessments];
                 assessments[25].othersInput = e.target.value;
-                console.log("data to update ", ques);
+
                 setAssessment(ques);
-                // setOtherQ1(value);
               }}
             />
           </label>
@@ -293,12 +249,10 @@ const Lfg2 = ({
               placeholder="Others"
               value={assessments[26].othersInput}
               onChange={(e) => {
-                console.log("selected >> ", e.target.value);
                 let ques = [...assessments];
                 assessments[26].othersInput = e.target.value;
-                console.log("data to update ", ques);
+
                 setAssessment(ques);
-                // setOtherQ1(value);
               }}
             />
           </label>
@@ -316,12 +270,10 @@ const Lfg2 = ({
               placeholder="Others"
               value={assessments[27].othersInput}
               onChange={(e) => {
-                console.log("selected >> ", e.target.value);
                 let ques = [...assessments];
                 assessments[27].othersInput = e.target.value;
-                console.log("data to update ", ques);
+
                 setAssessment(ques);
-                // setOtherQ1(value);
               }}
             />
           </label>
@@ -339,12 +291,10 @@ const Lfg2 = ({
               placeholder="Others"
               value={assessments[28].othersInput}
               onChange={(e) => {
-                console.log("selected >> ", e.target.value);
                 let ques = [...assessments];
                 assessments[28].othersInput = e.target.value;
-                console.log("data to update ", ques);
+
                 setAssessment(ques);
-                // setOtherQ1(value);
               }}
             />
           </label>
@@ -362,12 +312,10 @@ const Lfg2 = ({
               placeholder="Others"
               value={assessments[29].othersInput}
               onChange={(e) => {
-                console.log("selected >> ", e.target.value);
                 let ques = [...assessments];
                 assessments[29].othersInput = e.target.value;
-                console.log("data to update ", ques);
+
                 setAssessment(ques);
-                // setOtherQ1(value);
               }}
             />
           </label>
@@ -385,12 +333,10 @@ const Lfg2 = ({
               placeholder="Others"
               value={assessments[30].othersInput}
               onChange={(e) => {
-                console.log("selected >> ", e.target.value);
                 let ques = [...assessments];
                 assessments[30].othersInput = e.target.value;
-                console.log("data to update ", ques);
+
                 setAssessment(ques);
-                // setOtherQ1(value);
               }}
             />
           </label>
@@ -408,58 +354,10 @@ const Lfg2 = ({
               placeholder="Others"
               value={assessments[31].othersInput}
               onChange={(e) => {
-                console.log("selected >> ", e.target.value);
                 let ques = [...assessments];
                 assessments[31].othersInput = e.target.value;
-                console.log("data to update ", ques);
+
                 setAssessment(ques);
-                // setOtherQ1(value);
-              }}
-            />
-          </label>
-        </>
-      );
-    }
-    if (question === "q33" && assessments[32].answer === "others") {
-      return (
-        <>
-          <label>
-            {" "}
-            Specify Others
-            <input
-              className="w-full input input-primary"
-              placeholder="Others"
-              value={assessments[32].othersInput}
-              onChange={(e) => {
-                console.log("selected >> ", e.target.value);
-                let ques = [...assessments];
-                assessments[32].othersInput = e.target.value;
-                console.log("data to update ", ques);
-                setAssessment(ques);
-                // setOtherQ1(value);
-              }}
-            />
-          </label>
-        </>
-      );
-    }
-    if (question === "q34" && assessments[33].answer === "others") {
-      return (
-        <>
-          <label>
-            {" "}
-            Specify Others
-            <input
-              className="w-full input input-primary"
-              placeholder="Others"
-              value={assessments[33].othersInput}
-              onChange={(e) => {
-                console.log("selected >> ", e.target.value);
-                let ques = [...assessments];
-                assessments[33].othersInput = e.target.value;
-                console.log("data to update ", ques);
-                setAssessment(ques);
-                // setOtherQ1(value);
               }}
             />
           </label>
@@ -480,11 +378,10 @@ const Lfg2 = ({
             id=""
             value={assessments[15].answer}
             onChange={(e) => {
-              console.log("selected >> ", e.target.value);
               // let value = e.target.value;
               let ques = [...assessments];
               assessments[15].answer = e.target.value;
-              console.log("data to update ", ques);
+
               setAssessment(ques);
             }}
           >
@@ -504,11 +401,10 @@ const Lfg2 = ({
             id=""
             value={assessments[16].answer}
             onChange={(e) => {
-              console.log("selected >> ", e.target.value);
               // let value = e.target.value;
               let ques = [...assessments];
               assessments[16].answer = e.target.value;
-              console.log("data to update ", ques);
+
               setAssessment(ques);
             }}
           >
@@ -528,11 +424,10 @@ const Lfg2 = ({
             id=""
             value={assessments[17].answer}
             onChange={(e) => {
-              console.log("selected >> ", e.target.value);
               // let value = e.target.value;
               let ques = [...assessments];
               assessments[17].answer = e.target.value;
-              console.log("data to update ", ques);
+
               setAssessment(ques);
             }}
           >
@@ -552,11 +447,10 @@ const Lfg2 = ({
             id=""
             value={assessments[18].answer}
             onChange={(e) => {
-              console.log("selected >> ", e.target.value);
               // let value = e.target.value;
               let ques = [...assessments];
               assessments[18].answer = e.target.value;
-              console.log("data to update ", ques);
+
               setAssessment(ques);
             }}
           >
@@ -576,11 +470,10 @@ const Lfg2 = ({
             id=""
             value={assessments[19].answer}
             onChange={(e) => {
-              console.log("selected >> ", e.target.value);
               // let value = e.target.value;
               let ques = [...assessments];
               assessments[19].answer = e.target.value;
-              console.log("data to update ", ques);
+
               setAssessment(ques);
             }}
           >
@@ -600,11 +493,10 @@ const Lfg2 = ({
             id=""
             value={assessments[20].answer}
             onChange={(e) => {
-              console.log("selected >> ", e.target.value);
               // let value = e.target.value;
               let ques = [...assessments];
               assessments[20].answer = e.target.value;
-              console.log("data to update ", ques);
+
               setAssessment(ques);
             }}
           >
@@ -624,11 +516,10 @@ const Lfg2 = ({
             id=""
             value={assessments[21].answer}
             onChange={(e) => {
-              console.log("selected >> ", e.target.value);
               // let value = e.target.value;
               let ques = [...assessments];
               assessments[21].answer = e.target.value;
-              console.log("data to update ", ques);
+
               setAssessment(ques);
             }}
           >
@@ -648,11 +539,10 @@ const Lfg2 = ({
             id=""
             value={assessments[22].answer}
             onChange={(e) => {
-              console.log("selected >> ", e.target.value);
               // let value = e.target.value;
               let ques = [...assessments];
               assessments[22].answer = e.target.value;
-              console.log("data to update ", ques);
+
               setAssessment(ques);
             }}
           >
@@ -672,11 +562,10 @@ const Lfg2 = ({
             id=""
             value={assessments[23].answer}
             onChange={(e) => {
-              console.log("selected >> ", e.target.value);
               // let value = e.target.value;
               let ques = [...assessments];
               assessments[23].answer = e.target.value;
-              console.log("data to update ", ques);
+
               setAssessment(ques);
             }}
           >
@@ -696,11 +585,10 @@ const Lfg2 = ({
             id=""
             value={assessments[24].answer}
             onChange={(e) => {
-              console.log("selected >> ", e.target.value);
               // let value = e.target.value;
               let ques = [...assessments];
               assessments[24].answer = e.target.value;
-              console.log("data to update ", ques);
+
               setAssessment(ques);
             }}
           >
@@ -720,11 +608,10 @@ const Lfg2 = ({
             id=""
             value={assessments[25].answer}
             onChange={(e) => {
-              console.log("selected >> ", e.target.value);
               // let value = e.target.value;
               let ques = [...assessments];
               assessments[25].answer = e.target.value;
-              console.log("data to update ", ques);
+
               setAssessment(ques);
             }}
           >
@@ -744,11 +631,10 @@ const Lfg2 = ({
             id=""
             value={assessments[26].answer}
             onChange={(e) => {
-              console.log("selected >> ", e.target.value);
               // let value = e.target.value;
               let ques = [...assessments];
               assessments[26].answer = e.target.value;
-              console.log("data to update ", ques);
+
               setAssessment(ques);
             }}
           >
@@ -768,11 +654,10 @@ const Lfg2 = ({
             id=""
             value={assessments[27].answer}
             onChange={(e) => {
-              console.log("selected >> ", e.target.value);
               // let value = e.target.value;
               let ques = [...assessments];
               assessments[27].answer = e.target.value;
-              console.log("data to update ", ques);
+
               setAssessment(ques);
             }}
           >
@@ -792,11 +677,10 @@ const Lfg2 = ({
             id=""
             value={assessments[28].answer}
             onChange={(e) => {
-              console.log("selected >> ", e.target.value);
               // let value = e.target.value;
               let ques = [...assessments];
               assessments[28].answer = e.target.value;
-              console.log("data to update ", ques);
+
               setAssessment(ques);
             }}
           >
@@ -816,11 +700,10 @@ const Lfg2 = ({
             id=""
             value={assessments[29].answer}
             onChange={(e) => {
-              console.log("selected >> ", e.target.value);
               // let value = e.target.value;
               let ques = [...assessments];
               assessments[29].answer = e.target.value;
-              console.log("data to update ", ques);
+
               setAssessment(ques);
             }}
           >
@@ -840,11 +723,10 @@ const Lfg2 = ({
             id=""
             value={assessments[30].answer}
             onChange={(e) => {
-              console.log("selected >> ", e.target.value);
               // let value = e.target.value;
               let ques = [...assessments];
               assessments[30].answer = e.target.value;
-              console.log("data to update ", ques);
+
               setAssessment(ques);
             }}
           >
@@ -864,11 +746,10 @@ const Lfg2 = ({
             id=""
             value={assessments[31].answer}
             onChange={(e) => {
-              console.log("selected >> ", e.target.value);
               // let value = e.target.value;
               let ques = [...assessments];
               assessments[31].answer = e.target.value;
-              console.log("data to update ", ques);
+
               setAssessment(ques);
             }}
           >
@@ -879,54 +760,7 @@ const Lfg2 = ({
           </select>
         </label>
         {questionsForm("q32")}
-        <label htmlFor="">
-          {data.q33.question}
-          <br />
-          <select
-            className="w-full select select-primary"
-            name=""
-            id=""
-            value={assessments[32].answer}
-            onChange={(e) => {
-              console.log("selected >> ", e.target.value);
-              // let value = e.target.value;
-              let ques = [...assessments];
-              assessments[32].answer = e.target.value;
-              console.log("data to update ", ques);
-              setAssessment(ques);
-            }}
-          >
-            <option value="">select</option>
-            <option value="yes"> Yes</option>
-            <option value="no"> No</option>
-            <option value="others"> Others</option>
-          </select>
-        </label>
-        {questionsForm("q33")}
-        <label htmlFor="">
-          {data.q34.question}
-          <br />
-          <select
-            className="w-full select select-primary"
-            name=""
-            id=""
-            value={assessments[33].answer}
-            onChange={(e) => {
-              console.log("selected >> ", e.target.value);
-              // let value = e.target.value;
-              let ques = [...assessments];
-              assessments[33].answer = e.target.value;
-              console.log("data to update ", ques);
-              setAssessment(ques);
-            }}
-          >
-            <option value="">select</option>
-            <option value="yes"> Yes</option>
-            <option value="no"> No</option>
-            <option value="others"> Others</option>
-          </select>
-        </label>
-        {questionsForm("q34")}
+
         <label htmlFor="">
           General comments
           <br />

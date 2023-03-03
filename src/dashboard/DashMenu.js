@@ -76,8 +76,9 @@ function DashMenu() {
                     Trip Expense Request
                   </NavLink>
                   <NavLink
-                    to={'/dashboard/Waybills'}
-                    className="hover:font-bold hover:ease-in-out duration-150 block">
+                    to={"/dashboard/Waybills"}
+                    className="hover:font-bold hover:ease-in-out duration-150 block"
+                  >
                     Waybill Management
                   </NavLink>
                   <NavLink
@@ -85,6 +86,12 @@ function DashMenu() {
                     className="hover:font-bold hover:ease-in-out duration-150 block"
                   >
                     Shortage Resolution
+                  </NavLink>
+                  <NavLink
+                    to={"/dashboard/TruckAssignment"}
+                    className="hover:font-bold hover:ease-in-out duration-150 block"
+                  >
+                    Truck Assignment
                   </NavLink>
                 </div>
               )}
