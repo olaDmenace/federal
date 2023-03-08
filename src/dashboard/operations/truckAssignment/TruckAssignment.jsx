@@ -21,9 +21,45 @@ function TruckAssignment() {
   console.log(journeyOfficerId, "journey");
   console.log(deliveryOfficerId, "delivery");
   console.log(logisticsCoordinatorId, "logistics");
-  console.log(truckId, "truck");
-  console.log(endDate, "enddate");
-  console.log(startDate, "startdate");
+  // console.log(truckId, "truck");
+  // console.log(endDate, "enddate");
+  // console.log(startDate, "startdate");
+  const [delivery, setDelivery] = useState([]);
+  const [journey, setJourney] = useState([]);
+  const [logistics, setLogistics] = useState([]);
+  useEffect(() => {
+    // SearchTerm = delivery & UserType=1 & PageNumber=1 & PageSize=1
+    endpoint
+      .get("/user?UserType=1")
+      .then((res) => {
+        console.log(res.data.data);
+        setDelivery(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    endpoint
+      .get("user?UserType=2")
+      .then((res) => {
+        console.log(res.data.data);
+        setJourney(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    endpoint
+      .get("user?UserType=3")
+      .then((res) => {
+        console.log(res);
+        console.log(res.data.data);
+        setLogistics(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   useEffect(() => {
     endpoint
@@ -93,14 +129,14 @@ function TruckAssignment() {
     setendDate(event.target.value);
   };
 
-  const onclick = () => {
-    const selectedTruck = trucks.find((item) => item.truckId === truckId);
-    if (selectedTruck) {
-      setDeliveryOfficerId(selectedTruck.deliveryOfficerId);
-      setjourneyOfficerId(selectedTruck.journeyOfficerId);
-      setlogisticsCoordinatorId(selectedTruck.logisticsCoordinatorId);
-    }
-  };
+  // const onclick = () => {
+  //   const selectedTruck = trucks.find((item) => item.truckId === truckId);
+  //   if (selectedTruck) {
+  //     setDeliveryOfficerId(selectedTruck.deliveryOfficerId);
+  //     setjourneyOfficerId(selectedTruck.journeyOfficerId);
+  //     setlogisticsCoordinatorId(selectedTruck.logisticsCoordinatorId);
+  //   }
+  // };
   const closePop = () => {
     setIsLoading(!isLoading);
     setShow(false);
@@ -124,7 +160,7 @@ function TruckAssignment() {
       <form
         action=""
         onSubmit={handleSubmit}
-        onClick={onclick}
+        // onClick={onclick}
         className="grid gap-5 text-primary my-5"
       >
         <fieldset className="grid gap-3 md:grid-cols-2 lg:grid-cols-2 items-end">
@@ -149,50 +185,56 @@ function TruckAssignment() {
 
           <label htmlFor="">
             Journey Officer
-            <div className="border border-primary h-12 rounded-lg grid items-center px-4">
-              {" "}
-              {trucks
-                .filter((i) => i.truckId === truckId)
-                .map((item) => (
-                  <p
-                    key={item.journeyOfficerId}
-                    // onChange={() => setjourneyOfficerId(item.journeyOfficerId)}
-                  >
-                    {item.journeyOfficer}
-                  </p>
-                ))}
-            </div>
+            <select
+              value={journeyOfficerId}
+              onChange={(e) => setjourneyOfficerId(e.target.value)}
+              className="select select-primary w-full"
+              name=""
+              id=""
+            >
+              <option value="">Select Journey Officer</option>
+              {journey.map((item) => (
+                <option key={item.userId} value={item.userId}>
+                  {item.firstName} {item.lastName}
+                </option>
+              ))}
+            </select>
           </label>
 
           <label htmlFor="">
-            Logistics Cordinator
-            <div className="border border-primary h-12 rounded-lg grid items-center px-4">
-              {" "}
-              {trucks
-                .filter((i) => i.truckId === truckId)
-                .map((item) => (
-                  <p key={item.logisticsCoordinatorId}>
-                    {item.logisticsCoordinator}
-                  </p>
-                ))}
-            </div>
+            Logistics Coordinator
+            <select
+              value={logisticsCoordinatorId}
+              onChange={(e) => setlogisticsCoordinatorId(e.target.value)}
+              className="select select-primary w-full"
+              name=""
+              id=""
+            >
+              <option value="">Select Journey Officer</option>
+              {logistics.map((item) => (
+                <option key={item.userId} value={item.userId}>
+                  {item.firstName} {item.lastName}
+                </option>
+              ))}
+            </select>
           </label>
 
           <label htmlFor="">
             Delivery Officer
-            <div className="border border-primary h-12 rounded-lg grid items-center px-4">
-              {" "}
-              {trucks
-                .filter((i) => i.truckId === truckId)
-                .map((item) => (
-                  <p
-                    key={item.deliveryOfficerId}
-                    // onClick={() => setDeliveryOfficerId(item.deliveryOfficerId)}
-                  >
-                    {item.deliveryOfficer}
-                  </p>
-                ))}
-            </div>
+            <select
+              value={deliveryOfficerId}
+              onChange={(e) => setDeliveryOfficerId(e.target.value)}
+              className="select select-primary w-full"
+              name=""
+              id=""
+            >
+              <option value="">Select Delivery Officer </option>
+              {delivery.map((item) => (
+                <option key={item.userId} value={item.userId}>
+                  {item.firstName} {item.lastName}
+                </option>
+              ))}
+            </select>
           </label>
           <label htmlFor="">
             Start Date/Time
