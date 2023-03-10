@@ -142,7 +142,7 @@ const Employee = () => {
                     </label>
                     <label htmlFor="dob">
                         Date of Birth
-                        <input className='w-full input input-primary' value={data.dateOfBirth} onChange={(e) => setData({ ...data, dateOfBirth: e.target.value })} type="text" name="" id="dob" />
+                        <input className='w-full input input-primary' value={data.dateOfBirth} onChange={(e) => setData({ ...data, dateOfBirth: e.target.value })} type="date" name="" id="dob" />
                     </label>
                     <label htmlFor="employeeNumber">
                         Employee Number
@@ -172,7 +172,7 @@ const Employee = () => {
                     </label></fieldset>
                 <button className='mx-auto btn btn-primary' type="submit" onClick={handleSubmit}>Submit</button>
             </form>
-        </div >
+        </div>
     )
 }
 
