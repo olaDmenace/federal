@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import endpoint from '../../utils/endpoints/endpoint'
 import PageTitle from '../../utils/PageTitle'
 import FormTitle from '../FormTitle'
+import gist from '../../utils/gistfile1.json'
 
 
 const Employee = () => {
@@ -43,6 +44,7 @@ const Employee = () => {
             console.log(err)
         }))
     }
+    console.log(gist.countries)
     return (
         <div>
             <FormTitle Title={'Employee Details'} />
@@ -108,11 +110,18 @@ const Employee = () => {
                     </label>
                     <label htmlFor="state">
                         State/Province/Region
-                        <input className='w-full input input-primary' value={data.contactInfo.state} onChange={(e) => setData({ ...data, contactInfo: { ...data.contactInfo, state: e.target.value } })} type="text" name="" id="state" />
+                        <select className='select select-primary w-full' value={data.contactInfo.state} onChange={(e) => setData({ ...data, contactInfo: { ...data.contactInfo, state: e.target.value } })} name="" id="" >
+                            <option value="">Select State</option>
+                        </select>
+                        {/* <input className='w-full input input-primary'  type="text" name="" id="state" /> */}
                     </label>
                     <label htmlFor="country">
                         Country
-                        <input className='w-full input input-primary' value={data.contactInfo.country} onChange={(e) => setData({ ...data, contactInfo: { ...data.contactInfo, country: e.target.value } })} type="text" name="" id="country" />
+                        <select className='select select-primary w-full' value={data.contactInfo.country} onChange={(e) => setData({ ...data, contactInfo: { ...data.contactInfo, country: e.target.value } })} name="" id="">
+                            <option value="">Select Country</option>
+                            {gist.countries.map(item => <option value="">{item.country}</option>)}
+                        </select>
+                        {/* <input className='w-full input input-primary' type="text" name="" id="country" /> */}
                     </label>
                 </fieldset>
                 <h4 className='text-xl text-primary font-medium'>Personal Details</h4>
