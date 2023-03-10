@@ -1,48 +1,10 @@
 import React, { useEffect, useState } from "react";
 import endpoint from "../../../utils/endpoints/endpoint";
+import states from "./nigeria-states.json"
 
 
 function FormA1({ formData, setFormData }) {
-  // List of Nigerian States
-  const states = [
-    "Abia",
-    "Adamawa",
-    "Akwa Ibom",
-    "Anambra",
-    "Bauchi",
-    "Bayelsa",
-    "Benue",
-    "Borno",
-    "Cross River",
-    "Delta",
-    "Ebonyi",
-    "Edo",
-    "Ekiti",
-    "Enugu",
-    "FCT - Abuja",
-    "Gombe",
-    "Imo",
-    "Jigawa",
-    "Kaduna",
-    "Kano",
-    "Katsina",
-    "Kebbi",
-    "Kogi",
-    "Kwara",
-    "Lagos",
-    "Nasarawa",
-    "Niger",
-    "Ogun",
-    "Ondo",
-    "Osun",
-    "Oyo",
-    "Plateau",
-    "Rivers",
-    "Sokoto",
-    "Taraba",
-    "Yobe",
-    "Zamfara"
-  ]
+
 
 
   // Fetch list of Users (JO, DO & LC)
@@ -234,7 +196,7 @@ function FormA1({ formData, setFormData }) {
           </label>
           <label htmlFor="">
             Registration State/Province
-            <select name="" id="" value={formData.registrationState} onChange={(e) => setFormData({ ...formData, registrationState: e.target.value })}>
+            <select className="select select-primary w-full" name="" id="" value={formData.registrationState} onChange={(e) => setFormData({ ...formData, registrationState: e.target.value })}>
               <option value="">Select State</option>
               {states.map(state => <option value="state">{state}</option>)}
             </select>
@@ -255,7 +217,7 @@ function FormA1({ formData, setFormData }) {
           onChange={(e) =>
             setFormData({ ...formData, pictureUrl: e.target.value })
           }
-          className="py-5 lg:w-1/3"
+          className="py-5 lg:w-1/3 md:w-1/2"
           type="file"
           src=""
           alt=""
