@@ -217,7 +217,7 @@ function FormA1({ formData, setFormData }) {
           onChange={(e) =>
             setFormData({ ...formData, pictureUrl: e.target.value })
           }
-          className="py-5 lg:w-1/3"
+          className="py-5 lg:w-1/3 md:w-1/2"
           type="file"
           src=""
           alt=""

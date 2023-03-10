@@ -21,7 +21,7 @@ const Employee = () => {
             addressLineTwo: "",
             city: "",
             state: "",
-            country: "g"
+            country: ""
         },
         startDate: "",
         endDate: "",
@@ -36,15 +36,22 @@ const Employee = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log(data)
-        endpoint.post(url, data).then(
-            res => {
-                console.log(res)
-            }
-        ).then((err => {
-            console.log(err)
-        }))
+        console.log(data.contactInfo.country)
+        // endpoint.post(url, data).then(
+        //     res => {
+        //         console.log(res)
+        //     }
+        // ).then((err => {
+        //     console.log(err)
+        // }))
     }
-    console.log(gist.countries)
+
+    function findState(t) {
+        // gist.countries.find(t => t.country === data.contactInfo.country)
+        t.country = data.contactInfo.country
+        console.log(t)
+    }
+    // console.log(gist.countries)
     return (
         <div>
             <FormTitle Title={'Employee Details'} />
@@ -69,7 +76,7 @@ const Employee = () => {
                         <input className='w-full input input-primary' value={data.email} onChange={(e) => setData({ ...data, email: e.target.value })} type="email" name="email" id="email" />
                     </label>
                 </fieldset>
-                <input type="file" value={data.photoUrl} onChange={(e) => setData({ ...data, photoUrl: e.target.value })} name="" id="" />
+                <input className='lg:w-1/3 md:w-1/2' type="file" value={data.photoUrl} onChange={(e) => setData({ ...data, photoUrl: e.target.value })} name="" id="" />
                 {/* <fieldset className='grid md:grid-cols-2 gap-5'>
                     <label htmlFor="clasifications">
                         Classifications
@@ -104,24 +111,27 @@ const Employee = () => {
                     <input className='w-full input input-primary' value={data.contactInfo.addressLineTwo} onChange={(e) => setData({ ...data, contactInfo: { ...data.contactInfo, addressLineTwo: e.target.value } })} type="text" name="" id="address2" />
                 </label>
                 <fieldset className='grid md:grid-cols-2 lg:grid-cols-3 gap-5'>
-                    <label htmlFor="city">
-                        City
-                        <input className='w-full input input-primary' value={data.contactInfo.city} onChange={(e) => setData({ ...data, contactInfo: { ...data.contactInfo, city: e.target.value } })} type="text" name="" id="city" />
+                    <label htmlFor="country">
+                        Country
+                        <select className='select select-primary w-full' value={data.contactInfo.country} onChange={(e) => setData({ ...data, contactInfo: { ...data.contactInfo, country: e.target.value } })} name="" id="">
+                            <option value="">Select Country</option>
+                            {gist.countries.map(item => <option key={item.country} value={item.country}>{item.country}</option>)}
+                        </select>
+                        {/* <input className='w-full input input-primary' type="text" name="" id="country" /> */}
                     </label>
                     <label htmlFor="state">
                         State/Province/Region
                         <select className='select select-primary w-full' value={data.contactInfo.state} onChange={(e) => setData({ ...data, contactInfo: { ...data.contactInfo, state: e.target.value } })} name="" id="" >
                             <option value="">Select State</option>
+                            {/* {gist.countries.find(t => {t.country === data.contactInfo.country; console.log(t)}).states.map(state => <option value={state} key={state}>{state}</option>)} */}
+                            {/* {gist.countries.find(t => { t.country = data.contactInfo.country; console.log(t) })} */}
+                            {/* {gist.countries.find(t => findState())} */}
                         </select>
                         {/* <input className='w-full input input-primary'  type="text" name="" id="state" /> */}
                     </label>
-                    <label htmlFor="country">
-                        Country
-                        <select className='select select-primary w-full' value={data.contactInfo.country} onChange={(e) => setData({ ...data, contactInfo: { ...data.contactInfo, country: e.target.value } })} name="" id="">
-                            <option value="">Select Country</option>
-                            {gist.countries.map(item => <option value="">{item.country}</option>)}
-                        </select>
-                        {/* <input className='w-full input input-primary' type="text" name="" id="country" /> */}
+                    <label htmlFor="city">
+                        City
+                        <input className='w-full input input-primary' value={data.contactInfo.city} onChange={(e) => setData({ ...data, contactInfo: { ...data.contactInfo, city: e.target.value } })} type="text" name="" id="city" />
                     </label>
                 </fieldset>
                 <h4 className='text-xl text-primary font-medium'>Personal Details</h4>
@@ -162,7 +172,7 @@ const Employee = () => {
                     </label></fieldset>
                 <button className='mx-auto btn btn-primary' type="submit" onClick={handleSubmit}>Submit</button>
             </form>
-        </div>
+        </div >
     )
 }
 

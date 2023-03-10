@@ -34,7 +34,7 @@ function AssetRegister() {
             {hide && <label className='text-primary'>
                 Asset Type
                 <select class='select select-primary w-full' value={select} onChange={handleChange} name="" id="">
-                    <option selected disabled>Select Reminder</option>
+                    <option selected disabled>Select Asset Type</option>
                     <option value="FormA">Form A</option>
                     <option value="FormB">Form B</option>
                     <option value="FormC">Form C</option>
