@@ -1,7 +1,50 @@
 import React, { useEffect, useState } from "react";
 import endpoint from "../../../utils/endpoints/endpoint";
 
+
 function FormA1({ formData, setFormData }) {
+  // List of Nigerian States
+  const states = [
+    "Abia",
+    "Adamawa",
+    "Akwa Ibom",
+    "Anambra",
+    "Bauchi",
+    "Bayelsa",
+    "Benue",
+    "Borno",
+    "Cross River",
+    "Delta",
+    "Ebonyi",
+    "Edo",
+    "Ekiti",
+    "Enugu",
+    "FCT - Abuja",
+    "Gombe",
+    "Imo",
+    "Jigawa",
+    "Kaduna",
+    "Kano",
+    "Katsina",
+    "Kebbi",
+    "Kogi",
+    "Kwara",
+    "Lagos",
+    "Nasarawa",
+    "Niger",
+    "Ogun",
+    "Ondo",
+    "Osun",
+    "Oyo",
+    "Plateau",
+    "Rivers",
+    "Sokoto",
+    "Taraba",
+    "Yobe",
+    "Zamfara"
+  ]
+
+
   // Fetch list of Users (JO, DO & LC)
   const [delivery, setDelivery] = useState([]);
   const [journey, setJourney] = useState([]);
@@ -191,7 +234,11 @@ function FormA1({ formData, setFormData }) {
           </label>
           <label htmlFor="">
             Registration State/Province
-            <input
+            <select name="" id="" value={formData.registrationState} onChange={(e) => setFormData({ ...formData, registrationState: e.target.value })}>
+              <option value="">Select State</option>
+              {states.map(state => <option value="state">{state}</option>)}
+            </select>
+            {/* <input
               value={formData.registrationState}
               onChange={(e) =>
                 setFormData({ ...formData, registrationState: e.target.value })
@@ -200,7 +247,7 @@ function FormA1({ formData, setFormData }) {
               type="text"
               name=""
               id=""
-            />
+            /> */}
           </label>
         </fieldset>
         <input
@@ -208,7 +255,7 @@ function FormA1({ formData, setFormData }) {
           onChange={(e) =>
             setFormData({ ...formData, pictureUrl: e.target.value })
           }
-          className="py-5"
+          className="py-5 lg:w-1/3"
           type="file"
           src=""
           alt=""
