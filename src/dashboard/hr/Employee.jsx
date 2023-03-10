@@ -37,21 +37,18 @@ const Employee = () => {
         e.preventDefault()
         console.log(data)
         console.log(data.contactInfo.country)
-        // endpoint.post(url, data).then(
-        //     res => {
-        //         console.log(res)
-        //     }
-        // ).then((err => {
-        //     console.log(err)
-        // }))
+        endpoint.post(url, data).then(
+            res => {
+                console.log(res)
+            }
+        ).then((err => {
+            console.log(err)
+        }))
     }
 
-    function findState(t) {
-        // gist.countries.find(t => t.country === data.contactInfo.country)
-        t.country = data.contactInfo.country
-        console.log(t)
-    }
-    // console.log(gist.countries)
+    const findState = gist.countries.find(t => t.country === data.contactInfo.country)
+
+
     return (
         <div>
             <FormTitle Title={'Employee Details'} />
@@ -77,20 +74,6 @@ const Employee = () => {
                     </label>
                 </fieldset>
                 <input className='lg:w-1/3 md:w-1/2' type="file" value={data.photoUrl} onChange={(e) => setData({ ...data, photoUrl: e.target.value })} name="" id="" />
-                {/* <fieldset className='grid md:grid-cols-2 gap-5'>
-                    <label htmlFor="clasifications">
-                        Classifications
-                        <select className='w-full select select-primary' onChange={(e) => setData({ ...data, })} name="classifications" id="classifications">
-                            <option value=""></option>
-                        </select>
-                    </label>
-                    <label htmlFor="enableAcess">
-                        Enable Acess
-                        <select className='w-full select select-primary' name="classifications" id="enableAcess">
-                            <option value=""></option>
-                        </select>
-                    </label>
-                </fieldset> */}
                 <h4 className='text-xl text-primary font-medium'>Contact Information</h4>
                 <fieldset className='grid md:grid-cols-2 gap-5'>
                     <label htmlFor="mobilePhone">
@@ -117,17 +100,13 @@ const Employee = () => {
                             <option value="">Select Country</option>
                             {gist.countries.map(item => <option key={item.country} value={item.country}>{item.country}</option>)}
                         </select>
-                        {/* <input className='w-full input input-primary' type="text" name="" id="country" /> */}
                     </label>
                     <label htmlFor="state">
                         State/Province/Region
                         <select className='select select-primary w-full' value={data.contactInfo.state} onChange={(e) => setData({ ...data, contactInfo: { ...data.contactInfo, state: e.target.value } })} name="" id="" >
                             <option value="">Select State</option>
-                            {/* {gist.countries.find(t => {t.country === data.contactInfo.country; console.log(t)}).states.map(state => <option value={state} key={state}>{state}</option>)} */}
-                            {/* {gist.countries.find(t => { t.country = data.contactInfo.country; console.log(t) })} */}
-                            {/* {gist.countries.find(t => findState())} */}
+                            {findState.states.map(state => <option value={state} key={state}>{state}</option>)}
                         </select>
-                        {/* <input className='w-full input input-primary'  type="text" name="" id="state" /> */}
                     </label>
                     <label htmlFor="city">
                         City
@@ -148,18 +127,6 @@ const Employee = () => {
                         Employee Number
                         <input className='w-full input input-primary' value={data.employmentNumber} onChange={(e) => setData({ ...data, employmentNumber: e.target.value })} type="text" name="" id="employeeNumber" />
                     </label>
-                    {/* <label htmlFor="licenseNumber">
-                        License Number
-                        <input className='w-full input input-primary' type="text" name="" id="licenseNumber" />
-                    </label>
-                    <label htmlFor="licenseClass">
-                        License Class
-                        <input className='w-full input input-primary' type="text" name="" id="licenseClass" />
-                    </label>
-                    <label htmlFor="licenseClass">
-                        License State/Province/Region
-                        <input className='w-full input input-primary' type="text" name="" id="licenseClass" />
-                    </label> */}
                 </fieldset>
                 <fieldset className='grid md:grid-cols-2 gap-5'>
                     <label htmlFor="startDate">
