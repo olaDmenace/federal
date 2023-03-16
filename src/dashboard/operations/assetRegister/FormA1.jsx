@@ -211,6 +211,14 @@ function FormA1({ formData, setFormData }) {
               id=""
             /> */}
           </label>
+          <label htmlFor="truck_type">
+            Truck Type
+            <select className="select select-primary w-full" name="" id="">
+              <option value="">Select Truck Type</option>
+              <option value="articulated">Articulated Truck</option>
+              <option value="rigid">Rigid Truck</option>
+            </select>
+          </label>
         </fieldset>
         <input
           value={formData.pictureUrl}
