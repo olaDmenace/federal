@@ -33,7 +33,7 @@ export const HEALTHSAFETY_ROUTES = [
 export const OPSUPPORT_ROUTES = [
   {
     label: "  Maintenance Expenses",
-    route: "dashboard/maintenanceExpenses",
+    route: "/dashboard/maintenanceExpenses",
   },
   {
     label: "  Inventory Request",
