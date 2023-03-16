@@ -68,6 +68,9 @@ function FormA4({ formData, setFormData }) {
                         Maintenance Vendor
                         <select value={formData.specification.maintenanceVendor} onChange={(e) => setFormData({ ...formData, specification: { ...formData.specification, maintenanceVendor: e.target.value } })} className='select select-primary w-full' name="" id="">
                             <option selected disabled value="">Select</option>
+                            <option value="C&K">C&K</option>
+                            <option value="IASL">IASL</option>
+                            <option value="Eadrack">Eadrack</option>
                         </select>
                     </label>
                 </fieldset>

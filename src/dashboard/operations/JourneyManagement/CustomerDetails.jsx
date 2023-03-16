@@ -33,7 +33,7 @@ function CustomerDetails({ formData, setFormData }) {
                             Primary Current Waybill Number<br />
                             <input value={formData.primaryWayBill.waybillNumber} onChange={(e) => { setFormData({ ...formData, primaryWayBill: { ...formData.primaryWayBill, waybillNumber: e.target.value } }) }} class='input input-primary w-full' type="text" name="" id="" />
                         </label><label>
-                            Upload Waybill
+                            Upload Primary Waybill
                             <input value={formData.primaryWayBill.documentUrl} onChange={(e) => { setFormData({ ...formData, primaryWayBill: { ...formData.primaryWayBill, documentUrl: e.target.value } }) }} className='pt-4' type='file'></input>
                         </label>
                     </div>
