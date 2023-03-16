@@ -105,7 +105,7 @@ const Employee = () => {
                         State/Province/Region
                         <select className='select select-primary w-full' value={data.contactInfo.state} onChange={(e) => setData({ ...data, contactInfo: { ...data.contactInfo, state: e.target.value } })} name="" id="" >
                             <option value="">Select State</option>
-                            {findState.states.map(state => <option value={state} key={state}>{state}</option>)}
+                            {/* {findState.states.map(state => <option value={state} key={state}>{state}</option>)} */}
                         </select>
                     </label>
                     <label htmlFor="city">
