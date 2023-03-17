@@ -103,7 +103,7 @@ function DashMenu() {
                 Title={"Operations"}
               />
               {operationOpen && (
-                <div className="absolute bg-white text-primary px-3 py-10 -top-1/4 left-3/4 w-60 space-y-3 rounded-r-lg border-r border z-20 border-primary">
+                <div className="absolute bg-white text-primary top-10 flex-col rounded-lg p-2 w-60 z-10 space-y-2  px-3 py-5 ">
                   {OPERATIONS_ROUTES.map((operation, index) => (
                     <NavLink
                       key={index}
@@ -128,7 +128,7 @@ function DashMenu() {
                 Title={"Health & Safety"}
               />
               {hsOpen && (
-                <div className="absolute bg-white text-primary px-3 py-10 -top-1/4 left-3/4 w-60 space-y-3 z-10 rounded-r-lg border-r border border-primary">
+                <div className="absolute bg-white text-primary top-10 flex-col rounded-lg p-2 w-60 z-10 space-y-2  px-3 py-5 ">
                   {HEALTHSAFETY_ROUTES.map((health, index) => (
                     <NavLink
                       key={index}
@@ -153,7 +153,7 @@ function DashMenu() {
                 Title={"Operations Support"}
               />
               {osOpen && (
-                <div className="absolute bg-white text-primary px-3 py-10 -top-1/4 left-3/4 w-60 space-y-3 rounded-r-lg border-r border z-20 border-primary">
+                <div className="absolute bg-white text-primary top-10 flex-col rounded-lg p-2 w-60 z-10 space-y-2  px-3 py-5 ">
                   {OPSUPPORT_ROUTES.map((op, index) => (
                     <NavLink
                       key={index}
@@ -179,7 +179,7 @@ function DashMenu() {
                   Title={"Human Capital"}
                 />
                 {hrOpen && (
-                  <div className="absolute bg-white text-primary px-3 py-10 -top-1/4 left-3/4 w-full space-y-5 rounded-r-lg border-r z-20 border border-primary">
+                  <div className="absolute bg-white text-primary top-10 flex-col rounded-lg p-2 w-full z-10 space-y-2  px-3 py-5 ">
                     {HUMANCAPITAL_ROUTES.map((hc, index) => (
                       <NavLink
                         key={index}
