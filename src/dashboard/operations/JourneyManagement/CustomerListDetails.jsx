@@ -10,11 +10,11 @@ function CustomerListDetails({ formData, setFormData }) {
       documentUrl: "",
       distanceTravelled: 0,
       customerId: "",
-      deliveryZone: "",
+      // deliveryZone: "",
       quantityLoaded: 0,
-      totalQuantityDelivered: 0,
-      estimatedProductShortage: 0,
-      customerShortageClaim: 0
+      quantityDelivered: 0,
+      // estimatedProductShortage: 0,
+      shortageClaim: 0
     }
     setFormData((prev) => {
       if (!Array.isArray(prev.secondaryWayBills)) {

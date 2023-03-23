@@ -72,7 +72,7 @@ function Journeymanagement() {
         setIsLoading(!isLoading)
         endpoint.post('/truck/journey-management', formData).then(res => {
             setShow(true)
-            console.log(res.response.status)
+            // console.log(res.response.status)
             // setIsLoading(!isLoading)
             setReply({
                 icon: <ThumbUpIcon className='mx-auto h-24 text-primary' />,
