@@ -41,7 +41,6 @@ function SecondaryWaybill({ index, formData, setFormData }) {
             console.log(err)
         })
     }, [])
-    console.log(formData)
 
     return (
         <form className='text-primary grid gap-5 w-1/2'>
@@ -69,7 +68,7 @@ function SecondaryWaybill({ index, formData, setFormData }) {
             <fieldset className='grid text-primary gap-5 w-full md:grid-cols-2 items-end'>
                 <label htmlFor="">
                     Delivery Zone
-                    <input className='input input-primary w-full' type='text' value={formData?.secondaryWayBills[index]?.deliveryZone} onChange={(e) => handleChange(e, index, "deliveryZone")} name='deliveryZone'></input>
+                    <input className='input input-primary w-full' type='text' name='deliveryZone'></input>
                 </label>
                 <label htmlFor="">
                     Quantity Loaded
@@ -77,15 +76,15 @@ function SecondaryWaybill({ index, formData, setFormData }) {
                 </label>
                 <label htmlFor="">
                     Quantity Delivered
-                    <input class='input input-primary w-full' value={formData?.secondaryWayBills[index]?.totalQuantityDelivered} onChange={(e) => handleChange(e, index, "totalQuantityDelivered")} placeholder='32980 Ltrs' type="text" name="totalQuantityDelivered" id="" />
+                    <input class='input input-primary w-full' value={formData?.secondaryWayBills[index]?.quantityDelivered} onChange={(e) => handleChange(e, index, "quantityDelivered")} placeholder='32980 Ltrs' type="text" name="totalQuantityDelivered" id="" />
                 </label>
                 <label htmlFor="">
                     Estimated Product Shortage
-                    <input class='input input-primary w-full' value={formData?.secondaryWayBills[index]?.estimatedProductShortage} onChange={(e) => handleChange(e, index, "estimatedProductShortage")} placeholder='20 Ltrs' type="text" name="estimatedProductShortage" id="" />
+                    <input class='input input-primary w-full' placeholder='20 Ltrs' type="text" name="estimatedProductShortage" id="" />
                 </label>
                 <label htmlFor="">
                     Customer Shortage Claim
-                    <input class='input input-primary w-full' value={formData?.secondaryWayBills[index]?.customerShortageClaim} onChange={(e) => handleChange(e, index, "customerShortageClaim")} placeholder='20 Ltrs' type="text" name="customerShortageClaim" id="" />
+                    <input class='input input-primary w-full' value={formData?.secondaryWayBills[index]?.shortageClaim} onChange={(e) => handleChange(e, index, "shortageClaim")} placeholder='20 Ltrs' type="text" name="customerShortageClaim" id="" />
                 </label>
                 <label htmlFor="">
                     Secondary Delivery Distance Travelled
@@ -96,10 +95,10 @@ function SecondaryWaybill({ index, formData, setFormData }) {
                 <h6 className='font-medium'>Transaction Status</h6>
                 <label htmlFor="">
                     Reviewed and Complete
-                    <select className='w-full select select-primary' value={formData?.secondaryWayBills[index]?.transactionStatus} name="transactionStatus" id="">
+                    <select className='w-full select select-primary' value={formData.status} onChange={(e) => setFormData({ ...formData, status: +e.target.value })} name="transactionStatus" id="">
                         <option value="">Select Status</option>
-                        <option value={0}>Close</option>
-                        <option value={1}>Open</option>
+                        <option value='0'>Close</option>
+                        <option value='1'>Open</option>
                     </select>
                 </label>
             </fieldset>

@@ -44,7 +44,7 @@ function CustomerDetails({ formData, setFormData }) {
                         </label>
                         <label htmlFor="">
                             Total Distance Travelled<br />
-                            <input value={formData.primaryWayBill.distanceTravelled} onChange={(e) => { setFormData({ ...formData, primaryWayBill: { ...formData.primaryWayBill, distanceTravelled: e.target.value } }) }} class='input input-primary w-full' placeholder='124KM' type="text" name="" id="" />
+                            <input value={formData.primaryWayBill.distanceTravelled} onChange={(e) => { setFormData({ ...formData, primaryWayBill: { ...formData.primaryWayBill, distanceTravelled: +e.target.value } }) }} class='input input-primary w-full' placeholder='124KM' type="text" name="" id="" />
                         </label>
                         <label htmlFor="">
                             ETA Delivery Location<br />
