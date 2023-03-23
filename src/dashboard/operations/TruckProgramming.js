@@ -48,8 +48,7 @@ function TruckProgramming({ formData, setFormData }) {
   }, [])
 
   useEffect(() => {
-    endpoint
-      .get("/truck")
+    endpoint.get("/truck")
       .then((res) => {
         console.log(res.data.data);
         setTrucks(res.data.data)
@@ -57,31 +56,36 @@ function TruckProgramming({ formData, setFormData }) {
       .catch((err) => {
         console.log(err);
       });
+  }, [])
 
-
+  useEffect(() => {
     endpoint.get('/variable/products').then(res => {
       console.log(res.data.data)
       setProducts(res.data.data)
     }).catch(err => {
       console.log(err)
     })
+  }, [])
 
-
+  useEffect(() => {
     endpoint.get('/variable/depots').then(res => {
       console.log(res.data.data)
       setDepots(res.data.data)
     }).catch(err => {
       console.log(err)
     })
+  }, [])
 
-
+  useEffect(() => {
     endpoint.get('/variable/customers').then(res => {
       console.log(res.data.data)
       setCustomers(res.data.data)
     }).catch(err => {
       console.log(err)
     })
+  }, [])
 
+  useEffect(() => {
     const data = {
       country: 'Nigeria'
     }
@@ -171,6 +175,13 @@ function TruckProgramming({ formData, setFormData }) {
                 <option value="" className="disabled">Select Truck</option>
                 {prog.map(item => <option value={item.truckProgrammingId} key={item.truckProgrammingId}>{item.truck.truckNumber}</option>)}
               </select>}
+          </label>
+          <label htmlFor="tripId">
+            Trip ID
+            <select className="select select-primary w-full" name="" id="tripID">
+              <option value="">Select Trip ID</option>
+              {prog.map(item => <option value={item.truckProgrammingId} key={item.truckProgrammingId}>{item.tripReference}</option>)}
+            </select>
           </label>
           <label htmlFor="">
             Truck Odometer

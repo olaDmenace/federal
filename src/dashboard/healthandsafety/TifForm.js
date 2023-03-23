@@ -310,6 +310,7 @@ const TifForm = () => {
     endpoint
       .get("/truck/programme")
       .then((res) => {
+        console.log(res)
         setTruckPro(res.data.data);
       })
       .catch((err) => {
@@ -334,7 +335,7 @@ const TifForm = () => {
       <FormTitle Title={"Pre Trip Inspection Form"} />
       <hr className="pb-5" />
 
-      <fieldset className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 items-end">
+      <fieldset className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 items-end text-primary">
         <label htmlFor="">
           Truck Numbers
           <select
@@ -358,7 +359,19 @@ const TifForm = () => {
             ))}
           </select>
         </label>
-
+        <label htmlFor="tripId">
+          Trip ID
+          <div className="border border-primary h-12 rounded-lg px-4 grid items-center">
+            {truckPro.filter((i) => i.truckProgrammingId === truckProgrammingId)
+              .map(item =>
+                <p>{item.tripReference}</p>
+              )}
+          </div>
+          {/* <input className="input input-primary w-full" type="text" name="" id="" /> */}
+          {/* <select name="" id="tripId">
+            <option value=""></option>
+          </select> */}
+        </label>
         <label htmlFor="">
           Product Type
           <br />
