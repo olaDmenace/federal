@@ -367,10 +367,6 @@ const TifForm = () => {
                 <p>{item.tripReference}</p>
               )}
           </div>
-          {/* <input className="input input-primary w-full" type="text" name="" id="" /> */}
-          {/* <select name="" id="tripId">
-            <option value=""></option>
-          </select> */}
         </label>
         <label htmlFor="">
           Product Type
