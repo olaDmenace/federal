@@ -1,7 +1,10 @@
+import { XCircleIcon } from '@heroicons/react/outline'
+import { ThumbUpIcon } from '@heroicons/react/solid'
 import React, { useState } from 'react'
 import endpoint from '../../../utils/endpoints/endpoint'
 import LoadingSpinner from '../../../utils/LoadingSpinner'
 import PageTitle from '../../../utils/PageTitle'
+import PopUp from '../../../utils/PopUp'
 import FormTitle from '../../FormTitle'
 import TruckProgramming from '../TruckProgramming'
 import CustomerDetails from './CustomerDetails'
@@ -58,20 +61,50 @@ function Journeymanagement() {
     }
 
     const [isLoading, setIsLoading] = useState(false)
+    const [show, setShow] = useState(false)
+    const [reply, setReply] = useState({
+        icon: '',
+        message: ''
+    })
 
     const handleSubmit = () => {
         console.log(formData)
         setIsLoading(!isLoading)
         endpoint.post('/truck/journey-management', formData).then(res => {
-            console.log(res)
+            setShow(true)
+            console.log(res.response.status)
+            // setIsLoading(!isLoading)
+            setReply({
+                icon: <ThumbUpIcon className='mx-auto h-24 text-primary' />,
+                message: res.data.message
+            })
+            // if (res.response.status === 200) {
+            // }
+            // console.log(res)
         }).catch(err => {
             console.log(err)
+            setShow(true)
+            setReply({
+                icon: <XCircleIcon className='mx-auto h-24 text-red-500' />,
+                message: 'Please, check your form and try again'
+            })
+            // setIsLoading(!isLoading)
         })
+    }
+
+    function closePop(e) {
+        setShow(false)
+        setIsLoading(!isLoading)
     }
 
 
     return (
         <div className='space-y-2 grid'>
+            {show && <PopUp>
+                {reply.icon}
+                <p className='mx-auto text-center text-primary bg-transparent'>{reply.message}</p>
+                <button className='btn btn-primary' onClick={(e) => closePop()}>Confirm</button>
+            </PopUp>}
             <FormTitle Title={'Journey Management'} />
             <hr />
             <ul className='steps'>

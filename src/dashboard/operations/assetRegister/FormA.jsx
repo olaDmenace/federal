@@ -182,7 +182,7 @@ function FormA() {
             res => {
                 setShow(true)
                 console.log(res)
-                if (res.status === 200) {
+                if (res.response.status === 200) {
                     setShow(!show)
                     setReply({
                         icon: <ThumbUpIcon className='mx-auto h-24 text-primary' />,
