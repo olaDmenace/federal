@@ -41,7 +41,6 @@ function SecondaryWaybill({ index, formData, setFormData }) {
             console.log(err)
         })
     }, [])
-    console.log(formData)
 
     return (
         <form className='text-primary grid gap-5 w-1/2'>
@@ -96,7 +95,7 @@ function SecondaryWaybill({ index, formData, setFormData }) {
                 <h6 className='font-medium'>Transaction Status</h6>
                 <label htmlFor="">
                     Reviewed and Complete
-                    <select className='w-full select select-primary' value={formData?.secondaryWayBills[index]?.transactionStatus} name="transactionStatus" id="">
+                    <select className='w-full select select-primary' value={formData.status} onChange={(e) => setFormData({ ...formData, status: e.target.value })} name="transactionStatus" id="">
                         <option value="">Select Status</option>
                         <option value={0}>Close</option>
                         <option value={1}>Open</option>

@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import endpoint from '../../../utils/endpoints/endpoint'
+import LoadingSpinner from '../../../utils/LoadingSpinner'
 import PageTitle from '../../../utils/PageTitle'
 import FormTitle from '../../FormTitle'
 import TruckProgramming from '../TruckProgramming'
@@ -6,6 +8,7 @@ import CustomerDetails from './CustomerDetails'
 import CustomerListDetails from './CustomerListDetails'
 import ProductDetails from './ProductDetails'
 import ReportedShortage from './ReportedShortage'
+
 // import TripDetails from './TripDetails'
 
 
@@ -15,14 +18,14 @@ function Journeymanagement() {
 
     const [formData, setFormData] = useState({
         truckProgrammingId: "",
-        quantityLoaded: 0,
-        totalQuantityDelivered: 0,
-        estimatedProductShortage: 0,
-        customerShortageClaim: 0,
+        // estimatedProductShortage: 0,
         primaryWayBill: {
             waybillNumber: "",
             documentUrl: "",
-            distanceTravelled: 0
+            distanceTravelled: 0,
+            quantityDelivered: 0,
+            quantityLoaded: 0,
+            shortageClaim: 0,
         },
         secondaryWayBills: [
             {
@@ -30,14 +33,14 @@ function Journeymanagement() {
                 documentUrl: "",
                 distanceTravelled: 0,
                 customerId: "",
-                deliveryZone: "",
+                // deliveryZone: "",
                 quantityLoaded: 0,
-                totalQuantityDelivered: 0,
-                estimatedProductShortage: 0,
-                customerShortageClaim: 0
+                quantityDelivered: 0,
+                // estimatedProductShortage: 0,
+                shortageClaim: 0
             }
         ],
-        transactionStatus: 0
+        status: 0
     })
 
     const activeForm = () => {
@@ -54,9 +57,18 @@ function Journeymanagement() {
         }
     }
 
+    const [isLoading, setIsLoading] = useState(false)
+
     const handleSubmit = () => {
         console.log(formData)
+        setIsLoading(!isLoading)
+        endpoint.post('/truck/journey-management', formData).then(res => {
+            console.log(res)
+        }).catch(err => {
+            console.log(err)
+        })
     }
+
 
     return (
         <div className='space-y-2 grid'>
@@ -74,12 +86,13 @@ function Journeymanagement() {
                     {activeForm()}
                 </div>
             </div>
-            <div class='btn-group mx-auto pt-5'>
+            {!isLoading && <div class='btn-group mx-auto pt-5'>
                 <button disabled={form === 0} onClick={() => { setForm((currForm) => currForm - 1) }} className={form === 0 ? 'btn btn-disabled' : 'btn btn-active'}>Prev</button>
                 <button class='btn btn-active' onClick={() => { form !== 4 ? setForm((currForm) => currForm + 1) : handleSubmit() }}>
                     {form === 4 ? 'Submit' : 'Next'}
                 </button>
-            </div>
+            </div>}
+            {isLoading && <LoadingSpinner />}
         </div>
     )
 }

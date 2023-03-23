@@ -199,7 +199,7 @@ function FormA() {
                 }
             }
         ).then((err) => {
-            // console.log(err)
+            console.log(err)
         })
     }
 
