@@ -24,7 +24,7 @@ const Employee = () => {
             country: ""
         },
         startDate: "",
-        endDate: "",
+        endDate: "2023-03-24T09:58:01.886Z",
         dateOfBirth: "",
         employmentNumber: "",
         roleId: "",
