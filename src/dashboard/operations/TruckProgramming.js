@@ -111,20 +111,18 @@ function TruckProgramming({ formData, setFormData }) {
     setIsLoading(true)
     endpoint.post('/truck/programme', data).then(res => {
       console.log(res)
-      if (res.status === 200) {
-        setShow(true)
-        setReply({
-          icon: <ThumbUpIcon className='mx-auto h-24 text-primary' />,
-          message: res.data.message
-        })
-      } else {
-        setReply({
-          icon: <XCircleIcon className='mx-auto h-24 text-red-500' />,
-          message: res.data.message
-        })
-      }
-      setIsLoading(!isLoading)
+      setShow(true)
+      setReply({
+        icon: <ThumbUpIcon className='mx-auto h-24 text-primary' />,
+        message: `${res.data.message} with Tripp ID ${res.data.data}`
+      })
+      // setIsLoading(!isLoading)
     }).catch(err => {
+      setShow(true)
+      setReply({
+        icon: <XCircleIcon className='mx-auto h-24 text-red-500' />,
+        message: err.response.data.message || err.response.data.title
+      })
       console.log(err)
     })
   };
@@ -176,13 +174,16 @@ function TruckProgramming({ formData, setFormData }) {
                 {prog.map(item => <option value={item.truckProgrammingId} key={item.truckProgrammingId}>{item.truck.truckNumber}</option>)}
               </select>}
           </label>
-          <label htmlFor="tripId">
+          {location.pathname !== '/dashboard/TruckProgramming' ? <label htmlFor="tripId">
             Trip ID
-            <select className="select select-primary w-full" name="" id="tripID">
+            <div className="border border-primary w-full h-12 px-4 rounded-lg grid items-center">
+              {prog.filter((i) => i.truckProgrammingId === formData.truckProgrammingId).map(item => <p>{item.tripReference}</p>)}
+            </div>
+            {/* <select className="select select-primary w-full" name="" id="tripID">
               <option value="">Select Trip ID</option>
               {prog.map(item => <option value={item.truckProgrammingId} key={item.truckProgrammingId}>{item.tripReference}</option>)}
-            </select>
-          </label>
+            </select> */}
+          </label> : ''}
           <label htmlFor="">
             Truck Odometer
             <br />
@@ -377,7 +378,7 @@ function TruckProgramming({ formData, setFormData }) {
                 setData({ ...data, returningLocationId: e.target.value })
               }
             >
-              <option selected disabled>
+              <option selected>
                 Select Returning Destination
               </option>
               {depots.map(depot => <option key={depot.depotId} value={depot.depotId}>{depot.depotName}</option>)}
