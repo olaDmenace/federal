@@ -336,9 +336,22 @@ const TifForm = () => {
       <hr className="pb-5" />
 
       <fieldset className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 items-end text-primary">
+        <label htmlFor="tripId">
+          Trip ID
+          <select value={truckProgrammingId} onChange={(e) => { setTruckProgrammingId(e.target.value); }} className="select select-primary w-full" name="" id="tripID">
+            <option value="">Select Trip</option>
+            {truckPro.map(item => <option value={item.truckProgrammingId}>{item.tripReference}</option>)}
+          </select>
+        </label>
         <label htmlFor="">
-          Truck Numbers
-          <select
+          Truck Number
+          <div className="border border-primary h-12 rounded-lg px-4 grid items-center">
+            {truckPro.filter((i) => i.truckProgrammingId === truckProgrammingId)
+              .map(item =>
+                <p>{item.truck.truckNumber}</p>
+              )}
+          </div>
+          {/* <select
             type="text"
             className="w-full disabled: select select-primary"
             name=""
@@ -357,16 +370,7 @@ const TifForm = () => {
                 {item.truck.truckNumber}
               </option>
             ))}
-          </select>
-        </label>
-        <label htmlFor="tripId">
-          Trip ID
-          <div className="border border-primary h-12 rounded-lg px-4 grid items-center">
-            {truckPro.filter((i) => i.truckProgrammingId === truckProgrammingId)
-              .map(item =>
-                <p>{item.tripReference}</p>
-              )}
-          </div>
+          </select> */}
         </label>
         <label htmlFor="">
           Product Type

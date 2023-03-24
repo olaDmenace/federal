@@ -156,6 +156,20 @@ function TruckProgramming({ formData, setFormData }) {
       </div> : ''}
       <form action="" onSubmit={handleSubmit} className="grid text-primary gap-5 w-full">
         <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3 items-end">
+          {location.pathname !== '/dashboard/TruckProgramming' ? <label htmlFor="tripId">
+            Trip ID
+            {/* <div className="border border-primary w-full h-12 px-4 rounded-lg grid items-center">
+              {prog.filter((i) => i.truckProgrammingId === formData.truckProgrammingId).map(item => <p>{item.tripReference}</p>)}
+            </div> */}
+            <select className="select select-primary w-full" value={formData.truckProgrammingId} onChange={(e) => setFormData({ ...formData, truckProgrammingId: e.target.value })} name="" id="tripId">
+              <option value={''}>Select Trip ID</option>
+              {prog.map(item => <option value={item.truckProgrammingId} key={item.truckProgrammingId}>{item.tripReference}</option>)}
+            </select>
+            {/* <select className="select select-primary w-full" name="" id="tripID">
+              <option value="">Select Trip ID</option>
+              {prog.map(item => <option value={item.truckProgrammingId} key={item.truckProgrammingId}>{item.tripReference}</option>)}
+            </select> */}
+          </label> : ''}
           <label htmlFor="">
             Truck Number
             <br />
@@ -169,21 +183,11 @@ function TruckProgramming({ formData, setFormData }) {
               <option value="">Select Reason</option>
               {trucks.map(item => <option value={item.truckId} key={item.truckId}>{item.truckNumber}</option>)}
             </select> :
-              <select value={formData.truckProgrammingId} onChange={(e) => setFormData({ ...formData, truckProgrammingId: e.target.value })} className="select select-primary w-full">
-                <option value="" className="disabled">Select Truck</option>
-                {prog.map(item => <option value={item.truckProgrammingId} key={item.truckProgrammingId}>{item.truck.truckNumber}</option>)}
-              </select>}
+              <div className="border border-primary w-full h-12 px-4 rounded-lg grid items-center">
+                {prog.filter((i) => i.truckProgrammingId === formData.truckProgrammingId).map(item => <p>{item.truck.truckNumber}</p>)}
+              </div>
+            }
           </label>
-          {location.pathname !== '/dashboard/TruckProgramming' ? <label htmlFor="tripId">
-            Trip ID
-            <div className="border border-primary w-full h-12 px-4 rounded-lg grid items-center">
-              {prog.filter((i) => i.truckProgrammingId === formData.truckProgrammingId).map(item => <p>{item.tripReference}</p>)}
-            </div>
-            {/* <select className="select select-primary w-full" name="" id="tripID">
-              <option value="">Select Trip ID</option>
-              {prog.map(item => <option value={item.truckProgrammingId} key={item.truckProgrammingId}>{item.tripReference}</option>)}
-            </select> */}
-          </label> : ''}
           <label htmlFor="">
             Truck Odometer
             <br />
@@ -217,6 +221,18 @@ function TruckProgramming({ formData, setFormData }) {
                 prog.filter((t) => t.truckProgrammingId === formData.truckProgrammingId).map(item => <p key={item.truck.truckNumber} className="px-4">{item.truck.truckCapacity}</p>)
               }
             </div>
+          </label>
+          <label htmlFor="">
+            Truck Loading Status
+            <input className="w-full input input-primary" type="text" name="" id="" />
+            {/* <select name="" id="">
+              <option value="">Select Truck Status</option>
+              <option value=""></option>
+            </select> */}
+          </label>
+          <label htmlFor="">
+            Truck Loading Time
+            <input className="w-full input input-primary" type="date" name="" id="" />
           </label>
           <label htmlFor="">
             Volume Unit
