@@ -26,7 +26,7 @@ function TruckProgramming({ formData, setFormData }) {
     finalDestination: "",
     destinationState: "",
     productId: "",
-    bridgingDepotId: "",
+    bridgingDepotId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
     numberOfCustomers: 0
   });
 
