@@ -1,6 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
+import CustomerWayBills from "./CustomerWayBills.jsx";
 
-const ProgrammingDetails = () => {
+const ProgrammingDetails = ({ trucks, formData, setFormData }) => {
+  const handlewayBillIdChange = (e) => {
+    const value = e.target.value;
+    setFormData({
+      ...formData,
+      resolutions: [
+        {
+          ...formData.resolutions[0],
+          wayBillId: value,
+        },
+      ],
+    });
+  };
   return (
     <div>
       <form className="grid gap-5 text-primary my-5">
@@ -10,93 +23,147 @@ const ProgrammingDetails = () => {
         <fieldset className="grid gap-3 md:grid-cols-2 lg:grid-cols-3 items-end">
           <label htmlFor="">
             Trip ID
-            <input
-              class="input input-primary w-full"
-              placeholder="PMS"
+            <select
               type="text"
+              className="w-full disabled: select select-primary"
               name=""
               id=""
-            />
+              value={formData.journeyManagementId}
+              onChange={handlewayBillIdChange}
+            >
+              <option value="">Select Truck Number</option>
+              {trucks.map((item) =>
+                item.wayBills.map((bills) => (
+                  <option value={bills.wayBillId} key={item.wayBillId}>
+                    {bills.wayBillNumber}
+                  </option>
+                ))
+              )}
+            </select>
           </label>
           <label htmlFor="">
             Truck Number
-            <input
-              class="input input-primary w-full"
-              placeholder="33,000 LTRS"
+            <select
               type="text"
+              className="w-full disabled: select select-primary"
               name=""
               id=""
-            />
+              value={formData.journeyManagementId}
+              onChange={(e) => {
+                setFormData({
+                  ...formData,
+                  journeyManagementId: e.target.value,
+                });
+              }}
+            >
+              <option value="">Select Truck Number</option>
+              {trucks.map((item) => (
+                <option
+                  value={item.journeyManagementId}
+                  key={item.journeyManagementId}
+                >
+                  {item.truckProgramming.truck.truckNumber}
+                </option>
+              ))}
+            </select>
           </label>
           <label htmlFor="">
             Truck Capacity
-            <input
-              class="input input-primary w-full"
-              placeholder="33,000 LTRS"
-              type="text"
-              name=""
-              id=""
-            />
+            <div className="border border-primary h-12 rounded-lg grid items-center px-4">
+              {trucks
+                .filter(
+                  (i) => i.journeyManagementId === formData.journeyManagementId
+                )
+                .map((item) => (
+                  <p key={item.truckProgramming.truck.truckId}>
+                    {item.truckProgramming.truck.truckCapacity}
+                  </p>
+                ))}
+            </div>
           </label>
           <label htmlFor="">
             Brand
-            <input
-              class="input input-primary w-full"
-              placeholder=""
-              type="text"
-              name=""
-              id=""
-            />
+            <div className="border border-primary h-12 rounded-lg grid items-center px-4">
+              {trucks
+                .filter(
+                  (i) => i.journeyManagementId === formData.journeyManagementId
+                )
+                .map((item) => (
+                  <p key={item.truckProgramming.truck.truckId}>
+                    {item.truckProgramming.truck.brand.model}
+                  </p>
+                ))}
+            </div>
           </label>
           <label htmlFor="">
             Loading Location
-            <input
-              class="input input-primary w-full"
-              placeholder=""
-              type="text"
-              name=""
-              id=""
-            />
+            <div className="border border-primary h-12 rounded-lg grid items-center px-4">
+              {trucks
+                .filter(
+                  (i) => i.journeyManagementId === formData.journeyManagementId
+                )
+                .map((item) => (
+                  <p key={item.truckProgramming.loadingDepotId}>
+                    {item.truckProgramming.loadingDepot}
+                  </p>
+                ))}
+            </div>
           </label>
           <label htmlFor="">
             Returning Destination
-            <input
-              class="input input-primary w-full"
-              placeholder=""
-              type="text"
-              name=""
-              id=""
-            />
+            <div className="border border-primary h-12 rounded-lg grid items-center px-4">
+              {trucks
+                .filter(
+                  (i) => i.journeyManagementId === formData.journeyManagementId
+                )
+                .map((item) => (
+                  <p key={item.truckProgramming.returningDepotId}>
+                    {item.truckProgramming.returningDepot}
+                  </p>
+                ))}
+            </div>
           </label>
           <label htmlFor="">
             Journey Officer
-            <input
-              class="input input-primary w-full"
-              placeholder=""
-              type="text"
-              name=""
-              id=""
-            />
+            <div className="border border-primary h-12 rounded-lg grid items-center px-4">
+              {trucks
+                .filter(
+                  (i) => i.journeyManagementId === formData.journeyManagementId
+                )
+                .map((item) => (
+                  <p key={item.truckProgramming.truck.journeyOfficerId}>
+                    {item.truckProgramming.truck.journeyOfficer}
+                  </p>
+                ))}
+            </div>
           </label>
           <label htmlFor="">
             Logistics Cordinator
-            <input
-              class="input input-primary w-full"
-              placeholder=""
-              type="text"
-              name=""
-              id=""
-            />
+            <div className="border border-primary h-12 rounded-lg grid items-center px-4">
+              {trucks
+                .filter(
+                  (i) => i.journeyManagementId === formData.journeyManagementId
+                )
+                .map((item) => (
+                  <p key={item.truckProgramming.truck.logisticsCoordinatorId}>
+                    {item.truckProgramming.truck.logisticsCoordinator}
+                  </p>
+                ))}
+            </div>
           </label>
           <label htmlFor="">
             Delivery Officer
-            <input
-              class="input input-primary w-full"
-              placeholder=""
-              type="text"
-              name=""
-              id=""
-            />
+            <div className="border border-primary h-12 rounded-lg grid items-center px-4">
+              {trucks
+                .filter(
+                  (i) => i.journeyManagementId === formData.journeyManagementId
+                )
+                .map((item) => (
+                  <p key={item.truckProgramming.truck.deliveryOfficerId}>
+                    {item.truckProgramming.truck.deliveryOfficer}
+                  </p>
+                ))}
+            </div>
           </label>
         </fieldset>
         <h4 className="text-xl text-primary font-medium">
@@ -106,88 +173,41 @@ const ProgrammingDetails = () => {
         <fieldset className="grid gap-3 md:grid-cols-2 lg:grid-cols-3 items-end">
           <label htmlFor="">
             Customer Type
-            <input
-              class="input input-primary w-full"
-              placeholder="PMS"
-              type="text"
-              name=""
-              id=""
-            />
+            <div className="border border-primary h-12 rounded-lg grid items-center px-4">
+              {trucks
+                .filter(
+                  (i) => i.journeyManagementId === formData.journeyManagementId
+                )
+                .map((item) => (
+                  <p key={item.truckProgramming.customer.type}>
+                    {item.truckProgramming.customer.customerType}
+                  </p>
+                ))}
+            </div>
           </label>
           <label htmlFor="">
             Primary Customer Name
-            <input
-              class="input input-primary w-full"
-              placeholder="33,000 LTRS"
-              type="text"
-              name=""
-              id=""
-            />
+            <div className="border border-primary h-12 rounded-lg grid items-center px-4">
+              {trucks
+                .filter(
+                  (i) => i.journeyManagementId === formData.journeyManagementId
+                )
+                .map((item) => (
+                  <p key={item.truckProgramming.customer.customerId}>
+                    {item.truckProgramming.customer.customerName}
+                  </p>
+                ))}
+            </div>
           </label>
         </fieldset>
-        <h4 className="text-xl text-primary font-medium">Customer 1</h4>
-        <fieldset className="grid gap-3 md:grid-cols-2 lg:grid-cols-3 items-end">
-          <label htmlFor="">
-            Secondary Customer Name
-            <input
-              class="input input-primary w-full"
-              placeholder="PMS"
-              type="text"
-              name=""
-              id=""
-            />
-          </label>
-          <label htmlFor="">
-            Secondary Customer Address
-            <input
-              class="input input-primary w-full"
-              placeholder="33,000 LTRS"
-              type="text"
-              name=""
-              id=""
-            />
-          </label>
-          <label htmlFor="">
-            Quantity Loaded
-            <input
-              class="input input-primary w-full"
-              placeholder="33,000 LTRS"
-              type="text"
-              name=""
-              id=""
-            />
-          </label>
-          <label htmlFor="">
-            Quantity Delivered
-            <input
-              class="input input-primary w-full"
-              placeholder=""
-              type="text"
-              name=""
-              id=""
-            />
-          </label>
-          <label htmlFor="">
-            Estimated Product Shortage
-            <input
-              class="input input-primary w-full"
-              placeholder=""
-              type="text"
-              name=""
-              id=""
-            />
-          </label>
-          <label htmlFor="">
-            Customer Shortage Claim
-            <input
-              class="input input-primary w-full"
-              placeholder=""
-              type="text"
-              name=""
-              id=""
-            />
-          </label>
-        </fieldset>
+        {trucks.filter(
+          (i) => i.journeyManagementId === formData.journeyManagementId
+        ) && (
+          <CustomerWayBills
+            trucks={trucks}
+            journeyManagementId={formData.journeyManagementId}
+          />
+        )}
       </form>
     </div>
   );

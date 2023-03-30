@@ -28,6 +28,7 @@ import Utilities from "./dashboard/operation support/Utilities/Utilities";
 import WaybillsManagement from "./dashboard/operations/waybills/WaybillsManagement";
 import TruckAssignment from "./dashboard/operations/truckAssignment/TruckAssignment";
 import Employee from "./dashboard/hr/Employee";
+import EmployeeLists from "./dashboard/EmployeeDetails/employeeLists";
 
 /* ***IMPORTANT NOTICE***
     This project is a React JS project buitl with Daisy UI Tailwind CSS UI component.
@@ -81,6 +82,7 @@ function App() {
             <Route path="utilities" element={<Utilities />} />
             <Route path="waybills" element={<WaybillsManagement />} />
             <Route path={"TruckAssignment"} element={<TruckAssignment />} />
+            <Route path={"EmployeeList"} element={<EmployeeLists />} />
           </Route>
         </Routes>
       </BrowserRouter>
