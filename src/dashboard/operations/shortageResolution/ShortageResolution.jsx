@@ -43,8 +43,24 @@ function ShortageResolution() {
               loadingDepot: 0,
               arrivalLocation: 0,
             },
+            {
+              loadingDepot: 0,
+              arrivalLocation: 0,
+            },
+            {
+              loadingDepot: 0,
+              arrivalLocation: 0,
+            },
           ],
           liquidHeight: [
+            {
+              loadingDepot: 0,
+              arrivalLocation: 0,
+            },
+            {
+              loadingDepot: 0,
+              arrivalLocation: 0,
+            },
             {
               loadingDepot: 0,
               arrivalLocation: 0,
@@ -95,9 +111,8 @@ function ShortageResolution() {
     icon: "",
     message: "",
   });
-
+  console.log(formData, "formdata");
   const handleSubmit = () => {
-    console.log(formData);
     setIsLoading(!isLoading);
     endpoint
       .put("/truck/journey-management/shortages", formData)
@@ -118,7 +133,7 @@ function ShortageResolution() {
         setShow(true);
         setReply({
           icon: <XCircleIcon className="mx-auto h-24 text-red-500" />,
-          message: "Please, check your form and try again",
+          message: err.response.data.message,
         });
         // setIsLoading(!isLoading)
       });

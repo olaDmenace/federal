@@ -29,26 +29,6 @@ const ProgrammingDetails = ({ trucks, formData, setFormData }) => {
               name=""
               id=""
               value={formData.journeyManagementId}
-              onChange={handlewayBillIdChange}
-            >
-              <option value="">Select Truck Number</option>
-              {trucks.map((item) =>
-                item.wayBills.map((bills) => (
-                  <option value={bills.wayBillId} key={item.wayBillId}>
-                    {bills.wayBillNumber}
-                  </option>
-                ))
-              )}
-            </select>
-          </label>
-          <label htmlFor="">
-            Truck Number
-            <select
-              type="text"
-              className="w-full disabled: select select-primary"
-              name=""
-              id=""
-              value={formData.journeyManagementId}
               onChange={(e) => {
                 setFormData({
                   ...formData,
@@ -56,16 +36,30 @@ const ProgrammingDetails = ({ trucks, formData, setFormData }) => {
                 });
               }}
             >
-              <option value="">Select Truck Number</option>
+              <option value="">Select Trip Id</option>
               {trucks.map((item) => (
                 <option
                   value={item.journeyManagementId}
                   key={item.journeyManagementId}
                 >
-                  {item.truckProgramming.truck.truckNumber}
+                  {item.truckProgramming.tripReference}
                 </option>
               ))}
             </select>
+          </label>
+          <label htmlFor="">
+            Truck Number
+            <div className="border border-primary h-12 rounded-lg grid items-center px-4">
+              {trucks
+                .filter(
+                  (i) => i.journeyManagementId === formData.journeyManagementId
+                )
+                .map((item) => (
+                  <p key={item.truckProgramming.truck.truckId}>
+                    {item.truckProgramming.truck.truckNumber}
+                  </p>
+                ))}
+            </div>
           </label>
           <label htmlFor="">
             Truck Capacity
