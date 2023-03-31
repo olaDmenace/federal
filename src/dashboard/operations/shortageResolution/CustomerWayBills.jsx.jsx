@@ -24,7 +24,7 @@ const CustomerWayBills = ({ trucks, journeyManagementId }) => {
                     Secondary Customer Address
                     <input
                       class="input input-primary w-full"
-                      placeholder="33,000 LTRS"
+                      placeholder=""
                       type="text"
                       name=""
                       id=""
@@ -44,13 +44,9 @@ const CustomerWayBills = ({ trucks, journeyManagementId }) => {
                   </label>
                   <label htmlFor="">
                     Estimated Product Shortage
-                    <input
-                      class="input input-primary w-full"
-                      placeholder=""
-                      type="text"
-                      name=""
-                      id=""
-                    />
+                    <div className="border border-primary h-12 rounded-lg grid items-center px-4">
+                      <p>{items.quantityLoaded - items.quantityDelivered}</p>
+                    </div>
                   </label>
                   <label htmlFor="">
                     Customer Shortage Claim

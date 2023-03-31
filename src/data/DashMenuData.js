@@ -23,10 +23,6 @@ export const OPERATIONS_ROUTES = [
     label: " Truck Assignment",
     route: "/dashboard/TruckAssignment",
   },
-  {
-    label: " Employee Lists",
-    route: "/dashboard/EmployeeList",
-  },
 ];
 export const HEALTHSAFETY_ROUTES = [
   {
@@ -77,5 +73,9 @@ export const HUMANCAPITAL_ROUTES = [
   {
     label: "    Employee Details",
     route: "/dashboard/Employee",
+  },
+  {
+    label: " Employee Lists",
+    route: "/dashboard/EmployeeList",
   },
 ];

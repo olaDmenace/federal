@@ -63,14 +63,17 @@ function ProductDetails({ trucks, formData, setFormData }) {
           <label htmlFor="">
             Product Loaded
             <br />
-            <select className="select select-primary w-full" name="" id="">
-              <option value="">Select Product</option>
-              {trucks.map((item, index) => (
-                <option value="" key={index}>
-                  {item.truckProgramming.product.productType}
-                </option>
-              ))}
-            </select>
+            <div className="border border-primary h-12 rounded-lg grid items-center px-4">
+              {trucks
+                .filter(
+                  (i) => i.journeyManagementId === formData.journeyManagementId
+                )
+                .map((item) => (
+                  <p key={item.truckProgramming.product.productId}>
+                    {item.truckProgramming.product.productType}
+                  </p>
+                ))}
+            </div>
           </label>
 
           <label htmlFor="">
@@ -87,7 +90,7 @@ function ProductDetails({ trucks, formData, setFormData }) {
             Quantity Delivered
             <input
               class="input input-primary w-full"
-              placeholder="33,000 LTRS"
+              placeholder=""
               type="text"
               name=""
               id=""
@@ -148,7 +151,7 @@ function ProductDetails({ trucks, formData, setFormData }) {
                   resolutions: [
                     {
                       ...formData.resolutions[0],
-                      agreedShortage: parseInt(e.target.value),
+                      agreedShortage: +e.target.value,
                     },
                   ],
                 })
@@ -167,7 +170,7 @@ function ProductDetails({ trucks, formData, setFormData }) {
               onChange={(e) =>
                 setFormData({
                   ...formData,
-                  productPrice: parseInt(e.target.value),
+                  productPrice: +e.target.value,
                 })
               }
             />
@@ -281,6 +284,7 @@ function ProductDetails({ trucks, formData, setFormData }) {
             />
           </label>
         </fieldset>
+        {calibrationType()}
         <label htmlFor="">
           Remarks
           <textarea
@@ -303,6 +307,7 @@ function ProductDetails({ trucks, formData, setFormData }) {
             rows="5"
           ></textarea>
         </label>
+
         <fieldset className="grid gap-3 md:grid-cols-2 items-end">
           <label htmlFor="">
             Resolution Status
@@ -354,7 +359,6 @@ function ProductDetails({ trucks, formData, setFormData }) {
           </label>
         </fieldset>
       </form>
-      {calibrationType()}
     </div>
   );
 }
