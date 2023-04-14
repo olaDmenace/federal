@@ -343,7 +343,7 @@ const Employee = () => {
               name=""
               id="jobTitle"
             >
-              <option disabled>Select Job Title</option>
+              <option>Select Job Title</option>
               {role.map((items) => (
                 <option value={items.roleId}>{items.roleName}</option>
               ))}
