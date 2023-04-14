@@ -77,14 +77,14 @@ function DashMenu() {
 
   return (
     <div>
-      <div className="h-screen w-full bg-primary relative grid py-10 gap-10 z-0">
+      <div className="h-screen w-full bg-primary relative grid py-10 z-0">
         <img
           className="mix-blend-overlay h-screen w-full absolute"
           src={Dash}
           alt=""
         />
         <img className="w-1/2 mx-auto" src={Logo} alt="" />
-        <div className="space-y-16 pl-12">
+        <div className="space-y-10 pl-12">
           <div className="relative grid gap-5 w-4/5">
             <NavLink
               to={"/welcome"}
