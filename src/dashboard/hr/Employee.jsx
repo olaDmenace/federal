@@ -121,7 +121,7 @@ const Employee = () => {
         <h4 className="text-xl text-primary font-medium">Customer Details</h4>
         <fieldset className="grid md:grid-cols-2 gap-5">
           <label htmlFor="firstname">
-            First Name
+            First Name<span className="text-red-700">*</span>
             <input
               className="w-full input input-primary"
               value={data.firstName}
@@ -145,7 +145,7 @@ const Employee = () => {
             />
           </label>
           <label htmlFor="lastName">
-            Last Name
+            Last Name<span className="text-red-700">*</span>
             <input
               className="w-full input input-primary"
               value={data.lastName}
@@ -157,7 +157,7 @@ const Employee = () => {
             />
           </label>
           <label htmlFor="email">
-            Email
+            Email<span className="text-red-700">*</span>
             <input
               className="w-full input input-primary"
               value={data.email}
@@ -195,7 +195,7 @@ const Employee = () => {
         </h4>
         <fieldset className="grid md:grid-cols-2 gap-5">
           <label htmlFor="mobilePhone">
-            Mobile Phone Number
+            Mobile Phone Number<span className="text-red-700">*</span>
             <input
               className="w-full input input-primary"
               value={data.contactInfo.mobile}
@@ -335,7 +335,7 @@ const Employee = () => {
         <h4 className="text-xl text-primary font-medium">Personal Details</h4>
         <fieldset className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           <label htmlFor="jobTitle">
-            Job Title
+            Job Title<span className="text-red-700">*</span>
             <select
               className="w-full select select-primary"
               onChange={(e) => setData({ ...data, roleId: e.target.value })}
@@ -350,7 +350,7 @@ const Employee = () => {
             </select>
           </label>
           <label htmlFor="dob">
-            Date of Birth
+            Date of Birth<span className="text-red-700">*</span>
             <input
               className="w-full input input-primary"
               value={data.dateOfBirth}
@@ -379,7 +379,7 @@ const Employee = () => {
         </fieldset>
         <fieldset className="grid md:grid-cols-2 gap-5">
           <label htmlFor="startDate">
-            Start Date
+            Start Date<span className="text-red-700">*</span>
             <input
               className="w-full input input-primary"
               value={data.startDate}
