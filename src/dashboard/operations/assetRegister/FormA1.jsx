@@ -58,6 +58,8 @@ function FormA1({ formData, setFormData }) {
       });
   }, []);
 
+  const [truckType, setTruckType] = useState('')
+
   return (
     <div className="py-5 text-primary space-y-3">
       <h4 className="text-lg font-semibold">Form A - Tractor</h4>
@@ -213,7 +215,7 @@ function FormA1({ formData, setFormData }) {
           </label>
           <label htmlFor="truck_type">
             Truck Type
-            <select className="select select-primary w-full" name="" id="">
+            <select className="select select-primary w-full" name="" id="" value={truckType} onChange={(e) => setTruckType(e.target.value)}>
               <option value="">Select Truck Type</option>
               <option value="articulated">Articulated Truck</option>
               <option value="rigid">Rigid Truck</option>
@@ -221,7 +223,7 @@ function FormA1({ formData, setFormData }) {
           </label>
           <label htmlFor="">
             Attached Semi-Trailer
-            <input className="input input-primary w-full" type="text" name="" id="" />
+            <input className="input input-primary w-full" type="text" disabled={truckType === 'rigid'} name="" id="" />
           </label>
         </fieldset>
         <input

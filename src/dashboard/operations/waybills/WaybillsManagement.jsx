@@ -1,8 +1,9 @@
 import { PlusIcon } from '@heroicons/react/solid';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PageTitle from '../../../utils/PageTitle';
 import FormTitle from '../../FormTitle';
 import WaybillItem from './WaybillItem';
+import endpoint from '../../../utils/endpoints/endpoint';
 
 const WaybillsManagement = () => {
     PageTitle("Axle & Cartage - Waybills Management");
@@ -12,6 +13,30 @@ const WaybillsManagement = () => {
         const waybills = [...bill, []]
         setBill(waybills)
     }
+
+    const [truck, setTruck] = useState([])
+
+    useEffect(() => {
+        endpoint.get('/truck/journey-management').then(res => {
+            console.log(res.data.data)
+            setTruck(res.data.data)
+        }).catch(err => {
+            console.log(err)
+        })
+    }, [])
+
+    const PrimaryWaybill = truck.some(item => item.wayBills.some(i => i.isPrimaryWayBill === true))
+    console.log(PrimaryWaybill)
+    const [formData, setFormData] = useState({
+        journeyManagementId: "",
+        wayBills: [
+            {
+                wayBillId: "",
+                status: 0
+            }
+        ]
+    })
+
     return (
         <div className='text-primary grid gap-5'>
             <div>
@@ -22,11 +47,17 @@ const WaybillsManagement = () => {
                 <fieldset className='grid lg:grid-flow-col lg:grid-cols-3 gap-5'>
                     <label htmlFor="trip_Id">
                         Trip ID
-                        <input className='input input-primary w-full' type="text" name="trip_Id" id="trip_Id" />
+                        <select className='select select-primary w-full' value={formData.journeyManagementId} onChange={(e) => setFormData({ ...formData, journeyManagementId: e.target.value })}>
+                            <option value="">Select Trip ID</option>
+                            {truck.map(item => <option key={item.journeyManagementId} value={item.journeyManagementId}>{item.truckProgramming.tripReference}</option>)}
+                        </select>
+                        {/* <input className='input input-primary w-full' type="text" name="trip_Id" id="trip_Id" /> */}
                     </label>
                     <label htmlFor="product">
                         Product Loaded
-                        <input className='input input-primary w-full' type="text" name="product" id="product" />
+                        <div className='border border-primary w-full h-12 px-4 rounded-lg grid items-center'>
+                            {truck.filter(i => i.journeyManagementId === formData.journeyManagementId).map(item => <p>{item.truckProgramming.product.productName}</p>)}
+                        </div>
                     </label>
                     <label htmlFor="quantity">
                         Quantity Loaded
@@ -35,7 +66,7 @@ const WaybillsManagement = () => {
                 </fieldset>
                 <fieldset className='grid lg:grid-flow-col lg:grid-cols-2 gap-5'>
                     <label htmlFor="trip_Id">
-                        Qunatity Delivered
+                        Quantity Delivered
                         <input className='input input-primary w-full' type="text" name="trip_Id" id="trip_Id" />
                     </label>
                     <label htmlFor="product">
