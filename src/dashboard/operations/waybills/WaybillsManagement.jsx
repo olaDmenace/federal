@@ -43,7 +43,7 @@ const WaybillsManagement = () => {
                         <input className='input input-primary w-full' type="text" name="product" id="product" />
                     </label>
                 </fieldset>
-                <input type="file" name="" id="" className='w-1/3' />
+                <input type="file" name="" id="" className='w-1/3   ' />
                 {/* <img className='h-56 w-56 shadow-xl' src="" alt="" /> */}
                 <label htmlFor="status">
                     Primary/Direct Waybill Status<br />
