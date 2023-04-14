@@ -28,7 +28,7 @@ const Employee = () => {
       country: "",
     },
     startDate: "",
-    endDate: "",
+    endDate: null,
     dateOfBirth: "",
     employmentNumber: "",
     roleId: "",
@@ -366,6 +366,7 @@ const Employee = () => {
             Employee Number
             <input
               className="w-full input input-primary"
+              min={1}
               value={data.employmentNumber}
               onChange={(e) =>
                 setData({ ...data, employmentNumber: e.target.value })
