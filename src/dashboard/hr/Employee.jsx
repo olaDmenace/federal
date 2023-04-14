@@ -338,7 +338,7 @@ const Employee = () => {
             Job Title
             <select
               className="w-full select select-primary"
-              onChange={(e) => setData({ ...data, roleId: +e.target.value })}
+              onChange={(e) => setData({ ...data, roleId: e.target.value })}
               type="text"
               name=""
               id="jobTitle"
