@@ -182,23 +182,18 @@ function FormA() {
             res => {
                 setShow(true)
                 console.log(res)
-                if (res.response.status === 200) {
-                    setShow(!show)
-                    setReply({
-                        icon: <ThumbUpIcon className='mx-auto h-24 text-primary' />,
-                        message: res.data.message
-                    })
-                    setLoading(!loading)
-                } else {
-                    setShow(!show)
-                    setReply({
-                        icon: <XCircleIcon className='mx-auto h-24 text-red-500' />,
-                        message: 'Please, check your form and try again'
-                    })
-                    setLoading(!loading)
-                }
+                setShow(!show)
+                setReply({
+                    icon: <ThumbUpIcon className='mx-auto h-24 text-primary' />,
+                    message: res.data.message
+                })
             }
         ).then((err) => {
+            setShow(!show)
+            setReply({
+                icon: <XCircleIcon className='mx-auto h-24 text-red-500' />,
+                message: 'Please, check your form and try again'
+            })
             console.log(err)
         })
     }
