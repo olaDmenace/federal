@@ -86,6 +86,15 @@ function TruckProgramming({ formData, setFormData }) {
   }, [])
 
   useEffect(() => {
+    endpoint.get('/truck/galooli/700ee189-7f31-4e11-aa1c-fc4286d543be').then(res => {
+      console.log(res.data.data)
+      setCustomers(res.data.data)
+    }).catch(err => {
+      console.log(err)
+    })
+  }, [])
+
+  useEffect(() => {
     const data = {
       country: 'Nigeria'
     }
@@ -516,7 +525,18 @@ function TruckProgramming({ formData, setFormData }) {
           <label htmlFor="">
             Programmed Business Area (Final Destination)
             <br />
-            <input
+            <select className="select select-primary w-full"
+              value={data.finalDestination}
+              onChange={(e) =>
+                setData({ ...data, finalDestination: e.target.value })
+              }>
+              <option value="">Select Business Area</option>
+              <option value="south west">South West</option>
+              <option value="south east">South East</option>
+              <option value="north i">North I</option>
+              <option value="north ii">North II</option>
+            </select>
+            {/* <input
               class="input input-primary w-full"
               type="text"
               name=""
@@ -525,7 +545,7 @@ function TruckProgramming({ formData, setFormData }) {
               onChange={(e) =>
                 setData({ ...data, finalDestination: e.target.value })
               }
-            />
+            /> */}
           </label>
         </fieldset>
         {
