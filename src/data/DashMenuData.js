@@ -27,10 +27,6 @@ export const OPERATIONS_ROUTES = [
     label: " Truck Visibility Report",
     route: "/dashboard/TruckVisibilityReport",
   },
-  {
-    label: " Truck Visibility Structure",
-    route: "/dashboard/TruckDetails",
-  },
 ];
 export const HEALTHSAFETY_ROUTES = [
   {
