@@ -29,6 +29,9 @@ import WaybillsManagement from "./dashboard/operations/waybills/WaybillsManageme
 import TruckAssignment from "./dashboard/operations/truckAssignment/TruckAssignment";
 import Employee from "./dashboard/hr/Employee";
 import EmployeeLists from "./dashboard/EmployeeDetails/employeeLists";
+import ProductDetails from "./dashboard/operations/shortageResolution/ProductDetails";
+import TruckDetails from "./dashboard/dashboard/TruckDetails";
+import TruckResolution from "./dashboard/operations/shortageResolution/TruckResolution";
 
 /* ***IMPORTANT NOTICE***
     This project is a React JS project buitl with Daisy UI Tailwind CSS UI component.
@@ -81,8 +84,15 @@ function App() {
             <Route path="partsAndInventory" element={<PartsAndInventory />} />
             <Route path="utilities" element={<Utilities />} />
             <Route path="waybills" element={<WaybillsManagement />} />
-            <Route path={"TruckAssignment"} element={<TruckAssignment />} />
+
             <Route path={"EmployeeList"} element={<EmployeeLists />} />
+            <Route path={"productDetails/:id"} element={<ProductDetails />} />
+            <Route
+              path={"TruckVisibilityReport"}
+              element={<TruckVisibilityReport />}
+            />
+            <Route path={"TruckResolution/:id"} element={<TruckResolution />} />
+            <Route path={"TruckDetails"} element={<TruckDetails />} />
           </Route>
         </Routes>
       </BrowserRouter>
