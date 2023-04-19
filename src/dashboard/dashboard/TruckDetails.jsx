@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import TruckContext from "./truckContext";
-import { useContext } from "react";
+import FormTitle from "../FormTitle";
 import { LocationMarkerIcon, TruckIcon } from "@heroicons/react/outline";
 import Fuel from "../../images/Pump.png";
 
@@ -22,6 +22,7 @@ const TruckDetails = ({ truck }) => {
   ];
   return (
     <>
+      <FormTitle Title={"Truck Visibility structure"} />
       <table className=" flex table-auto w-full   text-primary border border-primary gap-10 rounded-md p-2  space-between">
         <div>
           {trucks.map((truck) => (
