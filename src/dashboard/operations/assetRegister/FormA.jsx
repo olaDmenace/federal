@@ -192,7 +192,7 @@ function FormA() {
             setShow(!show)
             setReply({
                 icon: <XCircleIcon className='mx-auto h-24 text-red-500' />,
-                message: 'Please, check your form and try again'
+                message: `Please, check your form and try again ${err.response.data.message}`
             })
             console.log(err)
         })

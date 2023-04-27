@@ -123,7 +123,7 @@ function TruckProgramming({ formData, setFormData }) {
       setShow(true)
       setReply({
         icon: <ThumbUpIcon className='mx-auto h-24 text-primary' />,
-        message: `${res.data.message} with Tripp ID ${res.data.data}`
+        message: `${res.data.message} with Trip ID ${res.data.data}`
       })
       // setIsLoading(!isLoading)
     }).catch(err => {
