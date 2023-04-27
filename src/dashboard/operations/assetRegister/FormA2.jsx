@@ -17,6 +17,7 @@ function FormA2({ formData, setFormData }) {
 
     const mutateField = (type, valToChange, newVal) => {
         let i = 0
+
         while (i < formData.truckDocuments.length) {
             if (formData.truckDocuments[i].type === type) {
                 formData.truckDocuments[i][valToChange] = newVal
@@ -37,15 +38,15 @@ function FormA2({ formData, setFormData }) {
                         <fieldset className='grid gap-3 md:grid-cols-2 lg:grid-cols-3 items-end'>
                             <label htmlFor="">
                                 Reference Number
-                                <input value={formData.truckDocuments[v.referenceNumber]} onChange={(e) => mutateField(v.type, 'referenceNumber', e.target.value)} className='input input-primary w-full' type="text" name="" id="" />
+                                <input value={v.referenceNumber} onChange={(e) => mutateField(v.type, 'referenceNumber', e.target.value)} className='input input-primary w-full' type="text" name="" id="" />
                             </label>
                             <label htmlFor="">
                                 Issue Date
-                                <input value={formData.truckDocuments[v.dateIssued]} onChange={(e) => mutateField(v.type, 'dateIssued', e.target.value)} className='input input-primary w-full' type="date" name="" id="" />
+                                <input value={v.dateIssued} onChange={(e) => mutateField(v.type, 'dateIssued', e.target.value)} className='input input-primary w-full' type="date" name="" id="" />
                             </label>
                             <label htmlFor="">
                                 Expiry Date
-                                <input value={formData.truckDocuments[v.expiryDate]} onChange={(e) => mutateField(v.type, 'expiryDate', e.target.value)} className='input input-primary w-full' type="date" name="" id="" />
+                                <input value={v.expiryDate} onChange={(e) => mutateField(v.type, 'expiryDate', e.target.value)} className='input input-primary w-full' type="date" name="" id="" />
                             </label>
                         </fieldset>
                     </fieldset>

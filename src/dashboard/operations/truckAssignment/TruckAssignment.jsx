@@ -104,22 +104,18 @@ function TruckAssignment() {
       .post("/truck/assign", data)
       .then((res) => {
         console.log(res);
-        if (res.status === 200) {
-          setShow(true);
-          setReply({
-            icon: <ThumbUpIcon className="mx-auto h-24 text-primary" />,
-            message: res.data.message,
-          });
-        } else {
-          setReply({
-            icon: <XCircleIcon className="mx-auto h-24 text-red-500" />,
-            message: res.data.message,
-          });
-        }
-        setIsLoading(!isLoading);
+        setShow(true);
+        setReply({
+          icon: <ThumbUpIcon className="mx-auto h-24 text-primary" />,
+          message: res.data.message,
+        });
       })
       .catch((err) => {
         console.log(err);
+        setReply({
+          icon: <XCircleIcon className="mx-auto h-24 text-red-500" />,
+          message: err.data.message,
+        });
       });
   };
   const dateChangeHandlerStart = (event) => {
