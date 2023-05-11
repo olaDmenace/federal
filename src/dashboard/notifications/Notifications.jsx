@@ -7,49 +7,51 @@ import { FolderOpenIcon } from '@heroicons/react/outline'
 const Notifications = () => {
     return (
         <div>
-            <div className='grid gap-8'>
-                <div className='card rounded-lg shadow-md p-6 grid gap-4'>
-                    <p className='font-semibold text-lg'>Notification <span className='indicator-item badge badge-primary float-right'>12</span></p>
-                    <NotificationTypeCard title={'Journey Management'} time={'5 Minutes Ago'} state={'true'} />
-                    <NotificationTypeCard title={'Truck Visiblity Alert'} time={'May 06, 2023'} state={'true'} />
-                    <NotificationTypeCard title={'Journey Management'} time={'5 Minutes Ago'} state={'true'} />
-                    <NotificationTypeCard title={'Journey Management'} time={'5 Minutes Ago'} state={'true'} />
-                    <NotificationTypeCard title={'Truck Visiblity Alert'} time={'May 06, 2023'} />
-                    <NotificationTypeCard title={'Journey Management'} time={'5 Minutes Ago'} />
-                    <NotificationTypeCard title={'Journey Management'} time={'5 Minutes Ago'} />
-                    <NotificationTypeCard title={'Journey Management'} time={'5 Minutes Ago'} />
+            <div className='grid gap-8 lg:gap-4 lg:grid-cols-12'>
+                <div className='grid gap-8 lg:gap-4 md:grid-cols-10 order-last lg:order-first lg:col-span-8'>
+                    <div className='rounded-lg shadow-md p-6 grid gap-5 md:col-span-4 md:h-screen md:overflow-y-scroll'>
+                        <p className='font-semibold text-lg'>Notification <span className='indicator-item badge badge-primary float-right'>12</span></p>
+                        <NotificationTypeCard title={'Journey Management'} time={'5 Minutes Ago'} state={'true'} />
+                        <NotificationTypeCard title={'Truck Visiblity Alert'} time={'May 06, 2023'} state={'true'} />
+                        <NotificationTypeCard title={'Journey Management'} time={'5 Minutes Ago'} state={'true'} />
+                        <NotificationTypeCard title={'Journey Management'} time={'5 Minutes Ago'} state={'true'} />
+                        <NotificationTypeCard title={'Truck Visiblity Alert'} time={'May 06, 2023'} />
+                        <NotificationTypeCard title={'Journey Management'} time={'5 Minutes Ago'} />
+                        <NotificationTypeCard title={'Journey Management'} time={'5 Minutes Ago'} />
+                        <NotificationTypeCard title={'Journey Management'} time={'5 Minutes Ago'} />
+                    </div>
+                    <div className='rounded-lg shadow-md p-6 grid gap-6 md:col-span-6 md:h-screen md:overflow-y-scroll'>
+                        <div>
+                            <p className='font-semibold text-lg'>To-do<span className='indicator-item badge badge-secondary float-right'>4</span></p>
+                            <div className='grid gap-10'>
+                                <ToDoCard id={'ID-112200'} due={'Due in 2 Days'} avatar={Avatar} name={'John Doe'} />
+                                <ToDoCard id={'ID-112200'} due={'Due in 2 Days'} avatar={Avatar} name={'John Doe'} />
+                                <ToDoCard id={'ID-112200'} due={'Due in 2 Days'} avatar={Avatar} name={'John Doe'} />
+                                <ToDoCard id={'ID-112200'} due={'Due in 2 Days'} avatar={Avatar} name={'John Doe'} />
+                            </div>
+                        </div>
+                        <div>
+                            <p className='font-semibold text-lg'>In-Progress<span className='indicator-item badge badge-secondary float-right'>4</span></p>
+                            <div className='grid gap-10'>
+                                <ToDoCard id={'ID-112200'} due={'Due in 2 Days'} avatar={Avatar} name={'John Doe'} />
+                                <ToDoCard id={'ID-112200'} due={'Due in 2 Days'} avatar={Avatar} name={'John Doe'} />
+                                <ToDoCard id={'ID-112200'} due={'Due in 2 Days'} avatar={Avatar} name={'John Doe'} />
+                                <ToDoCard id={'ID-112200'} due={'Due in 2 Days'} avatar={Avatar} name={'John Doe'} />
+                            </div>
+                        </div>
+                        <div>
+                            <p className='font-semibold text-lg'>Done<span className='indicator-item badge badge-primary float-right'>4</span></p>
+                            <div className='grid gap-10'>
+                                <ToDoCard id={'ID-112200'} due={'Due in 2 Days'} avatar={Avatar} name={'John Doe'} />
+                                <ToDoCard id={'ID-112200'} due={'Due in 2 Days'} avatar={Avatar} name={'John Doe'} />
+                                <ToDoCard id={'ID-112200'} due={'Due in 2 Days'} avatar={Avatar} name={'John Doe'} />
+                                <ToDoCard id={'ID-112200'} due={'Due in 2 Days'} avatar={Avatar} name={'John Doe'} />
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div className='card rounded-lg shadow-md p-6 grid gap-6'>
-                    <div>
-                        <p className='font-semibold text-lg'>To-do<span className='indicator-item badge badge-secondary float-right'>4</span></p>
-                        <div className='grid gap-10'>
-                            <ToDoCard id={'ID-112200'} due={'Due in 2 Days'} avatar={Avatar} name={'John Doe'} />
-                            <ToDoCard id={'ID-112200'} due={'Due in 2 Days'} avatar={Avatar} name={'John Doe'} />
-                            <ToDoCard id={'ID-112200'} due={'Due in 2 Days'} avatar={Avatar} name={'John Doe'} />
-                            <ToDoCard id={'ID-112200'} due={'Due in 2 Days'} avatar={Avatar} name={'John Doe'} />
-                        </div>
-                    </div>
-                    <div>
-                        <p className='font-semibold text-lg'>In-Progress<span className='indicator-item badge badge-secondary float-right'>4</span></p>
-                        <div className='grid gap-10'>
-                            <ToDoCard id={'ID-112200'} due={'Due in 2 Days'} avatar={Avatar} name={'John Doe'} />
-                            <ToDoCard id={'ID-112200'} due={'Due in 2 Days'} avatar={Avatar} name={'John Doe'} />
-                            <ToDoCard id={'ID-112200'} due={'Due in 2 Days'} avatar={Avatar} name={'John Doe'} />
-                            <ToDoCard id={'ID-112200'} due={'Due in 2 Days'} avatar={Avatar} name={'John Doe'} />
-                        </div>
-                    </div>
-                    <div>
-                        <p className='font-semibold text-lg'>Done<span className='indicator-item badge badge-primary float-right'>4</span></p>
-                        <div className='grid gap-10'>
-                            <ToDoCard id={'ID-112200'} due={'Due in 2 Days'} avatar={Avatar} name={'John Doe'} />
-                            <ToDoCard id={'ID-112200'} due={'Due in 2 Days'} avatar={Avatar} name={'John Doe'} />
-                            <ToDoCard id={'ID-112200'} due={'Due in 2 Days'} avatar={Avatar} name={'John Doe'} />
-                            <ToDoCard id={'ID-112200'} due={'Due in 2 Days'} avatar={Avatar} name={'John Doe'} />
-                        </div>
-                    </div>
-                </div>
-                <div className='grid gap-8'>
-                    <div className='card rounded-lg shadow-md py-10 grid gap-5'>
+                <div className='grid md:grid-cols-2 lg:grid-cols-1 lg:col-span-4 lg:h-screen overflow-y-scroll gap-8 pb-10'>
+                    <div className='rounded-lg shadow-md py-10 grid gap-5 md:col-span-1'>
                         <div className='justify-items-center grid gap-2'>
                             <img src={Avatar} className='rounded-full w-20' alt="" />
                             <p className='font-semibold text-xl'>Emmanuel Adegbola</p>
@@ -63,7 +65,7 @@ const Notifications = () => {
                             Recent Chats
                         </button>
                     </div>
-                    <div className='card rounded-lg shadow-md py-10 grid gap-5'>
+                    <div className='rounded-lg shadow-md py-10 grid gap-5'>
                         <div className='justify-items-center grid gap-2'>
                             <img src={Avatar} className='rounded-full w-20' alt="" />
                             <p className='font-semibold text-xl'>Emmanuel Adegbola</p>

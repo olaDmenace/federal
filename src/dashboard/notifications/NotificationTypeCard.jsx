@@ -7,7 +7,7 @@ const NotificationTypeCard = (props) => {
                 <p>{props.title}</p>
                 <p className='text-gray-400 text-sm'>{props.time}</p>
             </div>
-            {props.state && <span className='indicator-item badge badge-xs badge-primary'></span>}
+            {props.state && <span className='indicator-item badge badge-xs badge-secondary'></span>}
         </div>
     )
 }
