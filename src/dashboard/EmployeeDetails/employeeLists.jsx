@@ -44,7 +44,7 @@ const EmployeeLists = () => {
   const [users, setUsers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
-  //   const [selectedEmployee, setSelectedEmployee] = useState(null);
+  const [selectedEmployee, setSelectedEmployee] = useState(null);
   useEffect(() => {
     endpoint
       .get(`/user?PageNumber=${currentPage}&PageSize=${pageSize}&Paginate=true`)
@@ -61,9 +61,10 @@ const EmployeeLists = () => {
     setCurrentPage(pageNumber);
   };
 
-  //   const handleEmployeeClick = (employee) => {
-  //     setSelectedEmployee(employee);
-  //   };
+  const handleEmployeeClick = (employee, event) => {
+    event.preventDefault();
+    setSelectedEmployee(employee);
+  };
   return (
     <div className="overflow-x-auto">
       <FormTitle Title={"Employee Details"} />
@@ -81,7 +82,7 @@ const EmployeeLists = () => {
             <tr
               key={user.userId}
               className="border-b hover:bg-gray-100 "
-              //   onClick={() => handleEmployeeClick(user)}
+              // onClick={() => handleEmployeeClick(user)}
             >
               <td className="px-4  py-4 text-left">
                 {(currentPage - 1) * pageSize + index + 1}

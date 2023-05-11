@@ -1,60 +1,10 @@
-import React, { useState } from "react";
-import LiquidHeight from "./LiquidHeight";
-import Meter from "./Meter";
-import UllageParameter from "./UllageParameter";
+import TruckResolution from "./TruckResolution";
+import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import endpoint from "../../../utils/endpoints/endpoint";
+import useFetch from "../../../useFetch";
 
-function ProductDetails({ trucks, formData, setFormData }) {
-  const handleCalibrationTypeChange = (event) => {
-    const newCalibrationType = parseInt(event.target.value);
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      resolutions: [
-        {
-          ...prevFormData.resolutions[0],
-          calibration: {
-            ...prevFormData.resolutions[0].calibration,
-            calibrationType: newCalibrationType,
-          },
-        },
-      ],
-    }));
-  };
-  const options = [
-    { value: 0, parameterId: 1, parameter: "Ullage" },
-    { value: 1, parameterId: 2, parameter: "Liquid Height" },
-    { value: 2, parameterId: 3, parameter: "Meter" },
-  ];
-
-  const calibrationType = () => {
-    if (formData.resolutions[0].calibration.calibrationType === 0) {
-      return <UllageParameter formData={formData} setFormData={setFormData} />;
-    } else if (formData.resolutions[0].calibration.calibrationType === 1) {
-      return <LiquidHeight formData={formData} setFormData={setFormData} />;
-    } else if (formData.resolutions[0].calibration.calibrationType === 2) {
-      return <Meter formData={formData} setFormData={setFormData} />;
-    } else {
-      return "";
-    }
-  };
-  const [disableFields, setDisableFields] = useState({
-    company: false,
-    do: false,
-    customer: false,
-  });
-
-  const handleResponsiblePartyChange = (e) => {
-    const value = parseInt(e.target.value);
-    setFormData({
-      ...formData,
-      resolutions: [
-        {
-          ...formData.resolutions[0],
-          source: value,
-        },
-      ],
-    });
-  };
-
+function ProductDetails({ trucks, setFormData, formData }) {
   return (
     <div>
       <form className="grid gap-5 text-primary my-5">

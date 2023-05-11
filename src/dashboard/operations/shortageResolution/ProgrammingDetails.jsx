@@ -1,22 +1,70 @@
 import React, { useState } from "react";
 import CustomerWayBills from "./CustomerWayBills.jsx";
+import { useLocation } from "react-router-dom";
+import { ThumbUpIcon } from "@heroicons/react/solid";
+import { XCircleIcon } from "@heroicons/react/solid";
+import LoadingSpinner from "../../../utils/LoadingSpinner.jsx";
+import endpoint from "../../../utils/endpoints/endpoint.jsx";
+import PopUp from "../../../utils/PopUp.js";
+import ProductDetails from "./ProductDetails.jsx";
+import TruckResolution from "./TruckResolution.jsx";
 
 const ProgrammingDetails = ({ trucks, formData, setFormData }) => {
-  const handlewayBillIdChange = (e) => {
-    const value = e.target.value;
-    setFormData({
-      ...formData,
-      resolutions: [
-        {
-          ...formData.resolutions[0],
-          wayBillId: value,
-        },
-      ],
-    });
+  const [isLoading, setIsLoading] = useState(false);
+  const [show, setShow] = useState(false);
+  const [reply, setReply] = useState({
+    icon: "",
+    message: "",
+  });
+  console.log(formData, "formdata");
+  const handleSubmit = () => {
+    setIsLoading(!isLoading);
+    endpoint
+      .put("/truck/journey-management/shortages", formData)
+      .then((res) => {
+        setShow(true);
+        // console.log(res.response.status)
+        // setIsLoading(!isLoading)
+        setReply({
+          icon: <ThumbUpIcon className="mx-auto h-24 text-primary" />,
+          message: res.data.message,
+        });
+        // if (res.response.status === 200) {
+        // }
+        // console.log(res)
+      })
+      .catch((err) => {
+        console.log(err);
+        setShow(true);
+        setReply({
+          icon: <XCircleIcon className="mx-auto h-24 text-red-500" />,
+          message: err.response.data.message,
+        });
+        // setIsLoading(!isLoading)
+      });
   };
+
+  function closePop(e) {
+    setShow(false);
+    setIsLoading(!isLoading);
+  }
+
+  const location = useLocation();
+
   return (
     <div>
       <form className="grid gap-5 text-primary my-5">
+        {show && (
+          <PopUp>
+            {reply.icon}
+            <p className="mx-auto text-center text-primary bg-transparent">
+              {reply.message}
+            </p>
+            <button className="btn btn-primary" onClick={(e) => closePop()}>
+              Confirm
+            </button>
+          </PopUp>
+        )}
         <h4 className="text-xl text-primary font-medium">
           Programming Details
         </h4>
@@ -194,13 +242,39 @@ const ProgrammingDetails = ({ trucks, formData, setFormData }) => {
             </div>
           </label>
         </fieldset>
+
         {trucks.filter(
           (i) => i.journeyManagementId === formData.journeyManagementId
         ) && (
           <CustomerWayBills
             trucks={trucks}
             journeyManagementId={formData.journeyManagementId}
+            formData={formData}
           />
+        )}
+        <ProductDetails
+          trucks={trucks}
+          setFormData={setFormData}
+          formData={formData}
+        />
+
+        {location.pathname === "/dashboard/ShortageResolution" ? (
+          <div className="mx-auto">
+            {" "}
+            {isLoading && <LoadingSpinner />}
+            {!isLoading && (
+              <button
+                class="btn btn-primary mx-auto"
+                onClick={(e) => {
+                  handleSubmit(e);
+                }}
+              >
+                Submit
+              </button>
+            )}
+          </div>
+        ) : (
+          ""
         )}
       </form>
     </div>
