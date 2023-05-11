@@ -81,6 +81,7 @@ function ProductDetails({ trucks, formData, setFormData }) {
             <input
               class="input input-primary w-full"
               placeholder=""
+              min={0}
               type="number"
               name=""
               id=""
@@ -143,6 +144,7 @@ function ProductDetails({ trucks, formData, setFormData }) {
               placeholder=""
               value={formData.resolutions[0].agreedShortage}
               type="number"
+              min={0}
               name=""
               id=""
               onChange={(e) =>
@@ -165,6 +167,7 @@ function ProductDetails({ trucks, formData, setFormData }) {
               placeholder=""
               value={formData.productPrice}
               type="number"
+              min={0}
               name=""
               id=""
               onChange={(e) =>
@@ -266,6 +269,7 @@ function ProductDetails({ trucks, formData, setFormData }) {
             <input
               className="input input-primary w-full"
               type="number"
+              min={0}
               name=""
               value={formData.resolutions[0].sourceCharge}
               id=""

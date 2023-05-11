@@ -37,6 +37,7 @@ function LiquidHeight({ formData, setFormData }) {
                 <input
                   className="input input-primary w-full"
                   type="number"
+                  min={0}
                   name=""
                   id=""
                   value={item.loadingDepot}
@@ -54,6 +55,7 @@ function LiquidHeight({ formData, setFormData }) {
                 <input
                   className="input input-primary w-full"
                   type="number"
+                  min={0}
                   name=""
                   id=""
                   value={item.arrivalLocation}
