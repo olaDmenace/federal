@@ -1,25 +1,16 @@
 import React from 'react'
-import NotificationTypeCard from './NotificationTypeCard'
+// import NotificationTypeCard from './NotificationTypeCard'
 import ToDoCard from './ToDoCard'
 import Avatar from '../../images/Avatar.png'
 import { FolderOpenIcon } from '@heroicons/react/outline'
+import NotificationsCard from './NotificationsCard'
 
 const Notifications = () => {
     return (
         <div>
             <div className='grid gap-8 lg:gap-4 lg:grid-cols-12'>
                 <div className='grid gap-8 lg:gap-4 md:grid-cols-10 order-last lg:order-first lg:col-span-8'>
-                    <div className='rounded-lg shadow-md p-6 grid gap-5 md:col-span-4 md:h-screen md:overflow-y-scroll'>
-                        <p className='font-semibold text-lg'>Notification <span className='indicator-item badge badge-primary float-right'>12</span></p>
-                        <NotificationTypeCard title={'Journey Management'} time={'5 Minutes Ago'} state={'true'} />
-                        <NotificationTypeCard title={'Truck Visiblity Alert'} time={'May 06, 2023'} state={'true'} />
-                        <NotificationTypeCard title={'Journey Management'} time={'5 Minutes Ago'} state={'true'} />
-                        <NotificationTypeCard title={'Journey Management'} time={'5 Minutes Ago'} state={'true'} />
-                        <NotificationTypeCard title={'Truck Visiblity Alert'} time={'May 06, 2023'} />
-                        <NotificationTypeCard title={'Journey Management'} time={'5 Minutes Ago'} />
-                        <NotificationTypeCard title={'Journey Management'} time={'5 Minutes Ago'} />
-                        <NotificationTypeCard title={'Journey Management'} time={'5 Minutes Ago'} />
-                    </div>
+                    <NotificationsCard />
                     <div className='rounded-lg shadow-md p-6 grid gap-6 md:col-span-6 md:h-screen md:overflow-y-scroll'>
                         <div>
                             <p className='font-semibold text-lg'>To-do<span className='indicator-item badge badge-secondary float-right'>4</span></p>
