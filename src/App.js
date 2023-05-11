@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./Membership/Login/Login";
 import Register from "./Membership/Register/Register";
 import Verify from "./Membership/Register/VerifyMail";
@@ -12,8 +12,8 @@ import Journeymanagement from "./dashboard/operations/JourneyManagement/Journeym
 import AssetRegister from "./dashboard/operations/assetRegister/AssetRegister";
 import ShortageResolution from "./dashboard/operations/shortageResolution/ShortageResolution";
 import TripExpense from "./dashboard/operations/tripExpense/TripExpense";
-import { useSelector } from "react-redux";
-import { selectUser } from "./utils/features/userSlice";
+// import { useSelector } from "react-redux";
+// import { selectUser } from "./utils/features/userSlice";
 import AbsenceForm from "./dashboard/hr/AbsenceForm";
 import ConsequenceManagement from "./dashboard/hr/ConsequenceManagement";
 import TrainingForm from "./dashboard/hr/TrainingForm";
@@ -29,6 +29,7 @@ import WaybillsManagement from "./dashboard/operations/waybills/WaybillsManageme
 import TruckAssignment from "./dashboard/operations/truckAssignment/TruckAssignment";
 import Employee from "./dashboard/hr/Employee";
 import EmployeeLists from "./dashboard/EmployeeDetails/employeeLists";
+import Notifications from "./dashboard/notifications/Notifications";
 import ProductDetails from "./dashboard/operations/shortageResolution/ProductDetails";
 import TruckDetails from "./dashboard/dashboard/TruckDetails";
 import TruckResolution from "./dashboard/operations/shortageResolution/TruckResolution";
@@ -39,7 +40,7 @@ import TruckResolution from "./dashboard/operations/shortageResolution/TruckReso
 */
 
 function App() {
-  const user = useSelector(selectUser);
+  // const user = useSelector(selectUser);
 
   return (
     <div className="App">
@@ -63,7 +64,6 @@ function App() {
             <Route path="ShortageResolution" element={<ShortageResolution />} />
             <Route path="TripExpense" element={<TripExpense />} />
             <Route path={"AbsenceForm"} element={<AbsenceForm />} />
-
             <Route
               path={"ConsequenceManagement"}
               element={<ConsequenceManagement />}
@@ -86,6 +86,7 @@ function App() {
             <Route path="waybills" element={<WaybillsManagement />} />
 
             <Route path={"EmployeeList"} element={<EmployeeLists />} />
+            <Route path="Notifications" element={<Notifications />} />
             <Route path={"productDetails/:id"} element={<ProductDetails />} />
             <Route
               path={"TruckVisibilityReport"}

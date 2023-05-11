@@ -19,7 +19,7 @@ function CustomerDetails({ formData, setFormData }) {
                         </label>
                         <label htmlFor="">
                             Actual Number of Customers<br />
-                            <input class='input input-primary w-full' placeholder='3' type="text" name="" id="" />
+                            <input class='input input-primary w-full' placeholder='0' type="number" min={0} name="" id="" />
                         </label>
                         <label htmlFor="">
                             Actual Customer Destination State<br />

@@ -180,6 +180,7 @@ const Employee = () => {
           Classification
           <select
             className="select select-primary w-full"
+            min={0}
             type="number"
             onChange={(e) =>
               setData({ ...data, employeeType: parseInt(e.target.value) })

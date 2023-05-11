@@ -1,7 +1,7 @@
 import React from "react";
 import Avatar from "../images/Avatar.png";
 import { BellIcon } from "@heroicons/react/outline";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
 function Notification() {
   // const lastName = localStorage.getItem(lastName)

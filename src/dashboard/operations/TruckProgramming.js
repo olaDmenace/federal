@@ -516,6 +516,7 @@ function TruckProgramming({ formData, setFormData }) {
             <input
               class="input input-primary w-full"
               type="number"
+              min={0}
               name=""
               id=""
               value={data.numberOfCustomers}
