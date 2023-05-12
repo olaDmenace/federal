@@ -57,7 +57,12 @@ const Dashboard = () => {
           icon={AdjustmentsIcon}
           title={"Maintenance Booking"}
         />
-        <DashCard Link={""} icon={BellIcon} title={"Reminder"} />
+        <DashCard
+          Link={"/dashboard/Notifications"}
+          icon={BellIcon}
+          title={"Notifications"}
+
+        />
         <DashCard
           Link={""}
           icon={ExclamationCircleIcon}
