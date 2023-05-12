@@ -78,8 +78,19 @@ export const HUMANCAPITAL_ROUTES = [
     label: "    Employee Details",
     route: "/dashboard/Employee",
   },
-  {
-    label: " Employee Lists",
-    route: "/dashboard/EmployeeList",
-  },
+  // {
+  //   label: " Employee Lists",
+  //   route: "/dashboard/EmployeeList",
+  // },
 ];
+
+export const REPORTS_ROUTES = [
+  {
+    label: "Visbility Report",
+    route: "/dashboard/TruckVisibilityReport"
+  },
+  {
+    label: "Employee Report",
+    route: "/dashboard/EmployeeList"
+  }
+]

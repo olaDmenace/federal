@@ -4,6 +4,7 @@ import Logo from "../images/LogoDark.png";
 import {
   ChevronDownIcon,
   ChipIcon,
+  ClipboardIcon,
   GlobeIcon,
   IdentificationIcon,
   LoginIcon,
@@ -20,6 +21,7 @@ import {
   HUMANCAPITAL_ROUTES,
   OPERATIONS_ROUTES,
   OPSUPPORT_ROUTES,
+  REPORTS_ROUTES,
 } from "../data/DashMenuData";
 
 function DashMenu() {
@@ -27,6 +29,7 @@ function DashMenu() {
   const [hsOpen, setHsopen] = useState(false);
   const [osOpen, setOsopen] = useState(false);
   const [hrOpen, setHrOpen] = useState(false);
+  const [repOpen, setRepOpen] = useState(false)
 
   const dispatch = useDispatch();
   const handleLogout = (e) => {
@@ -39,6 +42,7 @@ function DashMenu() {
     hs: useRef(null),
     os: useRef(null),
     hr: useRef(null),
+    rep: useRef(null)
   };
 
   useEffect(() => {
@@ -66,6 +70,12 @@ function DashMenu() {
         !dropdownRefs.hr.current.contains(e.target)
       ) {
         setHrOpen(false);
+      }
+      if (
+        dropdownRefs.rep.current &&
+        !dropdownRefs.rep.current.contains(e.target)
+      ) {
+        setRepOpen(false);
       }
     };
 
@@ -187,6 +197,33 @@ function DashMenu() {
                         className="hover:font-bold hover:ease-in-out duration-150 block"
                       >
                         {hc.label}
+                      </NavLink>
+                    ))}
+                  </div>
+                )}
+                <ChevronDownIcon className="h-6 stroke-1 hover:scale-125 transition duration-500" />
+              </div>
+            </section>
+            {/* Reports */}
+            <section id="reports">
+              <div
+                ref={dropdownRefs.rep}
+                onClick={() => setRepOpen(!repOpen)}
+                className="items-center relative flex text-white gap-7 cursor-pointer"
+              >
+                <DashMenuItem
+                  Icon={<ClipboardIcon className="h-8 stroke-1" />}
+                  Title={"Reports"}
+                />
+                {repOpen && (
+                  <div className="absolute bg-white text-primary top-10 flex-col rounded-lg p-2 w-full z-10 space-y-2  px-3 py-5 ">
+                    {REPORTS_ROUTES.map((rep, index) => (
+                      <NavLink
+                        key={index}
+                        to={rep.route}
+                        className='hover:font-bold hover:ease-in-out duration-150 block'
+                      >
+                        {rep.label}
                       </NavLink>
                     ))}
                   </div>
