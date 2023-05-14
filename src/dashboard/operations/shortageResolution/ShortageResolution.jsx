@@ -16,7 +16,7 @@ function ShortageResolution() {
   );
 
   return (
-    <div className="space-y-2 grid">
+    <div className="space-y-2 grid p-5 rounded-lg bg-white">
       <FormTitle Title={"Shortage Resolution"} />
       <hr />
 

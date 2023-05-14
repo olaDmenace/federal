@@ -42,7 +42,7 @@ function TruckVisibiltyReport() {
   ];
   return (
     <div className="md:flex gap-5 py-8">
-      <div className="space-y-3 basis-1/2">
+      <div className="space-y-3 basis-1/2 bg-white p-5 rounded-lg">
         <h2 className="text-3xl text-primary font-semibold">
           Truck Visibilty Report
         </h2>

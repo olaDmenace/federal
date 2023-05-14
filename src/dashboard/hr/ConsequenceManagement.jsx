@@ -84,7 +84,7 @@ const ConsequenceManagement = () => {
 
 
     return (
-        <div>
+        <div className='bg-white p-5 rounded-lg'>
             {show && <PopUp>
                 {reply.icon}
                 <p className='mx-auto text-center text-primary bg-transparent'>{reply.message}</p>

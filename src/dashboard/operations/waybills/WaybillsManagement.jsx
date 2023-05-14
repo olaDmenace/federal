@@ -38,7 +38,7 @@ const WaybillsManagement = () => {
     })
 
     return (
-        <div className='text-primary grid gap-5'>
+        <div className='text-primary grid gap-5 bg-white p-5 rounded-lg overflow-x-scroll'>
             <div>
                 <FormTitle Title={"Waybills Management Form"} />
                 <hr />

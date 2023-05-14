@@ -22,7 +22,7 @@ const TripExpense = () => {
 
 
     return (
-        <div className='space-y-2 grid'>
+        <div className='space-y-2 grid bg-white p-5 rounded-lg'>
             <FormTitle Title={'Trip Expense Request Form'} />
             <hr className='pb-5' />
             <progress className="progress progress-success w-full" value="0" max="100"></progress>

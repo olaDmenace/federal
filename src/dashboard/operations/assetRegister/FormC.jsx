@@ -2,7 +2,7 @@ import React from 'react'
 
 function FormC() {
     return (
-        <div className='py-5 text-primary space-y-3'>
+        <div className='p-5 rounded-lg bg-white text-primary space-y-3'>
             <h4 className='text-lg font-semibold'>Form C - Equipment</h4>
             <h6 className='font-semibold text-lg'>Other Assets</h6>
             <form action="" className='grid text-primary gap-5 w-full'>

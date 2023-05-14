@@ -205,7 +205,7 @@ function FormA() {
     }
 
     return (
-        <div className='grid'>
+        <div className='grid rounded-lg p-5 bg-white'>
             {show && <PopUp>
                 {reply.icon}
                 <p className='mx-auto text-center text-primary bg-transparent'>{reply.message}</p>

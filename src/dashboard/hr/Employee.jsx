@@ -99,7 +99,7 @@ const Employee = () => {
   );
 
   return (
-    <div>
+    <div className='p-5 rounded-lg bg-white'>
       <FormTitle Title={"Employee Details"} />
       {show && (
         <PopUp>

@@ -2,7 +2,7 @@ import React from "react";
 import FormTitle from "../../FormTitle";
 const PartsAndInventory = () => {
   return (
-    <div>
+    <div className="bg-white p-5 rounded-lg">
       <FormTitle Title={"Parts and Inventory"} />
       <form action="" className="grid text-primary gap-5 w-full">
         <fieldset className="grid md:grid-cols-2 gap-3 items-end">

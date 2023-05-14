@@ -11,10 +11,10 @@ const Notifications = () => {
             <div className='grid gap-8 lg:gap-4 lg:grid-cols-12'>
                 <div className='grid gap-8 lg:gap-4 md:grid-cols-10 order-last lg:order-first lg:col-span-8'>
                     <NotificationsCard />
-                    <div className='rounded-lg shadow-md p-6 grid gap-6 md:col-span-6 md:h-screen md:overflow-y-scroll'>
+                    <div className='rounded-lg shadow-md p-5 grid gap-5 md:col-span-6 md:h-screen md:overflow-y-scroll bg-white'>
                         <div>
-                            <p className='font-semibold text-lg'>To-do<span className='indicator-item badge badge-secondary float-right'>4</span></p>
-                            <div className='grid gap-10'>
+                            <p className='font-semibold text-lg'>Tasks<span className='indicator-item badge badge-secondary float-right'>4</span></p>
+                            <div className='grid gap-5 lg:grid-cols-2'>
                                 <ToDoCard id={'ID-112200'} due={'Due in 2 Days'} avatar={Avatar} name={'John Doe'} />
                                 <ToDoCard id={'ID-112200'} due={'Due in 2 Days'} avatar={Avatar} name={'John Doe'} />
                                 <ToDoCard id={'ID-112200'} due={'Due in 2 Days'} avatar={Avatar} name={'John Doe'} />
@@ -23,7 +23,7 @@ const Notifications = () => {
                         </div>
                         <div>
                             <p className='font-semibold text-lg'>In-Progress<span className='indicator-item badge badge-secondary float-right'>4</span></p>
-                            <div className='grid gap-10'>
+                            <div className='grid gap-5 lg:grid-cols-2'>
                                 <ToDoCard id={'ID-112200'} due={'Due in 2 Days'} avatar={Avatar} name={'John Doe'} />
                                 <ToDoCard id={'ID-112200'} due={'Due in 2 Days'} avatar={Avatar} name={'John Doe'} />
                                 <ToDoCard id={'ID-112200'} due={'Due in 2 Days'} avatar={Avatar} name={'John Doe'} />
@@ -32,7 +32,7 @@ const Notifications = () => {
                         </div>
                         <div>
                             <p className='font-semibold text-lg'>Done<span className='indicator-item badge badge-primary float-right'>4</span></p>
-                            <div className='grid gap-10'>
+                            <div className='grid gap-5 lg:grid-cols-2'>
                                 <ToDoCard id={'ID-112200'} due={'Due in 2 Days'} avatar={Avatar} name={'John Doe'} />
                                 <ToDoCard id={'ID-112200'} due={'Due in 2 Days'} avatar={Avatar} name={'John Doe'} />
                                 <ToDoCard id={'ID-112200'} due={'Due in 2 Days'} avatar={Avatar} name={'John Doe'} />
@@ -42,7 +42,7 @@ const Notifications = () => {
                     </div>
                 </div>
                 <div className='grid md:grid-cols-2 lg:grid-cols-1 lg:col-span-4 lg:h-screen overflow-y-scroll gap-8 pb-10'>
-                    <div className='rounded-lg shadow-md py-10 grid gap-5 md:col-span-1'>
+                    <div className='rounded-lg shadow-md py-10 grid gap-5 md:col-span-1 bg-white'>
                         <div className='justify-items-center grid gap-2'>
                             <img src={Avatar} className='rounded-full w-20' alt="" />
                             <p className='font-semibold text-xl'>Emmanuel Adegbola</p>
@@ -56,7 +56,7 @@ const Notifications = () => {
                             Recent Chats
                         </button>
                     </div>
-                    <div className='rounded-lg shadow-md py-10 grid gap-5'>
+                    <div className='rounded-lg shadow-md py-10 grid gap-5 bg-white'>
                         <div className='justify-items-center grid gap-2'>
                             <img src={Avatar} className='rounded-full w-20' alt="" />
                             <p className='font-semibold text-xl'>Emmanuel Adegbola</p>

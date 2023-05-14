@@ -24,7 +24,7 @@ function MaintenanceInspection() {
   };
 
   return (
-    <div className="space-y-2 grid">
+    <div className="space-y-2 grid bg-white p-5 rounded-lg">
       <FormTitle Title={"Maintenance Inspection Form"} />
       <hr />
       <ul className="steps steps-horizontal w-full pt-5">

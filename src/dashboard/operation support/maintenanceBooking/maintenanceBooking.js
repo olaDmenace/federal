@@ -20,7 +20,7 @@ function MaintenanceBooking() {
   };
 
   return (
-    <div className="space-y-2 grid">
+    <div className="space-y-2 grid bg-white p-5 rounded-lg">
       <FormTitle Title={"Maintenance Booking Form"} />
       <hr />
       <ul className="steps steps-horizontal w-full pt-5">
