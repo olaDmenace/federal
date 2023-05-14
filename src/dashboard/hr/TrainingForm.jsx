@@ -22,7 +22,7 @@ const TrainingForm = () => {
         console.log('first')
     }
     return (
-        <div>
+        <div className='p-5 rounded-lg bg-white'>
             <FormTitle Title={'Training Form'} />
             <hr className='pb-5' />
             <form action="" className='grid text-primary gap-5 w-full'>

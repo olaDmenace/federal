@@ -86,7 +86,7 @@ function DashMenu() {
   }, [dropdownRefs]);
 
   return (
-    <div>
+    <div className="">
       <div className="h-screen w-full bg-primary relative grid py-10 z-0">
         <img
           className="mix-blend-overlay h-screen w-full absolute"
@@ -94,8 +94,8 @@ function DashMenu() {
           alt=""
         />
         <img className="w-1/2 mx-auto" src={Logo} alt="" />
-        <div className="space-y-10 pl-12">
-          <div className="relative grid gap-5 w-4/5">
+        <div className="space-y-10 px-3.5">
+          <div className="relative grid gap-5 mx-auto">
             <NavLink
               to={"/welcome"}
               className="items-center flex text-white gap-2"
@@ -106,7 +106,7 @@ function DashMenu() {
             <div
               ref={dropdownRefs.operation}
               onClick={() => setOperationOpen(!operationOpen)}
-              className="items-center relative flex text-white gap-7 cursor-pointer"
+              className="items-center relative flex text-white cursor-pointer justify-between"
             >
               <DashMenuItem
                 Icon={<GlobeIcon className="h-8 stroke-1" />}
@@ -131,7 +131,7 @@ function DashMenu() {
             <div
               ref={dropdownRefs.hs}
               onClick={() => setHsopen(!hsOpen)}
-              className="items-center relative flex text-white gap-7 cursor-pointer"
+              className="items-center relative flex text-white cursor-pointer justify-between"
             >
               <DashMenuItem
                 Icon={<ShieldCheckIcon className="h-8 stroke-1" />}
@@ -156,7 +156,7 @@ function DashMenu() {
             <div
               ref={dropdownRefs.os}
               onClick={() => setOsopen(!osOpen)}
-              className="items-center relative flex text-white gap-7 cursor-pointer"
+              className="items-center relative flex text-white cursor-pointer justify-between"
             >
               <DashMenuItem
                 Icon={<UsersIcon className="h-8 stroke-1" />}
@@ -182,7 +182,7 @@ function DashMenu() {
               <div
                 ref={dropdownRefs.hr}
                 onClick={() => setHrOpen(!hrOpen)}
-                className="items-center relative flex text-white gap-7 cursor-pointer"
+                className="items-center relative flex text-white cursor-pointer justify-between"
               >
                 <DashMenuItem
                   Icon={<IdentificationIcon className="h-8 stroke-1" />}
@@ -209,7 +209,7 @@ function DashMenu() {
               <div
                 ref={dropdownRefs.rep}
                 onClick={() => setRepOpen(!repOpen)}
-                className="items-center relative flex text-white gap-7 cursor-pointer"
+                className="items-center relative flex text-white cursor-pointer justify-between"
               >
                 <DashMenuItem
                   Icon={<ClipboardIcon className="h-8 stroke-1" />}
@@ -232,9 +232,8 @@ function DashMenu() {
               </div>
             </section>
           </div>
-
           <div
-            className="items-center relative flex text-white gap-2 cursor-pointer"
+            className="items-center relative flex text-white gap-2 cursor-pointer w-4/5"
             onClick={(e) => handleLogout(e)}
           >
             <LoginIcon className="h-8 stroke-1" />

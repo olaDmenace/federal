@@ -6,7 +6,7 @@ import { BellIcon } from "@heroicons/react/outline";
 function Notification() {
   // const lastName = localStorage.getItem(lastName)
   return (
-    <div className="flex justify-between mx-10">
+    <div className="flex justify-between py-3 items-center px-10 sticky top-0 bg-white z-50">
       <p className="text-2xl text-primary font-bold">Welcome</p>
       <div className="flex gap-5 items-center justify-end">
         <div className="indicator">

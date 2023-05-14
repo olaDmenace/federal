@@ -7,7 +7,7 @@ import Fuel from "../../images/Pump.png";
 
 const TruckDetails = () => {
   return (
-    <>
+    <div className="bg-white p-5 rounded-lg">
       <FormTitle Title={"Truck Visibility structure"} />
       <table className=" flex table-auto w-full   text-primary border border-primary gap-10 rounded-md p-2  space-between">
         <div>
@@ -54,7 +54,7 @@ const TruckDetails = () => {
           </tbody>
         </div>
       </table>
-    </>
+    </div>
   );
 };
 

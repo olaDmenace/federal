@@ -139,7 +139,7 @@ function TruckAssignment() {
   };
   const location = useLocation();
   return (
-    <div>
+    <div className="bg-white p-5 rounded-lg">
       <FormTitle Title={"Truck Assignment"} />
       {show && (
         <PopUp>

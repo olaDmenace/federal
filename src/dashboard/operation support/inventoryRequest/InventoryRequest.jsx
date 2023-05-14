@@ -4,7 +4,7 @@ import FormTitle from "../../FormTitle";
 const InventoryRequest = () => {
   PageTitle("Axle & Cartage - ");
   return (
-    <div className="py-5 text-primary y-3">
+    <div className="p-5 rounded-lg text-primary y-3 bg-white">
       <FormTitle Title={"Inventory Request Form"} />
 
       <form action="" className="grid text-primary gap-5 w-full">

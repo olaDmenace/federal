@@ -2,7 +2,7 @@ import React from "react";
 
 const FormC = () => {
   return (
-    <div>
+    <div className="bg-white p-5 rounded-lg">
       <br />
 
       <form action="" className="grid text-primary gap-5 w-full">

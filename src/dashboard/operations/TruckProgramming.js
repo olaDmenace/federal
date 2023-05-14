@@ -153,7 +153,7 @@ function TruckProgramming({ formData, setFormData }) {
   const location = useLocation()
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-2 bg-white p-5 rounded-lg">
       {show && <PopUp>
         {reply.icon}
         <p className='mx-auto text-center text-primary bg-transparent'>{reply.message}</p>

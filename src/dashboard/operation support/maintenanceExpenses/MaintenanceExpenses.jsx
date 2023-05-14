@@ -4,7 +4,7 @@ import FormTitle from "../../FormTitle";
 const MaintenanceExpenses = () => {
   PageTitle("Axle & Cartage - Maintenance Expenses Form ");
   return (
-    <div className="py-5 text-primary space-y-3">
+    <div className="py-5 text-primary space-y-3 bg-white rounded-lg p-5">
       <FormTitle Title={"Maintenance Expenses Form"} />
 
       <form action="" className="grid text-primary gap-5 w-full">

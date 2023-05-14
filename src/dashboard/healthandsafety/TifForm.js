@@ -331,7 +331,7 @@ const TifForm = () => {
   }, []);
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-2 bg-white p-5 rounded-lg">
       <FormTitle Title={"Pre Trip Inspection Form"} />
       <hr className="pb-5" />
 

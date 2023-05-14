@@ -66,7 +66,7 @@ const EmployeeLists = () => {
     setSelectedEmployee(employee);
   };
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto bg-white rounded-lg p-5">
       <FormTitle Title={"Employee Details"} />
       <table className="table-auto w-full  text-primary">
         <thead>
@@ -82,7 +82,7 @@ const EmployeeLists = () => {
             <tr
               key={user.userId}
               className="border-b hover:bg-gray-100 "
-              // onClick={() => handleEmployeeClick(user)}
+            // onClick={() => handleEmployeeClick(user)}
             >
               <td className="px-4  py-4 text-left">
                 {(currentPage - 1) * pageSize + index + 1}
