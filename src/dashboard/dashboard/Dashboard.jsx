@@ -22,6 +22,12 @@ const Dashboard = () => {
       <Notification />
       <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3 w-11/12 m-auto">
         <DashCard
+          Link={"/dashboard/Notifications"}
+          icon={BellIcon}
+          title={"Messages"}
+
+        />
+        <DashCard
           Link={"/dashboard/TruckProgramming"}
           icon={LocationMarkerIcon}
           title={"Operations"}
@@ -56,12 +62,6 @@ const Dashboard = () => {
           Link={"/dashboard/maintenanceBooking"}
           icon={AdjustmentsIcon}
           title={"Maintenance Booking"}
-        />
-        <DashCard
-          Link={"/dashboard/Notifications"}
-          icon={BellIcon}
-          title={"Notifications"}
-
         />
         <DashCard
           Link={""}
