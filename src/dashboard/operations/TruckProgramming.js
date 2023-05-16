@@ -321,6 +321,7 @@ function TruckProgramming({ formData, setFormData }) {
             <input
               class="input input-primary w-full"
               placeholder="40, Toyin Street, Ikeja"
+              disabled={data.isDedicatedDestination === true}
               type="text"
               name={data.programmedDestination}
               onChange={(e) => setData({ ...data, programmedDestination: e.target.value })}
