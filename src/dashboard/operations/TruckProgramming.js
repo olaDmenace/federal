@@ -165,7 +165,7 @@ function TruckProgramming({ formData, setFormData }) {
         <hr />
       </div> : ''}
       <form action="" onSubmit={handleSubmit} className="grid text-primary gap-5 w-full">
-        <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3 items-end">
+        <div className="grid gap-3 md:grid-cols-2 items-end">
           {location.pathname !== '/dashboard/TruckProgramming' ? <label htmlFor="tripId">
             Trip ID
             {/* <div className="border border-primary w-full h-12 px-4 rounded-lg grid items-center">
@@ -231,18 +231,6 @@ function TruckProgramming({ formData, setFormData }) {
                 prog.filter((t) => t.truckProgrammingId === formData.truckProgrammingId).map(item => <p key={item.truck.truckNumber} className="px-4">{item.truck.truckCapacity}</p>)
               }
             </div>
-          </label>
-          <label htmlFor="">
-            Truck Loading Status
-            <input className="w-full input input-primary" type="text" name="" id="" />
-            {/* <select name="" id="">
-              <option value="">Select Truck Status</option>
-              <option value=""></option>
-            </select> */}
-          </label>
-          <label htmlFor="">
-            Truck Loading Time
-            <input className="w-full input input-primary" type="date" name="" id="" />
           </label>
           <label htmlFor="">
             Volume Unit
@@ -377,43 +365,6 @@ function TruckProgramming({ formData, setFormData }) {
               id=""
             />
           </label>
-          <label htmlFor="">
-            Loading Location
-            <br />
-            <select
-              class="select select-primary w-full"
-              name=""
-              id=""
-              value={data.loadingLocationId}
-              onChange={(e) =>
-                setData({ ...data, loadingLocationId: e.target.value })
-              }
-            >
-              <option>Select Loding Location</option>
-              {depots.map(depot => <option key={depot.depotId} value={depot.depotId}>{depot.depotName}</option>)}
-            </select>
-          </label>
-          <label htmlFor="">
-            Returning Destination
-            <br />
-            {location.pathname === '/dashboard/TruckProgramming' ? <select
-              class="select select-primary w-full"
-              name=""
-              id=""
-              value={data.returningLocationId}
-              onChange={(e) =>
-                setData({ ...data, returningLocationId: e.target.value })
-              }
-            >
-              <option selected>
-                Select Returning Destination
-              </option>
-              {depots.map(depot => <option key={depot.depotId} value={depot.depotId}>{depot.depotName}</option>)}
-            </select>
-              :
-              prog.filter((t) => t.truckProgrammingId === formData.truckProgrammingId).map(item => <div className="w-full border border-primary h-12 px-4 pt-3 rounded-lg" key={item.truck.truckId}>{item.returningDepot}</div>)
-            }
-          </label>
         </div>
         <fieldset className="grid md:grid-cols-2 gap-3 w-full">
           <label htmlFor="">
@@ -462,7 +413,61 @@ function TruckProgramming({ formData, setFormData }) {
           </div>
         </label>
         <h2 className="text-xl -mb-4 text-primary font-semibold">
-          Trip/Customer Details
+          Trip Details
+        </h2>
+        <fieldset className="grid gap-3 md:grid-cols-2 items-end">
+          <label htmlFor="">
+            Truck Loading Status
+            <input className="w-full input input-primary" type="text" name="" id="" />
+            {/* <select name="" id="">
+              <option value="">Select Truck Status</option>
+              <option value=""></option>
+            </select> */}
+          </label>
+          <label htmlFor="">
+            Truck Loading Date
+            <input className="w-full input input-primary" type="date" name="" id="" />
+          </label>
+          <label htmlFor="">
+            Loading Location
+            <br />
+            <select
+              class="select select-primary w-full"
+              name=""
+              id=""
+              value={data.loadingLocationId}
+              onChange={(e) =>
+                setData({ ...data, loadingLocationId: e.target.value })
+              }
+            >
+              <option>Select Loding Location</option>
+              {depots.map(depot => <option key={depot.depotId} value={depot.depotId}>{depot.depotName}</option>)}
+            </select>
+          </label>
+          <label htmlFor="">
+            Returning Destination
+            <br />
+            {location.pathname === '/dashboard/TruckProgramming' ? <select
+              class="select select-primary w-full"
+              name=""
+              id=""
+              value={data.returningLocationId}
+              onChange={(e) =>
+                setData({ ...data, returningLocationId: e.target.value })
+              }
+            >
+              <option selected>
+                Select Returning Destination
+              </option>
+              {depots.map(depot => <option key={depot.depotId} value={depot.depotId}>{depot.depotName}</option>)}
+            </select>
+              :
+              prog.filter((t) => t.truckProgrammingId === formData.truckProgrammingId).map(item => <div className="w-full border border-primary h-12 px-4 pt-3 rounded-lg" key={item.truck.truckId}>{item.returningDepot}</div>)
+            }
+          </label>
+        </fieldset>
+        <h2 className="text-xl -mb-4 text-primary font-semibold">
+          Customer Details
         </h2>
         <hr />
         <fieldset className="grid gap-3 md:grid-cols-2 lg:grid-cols-3 items-end">
