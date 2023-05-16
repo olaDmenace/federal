@@ -141,7 +141,8 @@ function TruckProgramming({ formData, setFormData }) {
   { tripTypeId: 3, tripTypeName: 'Rescue (Loaded Truck)' },
   { tripTypeId: 4, tripTypeName: 'Rescue (Empty Truck)' },
   { tripTypeId: 5, tripTypeName: 'Training' },
-  { tripTypeId: 6, tripTypeName: 'Road Test' }
+  { tripTypeId: 6, tripTypeName: 'Road Test' },
+  { tripTypeId: 7, tripTypeName: 'Local Trip' }
   ]
 
 
