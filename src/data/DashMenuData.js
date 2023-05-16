@@ -56,6 +56,10 @@ export const OPSUPPORT_ROUTES = [
     route: "/dashboard/partsAndInventory",
   },
   {
+    label: "Asset Register",
+    route: "/dashboard/AssetRegister",
+  },
+  {
     label: "Utilities",
     route: "/dashboard/utilities",
   },
