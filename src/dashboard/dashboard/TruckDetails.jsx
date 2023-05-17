@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { LocationMarkerIcon, TruckIcon } from "@heroicons/react/outline";
-import Fuel from "../../images/Pump.png";
+import { TruckIcon } from "@heroicons/react/outline";
+// import Fuel from "../../images/Pump.png";
 import endpoint from "../../utils/endpoints/endpoint";
 import FormTitle from "../FormTitle";
+import { PencilIcon } from "@heroicons/react/solid";
+import { useDispatch } from "react-redux";
+import { truck } from "../../utils/features/truckSlice";
+import { useNavigate } from "react-router-dom";
 
 const TruckDetails = () => {
   const [trucks, setTrucks] = useState([]);
@@ -52,16 +56,6 @@ const TruckDetails = () => {
     "Outbound",
   ];
 
-  const OPStatus = [
-    "Assigned to Trip",
-    "At the loading depot",
-    "Booked for maintenance",
-    "Truck Loaded",
-    "Maintenance Completed",
-    "Truck Loaded",
-    "Enroute Bridging Depot"
-  ]
-
   const FUNCStatus = [
     "Uptime",
     "Downtime"
@@ -77,39 +71,51 @@ const TruckDetails = () => {
   ]
   const shuffledValues = (arg) => shuffleArray(arg); // Shuffle the DATstatus array
 
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  // const [editTruck, setEditTruck] = useState()
+  const onItemClick = (item) => {
+    dispatch(truck())
+    navigate('/dashboard/AssetRegister')
+  };
+
   return (
     <div className="bg-white p-5 rounded-lg grid gap-5">
       <div className="md:flex justify-between items-center">
         <FormTitle Title={"Truck Visibility Report"} />
-        <div className="flex gap-5">
-          <button className="btn btn-primary">Download</button>
+        <button className="btn btn-primary">Download</button>
+        {/* <div className="flex gap-5">
           <button className="btn btn-primary">Create</button>
+        </div> */}
+      </div>
+      <div className="table w-full text-primary">
+        <div className="table-header-group">
+          <div className="table-row bg-primary/10 h-10">
+            <div className="table-cell text-left pt-2">Truck</div>
+            <div className="table-cell text-left pt-2">Location</div>
+            <div className="table-cell text-left pt-2">Functional Status</div>
+            <div className="table-cell text-left pt-2">Operational Status</div>
+            <div className="table-cell text-left pt-2">DAT Status</div>
+            <div className="table-cell text-left pt-2">Date</div>
+          </div>
+        </div>
+        <div className="table-row-group">
+          {trucks.map((truck, index) => (
+            <div key={truck.truckId} className="table-row">
+              <div className="table-cell">{truck.truckNumber}</div>
+              <div className="table-cell">{shuffledValues(Location)[index % shuffledValues(Location).length]}</div>
+              <div className="table-cell">{shuffledValues(FUNCStatus)[index % shuffledValues(FUNCStatus).length]}</div>
+              <div className="table-cell">{truck.operationalStatus}</div>
+              <div className="table-cell">{shuffledValues(DATstatus)[index % shuffledValues(DATstatus).length]}</div>
+              <div className="table-cell">{formatDate(truck.manufactureDate)}</div>
+              <div className="flex gap-5 items-center">
+                <div className="table-cell"><PencilIcon className="h-6 border border-primary rounded-sm cursor-pointer" onClick={() => onItemClick()} /></div>
+                <div className="table-cell"><TruckIcon className="h-6 border border-primary rounded-sm cursor-pointer" /></div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-      <table className="table-auto w-full text-primary gap-10">
-        <thead>
-          <tr className="">
-            <th>Truck</th>
-            <th>Location</th>
-            <th>Functional Status</th>
-            <th>Operational Status</th>
-            <th>DAT Status</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {trucks.map((truck, index) => (
-            <tr key={truck.truckId} className="">
-              <td>{truck.truckNumber}</td>
-              <td>{shuffledValues(Location)[index % shuffledValues(Location).length]}</td>
-              <td>{shuffledValues(FUNCStatus)[index % shuffledValues(FUNCStatus).length]}</td>
-              <td>{shuffledValues(OPStatus)[index % shuffledValues(OPStatus).length]}</td>
-              <td>{shuffledValues(DATstatus)[index % shuffledValues(DATstatus).length]}</td>
-              <td>{formatDate(truck.manufactureDate)}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
     </div>
   );
 };
