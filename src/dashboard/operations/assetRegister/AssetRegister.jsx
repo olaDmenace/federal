@@ -4,10 +4,14 @@ import FormTitle from '../../FormTitle'
 import FormA from './FormA'
 import FormB from './FormB'
 import FormC from './FormC'
+import { useLocation } from 'react-router-dom'
 
 
 function AssetRegister() {
     PageTitle('Axle & Cartage - Register New Asset')
+
+    const location = useLocation()
+    console.log(location)
 
 
     const [select, setSelect] = useState()

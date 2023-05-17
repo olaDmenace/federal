@@ -152,6 +152,9 @@ function TruckProgramming({ formData, setFormData }) {
   }
 
   const location = useLocation()
+  console.log(location.state)
+
+  const { truckId } = location.state
 
   return (
     <div className="space-y-2 bg-white p-5 rounded-lg">
