@@ -73,16 +73,17 @@ const TruckDetails = () => {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  // const [editTruck, setEditTruck] = useState()
-  const onItemClick = () => {
+  const [editTruck, setEditTruck] = useState({})
+  const onItemClick = (arg) => {
+    setEditTruck(arg)
     // dispatch(truck())
-    navigate('/dashboard/AssetRegister')
+    navigate('/dashboard/AssetRegister', { state: { truck: arg } })
   };
 
   const [truckId, setTruckId] = useState()
   const tpf = (arg) => {
     setTruckId(arg)
-    navigate('/dashboard/TruckProgramming', { state: { truckId: arg } })
+    navigate('/dashboard/TruckProgramming', { state: { truck: arg } })
   }
 
   return (
@@ -115,8 +116,8 @@ const TruckDetails = () => {
               <div className="table-cell">{shuffledValues(DATstatus)[index % shuffledValues(DATstatus).length]}</div>
               <div className="table-cell">{formatDate(truck.manufactureDate)}</div>
               <div className="flex gap-5 items-center">
-                <div className="table-cell"><PencilIcon className="h-6 border border-primary rounded-sm cursor-pointer" onClick={() => onItemClick()} /></div>
-                <div className="table-cell"><TruckIcon className="h-6 border border-primary rounded-sm cursor-pointer" onClick={() => tpf(truck.truckId)} /></div>
+                <div className="table-cell"><PencilIcon className="h-6 border border-primary rounded-sm cursor-pointer" onClick={() => onItemClick(truck)} /></div>
+                <div className="table-cell"><TruckIcon className="h-6 border border-primary rounded-sm cursor-pointer" onClick={() => tpf(truck)} /></div>
               </div>
             </div>
           ))}
