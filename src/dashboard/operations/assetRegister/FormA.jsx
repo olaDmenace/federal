@@ -357,13 +357,33 @@ function FormA() {
         setLoading(!loading)
     }
 
-    const handleUpdate = () => {
+    const handleUpdate = (arg) => {
+        // console.log(formValues)
+        setLoading(!loading)
         console.log(formValues)
+        endpoint.put(`/truck/${arg}`, formValues).then(
+            res => {
+                setShow(true)
+                console.log(res)
+                setShow(!show)
+                setReply({
+                    icon: <ThumbUpIcon className='mx-auto h-24 text-primary' />,
+                    message: res.data.message
+                })
+            }
+        ).then((err) => {
+            setShow(!show)
+            setReply({
+                icon: <XCircleIcon className='mx-auto h-24 text-red-500' />,
+                message: `Please, check your form and try again ${err.response.data.message}`
+            })
+            console.log(err)
+        })
     }
 
     const formSubmit = () => {
         if (form === 3 && location.state) {
-            handleUpdate()
+            handleUpdate(location.state.truck.truckId)
         } else if (form === 3 && !location.state) {
             handleSubmit()
         } else (
