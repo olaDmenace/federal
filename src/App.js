@@ -56,7 +56,8 @@ function App() {
           </Route>
           <Route path="/welcome" element={<UserDashboard />} />
           <Route path="/dashboard" element={<Dashboard />}>
-            <Route path="" element={<TruckVisibilityReport />} />
+            <Route path='' element={<TruckDetails />} />
+            {/* <Route path="" element={<TruckVisibilityReport />} /> */}
             <Route path="TruckProgramming" element={<TruckProgramming />} />
             <Route path="JourneyManagement" element={<Journeymanagement />} />
             <Route path="AssetRegister" element={<AssetRegister />} />
@@ -88,12 +89,11 @@ function App() {
             <Route path={"EmployeeList"} element={<EmployeeLists />} />
             <Route path="Notifications" element={<Notifications />} />
             <Route path={"productDetails/:id"} element={<ProductDetails />} />
-            <Route
+            {/* <Route
               path={"TruckVisibilityReport"}
               element={<TruckVisibilityReport />}
-            />
+            /> */}
             <Route path={"TruckResolution/:id"} element={<TruckResolution />} />
-            <Route path={"TruckDetails"} element={<TruckDetails />} />
           </Route>
         </Routes>
       </BrowserRouter>

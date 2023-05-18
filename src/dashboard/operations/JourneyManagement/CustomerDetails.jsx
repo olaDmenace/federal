@@ -37,7 +37,7 @@ function CustomerDetails({ formData, setFormData }) {
                             <input value={formData.primaryWayBill.documentUrl} onChange={(e) => { setFormData({ ...formData, primaryWayBill: { ...formData.primaryWayBill, documentUrl: e.target.value } }) }} className='pt-4' type='file'></input>
                         </label>
                     </div>
-                    <div className='grid text-primary gap-5 w-full md:grid-cols-2 items-end'>
+                    {/* <div className='grid text-primary gap-5 w-full md:grid-cols-2 items-end'>
                         <label htmlFor="">
                             Primary Delivery Distance Travelled<br />
                             <input class='input input-primary w-full' placeholder='124KM' type="text" name="" id="" />
@@ -54,7 +54,7 @@ function CustomerDetails({ formData, setFormData }) {
                             ETA Return Destination<br />
                             <input class='input input-primary w-full' placeholder='08:00' type="time" name="" id="" />
                         </label>
-                    </div>
+                    </div> */}
                 </form>
             </div>
         </div>

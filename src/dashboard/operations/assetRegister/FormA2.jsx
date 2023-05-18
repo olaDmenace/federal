@@ -1,6 +1,10 @@
 import React from 'react'
 
 function FormA2({ formData, setFormData }) {
+    console.log('formData:', formData);
+
+
+
     const titles = new Map()
     titles.set(0, "Vehicle License")
     titles.set(1, 'Hackney Permit')
@@ -27,7 +31,7 @@ function FormA2({ formData, setFormData }) {
         }
         setFormData({ ...formData })
     }
-
+    console.log('titles:', titles);
     return (
         <div className='py-5 text-primary space-y-3'>
             <h4 className='text-lg font-semibold'>Truck Document</h4>

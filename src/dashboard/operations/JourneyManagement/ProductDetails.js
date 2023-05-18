@@ -21,7 +21,7 @@ function ProductDetails({ formData, setFormData }) {
                 <hr />
                 {/* Show the entry as requested here */}
                 <form className='grid gap-5'>
-                    <div className='grid text-primary gap-5 w-full md:grid-cols-2 lg:grid-cols-3 items-end'>
+                    <div className='grid text-primary gap-5 w-full md:grid-cols-2 items-end'>
                         <label htmlFor="">
                             Product Loaded<br />
                             <select className='select select-primary w-full' name="" id="">
@@ -31,26 +31,29 @@ function ProductDetails({ formData, setFormData }) {
                             {/* <input class='input input-primary w-full' placeholder='PMS' type="text" name="" id="" /> */}
                         </label>
                         <label htmlFor="">
-                            Quantity Loaded<br />
+                            Total Quantity Loaded<br />
                             <input class='input input-primary w-full' value={formData.primaryWayBill.quantityLoaded} onChange={(e) => setFormData({ ...formData, primaryWayBill: { ...formData.primaryWayBill, quantityLoaded: +e.target.value } })} placeholder='33000 LTRS' type="number" min={0} name="" id="" />
                         </label>
                         <label htmlFor="">
-                            Total Quatity Delivered (Multiple Customers)<br />
+                            Total Quatity Delivered<br />
                             <input class='input input-primary w-full' value={formData.primaryWayBill.quantityDelivered} onChange={(e) => setFormData({ ...formData, primaryWayBill: { ...formData.primaryWayBill, quantityDelivered: +e.target.value } })} placeholder='PMS' type="number" min={0} name="" id="" />
                         </label>
-                        <label htmlFor="">
+                        {/* <label htmlFor="">
                             Quantity Delivered to Direct Customer<br />
                             <input class='input input-primary w-full' placeholder='PMS' type="text" name="" id="" />
-                        </label><label htmlFor="">
+                        </label> */}
+                        <label htmlFor="">
                             Estimated Product Storage<br />
                             <input class='input input-primary w-full' placeholder='PMS' type="text" name="" id="" />
-                        </label><label htmlFor="">
+                        </label>
+                        <label htmlFor="">
                             Customer Shortage Claim (Multiple Customers)<br />
                             <input class='input input-primary w-full' value={formData.primaryWayBill.shortageClaim} onChange={(e) => setFormData({ ...formData, primaryWayBill: { ...formData.primaryWayBill, shortageClaim: +e.target.value } })} placeholder='PMS' type="text" name="" id="" />
-                        </label><label htmlFor="">
+                        </label>
+                        {/* <label htmlFor="">
                             Customer Shortage Claim (Direct Customer)<br />
                             <input class='input input-primary w-full' placeholder='PMS' type="text" name="" id="" />
-                        </label>
+                        </label> */}
                     </div>
                 </form>
             </div>

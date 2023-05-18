@@ -5,7 +5,7 @@ import endpoint from "../../utils/endpoints/endpoint";
 import FormTitle from "../FormTitle";
 import { PencilIcon } from "@heroicons/react/solid";
 import { useDispatch } from "react-redux";
-import { truck } from "../../utils/features/truckSlice";
+// import { truck } fro   m "../../utils/features/truckSlice";
 import { useNavigate } from "react-router-dom";
 
 const TruckDetails = () => {
@@ -73,11 +73,18 @@ const TruckDetails = () => {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  // const [editTruck, setEditTruck] = useState()
-  const onItemClick = (item) => {
-    dispatch(truck())
-    navigate('/dashboard/AssetRegister')
+  const [editTruck, setEditTruck] = useState({})
+  const onItemClick = (arg) => {
+    setEditTruck(arg)
+    // dispatch(truck())
+    navigate('/dashboard/AssetRegister', { state: { truck: arg } })
   };
+
+  const [truckId, setTruckId] = useState()
+  const tpf = (arg) => {
+    setTruckId(arg)
+    navigate('/dashboard/TruckProgramming', { state: { truck: arg } })
+  }
 
   return (
     <div className="bg-white p-5 rounded-lg grid gap-5">
@@ -109,8 +116,8 @@ const TruckDetails = () => {
               <div className="table-cell">{shuffledValues(DATstatus)[index % shuffledValues(DATstatus).length]}</div>
               <div className="table-cell">{formatDate(truck.manufactureDate)}</div>
               <div className="flex gap-5 items-center">
-                <div className="table-cell"><PencilIcon className="h-6 border border-primary rounded-sm cursor-pointer" onClick={() => onItemClick()} /></div>
-                <div className="table-cell"><TruckIcon className="h-6 border border-primary rounded-sm cursor-pointer" /></div>
+                <div className="table-cell"><PencilIcon className="h-6 border border-primary rounded-sm cursor-pointer" onClick={() => onItemClick(truck)} /></div>
+                <div className="table-cell"><TruckIcon className="h-6 border border-primary rounded-sm cursor-pointer" onClick={() => tpf(truck)} /></div>
               </div>
             </div>
           ))}

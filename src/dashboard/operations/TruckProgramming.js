@@ -14,7 +14,15 @@ function TruckProgramming({ formData, setFormData }) {
 
   // const dispatch = useDispatch();
 
-  const [data, setData] = useState({
+  const location = useLocation()
+  console.log(location)
+
+  // const [data, setData] = useState({
+  const initialState = location?.state ? {
+    truckId: location.state.truck.truckId,
+    programmingId: location.state.truck.programmingId,
+    status: location.state.truck.status
+  } : {
     truckId: "",
     isDedicatedDestination: true,
     customerId: "",
@@ -28,8 +36,14 @@ function TruckProgramming({ formData, setFormData }) {
     productId: "",
     bridgingDepotId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
     numberOfCustomers: 0
-  });
+  };
 
+  const [data, setData] = useState(initialState)
+
+  const [formValues, setFormValues] = useState({
+    programmingId: data.programmingId,
+    status: data.status
+  })
 
   const [trucks, setTrucks] = useState([])
   const [products, setProducts] = useState([])
@@ -114,8 +128,32 @@ function TruckProgramming({ formData, setFormData }) {
     icon: '',
     message: ''
   })
+
+  const updateSubmit = (e) => {
+    e.preventDefault()
+    const { truckId, ...formvalues } = data;
+    console.log(formvalues);
+    setIsLoading(!isLoading)
+    endpoint.put('/truck/programme', formValues)
+      .then(res => {
+        console.log(res)
+        setShow(!show)
+        setReply({
+          icon: <ThumbUpIcon className='mx-auto h-24 text-primary' />,
+          message: `${res.data.message} with Trip ID ${res.data.data}`
+        })
+      }).catch(err => {
+        setShow(true)
+        setReply({
+          icon: <XCircleIcon className='mx-auto h-24 text-red-500' />,
+          message: err.response.data.message || err.response.data.title
+        })
+        console.log(err)
+      })
+    // console.log("status:", status);
+  }
+
   const handleSubmit = (e) => {
-    console.log(e.cancelable)
     e.preventDefault()
     setIsLoading(true)
     endpoint.post('/truck/programme', data).then(res => {
@@ -145,13 +183,33 @@ function TruckProgramming({ formData, setFormData }) {
   { tripTypeId: 7, tripTypeName: 'Local Trip' }
   ]
 
+  const statusList = [
+    { id: 1, status: "Assigned" },
+    { id: 2, status: "Enroute Depot" },
+    { id: 3, status: "At the Loading Depot" },
+    { id: 4, status: "Truck Loaded" },
+    { id: 5, status: "Enroute Bridging Depot" },
+    { id: 6, status: "Enroute Customer Location" },
+    { id: 7, status: "At the Depot" },
+    { id: 8, status: "Truck Flashed" },
+    { id: 9, status: "At The Cutomer 1 Location" },
+    { id: 10, status: "At The Cutomer 2 Location" },
+    { id: 11, status: "At The Cutomer 3 Location" },
+    { id: 12, status: "Good Delivered to Customer 1" },
+    { id: 13, status: "Good Delivered to Customer 2" },
+    { id: 14, status: "Good Delivered to Customer 3" },
+    { id: 15, status: "Inbound" },
+    { id: 16, status: "End Journey" },
+    { id: 17, status: "Available for Loading" },
+  ]
+
 
   const closePop = () => {
     setIsLoading(!isLoading)
     setShow(false)
   }
 
-  const location = useLocation()
+  // const { truckId } = location.state
 
   return (
     <div className="space-y-2 bg-white p-5 rounded-lg">
@@ -164,7 +222,7 @@ function TruckProgramming({ formData, setFormData }) {
         <FormTitle Title={"Truck Programming"} />
         <hr />
       </div> : ''}
-      <form action="" onSubmit={handleSubmit} className="grid text-primary gap-5 w-full">
+      <form action="" onSubmit={location.state ? updateSubmit : handleSubmit} className="grid text-primary gap-5 w-full">
         <div className="grid gap-3 md:grid-cols-2 items-end">
           {location.pathname !== '/dashboard/TruckProgramming' ? <label htmlFor="tripId">
             Trip ID
@@ -212,7 +270,7 @@ function TruckProgramming({ formData, setFormData }) {
           <label htmlFor="">
             Truck Milage to Next PM
             <br />
-            <input className="input input-primary w-full" type="text" />
+            <input className="input input-primary w-full" type="text" disabled={location.state} />
           </label>
           <label htmlFor="">
             Next PM Due Date
@@ -257,7 +315,7 @@ function TruckProgramming({ formData, setFormData }) {
           <label htmlFor="">
             Product Name
             <br />
-            {location.pathname === '/dashboard/TruckProgramming' ? <select className="select select-primary w-full" value={data.productId} onChange={(e) => setData({ ...data, productId: e.target.value })} name="" id="">
+            {location.pathname === '/dashboard/TruckProgramming' ? <select className="select select-primary w-full" disabled={location.state} value={data.productId} onChange={(e) => setData({ ...data, productId: e.target.value })} name="" id="">
               <option value="">Select Type</option>
               {products.map(item => <option key={item.productId} value={item.productId}>{item.productName}</option>)}
             </select> :
@@ -280,6 +338,7 @@ function TruckProgramming({ formData, setFormData }) {
             <br />
             <input
               class="input input-primary w-full"
+              disabled={location.state}
               placeholder="Lorem Depot"
               type="text"
               name=""
@@ -294,6 +353,7 @@ function TruckProgramming({ formData, setFormData }) {
               class="select select-primary w-full"
               name=""
               id=""
+              disabled={location.state}
               value={data.isDedicatedDestination}
               onChange={(e) =>
                 setData({ ...data, isDedicatedDestination: e.target.value === "true" })
@@ -322,6 +382,7 @@ function TruckProgramming({ formData, setFormData }) {
             <select
               class="select select-primary w-full"
               name=""
+              disabled={location.state}
               id=""
               value={data.tripType}
               onChange={(e) => setData({ ...data, tripType: +e.target.value })}
@@ -349,6 +410,7 @@ function TruckProgramming({ formData, setFormData }) {
               class="input input-primary w-full"
               placeholder=""
               type="text"
+              disabled={location.state}
               name={data.restrictions}
               onChange={(e) => setData({ ...data, restrictions: e.target.value })}
               id=""
@@ -360,6 +422,7 @@ function TruckProgramming({ formData, setFormData }) {
             <input
               class="input input-primary w-full"
               placeholder=""
+              disabled={location.state}
               type="text"
               name=""
               id=""
@@ -418,7 +481,18 @@ function TruckProgramming({ formData, setFormData }) {
         <fieldset className="grid gap-3 md:grid-cols-2 items-end">
           <label htmlFor="">
             Truck Loading Status
-            <input className="w-full input input-primary" type="text" name="" id="" />
+            {/* <input className="w-full input input-primary" type="text" name="" id="" /> */}
+            <select
+              name="truckLoading"
+              value={data.status}
+              onChange={(e) => setData({ ...data, status: +e.target.value })}
+              id="truckLoading"
+              className="select select-primary w-full">
+              <option value="">Select Loading Status</option>
+              {statusList.map(item =>
+                <option id={item.id} key={item.id} value={item.id}>{item.status}</option>
+              )}
+            </select>
             {/* <select name="" id="">
               <option value="">Select Truck Status</option>
               <option value=""></option>
@@ -426,7 +500,7 @@ function TruckProgramming({ formData, setFormData }) {
           </label>
           <label htmlFor="">
             Truck Loading Date
-            <input className="w-full input input-primary" type="date" name="" id="" />
+            <input className="w-full input input-primary" disabled={location.state} type="date" name="" id="" />
           </label>
           <label htmlFor="">
             Loading Location
@@ -435,6 +509,7 @@ function TruckProgramming({ formData, setFormData }) {
               class="select select-primary w-full"
               name=""
               id=""
+              disabled={location.state}
               value={data.loadingLocationId}
               onChange={(e) =>
                 setData({ ...data, loadingLocationId: e.target.value })
@@ -451,6 +526,7 @@ function TruckProgramming({ formData, setFormData }) {
               class="select select-primary w-full"
               name=""
               id=""
+              disabled={location.state}
               value={data.returningLocationId}
               onChange={(e) =>
                 setData({ ...data, returningLocationId: e.target.value })
@@ -474,7 +550,7 @@ function TruckProgramming({ formData, setFormData }) {
           <label htmlFor="">
             Customer Name
             <br />
-            {location.pathname === '/dashboard/TruckProgramming' ? <select className="select select-primary w-full" value={data.customerId} onChange={(e) => setData({ ...data, customerId: e.target.value })} name="" id="">
+            {location.pathname === '/dashboard/TruckProgramming' ? <select className="select select-primary w-full" disabled={location.state} value={data.customerId} onChange={(e) => setData({ ...data, customerId: e.target.value })} name="" id="">
               <option value="">Select Customer</option>
               {customers.map(item => <option key={item.customerId} value={item.customerId}>{item.customerName}</option>)}
             </select> :
@@ -499,7 +575,7 @@ function TruckProgramming({ formData, setFormData }) {
           <label htmlFor="">
             Customer Destination State
             <br />
-            <select class="select select-primary w-full" value={data.destinationState} onChange={(e) => setData({ ...data, destinationState: e.target.value })} name="" id="">
+            <select class="select select-primary w-full" value={data.destinationState} disabled={location.state} onChange={(e) => setData({ ...data, destinationState: e.target.value })} name="" id="">
               <option selected disabled>
                 Select State
               </option>
@@ -525,6 +601,7 @@ function TruckProgramming({ formData, setFormData }) {
               type="number"
               min={0}
               name=""
+              disabled={location.state}
               id=""
               value={data.numberOfCustomers}
               onChange={(e) => setData({ ...data, numberOfCustomers: +e.target.value })}
@@ -534,6 +611,7 @@ function TruckProgramming({ formData, setFormData }) {
             Programmed Business Area (Final Destination)
             <br />
             <select className="select select-primary w-full"
+              disabled={location.state}
               value={data.finalDestination}
               onChange={(e) =>
                 setData({ ...data, finalDestination: e.target.value })
@@ -560,11 +638,11 @@ function TruckProgramming({ formData, setFormData }) {
           location.pathname === '/dashboard/TruckProgramming' ? <div className="mx-auto">
             {isLoading && <LoadingSpinner />}
             {!isLoading && <button
-              disabled={data.customerId === ''}
+              disabled={data.customerId === '' && !location.state}
               class="btn btn-primary mx-auto"
               type="submit"
             >
-              Program Truck
+              {location.state ? "Update Truck" : "Program Truck"}
             </button>}
           </div> : ''
         }

@@ -8,13 +8,144 @@ import LoadingSpinner from '../../../utils/LoadingSpinner'
 import PopUp from '../../../utils/PopUp'
 import { ThumbUpIcon } from '@heroicons/react/solid'
 import { XCircleIcon } from '@heroicons/react/outline'
+import { useLocation } from 'react-router-dom'
 
 
 function FormA() {
     const [form, setForm] = useState(0)
+    const location = useLocation()
+    console.log(location?.state?.truck)
 
     // Collects and holds the data from the children form
-    const [formData, setFormData] = useState({
+    const initialState = location.state ? {
+        // Use the data from location.state.truck
+        // truckNumber: location.state.truck.truckNumber,
+        // fleetNumber: location.state.truck.fleetNumber,
+        // licensePlateNumber: location.state.truck.licensePlateNumber,
+
+        ...location.state.truck,
+        // truckNumber: location.state.truck?.truckNumber || '',
+        // fleetNumber: '',
+        // licensePlateNumber: '',
+        // pictureUrl: '',
+        // tractorChasis: '',
+        // engineNumber: '',
+        // identificationNumber: '',
+        // manufactureDate: '',
+        // brand: {
+        //     model: '',
+        //     manufacturer: ''
+        // },
+        truckDocuments: [
+            {
+                type: 0,
+                referenceNumber: "",
+                dateIssued: "",
+                expiryDate: ""
+            },
+            {
+                type: 1,
+                referenceNumber: "",
+                dateIssued: "",
+                expiryDate: ""
+            },
+            {
+                type: 2,
+                referenceNumber: "",
+                dateIssued: "",
+                expiryDate: ""
+            },
+            {
+                type: 3,
+                referenceNumber: "",
+                dateIssued: "",
+                expiryDate: ""
+            },
+            {
+                type: 4,
+                referenceNumber: "",
+                dateIssued: "",
+                expiryDate: ""
+            },
+            {
+                type: 5,
+                referenceNumber: "",
+                dateIssued: "",
+                expiryDate: ""
+            },
+            {
+                type: 6,
+                referenceNumber: "",
+                dateIssued: "",
+                expiryDate: ""
+            },
+            {
+                type: 7,
+                referenceNumber: "",
+                dateIssued: "",
+                expiryDate: ""
+            },
+            {
+                type: 8,
+                referenceNumber: "",
+                dateIssued: "",
+                expiryDate: ""
+            },
+            {
+                type: 9,
+                referenceNumber: "",
+                dateIssued: "",
+                expiryDate: ""
+            },
+            {
+                type: 10,
+                referenceNumber: "",
+                dateIssued: "",
+                expiryDate: ""
+            },
+            // {
+            //     type: 11,
+            //     referenceNumber: "",
+            //     dateIssued: "",
+            //     expiryDate: ""
+            // }
+        ],
+        // FormA3
+
+        maintenanceInfo: {
+            lastPreventiveMaintenance: '',
+            nextPreventiveMaintenance: '',
+            inServiceDate: '',
+            inServiceOdometer: 0,
+            estimatedServiceLive: 0,
+            estServiceMet: '',
+            estimatedResaleValue: 0,
+            outOfServiceDate: '',
+            outOfServiceOdometer: 0,
+        },
+        purchaseInfo: {
+            vendorName: '',
+            purchaseDate: '',
+            purchaseValue: 0,
+            odometer: 0,
+            notes: '',
+            warrantyExpiryDate: '',
+            warrantyMaxOdometer: 0
+        },
+        specification: {
+            driveType: '',
+            brakeSystem: '',
+            rearAxle: 0,
+            fuelType: '',
+            fisrtTankCapacity: 0,
+            secondTankCapacity: 0,
+            tankCapacityMetric: "",
+            oilCapacity: 0,
+            oilCapacityMetric: "",
+            maintenanceVendor: ''
+        }
+        // Rest of the properties...
+    } : {
         // FormA1
         truckNumber: '',
         fleetNumber: '',
@@ -151,7 +282,29 @@ function FormA() {
             oilCapacityMetric: "",
             maintenanceVendor: ''
         }
-    })
+    }
+
+
+    const [formData, setFormData] = useState(initialState)
+
+
+    const [formValues, setFormValues] = useState({
+        truckNumber: formData.truckNumber,
+        fleetNumber: formData.fleetNumber,
+        licensePlateNumber: formData.licensePlateNumber,
+        pictureUrl: "",
+        tractorChasis: formData.tractorChasis,
+        engineNumber: formData.engineNumber,
+        identificationNumber: formData.identificationNumber,
+        manufactureDate: formData.manufactureDate,
+        brand: {
+            model: formData.brand.model,
+            manufacturer: formData.brand.manufacturer
+        },
+        // referenceNumber: formData.referenceNumber || "",
+        // dateIssued: formData.dateIssued || "",
+        // expiryDate: formData.expiryDate || "",
+    });
 
 
     // Controls which form is displayed on the page
@@ -204,6 +357,42 @@ function FormA() {
         setLoading(!loading)
     }
 
+    const handleUpdate = (arg) => {
+        // console.log(formValues)
+        setLoading(!loading)
+        console.log(formValues)
+        endpoint.put(`/truck/${arg}`, formValues).then(
+            res => {
+                setShow(true)
+                console.log(res)
+                setShow(!show)
+                setReply({
+                    icon: <ThumbUpIcon className='mx-auto h-24 text-primary' />,
+                    message: res.data.message
+                })
+            }
+        ).then((err) => {
+            setShow(!show)
+            setReply({
+                icon: <XCircleIcon className='mx-auto h-24 text-red-500' />,
+                message: `Please, check your form and try again ${err.response.data.message}`
+            })
+            console.log(err)
+        })
+    }
+
+    const formSubmit = () => {
+        if (form === 3 && location.state) {
+            handleUpdate(location.state.truck.truckId)
+        } else if (form === 3 && !location.state) {
+            handleSubmit()
+        } else (
+            setForm((currForn) => currForn + 1)
+        )
+    }
+
+    // { form === 3 ? handleSubmit() : setForm((currForm) => currForm + 1) }
+
     return (
         <div className='grid rounded-lg p-5 bg-white'>
             {show && <PopUp>
@@ -217,7 +406,7 @@ function FormA() {
                 <button
                     disabled={!formData}
                     className="btn btn-active"
-                    onClick={() => { form === 3 ? handleSubmit() : setForm((currForm) => currForm + 1) }
+                    onClick={() => formSubmit()
                     }>
                     {form === 3 ? 'Submit' : 'Next'}
                 </button>
