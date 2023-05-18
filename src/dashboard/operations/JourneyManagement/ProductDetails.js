@@ -35,6 +35,7 @@ function ProductDetails({ formData, setFormData }) {
                             <input class='input input-primary w-full' value={formData.primaryWayBill.quantityLoaded} onChange={(e) => setFormData({ ...formData, primaryWayBill: { ...formData.primaryWayBill, quantityLoaded: +e.target.value } })} placeholder='33000 LTRS' type="number" min={0} name="" id="" />
                         </label>
                         <label htmlFor="">
+                            {/* This should be Automated */}
                             Total Quatity Delivered<br />
                             <input class='input input-primary w-full' value={formData.primaryWayBill.quantityDelivered} onChange={(e) => setFormData({ ...formData, primaryWayBill: { ...formData.primaryWayBill, quantityDelivered: +e.target.value } })} placeholder='PMS' type="number" min={0} name="" id="" />
                         </label>
@@ -47,7 +48,7 @@ function ProductDetails({ formData, setFormData }) {
                             <input class='input input-primary w-full' placeholder='PMS' type="text" name="" id="" />
                         </label>
                         <label htmlFor="">
-                            Customer Shortage Claim (Multiple Customers)<br />
+                            Customer Shortage Claim<br />
                             <input class='input input-primary w-full' value={formData.primaryWayBill.shortageClaim} onChange={(e) => setFormData({ ...formData, primaryWayBill: { ...formData.primaryWayBill, shortageClaim: +e.target.value } })} placeholder='PMS' type="text" name="" id="" />
                         </label>
                         {/* <label htmlFor="">

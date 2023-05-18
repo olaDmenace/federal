@@ -28,7 +28,13 @@ function CustomerDetails({ formData, setFormData }) {
                             </select>
                         </label><label htmlFor="">
                             Actual Delivery Business Area<br />
-                            <input class='input input-primary w-full' placeholder='Badagry' type="text" name="" id="" />
+                            <select className="select select-primary w-full">
+                                <option value="">Select Business Area</option>
+                                <option value="south west">South West</option>
+                                <option value="south east">South East</option>
+                                <option value="north i">North I</option>
+                                <option value="north ii">North II</option>
+                            </select>
                         </label><label htmlFor="">
                             Primary Current Waybill Number<br />
                             <input value={formData.primaryWayBill.waybillNumber} onChange={(e) => { setFormData({ ...formData, primaryWayBill: { ...formData.primaryWayBill, waybillNumber: e.target.value } }) }} class='input input-primary w-full' type="text" name="" id="" />

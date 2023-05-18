@@ -26,7 +26,7 @@ function Journeymanagement() {
             waybillNumber: "",
             documentUrl: "",
             distanceTravelled: 0,
-            quantityDelivered: 0,
+            quantityDelivered: "",
             quantityLoaded: 0,
             shortageClaim: 0,
         },
