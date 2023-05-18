@@ -292,7 +292,7 @@ function FormA() {
         truckNumber: formData.truckNumber,
         fleetNumber: formData.fleetNumber,
         licensePlateNumber: formData.licensePlateNumber,
-        pictureUrl: formData.pictureUrl,
+        pictureUrl: "",
         tractorChasis: formData.tractorChasis,
         engineNumber: formData.engineNumber,
         identificationNumber: formData.identificationNumber,
