@@ -11,7 +11,7 @@ function Dashboard() {
           <DashMenu />
         </div>
       </div>
-      <div className='lg:col-span-10 pb-8 space-y-3 bg-primary/5 w-full'>
+      <div className='lg:col-span-10 pb-8 space-y-3 bg-primary/5 w-full scrollbar-thin scrollbar-track-green-100 scrollbar-thumb-green-900 relative'>
         <Notification />
         <div className='w-11/12 mx-auto'>
           <Outlet />

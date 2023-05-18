@@ -28,7 +28,7 @@ function CustomerListDetails({ formData, setFormData }) {
   return (
     <div className='space-y-4 pr-10'>
       <div className='flex justify-between space-y-2'>
-        <h4 className='text-xl text-primary font-medium'>Customer</h4>
+        <h4 className='text-xl text-primary font-medium'>Customer Split</h4>
         <div className='float-right flex items-center gap-3 text-primary'>
           <PlusCircleIcon className='h-4' />
           <button onClick={(e) => handleNewWayBillFrm(formNumber + 1)} className='font-medium'>Add Waybill</button>
