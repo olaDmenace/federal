@@ -11,7 +11,7 @@ const Notifications = () => {
             <div className='grid gap-8 lg:gap-4 lg:grid-cols-12'>
                 <div className='grid gap-8 lg:gap-4 md:grid-cols-10 order-last lg:order-first lg:col-span-8'>
                     <NotificationsCard />
-                    <div className='rounded-lg shadow-md p-5 grid gap-5 md:col-span-6 md:h-screen md:overflow-y-scroll bg-white'>
+                    <div className='rounded-lg shadow-md p-5 grid gap-5 md:col-span-6 md:h-screen md:overflow-y-scroll scrollbar-thin scrollbar-track-green-100 scrollbar-thumb-green-900 relative bg-white'>
                         <div>
                             <p className='font-semibold text-lg'>Tasks<span className='indicator-item badge badge-secondary float-right'>4</span></p>
                             <div className='grid gap-5 lg:grid-cols-2'>
@@ -41,7 +41,7 @@ const Notifications = () => {
                         </div>
                     </div>
                 </div>
-                <div className='grid md:grid-cols-2 lg:grid-cols-1 lg:col-span-4 lg:h-screen overflow-y-scroll gap-8 pb-10'>
+                <div className='grid md:grid-cols-2 lg:grid-cols-1 lg:col-span-4 lg:h-screen overflow-y-scroll scrollbar-thin scrollbar-track-green-100 scrollbar-thumb-green-900 relative gap-8 pb-10'>
                     <div className='rounded-lg shadow-md py-10 grid gap-5 md:col-span-1 bg-white'>
                         <div className='justify-items-center grid gap-2'>
                             <img src={Avatar} className='rounded-full w-20' alt="" />
