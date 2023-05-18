@@ -43,7 +43,7 @@ function SecondaryWaybill({ index, formData, setFormData }) {
     }, [])
 
     return (
-        <form className='text-primary grid gap-5 w-1/2'>
+        <form className='text-primary grid gap-5 w-1/2 border border-primary rounded-lg p-5'>
             <h6 className='font-medium'>{`Secondary Waybill ${index + 1}`}</h6>
             <label htmlFor="">
                 Waybill Number
