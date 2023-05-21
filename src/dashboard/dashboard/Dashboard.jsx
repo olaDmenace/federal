@@ -24,7 +24,7 @@ const Dashboard = () => {
         <DashCard
           Link={"/dashboard/Notifications"}
           icon={BellIcon}
-          title={"Messages"}
+          title={"My Workspace"}
 
         />
         <DashCard
