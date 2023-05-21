@@ -248,7 +248,7 @@ function TruckProgramming({ formData, setFormData }) {
               type="text"
               name=""
             >
-              <option value="">Select Reason</option>
+              <option value="">Select Truck</option>
               {trucks.map(item => <option value={item.truckId} key={item.truckId}>{item.truckNumber}</option>)}
             </select> :
               <div className="border border-primary w-full h-12 px-4 rounded-lg grid items-center">
