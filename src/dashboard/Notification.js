@@ -14,9 +14,9 @@ function Notification() {
   };
 
   return (
-    <div className="md:flex justify-between py-3 items-center px-10 sticky top-0 bg-white z-50">
+    <div className="lg:flex justify-between py-3 items-center px-10 sticky top-0 bg-white z-50">
       <p className="text-2xl text-primary font-bold hidden lg:block">Welcome</p>
-      <div className="flex gap-5 items-center justify-end">
+      <div className="flex gap-5 items-center justify-between lg:justify-end">
         <div className="indicator">
           <span className="indicator-item indicator-end badge badge-primary">
             9
@@ -35,8 +35,8 @@ function Notification() {
           />
         )}
         {menu && (
-          <div className="absolute h-screen w-full bg-black/50 top-0 right-0 z-50">
-            <div className="bg-white relative w-2/3 h-screen float-right">
+          <div className="absolute lg:hidden h-screen w-full bg-black/50 top-0 right-0 z-50">
+            <div className="bg-white relative w-2/3 md:w-1/3 h-screen float-right">
               <DashMenu click={showMenu} />
             </div>
           </div>
