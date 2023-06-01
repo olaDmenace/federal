@@ -10,6 +10,7 @@ import {
   LoginIcon,
   ShieldCheckIcon,
   UsersIcon,
+  XCircleIcon,
 } from "@heroicons/react/outline";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
@@ -24,12 +25,12 @@ import {
   REPORTS_ROUTES,
 } from "../data/DashMenuData";
 
-function DashMenu() {
+function DashMenu(props) {
   const [operationOpen, setOperationOpen] = useState(false);
   const [hsOpen, setHsopen] = useState(false);
   const [osOpen, setOsopen] = useState(false);
   const [hrOpen, setHrOpen] = useState(false);
-  const [repOpen, setRepOpen] = useState(false)
+  const [repOpen, setRepOpen] = useState(false);
 
   const dispatch = useDispatch();
   const handleLogout = (e) => {
@@ -42,7 +43,7 @@ function DashMenu() {
     hs: useRef(null),
     os: useRef(null),
     hr: useRef(null),
-    rep: useRef(null)
+    rep: useRef(null),
   };
 
   useEffect(() => {
@@ -92,6 +93,10 @@ function DashMenu() {
           className="mix-blend-overlay h-screen w-full absolute"
           src={Dash}
           alt=""
+        />
+        <XCircleIcon
+          className="h-10 stroke-1 stroke-white absolute z-30 top-4 right-10 block lg:hidden"
+          onClick={props.click}
         />
         <img className="w-1/2 mx-auto" src={Logo} alt="" />
         <div className="space-y-10 px-3.5">
@@ -221,7 +226,7 @@ function DashMenu() {
                       <NavLink
                         key={index}
                         to={rep.route}
-                        className='hover:font-bold hover:ease-in-out duration-150 block'
+                        className="hover:font-bold hover:ease-in-out duration-150 block"
                       >
                         {rep.label}
                       </NavLink>
