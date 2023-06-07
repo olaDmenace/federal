@@ -638,7 +638,7 @@ function TruckProgramming({ formData, setFormData }) {
           location.pathname === '/dashboard/TruckProgramming' ? <div className="mx-auto">
             {isLoading && <LoadingSpinner />}
             {!isLoading && <button
-              disabled={data.customerId === '' && !location.state}
+              // disabled={data.customerId === '' && !location.state}
               class="btn btn-primary mx-auto"
               type="submit"
             >
