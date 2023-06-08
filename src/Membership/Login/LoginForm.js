@@ -6,6 +6,7 @@ import endpoint from "../../utils/endpoints/endpoint";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "../../utils/features/userSlice";
+import LoadingSpinner from "../../utils/LoadingSpinner";
 
 function LoginForm({ setAuth }) {
   const [email, setEmail] = useState("");
@@ -15,10 +16,12 @@ function LoginForm({ setAuth }) {
   const dispatch = useDispatch();
   const loginURL = "/auth/login";
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrMsg("");
+    setLoading(true)
     const data = {
       email: email,
       password: password,
@@ -49,6 +52,7 @@ function LoginForm({ setAuth }) {
         setPassword("");
         setErrMsg(err.response.data.message);
       });
+    setLoading(false)
   };
 
   return (
@@ -92,9 +96,10 @@ function LoginForm({ setAuth }) {
             <p className="text-sm">Forgot Password</p>
           </Link>
         </fieldset>
-        <button onClick={handleSubmit} className="btn btn-primary">
+        {loading&&<LoadingSpinner />}
+        {!loading&&<button onClick={handleSubmit} className="btn btn-primary">
           Sign In
-        </button>
+        </button>}
       </form>
       <p className="text-center">
         Do not have an accout yet? <br />{" "}

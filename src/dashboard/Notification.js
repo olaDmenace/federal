@@ -5,7 +5,7 @@ import DashMenu from "./DashMenu";
 // import { useSelector } from "react-redux";
 
 function Notification() {
-  // const lastName = localStorage.getItem(lastName)
+  const lastName = localStorage.getItem("lastName")
 
   const [menu, setMenu] = useState(false);
 
@@ -15,7 +15,7 @@ function Notification() {
 
   return (
     <div className="lg:flex justify-between py-3 items-center px-10 sticky top-0 bg-white z-50">
-      <p className="text-2xl text-primary font-bold hidden lg:block">Welcome</p>
+      <p className="text-2xl text-primary font-bold hidden lg:block">Welcome {lastName}</p>
       <div className="flex gap-5 items-center justify-between lg:justify-end">
         <div className="indicator">
           <span className="indicator-item indicator-end badge badge-primary">

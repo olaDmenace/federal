@@ -13,7 +13,7 @@ import {
   XCircleIcon,
 } from "@heroicons/react/outline";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../utils/features/userSlice";
 import DashMenuItem from "./DashMenuItem";
@@ -32,10 +32,12 @@ function DashMenu(props) {
   const [hrOpen, setHrOpen] = useState(false);
   const [repOpen, setRepOpen] = useState(false);
 
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
+    navigate('/')
   };
 
   const dropdownRefs = {
