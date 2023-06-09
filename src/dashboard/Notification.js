@@ -1,11 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Avatar from "../images/Avatar.png";
 import { BellIcon, MenuAlt3Icon } from "@heroicons/react/outline";
 import DashMenu from "./DashMenu";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../utils/features/userSlice";
 // import { useSelector } from "react-redux";
 
 function Notification() {
   const lastName = localStorage.getItem("lastName")
+  // const isAuthenticated = useSelector(state=>state.isAuthenticated)
+  const isAuthenticated = useSelector(state => state.isAuthenticated);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      dispatch(logout());
+      navigate('/');
+    }
+  }, [isAuthenticated, dispatch, navigate]);
+
+
 
   const [menu, setMenu] = useState(false);
 

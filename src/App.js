@@ -12,7 +12,7 @@ import Journeymanagement from "./dashboard/operations/JourneyManagement/Journeym
 import AssetRegister from "./dashboard/operations/assetRegister/AssetRegister";
 import ShortageResolution from "./dashboard/operations/shortageResolution/ShortageResolution";
 import TripExpense from "./dashboard/operations/tripExpense/TripExpense";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 // import { selectUser } from "./utils/features/userSlice";
 import AbsenceForm from "./dashboard/hr/AbsenceForm";
 import ConsequenceManagement from "./dashboard/hr/ConsequenceManagement";
@@ -33,6 +33,9 @@ import Notifications from "./dashboard/notifications/Notifications";
 import ProductDetails from "./dashboard/operations/shortageResolution/ProductDetails";
 import TruckDetails from "./dashboard/dashboard/TruckDetails";
 import TruckResolution from "./dashboard/operations/shortageResolution/TruckResolution";
+import ProtectedRoute from "./utils/ProtectedRoutes";
+// import ProtectedRoutes from "./utils/ProtectedRoutes";
+
 
 /* ***IMPORTANT NOTICE***
     This project is a React JS project buitl with Daisy UI Tailwind CSS UI component.
@@ -40,7 +43,8 @@ import TruckResolution from "./dashboard/operations/shortageResolution/TruckReso
 */
 
 function App() {
-  // const user = useSelector(selectUser);
+  // const user = useSelector(state=>state.isAuthenticated);
+  // console.log(user)
 
   return (
     <div className="App">
@@ -55,7 +59,7 @@ function App() {
             <Route path="CreatePassword" element={<CreatePassword />} />
           </Route>
           <Route path="/welcome" element={<UserDashboard />} />
-          <Route path="/dashboard" element={<Dashboard />}>
+          <Route path="/dashboard"   element={<Dashboard />}>
             <Route path='' element={<TruckDetails />} />
             {/* <Route path="" element={<TruckVisibilityReport />} /> */}
             <Route path="TruckProgramming" element={<TruckProgramming />} />
