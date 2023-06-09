@@ -33,8 +33,6 @@ import Notifications from "./dashboard/notifications/Notifications";
 import ProductDetails from "./dashboard/operations/shortageResolution/ProductDetails";
 import TruckDetails from "./dashboard/dashboard/TruckDetails";
 import TruckResolution from "./dashboard/operations/shortageResolution/TruckResolution";
-import ProtectedRoute from "./utils/ProtectedRoutes";
-// import ProtectedRoutes from "./utils/ProtectedRoutes";
 
 
 /* ***IMPORTANT NOTICE***
