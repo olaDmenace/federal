@@ -10,7 +10,8 @@ import { logout } from "../utils/features/userSlice";
 function Notification() {
   const lastName = localStorage.getItem("lastName")
   // const isAuthenticated = useSelector(state=>state.isAuthenticated)
-  const isAuthenticated = useSelector(state => state.isAuthenticated);
+  const isAuthenticated = useSelector(state => state.user.isAuthenticated);
+  console.log(isAuthenticated)
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
