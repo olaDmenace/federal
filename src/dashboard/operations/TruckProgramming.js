@@ -34,7 +34,7 @@ function TruckProgramming({ formData, setFormData }) {
     finalDestination: "",
     destinationState: "",
     productId: "",
-    bridgingDepotId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    bridgingDepotId: null,
     numberOfCustomers: 0
   };
 
@@ -99,14 +99,30 @@ function TruckProgramming({ formData, setFormData }) {
     })
   }, [])
 
+  // Truck Information from Galooli
+  const [truck, setTruck] = useState()
   useEffect(() => {
-    endpoint.get('/truck/galooli/700ee189-7f31-4e11-aa1c-fc4286d543be').then(res => {
-      console.log(res.data.data)
-      setCustomers(res.data.data)
+    endpoint.get(`/truck/galooli/${data.truckId}`).then(res => {
+      console.log(res)
+      setTruck(res.data.data)
+      // setCustomers(res.data.data)
     }).catch(err => {
       console.log(err)
     })
-  }, [])
+  }, [data.truckId])
+
+  useEffect(() => {
+    // fetch(`http://api.geonames.org/findNearestAddress?lat=${truck?.latitude}&lng=${truck?.longitude}&username=demo&type=json`)
+    fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${truck?.location.latitude}&lon=${truck?.location.longitude}&appid=58f3c2a761964e47d536ed1a11045c07`)
+      .then(res => res.json())
+      .then(res => {
+        console.log(res);
+      })
+      .catch(error => {
+        console.log('Error:', error);
+      });
+  }, [truck]);
+  
 
   useEffect(() => {
     const data = {
@@ -209,7 +225,7 @@ function TruckProgramming({ formData, setFormData }) {
     setShow(false)
   }
 
-  // const { truckId } = location.state
+
 
   return (
     <div className="space-y-2 bg-white p-5 rounded-lg">
@@ -261,7 +277,8 @@ function TruckProgramming({ formData, setFormData }) {
             <br />
             <div className='border border-primary h-12 rounded-lg grid items-center'>
               {location.pathname === '/dashboard/TruckProgramming' ?
-                trucks.filter((t) => t.truckId === data.truckId).map(item => <p key={item.truckId} className="px-4">{item.truckNumber}</p>)
+                // trucks.filter((t) => t.truckId === data.truckId).map(item => <p key={item.truckId} className="px-4">{item.truckNumber}</p>)
+                <p className="px-4">{truck?.odometer}</p>
                 :
                 prog.filter((t) => t.truckProgrammingId === formData.truckProgrammingId).map(item => <p key={item.truck.truckNumber} className="px-4">{item.truck.truckNumber}</p>)
               }
