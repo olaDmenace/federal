@@ -115,7 +115,7 @@ function TruckProgramming({ formData, setFormData }) {
   const [locale, setLocale] = useState()
   useEffect(() => {
     // fetch(`http://api.geonames.org/findNearestAddress?lat=${truck?.latitude}&lng=${truck?.longitude}&username=demo&type=json`)
-    fetch(`https://api.openweathermap.org/geo/1.0/reverse?lat=${truck?.location.latitude}&lon=${truck?.location.longitude}&appid=58f3c2a761964e47d536ed1a11045c07`)
+    fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${truck?.location.latitude}&lon=${truck?.location.longitude}&appid=58f3c2a761964e47d536ed1a11045c07`)
       .then(res => res.json())
       .then(res => {
         console.log(res);
