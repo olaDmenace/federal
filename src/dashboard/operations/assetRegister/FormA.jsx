@@ -328,7 +328,8 @@ function FormA() {
     })
 
     // Handles the submit event
-    function handleSubmit(e) {
+    function handleSubmit() {
+        // e.preventDefault()
         setLoading(!loading)
         console.log(formData)
         endpoint.post('/truck', formData).then(
@@ -349,6 +350,7 @@ function FormA() {
             })
             console.log(err)
         })
+        // setLoading(!loading)
     }
 
 
@@ -359,6 +361,7 @@ function FormA() {
 
     const handleUpdate = (arg) => {
         // console.log(formValues)
+        // arg.preventDefault()
         setLoading(!loading)
         console.log(formValues)
         endpoint.put(`/truck/${arg}`, formValues).then(
@@ -391,6 +394,18 @@ function FormA() {
         )
     }
 
+
+    // const formSubmit = () => {
+    //     if (form === 3 && location.state) {
+    //       handleUpdate(location.state.truck.truckId)
+    //     } else if (form === 3 && !location.state) {
+    //       handleSubmit()
+    //     } else {
+    //       setForm((currForm) => currForm + 1)
+    //     }
+    //   }
+      
+
     // { form === 3 ? handleSubmit() : setForm((currForm) => currForm + 1) }
 
     return (
@@ -404,7 +419,7 @@ function FormA() {
             {!loading && <div className="btn-group mx-auto pt-5">
                 <button className={form === 0 ? 'btn btn-disabled' : 'btn btn-primary'} onClick={() => { setForm((currFage) => currFage - 1) }}>Prev</button>
                 <button
-                    disabled={!formData}
+                    disabled={form===3 && !formData.truckNumber}
                     className="btn btn-active"
                     onClick={() => formSubmit()
                     }>
