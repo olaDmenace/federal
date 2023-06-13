@@ -31,7 +31,7 @@ function FormA2({ formData, setFormData }) {
         }
         setFormData({ ...formData })
     }
-    console.log('titles:', titles);
+    
     return (
         <div className='py-5 text-primary space-y-3'>
             <h4 className='text-lg font-semibold'>Truck Document</h4>

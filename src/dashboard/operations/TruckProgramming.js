@@ -103,7 +103,7 @@ function TruckProgramming({ formData, setFormData }) {
   const [truck, setTruck] = useState()
   useEffect(() => {
     endpoint.get(`/truck/galooli/${data.truckId}`).then(res => {
-      console.log(res)
+      console.log(res.data.data)
       setTruck(res.data.data)
       // setCustomers(res.data.data)
     }).catch(err => {
@@ -111,12 +111,15 @@ function TruckProgramming({ formData, setFormData }) {
     })
   }, [data.truckId])
 
+  // Convert to Long & Lat to Location
+  const [locale, setLocale] = useState()
   useEffect(() => {
     // fetch(`http://api.geonames.org/findNearestAddress?lat=${truck?.latitude}&lng=${truck?.longitude}&username=demo&type=json`)
     fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${truck?.location.latitude}&lon=${truck?.location.longitude}&appid=58f3c2a761964e47d536ed1a11045c07`)
       .then(res => res.json())
       .then(res => {
         console.log(res);
+        setLocale([...res])
       })
       .catch(error => {
         console.log('Error:', error);
@@ -353,14 +356,17 @@ function TruckProgramming({ formData, setFormData }) {
           <label htmlFor="" className="">
             Current Position
             <br />
-            <input
+            <div className="border border-primary h-12 rounded-lg grid items-center px-4">
+              {locale?.map(item=><p>{`${item?.state}, ${item?.country}`}</p>)}
+            </div>
+            {/* <input
               class="input input-primary w-full"
               disabled={location.state}
               placeholder="Lorem Depot"
               type="text"
               name=""
               id=""
-            />
+            /> */}
             {/* <LocationMarkerIcon className="srtoke-1 h-6 absolute top-9 right-4" /> */}
           </label>
           <label htmlFor="">
