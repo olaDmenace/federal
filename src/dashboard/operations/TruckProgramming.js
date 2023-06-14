@@ -8,10 +8,12 @@ import PopUp from "../../utils/PopUp";
 import { ThumbUpIcon } from "@heroicons/react/solid";
 import LoadingSpinner from "../../utils/LoadingSpinner";
 import { useLocation } from "react-router-dom";
+// import dotnev from 'dotenv'
 
 function TruckProgramming({ formData, setFormData }) {
   PageTitle("Axle & Cartage - Truck Programming");
 
+  console.log(process.env.REACT_APP_GEOLOCATE_KEY)
   // const dispatch = useDispatch();
 
   const location = useLocation()
@@ -115,7 +117,7 @@ function TruckProgramming({ formData, setFormData }) {
   const [locale, setLocale] = useState()
   useEffect(() => {
     // fetch(`http://api.geonames.org/findNearestAddress?lat=${truck?.latitude}&lng=${truck?.longitude}&username=demo&type=json`)
-    fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${truck?.location.latitude}&lon=${truck?.location.longitude}&appid=58f3c2a761964e47d536ed1a11045c07`)
+    fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${truck?.location.latitude}&lon=${truck?.location.longitude}&appid=${process.env.REACT_APP_GEOLOCATE_KEY}`)
       .then(res => res.json())
       .then(res => {
         console.log(res);
