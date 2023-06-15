@@ -130,7 +130,7 @@ useEffect(() => {
   const [locale, setLocale] = useState()
   useEffect(() => {
     // fetch(`http://api.geonames.org/findNearestAddress?lat=${truck?.latitude}&lng=${truck?.longitude}&username=demo&type=json`)
-    fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${truck?.location.latitude}&lon=${truck?.location.longitude}&appid=${process.env.REACT_APP_GEOLOCATE_KEY}`)
+    fetch(`https://api.openweathermap.org/geo/1.0/reverse?lat=${truck?.location.latitude}&lon=${truck?.location.longitude}&appid=${process.env.REACT_APP_GEOLOCATE_KEY}`)
       .then(res => res.json())
       .then(res => {
         console.log(res);
