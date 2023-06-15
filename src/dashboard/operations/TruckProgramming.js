@@ -17,7 +17,7 @@ function TruckProgramming({ formData, setFormData }) {
   // const dispatch = useDispatch();
 
   const location = useLocation()
-  console.log(location)
+  // console.log(location)
 
   // const [data, setData] = useState({
   const initialState = location?.state ? {
@@ -101,19 +101,32 @@ function TruckProgramming({ formData, setFormData }) {
     })
   }, [])
 
+
+    // Get Location from JourneyManagement form
+const [filteredTrucks, setFilteredTrucks] = useState()
+useEffect(() => {
+  // Filter the trucks based on some condition
+  const filtered = prog.filter((t) => t.truckProgrammingId === formData.truckProgrammingId);
+  const truckId = filtered[0]?.truck.truckId;
+  setFilteredTrucks(truckId)
+  console.log("Truck ID:", truckId);
+  // console.log("first:", filteredTrucks)
+}, [formData]);
+
   // Truck Information from Galooli
   const [truck, setTruck] = useState()
+  const URL = location.pathname === '/dashboard/TruckProgramming'
   useEffect(() => {
-    endpoint.get(`/truck/galooli/${data.truckId}`).then(res => {
+    endpoint.get(URL ? `/truck/galooli/${data.truckId}` : `/truck/galooli/${filteredTrucks}`).then(res => {
       console.log(res.data.data)
       setTruck(res.data.data)
       // setCustomers(res.data.data)
     }).catch(err => {
       console.log(err)
     })
-  }, [data.truckId])
+  }, [URL ? data.truckId : filteredTrucks])
 
-  // Convert to Long & Lat to Location
+  // Convert to Long & Lat from Galooli to Location
   const [locale, setLocale] = useState()
   useEffect(() => {
     // fetch(`http://api.geonames.org/findNearestAddress?lat=${truck?.latitude}&lng=${truck?.longitude}&username=demo&type=json`)
@@ -247,17 +260,10 @@ function TruckProgramming({ formData, setFormData }) {
         <div className="grid gap-3 md:grid-cols-2 items-end">
           {location.pathname !== '/dashboard/TruckProgramming' ? <label htmlFor="tripId">
             Trip ID
-            {/* <div className="border border-primary w-full h-12 px-4 rounded-lg grid items-center">
-              {prog.filter((i) => i.truckProgrammingId === formData.truckProgrammingId).map(item => <p>{item.tripReference}</p>)}
-            </div> */}
             <select className="select select-primary w-full" value={formData.truckProgrammingId} onChange={(e) => setFormData({ ...formData, truckProgrammingId: e.target.value })} name="" id="tripId">
               <option value={''}>Select Trip ID</option>
               {prog.map(item => <option value={item.truckProgrammingId} key={item.truckProgrammingId}>{item.tripReference}</option>)}
             </select>
-            {/* <select className="select select-primary w-full" name="" id="tripID">
-              <option value="">Select Trip ID</option>
-              {prog.map(item => <option value={item.truckProgrammingId} key={item.truckProgrammingId}>{item.tripReference}</option>)}
-            </select> */}
           </label> : ''}
           <label htmlFor="">
             Truck Number
@@ -281,12 +287,7 @@ function TruckProgramming({ formData, setFormData }) {
             Truck Odometer
             <br />
             <div className='border border-primary h-12 rounded-lg grid items-center'>
-              {location.pathname === '/dashboard/TruckProgramming' ?
-                // trucks.filter((t) => t.truckId === data.truckId).map(item => <p key={item.truckId} className="px-4">{item.truckNumber}</p>)
-                <p className="px-4">{truck?.odometer}</p>
-                :
-                prog.filter((t) => t.truckProgrammingId === formData.truckProgrammingId).map(item => <p key={item.truck.truckNumber} className="px-4">{item.truck.truckNumber}</p>)
-              }
+                              <p className="px-4">{truck?.odometer}</p>
             </div>
           </label>
           <label htmlFor="">
@@ -359,7 +360,8 @@ function TruckProgramming({ formData, setFormData }) {
             Current Position
             <br />
             <div className="border border-primary h-12 rounded-lg grid items-center px-4">
-              {locale?.map(item=><p>{`${item?.state}, ${item?.country}`}</p>)}
+              {/* <p>{locale?.state}</p> */}
+              {locale?.map(item=><p>{`${item.name}, ${item?.state}, ${item?.country}`}</p>)}
             </div>
             {/* <input
               class="input input-primary w-full"
