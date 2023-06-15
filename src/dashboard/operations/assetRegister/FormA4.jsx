@@ -12,7 +12,9 @@ function FormA4({ formData, setFormData }) {
                             Drive Type
                             <select value={formData.specification.driveType} onChange={(e) => setFormData({ ...formData, specification: { ...formData.specification, driveType: e.target.value } })} className='select select-primary w-full' name="" id="">
                                 <option selected disabled value="">Select</option>
+                                <option value="4x2">4x2</option>
                                 <option value="4X4">4X4</option>
+                                <option value="6x2">6x2</option>
                                 <option value="6X4">6X4</option>
                                 <option value="FWD">FWD</option>
                                 <option value="RWD">RWD</option>

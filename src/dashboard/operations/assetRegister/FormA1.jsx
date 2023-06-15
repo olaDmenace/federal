@@ -200,7 +200,7 @@ function FormA1({ formData, setFormData }) {
             Registration State/Province
             <select className="select select-primary w-full" name="" id="" value={formData.registrationState} onChange={(e) => setFormData({ ...formData, registrationState: e.target.value })}>
               <option value="">Select State</option>
-              {states.map(state => <option value="state">{state}</option>)}
+              {states.map(item => <option value={item}>{item}</option>)}
             </select>
             {/* <input
               value={formData.registrationState}
