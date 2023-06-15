@@ -20,7 +20,7 @@ function Notification() {
       dispatch(logout());
       navigate('/');
     }
-  }, [isAuthenticated, dispatch, navigate]);
+  }, [isAuthenticated]);
 
 
 
