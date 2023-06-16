@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import endpoint from "../../../utils/endpoints/endpoint";
-import states from "./nigeria-states.json"
-
+import states from "./nigeria-states.json";
+import * as xlsx from "xlsx";
+// import { readFile } from "xlsx";
 
 function FormA1({ formData, setFormData }) {
-
-
-
   // Fetch list of Users (JO, DO & LC)
   const [delivery, setDelivery] = useState([]);
   const [journey, setJourney] = useState([]);
@@ -58,13 +56,58 @@ function FormA1({ formData, setFormData }) {
       });
   }, []);
 
-  const [truckType, setTruckType] = useState('')
+  const [truckType, setTruckType] = useState("");
+  const [upload, setUpload] = useState();
+  const fileLink = (e) => {
+    const file = e.target.files[0];
+    setUpload(file);
+    console.log(file);
+
+    // if (e.target.files) {
+    //   const reader = new FileReader();
+    //   reader.onload = (e) => {
+    //     const data = e.target.result;
+    //     const workbook = xlsx.read(data, { type: "array" });
+    //     const sheetName = workbook.SheetNames[0];
+    //     const worksheet = workbook.Sheets[sheetName];
+    //     const json = xlsx.utils.sheet_to_json(worksheet);
+    //     console.log(json);
+    //   };
+    //   reader.readAsArrayBuffer(file);
+    // }
+
+    if (e.target.files) {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const data = new Uint8Array(e.target.result);
+        const workbook = xlsx.read(data, { type: "array" });
+        const sheetName = workbook.SheetNames[0];
+        const worksheet = workbook.Sheets[sheetName];
+        const jsonData = xlsx.utils.sheet_to_json(worksheet, { header: 1 });
+        console.log(jsonData);
+        // Process the spreadsheet data as needed
+        // ...
+      };
+      reader.readAsArrayBuffer(file);
+    }
+  };
 
   return (
     <div className="py-5 text-primary space-y-3">
       <h4 className="text-lg font-semibold">Form A - Tractor</h4>
       <h6 className="font-semibold text-lg">Identification</h6>
       <form action="" className="grid text-primary gap-5 w-full">
+        <label htmlFor="bulkUpload">
+          <p>Bulk Upload</p>
+          <input
+            onChange={fileLink}
+            type="file"
+            accept=".xls, .xlsx"
+            name="bulkUpload"
+            id="bulkUpload"
+          />
+        </label>
         <fieldset className="grid gap-3 md:grid-cols-2 lg:grid-cols-3 items-end">
           <label className="text-primary">
             Truck Number
@@ -198,9 +241,19 @@ function FormA1({ formData, setFormData }) {
           </label>
           <label htmlFor="">
             Registration State/Province
-            <select className="select select-primary w-full" name="" id="" value={formData.registrationState} onChange={(e) => setFormData({ ...formData, registrationState: e.target.value })}>
+            <select
+              className="select select-primary w-full"
+              name=""
+              id=""
+              value={formData.registrationState}
+              onChange={(e) =>
+                setFormData({ ...formData, registrationState: e.target.value })
+              }
+            >
               <option value="">Select State</option>
-              {states.map(item => <option value={item}>{item}</option>)}
+              {states.map((item) => (
+                <option value={item}>{item}</option>
+              ))}
             </select>
             {/* <input
               value={formData.registrationState}
@@ -215,7 +268,13 @@ function FormA1({ formData, setFormData }) {
           </label>
           <label htmlFor="truck_type">
             Truck Type
-            <select className="select select-primary w-full" name="" id="" value={truckType} onChange={(e) => setTruckType(e.target.value)}>
+            <select
+              className="select select-primary w-full"
+              name=""
+              id=""
+              value={truckType}
+              onChange={(e) => setTruckType(e.target.value)}
+            >
               <option value="">Select Truck Type</option>
               <option value="articulated">Articulated Truck</option>
               <option value="rigid">Rigid Truck</option>
@@ -223,7 +282,13 @@ function FormA1({ formData, setFormData }) {
           </label>
           <label htmlFor="">
             Attached Semi-Trailer
-            <input className="input input-primary w-full" type="text" disabled={truckType === 'rigid'} name="" id="" />
+            <input
+              className="input input-primary w-full"
+              type="text"
+              disabled={truckType === "rigid"}
+              name=""
+              id=""
+            />
           </label>
         </fieldset>
         <input
