@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import endpoint from "../../../utils/endpoints/endpoint";
 import states from "./nigeria-states.json";
+import * as xlsx from "xlsx";
+// import { readFile } from "xlsx";
 
 function FormA1({ formData, setFormData }) {
   // Fetch list of Users (JO, DO & LC)
@@ -55,6 +57,41 @@ function FormA1({ formData, setFormData }) {
   }, []);
 
   const [truckType, setTruckType] = useState("");
+  const [upload, setUpload] = useState();
+  const fileLink = (e) => {
+    const file = e.target.files[0];
+    setUpload(file);
+    console.log(file);
+
+    // if (e.target.files) {
+    //   const reader = new FileReader();
+    //   reader.onload = (e) => {
+    //     const data = e.target.result;
+    //     const workbook = xlsx.read(data, { type: "array" });
+    //     const sheetName = workbook.SheetNames[0];
+    //     const worksheet = workbook.Sheets[sheetName];
+    //     const json = xlsx.utils.sheet_to_json(worksheet);
+    //     console.log(json);
+    //   };
+    //   reader.readAsArrayBuffer(file);
+    // }
+
+    if (e.target.files) {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const data = new Uint8Array(e.target.result);
+        const workbook = xlsx.read(data, { type: "array" });
+        const sheetName = workbook.SheetNames[0];
+        const worksheet = workbook.Sheets[sheetName];
+        const jsonData = xlsx.utils.sheet_to_json(worksheet, { header: 1 });
+        console.log(jsonData);
+        // Process the spreadsheet data as needed
+        // ...
+      };
+      reader.readAsArrayBuffer(file);
+    }
+  };
 
   return (
     <div className="py-5 text-primary space-y-3">
@@ -64,8 +101,9 @@ function FormA1({ formData, setFormData }) {
         <label htmlFor="bulkUpload">
           <p>Bulk Upload</p>
           <input
+            onChange={fileLink}
             type="file"
-            accept=".xls, xlsx"
+            accept=".xls, .xlsx"
             name="bulkUpload"
             id="bulkUpload"
           />
