@@ -19,9 +19,9 @@ function LoginForm({ setAuth }) {
   const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (e) => {
+    setLoading(!loading)
     e.preventDefault();
     setErrMsg("");
-    setLoading(true)
     const data = {
       email: email,
       password: password,
@@ -52,7 +52,7 @@ function LoginForm({ setAuth }) {
         setPassword("");
         setErrMsg(err.response.data.message);
       });
-    setLoading(false)
+    setLoading(!loading)
   };
 
   return (
@@ -97,7 +97,7 @@ function LoginForm({ setAuth }) {
           </Link>
         </fieldset>
         {loading&&<LoadingSpinner />}
-        {!loading&&<button onClick={handleSubmit} className="btn btn-primary">
+        {!loading&&<button disabled={email==='' && password===''} onClick={handleSubmit} className="btn btn-primary">
           Sign In
         </button>}
       </form>
