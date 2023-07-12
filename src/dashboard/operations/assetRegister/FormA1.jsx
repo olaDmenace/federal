@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import endpoint from "../../../utils/endpoints/endpoint";
 import states from "./nigeria-states.json";
 import * as xlsx from "xlsx";
+import { ThumbUpIcon, XCircleIcon } from "@heroicons/react/solid";
+import PopUp from "../../../utils/PopUp";
 // import { readFile } from "xlsx";
 
 function FormA1({ formData, setFormData }) {
@@ -58,50 +60,200 @@ function FormA1({ formData, setFormData }) {
 
   const [truckType, setTruckType] = useState("");
   const [upload, setUpload] = useState();
-  const fileLink = (e) => {
+  const [loading, setLoading] = useState(false);
+  const [show, setShow] = useState(false);
+  const [reply, setReply] = useState({
+    icon: "",
+    message: "",
+  });
+
+  const handleUpload = (e) => {
     const file = e.target.files[0];
     setUpload(file);
     console.log(file);
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const data = new Uint8Array(e.target.result);
+      const workbook = xlsx.read(data, { type: "array" });
+      const sheetName = workbook.SheetNames[0];
+      const worksheet = workbook.Sheets[sheetName];
+      const jsonData = xlsx.utils.sheet_to_json(worksheet, { header: 1 });
 
-    // if (e.target.files) {
-    //   const reader = new FileReader();
-    //   reader.onload = (e) => {
-    //     const data = e.target.result;
-    //     const workbook = xlsx.read(data, { type: "array" });
-    //     const sheetName = workbook.SheetNames[0];
-    //     const worksheet = workbook.Sheets[sheetName];
-    //     const json = xlsx.utils.sheet_to_json(worksheet);
-    //     console.log(json);
-    //   };
-    //   reader.readAsArrayBuffer(file);
-    // }
+      console.log(jsonData);
 
-    if (e.target.files) {
-      const file = e.target.files[0];
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const data = new Uint8Array(e.target.result);
-        const workbook = xlsx.read(data, { type: "array" });
-        const sheetName = workbook.SheetNames[0];
-        const worksheet = workbook.Sheets[sheetName];
-        const jsonData = xlsx.utils.sheet_to_json(worksheet, { header: 1 });
-        console.log(jsonData);
-        // Process the spreadsheet data as needed
-        // ...
-      };
-      reader.readAsArrayBuffer(file);
-    }
+      // Process the spreadsheet data
+      jsonData.forEach((row) => {
+        const [
+          truckNumber,
+          fleetNumber,
+          licensePlateNumber,
+          tractorChasis,
+          engineNumber,
+          identificationNumber,
+          manufactureDate,
+          model,
+          manufacturer,
+          registrationState,
+          pictureUrl,
+          logisticsCoordinatorId,
+          journeyOfficerId,
+          deliveryOfficerId,
+          ownership,
+          ownerId,
+          additionalDetails,
+          lastPreventiveMaintenance,
+          nextPreventiveMaintenance,
+          inServiceDate,
+          inServiceOdometer,
+          estimatedServiceLive,
+          estServiceMet,
+          estimatedResaleValue,
+          outOfServiceDate,
+          outOfServiceOdometer,
+          vendorName,
+          purchaseDate,
+          purchaseValue,
+          odometer,
+          notes,
+          warrantyExpiryDate,
+          warrantyMaxOdometer,
+          driveType,
+          brakeSystem,
+          rearAxle,
+          fuelType,
+          fisrtTankCapacity,
+          secondTankCapacity,
+          tankCapacityMetric,
+          oilCapacity,
+          oilCapacityMetric,
+          maintenanceVendor,
+        ] = row;
+
+        // Make API call with the mapped data
+        const payload = {
+          // FormA1
+          truckNumber,
+          fleetNumber,
+          licensePlateNumber,
+          tractorChasis,
+          engineNumber,
+          identificationNumber,
+          manufactureDate,
+          brand: {
+            model,
+            manufacturer,
+          },
+          registrationState,
+          pictureUrl,
+          logisticsCoordinatorId,
+          journeyOfficerId,
+          deliveryOfficerId,
+          ownership,
+          ownerId,
+          additionalDetails,
+
+          // FormA2 - truckDocuments
+          truckDocuments: [
+            { type: 0, referenceNumber: "", dateIssued: "", expiryDate: "" },
+            { type: 1, referenceNumber: "", dateIssued: "", expiryDate: "" },
+            { type: 2, referenceNumber: "", dateIssued: "", expiryDate: "" },
+            { type: 3, referenceNumber: "", dateIssued: "", expiryDate: "" },
+            { type: 4, referenceNumber: "", dateIssued: "", expiryDate: "" },
+            { type: 5, referenceNumber: "", dateIssued: "", expiryDate: "" },
+            { type: 6, referenceNumber: "", dateIssued: "", expiryDate: "" },
+            { type: 7, referenceNumber: "", dateIssued: "", expiryDate: "" },
+            { type: 8, referenceNumber: "", dateIssued: "", expiryDate: "" },
+            { type: 9, referenceNumber: "", dateIssued: "", expiryDate: "" },
+            { type: 10, referenceNumber: "", dateIssued: "", expiryDate: "" },
+          ],
+
+          // FormA3 - maintenanceInfo and purchaseInfo
+          maintenanceInfo: {
+            lastPreventiveMaintenance,
+            nextPreventiveMaintenance,
+            inServiceDate,
+            inServiceOdometer,
+            estimatedServiceLive,
+            estServiceMet,
+            estimatedResaleValue,
+            outOfServiceDate,
+            outOfServiceOdometer,
+          },
+          purchaseInfo: {
+            vendorName,
+            purchaseDate,
+            purchaseValue,
+            odometer,
+            notes,
+            warrantyExpiryDate,
+            warrantyMaxOdometer,
+          },
+
+          // FormA4 - specification
+          specification: {
+            driveType,
+            brakeSystem,
+            rearAxle,
+            fuelType,
+            fisrtTankCapacity,
+            secondTankCapacity,
+            tankCapacityMetric,
+            oilCapacity,
+            oilCapacityMetric,
+            maintenanceVendor,
+          },
+        };
+
+        // Make the API call using `payload`
+        endpoint
+          .post("/truck", payload)
+          .then((res) => {
+            setShow(true);
+            console.log(res);
+            setShow(!show);
+            setReply({
+              icon: <ThumbUpIcon className="mx-auto h-24 text-primary" />,
+              message: res.data.message,
+            });
+          })
+          .catch((err) => {
+            setShow(!show);
+            setReply({
+              icon: <XCircleIcon className="mx-auto h-24 text-red-500" />,
+              message: `Please, check your form and try again. ${err.response.data.message}`,
+            });
+            console.log(err);
+          });
+      });
+    };
+    reader.readAsArrayBuffer(file);
   };
+
+  function closePop(e) {
+    setShow(false);
+    setLoading(!loading);
+  }
 
   return (
     <div className="py-5 text-primary space-y-3">
+      {show && (
+        <PopUp>
+          {reply.icon}
+          <p className="mx-auto text-center text-primary bg-transparent">
+            {reply.message}
+          </p>
+          <button className="btn btn-primary" onClick={(e) => closePop()}>
+            Confirm
+          </button>
+        </PopUp>
+      )}
       <h4 className="text-lg font-semibold">Form A - Tractor</h4>
       <h6 className="font-semibold text-lg">Identification</h6>
       <form action="" className="grid text-primary gap-5 w-full">
         <label htmlFor="bulkUpload">
           <p>Bulk Upload</p>
           <input
-            onChange={fileLink}
+            onChange={handleUpload}
             type="file"
             accept=".xls, .xlsx"
             name="bulkUpload"
