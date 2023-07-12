@@ -93,13 +93,13 @@ function TruckAssignment() {
       startDate: new Date(startDate).toISOString(),
       endDate: new Date(endDate).toISOString(),
     };
-    console.log(data, "data loged");
-    setDeliveryOfficerId("");
-    setlogisticsCoordinatorId("");
-    setjourneyOfficerId("");
-    setTruckId("");
-    setstartDate("");
-    setendDate("");
+    console.log(data, "data logged");
+    // setDeliveryOfficerId("");
+    // setlogisticsCoordinatorId("");
+    // setjourneyOfficerId("");
+    // setTruckId("");
+    // setstartDate("");
+    // setendDate("");
     endpoint
       .post("/truck/assign", data)
       .then((res) => {
@@ -112,9 +112,10 @@ function TruckAssignment() {
       })
       .catch((err) => {
         console.log(err);
+        setShow(true);
         setReply({
           icon: <XCircleIcon className="mx-auto h-24 text-red-500" />,
-          message: err.data.message,
+          message: err.response.data.message,
         });
       });
   };
@@ -259,7 +260,11 @@ function TruckAssignment() {
           <div className="mx-auto">
             {isLoading && <LoadingSpinner />}
             {!isLoading && (
-              <button class="btn btn-primary mx-auto" type="submit">
+              <button
+                class="btn btn-primary mx-auto"
+                disabled={endDate === ""}
+                type="submit"
+              >
                 Submit
               </button>
             )}
