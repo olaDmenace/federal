@@ -79,6 +79,9 @@ function FormA1({ formData, setFormData }) {
       const worksheet = workbook.Sheets[sheetName];
       const jsonData = xlsx.utils.sheet_to_json(worksheet, { header: 1 });
 
+      // Remove the first row from the jsonData
+      jsonData.shift();
+
       console.log(jsonData);
 
       // Process the spreadsheet data
@@ -204,26 +207,28 @@ function FormA1({ formData, setFormData }) {
           },
         };
 
+        console.log(payload);
+
         // Make the API call using `payload`
-        endpoint
-          .post("/truck", payload)
-          .then((res) => {
-            setShow(true);
-            console.log(res);
-            setShow(!show);
-            setReply({
-              icon: <ThumbUpIcon className="mx-auto h-24 text-primary" />,
-              message: res.data.message,
-            });
-          })
-          .catch((err) => {
-            setShow(!show);
-            setReply({
-              icon: <XCircleIcon className="mx-auto h-24 text-red-500" />,
-              message: `Please, check your form and try again. ${err.response.data.message}`,
-            });
-            console.log(err);
-          });
+        // endpoint
+        //   .post("/truck", payload)
+        //   .then((res) => {
+        //     setShow(true);
+        //     console.log(res);
+        //     setShow(!show);
+        //     setReply({
+        //       icon: <ThumbUpIcon className="mx-auto h-24 text-primary" />,
+        //       message: res.data.message,
+        //     });
+        //   })
+        //   .catch((err) => {
+        //     setShow(!show);
+        //     setReply({
+        //       icon: <XCircleIcon className="mx-auto h-24 text-red-500" />,
+        //       message: `Please, check your form and try again. ${err.response.data.message}`,
+        //     });
+        //     console.log(err);
+        //   });
       });
     };
     reader.readAsArrayBuffer(file);
