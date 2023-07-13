@@ -9,6 +9,8 @@ import PopUp from "../../../utils/PopUp";
 import { ThumbUpIcon } from "@heroicons/react/solid";
 import { XCircleIcon } from "@heroicons/react/outline";
 import { useLocation } from "react-router-dom";
+// import * as xlsx from "xlsx";
+// import { saveAs } from "file-saver";
 
 function FormA() {
   const [form, setForm] = useState(0);
@@ -287,6 +289,50 @@ function FormA() {
 
   const [formData, setFormData] = useState(initialState);
 
+  // const dataExport = (data) => {
+  //   const rows = [];
+
+  //   // Iterate through each property in the data object
+  //   for (const key in data) {
+  //     const value = data[key];
+
+  //     // Handle array properties
+  //     if (Array.isArray(value)) {
+  //       // Iterate through each object in the array
+  //       value.forEach((obj) => {
+  //         const row = {};
+
+  //         // Flatten nested properties using dot notation
+  //         for (const prop in obj) {
+  //           row[`${key}.${prop}`] = obj[prop];
+  //         }
+
+  //         rows.push(row);
+  //       });
+  //     } else if (typeof value === "object" && value !== null) {
+  //       // Handle nested objects
+  //       for (const prop in value) {
+  //         rows.push({ [`${key}.${prop}`]: value[prop] });
+  //       }
+  //     } else {
+  //       rows.push({ [key]: value });
+  //     }
+  //   }
+
+  //   // Create a worksheet from the data
+  //   const worksheet = xlsx.utils.json_to_sheet(rows);
+
+  //   // Create a workbook and add the worksheet
+  //   const workbook = xlsx.utils.book_new();
+  //   xlsx.utils.book_append_sheet(workbook, worksheet, "Sheet 1");
+
+  //   // Convert the workbook to an Excel file
+  //   const excelFile = xlsx.write(workbook, { type: "array", bookType: "xlsx" });
+
+  //   // Download the Excel file
+  //   saveAs(new Blob([excelFile]), "Asset Register Template.xlsx");
+  // };
+
   const [formValues, setFormValues] = useState({
     truckNumber: formData.truckNumber,
     fleetNumber: formData.fleetNumber,
@@ -345,7 +391,7 @@ function FormA() {
         setShow(!show);
         setReply({
           icon: <XCircleIcon className="mx-auto h-24 text-red-500" />,
-          message: `Please, check your form and try again ${err.response.data.message}`,
+          message: `Please, check your form and try again. ${err.response.data.message}`,
         });
         console.log(err);
       });
@@ -387,6 +433,7 @@ function FormA() {
     if (form === 3 && location.state) {
       handleUpdate(location.state.truck.truckId);
     } else if (form === 3 && !location.state) {
+      // dataExport(formData);
       handleSubmit();
     } else setForm((currForn) => currForn + 1);
   };
@@ -430,6 +477,7 @@ function FormA() {
           <button
             disabled={form === 3 && !formData.truckNumber}
             className="btn btn-active"
+            // onClick={() => formSubmit()}
             onClick={() => formSubmit()}
           >
             {form === 3 ? "Submit" : "Next"}
