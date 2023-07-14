@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import FormTitle from "../FormTitle";
 import endpoint from "../../utils/endpoints/endpoint";
+import * as xlsx from "xlsx";
 
 // const EmployeeDetails = ({ employee }) => {
 //   return (
@@ -57,6 +58,23 @@ const EmployeeLists = () => {
       });
   }, [currentPage, pageSize]);
 
+  // CSV Download of Visibility Report
+  function downloadDataAsCSV() {
+    console.log(users);
+    const worksheet = xlsx.utils.json_to_sheet(users);
+    const workbook = xlsx.utils.book_new();
+    xlsx.utils.book_append_sheet(workbook, worksheet, "Sheet 1");
+    const csvData = xlsx.utils.sheet_to_csv(worksheet);
+
+    const blob = new Blob([csvData], { type: "text/csv" });
+    const downloadUrl = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = downloadUrl;
+    link.download = "Employee List.csv";
+    link.click();
+  }
+
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -67,7 +85,12 @@ const EmployeeLists = () => {
   };
   return (
     <div className="overflow-x-auto bg-white rounded-lg p-5">
-      <FormTitle Title={"Employee Details"} />
+      <div className="md:flex justify-between items-center">
+        <FormTitle Title={"Employee Details"} />
+        <button className="btn btn-primary" onClick={downloadDataAsCSV}>
+          Download
+        </button>
+      </div>
       <table className="table-auto w-full  text-primary">
         <thead>
           <tr className="bg-gray-200 ">
@@ -82,7 +105,7 @@ const EmployeeLists = () => {
             <tr
               key={user.userId}
               className="border-b hover:bg-gray-100 "
-            // onClick={() => handleEmployeeClick(user)}
+              // onClick={() => handleEmployeeClick(user)}
             >
               <td className="px-4  py-4 text-left">
                 {(currentPage - 1) * pageSize + index + 1}
