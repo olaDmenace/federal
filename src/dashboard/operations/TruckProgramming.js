@@ -520,10 +520,6 @@ useEffect(() => {
                 <option id={item.id} key={item.id} value={item.id}>{item.status}</option>
               )}
             </select>
-            {/* <select name="" id="">
-              <option value="">Select Truck Status</option>
-              <option value=""></option>
-            </select> */}
           </label>
           <label htmlFor="">
             Truck Loading Date
