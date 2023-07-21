@@ -33,6 +33,7 @@ import Notifications from "./dashboard/notifications/Notifications";
 import ProductDetails from "./dashboard/operations/shortageResolution/ProductDetails";
 import TruckDetails from "./dashboard/dashboard/TruckDetails";
 import TruckResolution from "./dashboard/operations/shortageResolution/TruckResolution";
+import ChangeStatus from "./dashboard/operations/ChangeStatus";
 
 
 /* ***IMPORTANT NOTICE***
@@ -65,6 +66,7 @@ function App() {
             <Route path="AssetRegister" element={<AssetRegister />} />
             <Route path="TruckAssignment" element={<TruckAssignment />} />
             <Route path="ShortageResolution" element={<ShortageResolution />} />
+            <Route path="ChangeStatus" element={<ChangeStatus />} />
             <Route path="TripExpense" element={<TripExpense />} />
             <Route path={"AbsenceForm"} element={<AbsenceForm />} />
             <Route

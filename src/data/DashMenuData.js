@@ -23,6 +23,10 @@ export const OPERATIONS_ROUTES = [
     label: " Truck Assignment",
     route: "/dashboard/TruckAssignment",
   },
+  {
+    label: "Change Status",
+    route: "/dashboard/ChangeStatus",
+  },
 ];
 export const HEALTHSAFETY_ROUTES = [
   {
