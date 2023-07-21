@@ -119,6 +119,9 @@ const ChangeStatus = () => {
             ))}
           </select>
         </label>
+        <button class="btn btn-primary mx-auto" type="submit">
+          Change Status
+        </button>
       </form>
     </div>
   );
