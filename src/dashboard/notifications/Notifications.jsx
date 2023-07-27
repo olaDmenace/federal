@@ -54,7 +54,7 @@ const Notifications = () => {
   return (
     <div>
       <div className="grid gap-8 lg:gap-4 lg:grid-cols-12">
-        <div className="grid gap-8 lg:gap-4 md:grid-cols-10 order-last lg:order-first lg:col-span-8">
+        <div className="grid gap-8 lg:gap-4 md:grid-cols-10 order-last lg:order-first lg:col-span-12">
           <NotificationsCard
             notification={notification}
             tasks={tasks}
@@ -118,7 +118,7 @@ const Notifications = () => {
             </div>
           </div>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-1 lg:col-span-4 lg:h-screen overflow-y-scroll scrollbar-thin scrollbar-track-green-100 scrollbar-thumb-green-900 relative gap-8 pb-10">
+        {/* <div className="grid md:grid-cols-2 lg:grid-cols-1 lg:col-span-4 lg:h-screen overflow-y-scroll scrollbar-thin scrollbar-track-green-100 scrollbar-thumb-green-900 relative gap-8 pb-10">
           <div className="rounded-lg shadow-md py-10 grid gap-5 md:col-span-1 bg-white">
             <div className="justify-items-center grid gap-2">
               <img src={Avatar} className="rounded-full w-20" alt="" />
@@ -168,7 +168,7 @@ const Notifications = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
