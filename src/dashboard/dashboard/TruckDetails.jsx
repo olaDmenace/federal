@@ -117,6 +117,7 @@ const TruckDetails = () => {
             <div className="table-cell text-left pt-2">Operational Status</div>
             <div className="table-cell text-left pt-2">DAT Status</div>
             <div className="table-cell text-left pt-2">Date</div>
+            <span></span>
           </div>
         </div>
         <div className="table-row-group">
@@ -148,7 +149,7 @@ const TruckDetails = () => {
               <div className="table-cell">
                 {formatDate(truck.manufactureDate)}
               </div>
-              <div className="flex gap-5 items-center">
+              <div className="flex gap-5 items-center pt-2">
                 <div className="table-cell">
                   <PencilIcon
                     className="h-6 border border-primary rounded-sm cursor-pointer"

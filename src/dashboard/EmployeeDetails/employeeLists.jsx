@@ -3,44 +3,6 @@ import FormTitle from "../FormTitle";
 import endpoint from "../../utils/endpoints/endpoint";
 import * as xlsx from "xlsx";
 
-// const EmployeeDetails = ({ employee }) => {
-//   return (
-//     <div className="bg-white border p-4">
-//       <h2 className="text-xl font-bold mb-2">
-//         {employee.firstName} {employee.lastName}
-//       </h2>
-//       <p>
-//         <strong>Role: </strong>
-//         {employee.roleName}
-//       </p>
-//       <p>
-//         <strong>Email: </strong>
-//         {employee.email}
-//       </p>
-//       <p>
-//         <strong>Phone Number: </strong>
-//         {employee.phoneNumber}
-//       </p>
-//       <p>
-//         <strong>Address: </strong>
-//         {employee.address}
-//       </p>
-//       <p>
-//         <strong>Date of Birth: </strong>
-//         {employee.dateOfBirth}
-//       </p>
-//       <p>
-//         <strong>Gender: </strong>
-//         {employee.gender}
-//       </p>
-//       <p>
-//         <strong>roleId: </strong>
-//         {employee.roleId}
-//       </p>
-//     </div>
-//   );
-// };
-
 const EmployeeLists = () => {
   const [users, setUsers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -59,21 +21,61 @@ const EmployeeLists = () => {
   }, [currentPage, pageSize]);
 
   // CSV Download of Visibility Report
-  function downloadDataAsCSV() {
-    console.log(users);
-    const worksheet = xlsx.utils.json_to_sheet(users);
+  function downloadDataAsXLSX() {
+    console.log(allUsers);
+
+    // Remove "userId" and "roleId" properties from each object in allUsers array
+    const modifiedUsers = allUsers.map(({ userId, roleId, ...rest }) => rest);
+
+    const worksheet = xlsx.utils.json_to_sheet(modifiedUsers);
     const workbook = xlsx.utils.book_new();
     xlsx.utils.book_append_sheet(workbook, worksheet, "Sheet 1");
-    const csvData = xlsx.utils.sheet_to_csv(worksheet);
 
-    const blob = new Blob([csvData], { type: "text/csv" });
+    // Generate XLSX data
+    const excelData = xlsx.write(workbook, {
+      type: "buffer",
+      bookType: "xlsx",
+    });
+
+    const blob = new Blob([excelData], {
+      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    });
     const downloadUrl = URL.createObjectURL(blob);
 
     const link = document.createElement("a");
     link.href = downloadUrl;
-    link.download = "Employee List.csv";
+    link.download = "Employee List.xlsx";
     link.click();
   }
+
+  // function downloadDataAsCSV() {
+  //   console.log(allUsers);
+  //   const worksheet = xlsx.utils.json_to_sheet(allUsers);
+  //   const workbook = xlsx.utils.book_new();
+  //   xlsx.utils.book_append_sheet(workbook, worksheet, "Sheet 1");
+  //   const csvData = xlsx.utils.sheet_to_csv(worksheet);
+
+  //   const blob = new Blob([csvData], { type: "text/csv" });
+  //   const downloadUrl = URL.createObjectURL(blob);
+
+  //   const link = document.createElement("a");
+  //   link.href = downloadUrl;
+  //   link.download = "Employee List.xls";
+  //   link.click();
+  // }
+
+  const [allUsers, setAllUsers] = useState([]);
+  useEffect(() => {
+    endpoint
+      .get("user")
+      .then((res) => {
+        console.log(res.data.data, "all users");
+        setAllUsers(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -87,7 +89,7 @@ const EmployeeLists = () => {
     <div className="overflow-x-auto bg-white rounded-lg p-5">
       <div className="md:flex justify-between items-center">
         <FormTitle Title={"Employee Details"} />
-        <button className="btn btn-primary" onClick={downloadDataAsCSV}>
+        <button className="btn btn-primary" onClick={downloadDataAsXLSX}>
           Download
         </button>
       </div>
