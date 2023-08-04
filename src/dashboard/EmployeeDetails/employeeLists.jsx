@@ -100,6 +100,7 @@ const EmployeeLists = () => {
             <th className="px-4 py-4 text-left">Employees Name</th>
             <th className="px-4 py-4 text-left">Role</th>
             <th className="px-4 py-4 text-left">Email</th>
+            <th className="px-4 py-4 text-left">Phone Number</th>
           </tr>
         </thead>
         <tbody>
@@ -117,6 +118,9 @@ const EmployeeLists = () => {
               </td>
               <td className="px-4 py-4 text-left">{user.roleName}</td>
               <td className="px-4 py-4 text-left">{user.email}</td>
+              <td className="px-4 py-4 text-left">
+                {user.phoneNumber ? user.phoneNumber : "N/A"}
+              </td>
             </tr>
           ))}
         </tbody>
