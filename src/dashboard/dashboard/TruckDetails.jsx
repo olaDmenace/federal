@@ -60,17 +60,52 @@ const TruckDetails = () => {
     "Outbound",
   ];
 
-  const FUNCStatus = ["Uptime", "Downtime"];
+  const functionalStatus = (i) => {
+    if (i === 0) {
+      return "Available";
+    } else if (i === 1) {
+      return "Assigned to Trip";
+    } else if (i === 2) {
+      return "Out of Service";
+    } else {
+      return "Deactivated";
+    }
+  };
 
   const Location = ["Osun", "Kaduna", "Kano", "Abuja", "Lagos", "Benin"];
   const shuffledValues = (arg) => shuffleArray(arg); // Shuffle the DATstatus array
+  // State for managing the locations of the truck
+  const [truckLocations, setTruckLocations] = useState({});
+  useEffect(() => {
+    const fetchLocations = async () => {
+      const locations = {};
+
+      for (const truck of trucks) {
+        try {
+          const response = await fetch(
+            `https://api.openweathermap.org/geo/1.0/reverse?lat=${truck?.galooliData.location.latitude}&lon=${truck?.galooliData.location.longitude}&appid=${process.env.REACT_APP_GEOLOCATE_KEY}`
+          );
+
+          if (response.ok) {
+            const data = await response.json();
+            locations[truck.truckId] = data; // Store the location data
+          }
+        } catch (error) {
+          console.error("Error fetching location:", error);
+        }
+      }
+
+      setTruckLocations(locations); // Update the state with location data
+    };
+
+    fetchLocations();
+  }, [trucks]);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [editTruck, setEditTruck] = useState({});
   const onItemClick = (arg) => {
     setEditTruck(arg);
-    // dispatch(truck())
     navigate("/dashboard/AssetRegister", { state: { truck: arg } });
   };
 
@@ -126,17 +161,14 @@ const TruckDetails = () => {
               <div className="table-cell">{truck.truckNumber}</div>
               <div className="table-cell">
                 {
-                  shuffledValues(Location)[
-                    index % shuffledValues(Location).length
-                  ]
+                  // shuffledValues(Location)[
+                  //   index % shuffledValues(Location).length
+                  // ]
+                  truckLocations[truck.truckId]?.[0]?.name || "N/A"
                 }
               </div>
               <div className="table-cell">
-                {
-                  shuffledValues(FUNCStatus)[
-                    index % shuffledValues(FUNCStatus).length
-                  ]
-                }
+                {functionalStatus(truck.functionalStatus)}
               </div>
               <div className="table-cell">{truck.operationalStatus}</div>
               <div className="table-cell">
