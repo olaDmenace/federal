@@ -14,7 +14,7 @@ const TruckDetails = () => {
 
   useEffect(() => {
     endpoint
-      .get("/truck")
+      .get("/truck/programme")
       .then((res) => {
         console.log(res.data.data);
         setTrucks(res.data.data);
@@ -83,12 +83,13 @@ const TruckDetails = () => {
       for (const truck of trucks) {
         try {
           const response = await fetch(
-            `https://api.openweathermap.org/geo/1.0/reverse?lat=${truck?.galooliData.location.latitude}&lon=${truck?.galooliData.location.longitude}&appid=${process.env.REACT_APP_GEOLOCATE_KEY}`
+            `https://api.openweathermap.org/geo/1.0/reverse?lat=${truck?.truck.galooliData.location.latitude}&lon=${truck?.truck.galooliData.location.longitude}&appid=${process.env.REACT_APP_GEOLOCATE_KEY}`
           );
 
           if (response.ok) {
             const data = await response.json();
             locations[truck.truckId] = data; // Store the location data
+            console.log(data);
           }
         } catch (error) {
           console.error("Error fetching location:", error);
@@ -158,7 +159,7 @@ const TruckDetails = () => {
         <div className="table-row-group">
           {trucks.map((truck, index) => (
             <div key={truck.truckId} className="table-row">
-              <div className="table-cell">{truck.truckNumber}</div>
+              <div className="table-cell">{truck.truck.truckNumber}</div>
               <div className="table-cell">
                 {
                   // shuffledValues(Location)[
@@ -168,9 +169,9 @@ const TruckDetails = () => {
                 }
               </div>
               <div className="table-cell">
-                {functionalStatus(truck.functionalStatus)}
+                {functionalStatus(truck.truck.functionalStatus)}
               </div>
-              <div className="table-cell">{truck.operationalStatus}</div>
+              <div className="table-cell">{truck.truck.operationalStatus}</div>
               <div className="table-cell">
                 {
                   shuffledValues(DATstatus)[
@@ -179,7 +180,7 @@ const TruckDetails = () => {
                 }
               </div>
               <div className="table-cell">
-                {formatDate(truck.manufactureDate)}
+                {formatDate(truck.lastModifiedAt)}
               </div>
               <div className="flex gap-5 items-center pt-2">
                 <div className="table-cell">

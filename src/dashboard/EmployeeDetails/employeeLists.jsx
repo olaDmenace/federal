@@ -85,6 +85,15 @@ const EmployeeLists = () => {
     event.preventDefault();
     setSelectedEmployee(employee);
   };
+
+  function formatDate(arg) {
+    const date = new Date(arg);
+    const day = date.getDate().toString().padStart(2, "0");
+    const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Months are zero-based
+    const year = date.getFullYear();
+
+    return `${day}-${month}-${year}`;
+  }
   return (
     <div className="overflow-x-auto bg-white rounded-lg p-5">
       <div className="md:flex justify-between items-center">
@@ -101,6 +110,8 @@ const EmployeeLists = () => {
             <th className="px-4 py-4 text-left">Role</th>
             <th className="px-4 py-4 text-left">Email</th>
             <th className="px-4 py-4 text-left">Phone Number</th>
+            <th className="px-4 py-4 text-left">Start Date</th>
+            <th className="px-4 py-4 text-left">Leave Date</th>
           </tr>
         </thead>
         <tbody>
@@ -120,6 +131,12 @@ const EmployeeLists = () => {
               <td className="px-4 py-4 text-left">{user.email}</td>
               <td className="px-4 py-4 text-left">
                 {user.phoneNumber ? user.phoneNumber : "N/A"}
+              </td>
+              <td className="px-4 py-4 text-left">
+                {formatDate(user.startDate)}
+              </td>
+              <td className="px-4 py-4 text-left">
+                {formatDate(user.leaveDate)}
               </td>
             </tr>
           ))}
@@ -142,7 +159,6 @@ const EmployeeLists = () => {
           Next
         </button>
       </div>
-      {/* {selectedEmployee && <EmployeeDetails employee={selectedEmployee} />} */}
     </div>
   );
 };
