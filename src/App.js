@@ -12,8 +12,6 @@ import Journeymanagement from "./dashboard/operations/JourneyManagement/Journeym
 import AssetRegister from "./dashboard/operations/assetRegister/AssetRegister";
 import ShortageResolution from "./dashboard/operations/shortageResolution/ShortageResolution";
 import TripExpense from "./dashboard/operations/tripExpense/TripExpense";
-import { useSelector } from "react-redux";
-// import { selectUser } from "./utils/features/userSlice";
 import AbsenceForm from "./dashboard/hr/AbsenceForm";
 import ConsequenceManagement from "./dashboard/hr/ConsequenceManagement";
 import TrainingForm from "./dashboard/hr/TrainingForm";
