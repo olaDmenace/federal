@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from "react";
-// import NotificationTypeCard from './NotificationTypeCard'
 import ToDoCard from "./ToDoCard";
 import Avatar from "../../images/Avatar.png";
 import { FolderOpenIcon } from "@heroicons/react/outline";
 import NotificationsCard from "./NotificationsCard";
 import endpoint from "../../utils/endpoints/endpoint";
 import { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
+
+// const route = {
+//   JMF: "JourneyManagement",
+//   TPF: "TruckProgramming",
+// };
 
 const Notifications = () => {
   const [notification, setNotification] = useState([]);
   const [tasks, setTasks] = useState([]);
   const [selectedTasks, setSelectedTasks] = useState("");
+  const [programme, setProgramme] = useState();
+  const navigate = useNavigate();
 
   const getNotiifcation = useCallback(() => {
     endpoint
@@ -23,22 +30,31 @@ const Notifications = () => {
       });
   }, []);
 
-  const getTasks = () => {
+  const getTasks = useCallback(() => {
     endpoint
       .get("/work-items")
       .then((res) => {
-        console.log(res);
         setTasks(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
+  }, []);
+
+  const truckProgramming = (programmeId) => {
+    endpoint.get(`truck/programme/${programmeId}`).then((res) => {
+      setProgramme(res.data.data.truck);
+
+      navigate("/dashboard/TruckProgramming", {
+        state: { truck: res.data.data.truck },
+      });
+    });
   };
 
   useEffect(() => {
     getNotiifcation();
     getTasks();
-  }, [getNotiifcation]);
+  }, [getNotiifcation, getTasks]);
 
   const newTasks = tasks?.data?.filter((task) => {
     if (!selectedTasks) {
@@ -66,7 +82,7 @@ const Notifications = () => {
               <p className="font-semibold text-lg">
                 Tasks
                 <span className="indicator-item badge badge-secondary float-right">
-                  {tasks?.total}
+                  {newTasks?.length}
                 </span>
               </p>
               <div className="grid gap-5 lg:grid-cols-2">
@@ -76,6 +92,7 @@ const Notifications = () => {
                     id={task.title}
                     avatar={Avatar}
                     name={"John Doe"}
+                    // link={`/dashboard/${route[task?.itemType]}`}
                   />
                 ))}
               </div>
@@ -89,12 +106,13 @@ const Notifications = () => {
               </p>
               <div className="grid gap-5 lg:grid-cols-2">
                 {taskInProgress?.map((task) => (
-                  <ToDoCard
-                    key={task.itemId}
-                    id={task.title}
-                    avatar={Avatar}
-                    name={"Olayinka Doe"}
-                  />
+                  <div key={task.itemId} onClick={() => truckProgramming(task.itemId)}>
+                    <ToDoCard
+                      id={task.title}
+                      avatar={Avatar}
+                      name={"Olayinka Doe"}
+                    />
+                  </div>
                 ))}
               </div>
             </div>
