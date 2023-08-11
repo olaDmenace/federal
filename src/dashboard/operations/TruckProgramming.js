@@ -38,7 +38,7 @@ function TruckProgramming({ formData, setFormData }) {
     destinationState: "",
     productId: "",
     bridgingDepotId: null,
-    numberOfCustomers: 0
+    numberOfCustomers: ""
   };
 
   const [data, setData] = useState(initialState)
@@ -617,6 +617,7 @@ useEffect(() => {
               class="input input-primary w-full"
               type="number"
               min={0}
+              placeholder="0"
               name=""
               disabled={location.state}
               id=""

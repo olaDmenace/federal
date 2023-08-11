@@ -45,11 +45,11 @@ function ProductDetails({ formData, setFormData }) {
                         </label> */}
                         <label htmlFor="">
                             Estimated Product Storage<br />
-                            <input class='input input-primary w-full' placeholder='PMS' type="text" name="" id="" />
+                            <input class='input input-primary w-full' placeholder='PMS' type="number" name="" id="" />
                         </label>
                         <label htmlFor="">
                             Customer Shortage Claim<br />
-                            <input class='input input-primary w-full' value={formData.primaryWayBill.shortageClaim} onChange={(e) => setFormData({ ...formData, primaryWayBill: { ...formData.primaryWayBill, shortageClaim: +e.target.value } })} placeholder='PMS' type="text" name="" id="" />
+                            <input class='input input-primary w-full' value={formData.primaryWayBill.shortageClaim} onChange={(e) => setFormData({ ...formData, primaryWayBill: { ...formData.primaryWayBill, shortageClaim: +e.target.value } })} placeholder='PMS' type="number" name="" id="" />
                         </label>
                         {/* <label htmlFor="">
                             Customer Shortage Claim (Direct Customer)<br />
