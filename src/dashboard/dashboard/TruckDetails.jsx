@@ -24,7 +24,7 @@ const TruckDetails = () => {
       });
   }, []);
 
-  function formatDate(arg) {
+  function formatDate (arg) {
     const date = new Date(arg);
     const day = date.getDate().toString().padStart(2, "0");
     const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Months are zero-based
@@ -111,8 +111,10 @@ const TruckDetails = () => {
   };
 
   const [truckId, setTruckId] = useState();
+
   const tpf = (arg) => {
     setTruckId(arg);
+    console.log(arg)
     navigate("/dashboard/TruckProgramming", { state: { truck: arg } });
   };
 

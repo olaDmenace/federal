@@ -9,7 +9,6 @@ const NotificationsCard = ({
 }) => {
  
 
-  const clickHandler = () => {};
 
   return (
     <div className="rounded-lg shadow-md p-5  gap-5 md:col-span-4 md:h-screen md:overflow-y-scroll scrollbar-thin scrollbar-track-green-100 scrollbar-thumb-green-900 relative bg-white">
@@ -45,34 +44,34 @@ const NotificationsCard = ({
               {tasks?.data?.filter((task) => task.itemType === "TPF").length}
             </span>
           </p>
-          <p className="cursor-pointer" onClick={() => setSelectedTasks("JM")}>
+          <p className="cursor-pointer" onClick={() => setSelectedTasks("JMF")}>
             Journey Management
             <span className="indicator-item badge badge-primary float-right">
-              {tasks?.data?.filter((task) => task.itemType === "").length}
+              {tasks?.data?.filter((task) => task.itemType === "JMF").length}
             </span>
           </p>
           <p className="cursor-pointer">
             Trip expense request
             <span className="indicator-item badge badge-primary float-right">
-              {/* {tpf?.length} */}
+            {tasks?.data?.filter((task) => task.itemType === "").length}
             </span>
           </p>
           <p className="cursor-pointer">
             Waybill Management
             <span className="indicator-item badge badge-primary float-right">
-              {/* {tpf?.length} */}
+            {tasks?.data?.filter((task) => task.itemType === "").length}
             </span>
           </p>
           <p className="cursor-pointer">
             Shortage Resolution
             <span className="indicator-item badge badge-primary float-right">
-              {/* {tpf?.length} */}
+            {tasks?.data?.filter((task) => task.itemType === "").length}
             </span>
           </p>
           <p className="cursor-pointer">
             Truck Assignment
             <span className="indicator-item badge badge-primary float-right">
-              {/* {tpf?.length} */}
+            {tasks?.data?.filter((task) => task.itemType === "").length}
             </span>
           </p>
         </div>

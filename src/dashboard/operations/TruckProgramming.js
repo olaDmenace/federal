@@ -17,7 +17,8 @@ function TruckProgramming({ formData, setFormData }) {
   // const dispatch = useDispatch();
 
   const location = useLocation()
-  // console.log(location)
+  console.log(location)
+
 
   // const [data, setData] = useState({
   const initialState = location?.state ? {
@@ -56,7 +57,6 @@ function TruckProgramming({ formData, setFormData }) {
 
   useEffect(() => {
     endpoint.get('truck/programme').then(res => {
-      console.log(res.data)
       setProg(res.data.data)
     }).catch(res => {
       console.log(res)
@@ -66,7 +66,6 @@ function TruckProgramming({ formData, setFormData }) {
   useEffect(() => {
     endpoint.get("/truck")
       .then((res) => {
-        console.log(res.data.data);
         setTrucks(res.data.data)
       })
       .catch((err) => {
@@ -76,7 +75,7 @@ function TruckProgramming({ formData, setFormData }) {
 
   useEffect(() => {
     endpoint.get('/variable/products').then(res => {
-      console.log(res.data.data)
+
       setProducts(res.data.data)
     }).catch(err => {
       console.log(err)
@@ -85,7 +84,6 @@ function TruckProgramming({ formData, setFormData }) {
 
   useEffect(() => {
     endpoint.get('/variable/depots').then(res => {
-      console.log(res.data.data)
       setDepots(res.data.data)
     }).catch(err => {
       console.log(err)
@@ -94,7 +92,7 @@ function TruckProgramming({ formData, setFormData }) {
 
   useEffect(() => {
     endpoint.get('/variable/customers').then(res => {
-      console.log(res.data.data)
+
       setCustomers(res.data.data)
     }).catch(err => {
       console.log(err)
@@ -109,7 +107,6 @@ useEffect(() => {
   const filtered = prog.filter((t) => t.truckProgrammingId === formData.truckProgrammingId);
   const truckId = filtered[0]?.truck.truckId;
   setFilteredTrucks(truckId)
-  console.log("Truck ID:", truckId);
   // console.log("first:", filteredTrucks)
 }, [formData]);
 
@@ -118,7 +115,7 @@ useEffect(() => {
   const URL = location.pathname === '/dashboard/TruckProgramming'
   useEffect(() => {
     endpoint.get(URL ? `/truck/galooli/${data.truckId}` : `/truck/galooli/${filteredTrucks}`).then(res => {
-      console.log(res.data.data)
+
       setTruck(res.data.data)
       // setCustomers(res.data.data)
     }).catch(err => {
@@ -133,7 +130,6 @@ useEffect(() => {
     fetch(`https://api.openweathermap.org/geo/1.0/reverse?lat=${truck?.location.latitude}&lon=${truck?.location.longitude}&appid=${process.env.REACT_APP_GEOLOCATE_KEY}`)
       .then(res => res.json())
       .then(res => {
-        console.log(res);
         setLocale([...res])
       })
       .catch(error => {
@@ -147,7 +143,6 @@ useEffect(() => {
       country: 'Nigeria'
     }
     endpoint.post('https://countriesnow.space/api/v0.1/countries/states', data).then(res => {
-      console.log(res.data.data.states)
       setStates(res.data.data.states)
     }).catch(err => {
       console.log(err)
@@ -166,11 +161,10 @@ useEffect(() => {
   const updateSubmit = (e) => {
     e.preventDefault()
     const { truckId, ...formvalues } = data;
-    console.log(formvalues);
     setIsLoading(!isLoading)
     endpoint.put('/truck/programme', formValues)
       .then(res => {
-        console.log(res)
+
         setShow(!show)
         setReply({
           icon: <ThumbUpIcon className='mx-auto h-24 text-primary' />,
@@ -191,7 +185,7 @@ useEffect(() => {
     e.preventDefault()
     setIsLoading(true)
     endpoint.post('/truck/programme', data).then(res => {
-      console.log(res)
+
       setShow(true)
       setReply({
         icon: <ThumbUpIcon className='mx-auto h-24 text-primary' />,
