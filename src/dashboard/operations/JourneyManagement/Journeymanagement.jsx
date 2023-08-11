@@ -90,7 +90,7 @@ function Journeymanagement() {
         setShow(true);
         setReply({
           icon: <XCircleIcon className="mx-auto h-24 text-red-500" />,
-          message: res.response.data.message,
+          message: err.response.data.message,
         });
         // setIsLoading(!isLoading)
       });
