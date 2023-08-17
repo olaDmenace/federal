@@ -1,6 +1,7 @@
 import { XCircleIcon } from "@heroicons/react/outline";
 import { ThumbUpIcon } from "@heroicons/react/solid";
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import endpoint from "../../../utils/endpoints/endpoint";
 import LoadingSpinner from "../../../utils/LoadingSpinner";
 import PageTitle from "../../../utils/PageTitle";
@@ -18,32 +19,66 @@ function Journeymanagement() {
   PageTitle("Axle & Cartage - Journey Management");
   const [form, setForm] = useState(0);
 
-  const [formData, setFormData] = useState({
-    truckProgrammingId: "",
-    // estimatedProductShortage: 0,
-    primaryWayBill: {
-      waybillNumber: "",
-      documentUrl: "",
-      distanceTravelled: 0,
-      quantityDelivered: "",
-      quantityLoaded: "",
-      shortageClaim: "",
-    },
-    secondaryWayBills: [
-      {
-        waybillNumber: "",
-        documentUrl: "",
-        distanceTravelled: "",
-        customerId: "",
-        // deliveryZone: "",
-        quantityLoaded: "",
-        quantityDelivered: "",
-        // estimatedProductShortage: 0,
-        shortageClaim: "",
-      },
-    ],
-    status: 0,
-  });
+  const location = useLocation();
+  console.log(location);
+
+  const initialState = location?.state
+    ? {
+        truckId: location.state.truck.truckProgramming.truck.truckId,
+        truckProgrammingId:
+          location.state.truck.truckProgramming.truckProgrammingId,
+        status: location.state.truck.status,
+        primaryWayBill: {
+          waybillNumber: location.state.truck.wayBills[0].wayBillNumber,
+          documentUrl: location.state.truck.wayBills[0].documentUrl,
+          distanceTravelled: location.state.truck.wayBills[0].distanceTravelled,
+          quantityDelivered: location.state.truck.wayBills[0].quantityDelivered,
+          quantityLoaded: location.state.truck.wayBills[0].quantityLoaded,
+          shortageClaim: location.state.truck.wayBills[0].shortageClaim,
+        },
+        secondaryWayBills: [
+          {
+            waybillNumber: location.state.truck.wayBills[1].wayBillNumber,
+            documentUrl: location.state.truck.wayBills[1].documentUrl,
+            distanceTravelled:
+              location.state.truck.wayBills[1].distanceTravelled,
+            customerId: location.state.truck.wayBills[1].customer.customerId,
+
+            quantityLoaded: location.state.truck.wayBills[1].quantityLoaded,
+            quantityDelivered:
+              location.state.truck.wayBills[1].quantityDelivered,
+
+            shortageClaim: location.state.truck.wayBills[1].shortageClaim,
+          },
+        ],
+      }
+    : {
+        truckProgrammingId: "",
+        primaryWayBill: {
+          waybillNumber: "",
+          documentUrl: "",
+          distanceTravelled: 0,
+          quantityDelivered: "",
+          quantityLoaded: "",
+          shortageClaim: "",
+        },
+        secondaryWayBills: [
+          {
+            waybillNumber: "",
+            documentUrl: "",
+            distanceTravelled: "",
+            customerId: "",
+            // deliveryZone: "",
+            quantityLoaded: "",
+            quantityDelivered: "",
+            // estimatedProductShortage: 0,
+            shortageClaim: "",
+          },
+        ],
+        status: 0,
+      };
+
+  const [formData, setFormData] = useState(initialState);
 
   const activeForm = () => {
     if (form === 0) {
