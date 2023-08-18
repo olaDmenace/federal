@@ -41,14 +41,24 @@ const Notifications = () => {
       });
   }, []);
 
-  const truckProgramming = (programmeId) => {
-    endpoint.get(`truck/programme/${programmeId}`).then((res) => {
-      setProgramme(res.data.data.truck);
+  const truckProgramming = (programmeId, type) => {
+    if (type === "TPF") {
+      endpoint.get(`truck/programme/${programmeId}`).then((res) => {
+        setProgramme(res.data.data.truck);
 
-      navigate("/dashboard/TruckProgramming", {
-        state: { truck: res.data.data.truck },
+        navigate("/dashboard/TruckProgramming", {
+          state: { truck: res.data.data.truck },
+        });
       });
-    });
+    }
+    if (type === "JMF") {
+      endpoint.get(`truck/journey-management/${programmeId}`).then((res) => {
+        console.log(res);
+        navigate("/dashboard/JourneyManagement", {
+          state: { truck: res.data.data },
+        });
+      });
+    }
   };
 
   useEffect(() => {
@@ -66,6 +76,7 @@ const Notifications = () => {
 
   const taskInProgress = newTasks?.filter((item) => item.isDone === false);
   const taskDone = newTasks?.filter((item) => item.isDone === true);
+  console.log(newTasks);
 
   return (
     <div>
@@ -85,7 +96,7 @@ const Notifications = () => {
                   {newTasks?.length}
                 </span>
               </p>
-              <div className="grid gap-5 lg:grid-cols-2">
+              <div className="grid cursor-pointer gap-5 lg:grid-cols-2">
                 {newTasks?.map((task) => (
                   <ToDoCard
                     key={task.itemId}
@@ -104,9 +115,13 @@ const Notifications = () => {
                   {taskInProgress?.length}
                 </span>
               </p>
-              <div className="grid gap-5 lg:grid-cols-2">
+              <div className="grid cursor-pointer gap-5 lg:grid-cols-2">
                 {taskInProgress?.map((task) => (
-                  <div key={task.itemId} onClick={() => truckProgramming(task.itemId)}>
+                  <div
+                    className="cursor-pointer hover:bg-[#d1fae5]"
+                    key={task.itemId}
+                    onClick={() => truckProgramming(task.itemId, task.itemType)}
+                  >
                     <ToDoCard
                       id={task.title}
                       avatar={Avatar}
