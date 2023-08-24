@@ -34,6 +34,7 @@ function LoginForm({ setAuth }) {
         setEmail("");
         setPassword("");
         setSuccess(res.data.message);
+        setLoading(!loading)
         dispatch(
           login(
             // {
@@ -51,8 +52,8 @@ function LoginForm({ setAuth }) {
         setEmail("");
         setPassword("");
         setErrMsg(err.response.data.message);
+        setLoading(!loading)
       });
-    setLoading(!loading)
   };
 
   return (
