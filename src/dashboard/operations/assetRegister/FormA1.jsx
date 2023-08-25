@@ -94,84 +94,60 @@ function FormA1({ formData, setFormData }) {
           engineNumber,
           identificationNumber,
           manufactureDate,
-          model,
-          manufacturer,
+          brandModel,
+          brandManufacturer,
           registrationState,
           pictureUrl,
+          status,
           logisticsCoordinatorId,
           journeyOfficerId,
           deliveryOfficerId,
           ownership,
           ownerId,
           additionalDetails,
-          lastPreventiveMaintenance,
-          nextPreventiveMaintenance,
-          inServiceDate,
-          inServiceOdometer,
-          estimatedServiceLive,
-          estServiceMet,
-          estimatedResaleValue,
-          outOfServiceDate,
-          outOfServiceOdometer,
-          vendorName,
-          purchaseDate,
-          purchaseValue,
-          odometer,
-          notes,
-          warrantyExpiryDate,
-          warrantyMaxOdometer,
-          driveType,
-          brakeSystem,
-          rearAxle,
-          fuelType,
-          fisrtTankCapacity,
-          secondTankCapacity,
-          tankCapacityMetric,
-          oilCapacity,
-          oilCapacityMetric,
-          maintenanceVendor,
+          ...truckDocumentValues
         ] = row;
 
-        // Make API call with the mapped data
-        const payload = {
-          // FormA1
-          truckNumber,
-          fleetNumber,
-          licensePlateNumber,
-          tractorChasis,
-          engineNumber,
-          identificationNumber,
-          manufactureDate,
-          brand: {
-            model,
-            manufacturer,
-          },
-          registrationState,
-          pictureUrl,
-          logisticsCoordinatorId,
-          journeyOfficerId,
-          deliveryOfficerId,
-          ownership,
-          ownerId,
-          additionalDetails,
+        // Function to convert date strings to Unix timestamps
+        function getDateTimestamp(dateString) {
+          if (dateString) {
+            const dateObject = new Date(dateString);
+            return Math.floor(dateObject.getTime() / 1000);
+          }
+          return 0; // Return 0 for empty date strings
+        }
 
+        // Convert date strings to Unix timestamps
+        const convertedManufactureDate = getDateTimestamp(manufactureDate);
+
+        // Convert date strings to Unix timestamps for truckDocument values
+        const truckDocumentsArray = truckDocumentValues.map((dateString) =>
+          getDateTimestamp(dateString)
+        );
+
+        // Check if any value is non-empty in the entire row
+        const hasAnyValue = row.some((value) => value !== "");
+
+        if (hasAnyValue) {
           // FormA2 - truckDocuments
-          truckDocuments: [
-            { type: 0, referenceNumber: "", dateIssued: "", expiryDate: "" },
-            { type: 1, referenceNumber: "", dateIssued: "", expiryDate: "" },
-            { type: 2, referenceNumber: "", dateIssued: "", expiryDate: "" },
-            { type: 3, referenceNumber: "", dateIssued: "", expiryDate: "" },
-            { type: 4, referenceNumber: "", dateIssued: "", expiryDate: "" },
-            { type: 5, referenceNumber: "", dateIssued: "", expiryDate: "" },
-            { type: 6, referenceNumber: "", dateIssued: "", expiryDate: "" },
-            { type: 7, referenceNumber: "", dateIssued: "", expiryDate: "" },
-            { type: 8, referenceNumber: "", dateIssued: "", expiryDate: "" },
-            { type: 9, referenceNumber: "", dateIssued: "", expiryDate: "" },
-            { type: 10, referenceNumber: "", dateIssued: "", expiryDate: "" },
-          ],
+          const truckDocumentsArray = [];
+          for (let i = 0; i <= 10; i++) {
+            const startIndex = i * 4;
+            const type = truckDocumentValues[startIndex] || 0;
+            const referenceNumber = truckDocumentValues[startIndex + 1] || "";
+            const dateIssued = truckDocumentValues[startIndex + 2] || "";
+            const expiryDate = truckDocumentValues[startIndex + 3] || "";
 
-          // FormA3 - maintenanceInfo and purchaseInfo
-          maintenanceInfo: {
+            truckDocumentsArray.push({
+              type,
+              referenceNumber,
+              dateIssued,
+              expiryDate,
+            });
+          }
+
+          // Extract the remaining fields
+          const [
             lastPreventiveMaintenance,
             nextPreventiveMaintenance,
             inServiceDate,
@@ -181,8 +157,6 @@ function FormA1({ formData, setFormData }) {
             estimatedResaleValue,
             outOfServiceDate,
             outOfServiceOdometer,
-          },
-          purchaseInfo: {
             vendorName,
             purchaseDate,
             purchaseValue,
@@ -190,10 +164,6 @@ function FormA1({ formData, setFormData }) {
             notes,
             warrantyExpiryDate,
             warrantyMaxOdometer,
-          },
-
-          // FormA4 - specification
-          specification: {
             driveType,
             brakeSystem,
             rearAxle,
@@ -204,31 +174,94 @@ function FormA1({ formData, setFormData }) {
             oilCapacity,
             oilCapacityMetric,
             maintenanceVendor,
-          },
-        };
+          ] = row.slice(29); // Adjust the index based on your data structure
 
-        console.log(payload);
+          // Make API call with the mapped data
+          const payload = {
+            // FormA1
+            truckNumber,
+            fleetNumber,
+            licensePlateNumber,
+            tractorChasis,
+            engineNumber,
+            identificationNumber,
+            manufactureDate: convertedManufactureDate,
+            brand: {
+              model: brandModel,
+              manufacturer: brandManufacturer,
+            },
+            registrationState,
+            pictureUrl,
+            logisticsCoordinatorId,
+            journeyOfficerId,
+            deliveryOfficerId,
+            ownership,
+            ownerId,
+            additionalDetails,
 
-        // Make the API call using `payload`
-        // endpoint
-        //   .post("/truck", payload)
-        //   .then((res) => {
-        //     setShow(true);
-        //     console.log(res);
-        //     setShow(!show);
-        //     setReply({
-        //       icon: <ThumbUpIcon className="mx-auto h-24 text-primary" />,
-        //       message: res.data.message,
-        //     });
-        //   })
-        //   .catch((err) => {
-        //     setShow(!show);
-        //     setReply({
-        //       icon: <XCircleIcon className="mx-auto h-24 text-red-500" />,
-        //       message: `Please, check your form and try again. ${err.response.data.message}`,
-        //     });
-        //     console.log(err);
-        //   });
+            // FormA2 - truckDocuments
+            truckDocuments: truckDocumentsArray,
+
+            // FormA3 - maintenanceInfo and purchaseInfo
+            maintenanceInfo: {
+              lastPreventiveMaintenance,
+              nextPreventiveMaintenance,
+              inServiceDate,
+              inServiceOdometer,
+              estimatedServiceLive,
+              estServiceMet,
+              estimatedResaleValue,
+              outOfServiceDate,
+              outOfServiceOdometer,
+            },
+            purchaseInfo: {
+              vendorName,
+              purchaseDate,
+              purchaseValue,
+              odometer,
+              notes,
+              warrantyExpiryDate,
+              warrantyMaxOdometer,
+            },
+
+            // FormA4 - specification
+            specification: {
+              driveType,
+              brakeSystem,
+              rearAxle,
+              fuelType,
+              fisrtTankCapacity,
+              secondTankCapacity,
+              tankCapacityMetric,
+              oilCapacity,
+              oilCapacityMetric,
+              maintenanceVendor,
+            },
+          };
+
+          console.log(payload);
+
+          // Make the API call using `payload`
+          endpoint
+            .post("/truck", payload)
+            .then((res) => {
+              setShow(true);
+              console.log(res);
+              setShow(!show);
+              setReply({
+                icon: <ThumbUpIcon className="mx-auto h-24 text-primary" />,
+                message: res.data.message,
+              });
+            })
+            .catch((err) => {
+              setShow(!show);
+              setReply({
+                icon: <XCircleIcon className="mx-auto h-24 text-red-500" />,
+                message: `${err.response.data.message}`,
+              });
+              console.log(err);
+            });
+        }
       });
     };
     reader.readAsArrayBuffer(file);

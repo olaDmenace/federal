@@ -9,8 +9,8 @@ import PopUp from "../../../utils/PopUp";
 import { ThumbUpIcon } from "@heroicons/react/solid";
 import { XCircleIcon } from "@heroicons/react/outline";
 import { useLocation } from "react-router-dom";
-// import * as xlsx from "xlsx";
-// import { saveAs } from "file-saver";
+import * as xlsx from "xlsx";
+import { saveAs } from "file-saver";
 
 function FormA() {
   const [form, setForm] = useState(0);
@@ -240,12 +240,6 @@ function FormA() {
             dateIssued: "",
             expiryDate: "",
           },
-          // {
-          //     type: 11,
-          //     referenceNumber: "",
-          //     dateIssued: "",
-          //     expiryDate: ""
-          // }
         ],
 
         // FormA3
@@ -289,49 +283,61 @@ function FormA() {
 
   const [formData, setFormData] = useState(initialState);
 
-  // const dataExport = (data) => {
-  //   const rows = [];
+  function flattenObject(obj, prefix = "") {
+    return Object.keys(obj).reduce((acc, key) => {
+      if (typeof obj[key] === "object" && obj[key] !== null) {
+        return { ...acc, ...flattenObject(obj[key], `${prefix}${key}.`) };
+      } else {
+        return { ...acc, [`${prefix}${key}`]: obj[key] };
+      }
+    }, {});
+  }
 
-  //   // Iterate through each property in the data object
-  //   for (const key in data) {
-  //     const value = data[key];
+  function convertToExcel(data = formData) {
+    const flattenedData = flattenObject(data);
+    const headers = Object.keys(flattenedData);
+    const rows = [];
 
-  //     // Handle array properties
-  //     if (Array.isArray(value)) {
-  //       // Iterate through each object in the array
-  //       value.forEach((obj) => {
-  //         const row = {};
+    // Push the headers as the first row
+    rows.push(headers);
 
-  //         // Flatten nested properties using dot notation
-  //         for (const prop in obj) {
-  //           row[`${key}.${prop}`] = obj[prop];
-  //         }
+    // Populate rowData with values from the flattened data
+    const rowData = headers.map((header) => flattenedData[header] || "");
+    rows.push(rowData);
 
-  //         rows.push(row);
-  //       });
-  //     } else if (typeof value === "object" && value !== null) {
-  //       // Handle nested objects
-  //       for (const prop in value) {
-  //         rows.push({ [`${key}.${prop}`]: value[prop] });
-  //       }
-  //     } else {
-  //       rows.push({ [key]: value });
-  //     }
-  //   }
+    // Handle truckDocuments.type array
+    for (let i = 0; i < 11; i++) {
+      // Change to 11 to include "truckDocuments.10.type"
+      const truckDocument = data.truckDocuments[i];
+      if (truckDocument) {
+        const flattenedDocument = flattenObject(
+          truckDocument,
+          `truckDocuments.${i}.`
+        );
 
-  //   // Create a worksheet from the data
-  //   const worksheet = xlsx.utils.json_to_sheet(rows);
+        // // Populate rowData with values from the flattened document
+        // const rowData = headers.map(
+        //   (header) => flattenedDocument[header] || ""
+        // );
 
-  //   // Create a workbook and add the worksheet
-  //   const workbook = xlsx.utils.book_new();
-  //   xlsx.utils.book_append_sheet(workbook, worksheet, "Sheet 1");
+        // // Push the populated rowData to rows array
+        // rows.push(rowData);
+      }
+    }
 
-  //   // Convert the workbook to an Excel file
-  //   const excelFile = xlsx.write(workbook, { type: "array", bookType: "xlsx" });
+    // Create a worksheet from the data
+    const worksheet = xlsx.utils.aoa_to_sheet(rows);
 
-  //   // Download the Excel file
-  //   saveAs(new Blob([excelFile]), "Asset Register Template.xlsx");
-  // };
+    // Create a workbook and add the worksheet
+    const workbook = xlsx.utils.book_new();
+    xlsx.utils.book_append_sheet(workbook, worksheet, "Sheet 1");
+
+    // Convert the workbook to an Excel file
+    const excelFile = xlsx.write(workbook, { type: "array", bookType: "xlsx" });
+
+    // Download the Excel file
+    saveAs(new Blob([excelFile]), "Asset Register Template.xlsx");
+  }
 
   const [formValues, setFormValues] = useState({
     truckNumber: formData.truckNumber,
@@ -477,8 +483,8 @@ function FormA() {
           <button
             disabled={form === 3 && !formData.truckNumber}
             className="btn btn-active"
-            // onClick={() => formSubmit()}
             onClick={() => formSubmit()}
+            // onClick={() => convertToExcel()}
           >
             {form === 3 ? "Submit" : "Next"}
           </button>

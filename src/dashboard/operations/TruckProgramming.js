@@ -57,6 +57,7 @@ function TruckProgramming({ formData, setFormData }) {
 
   useEffect(() => {
     endpoint.get('truck/programme').then(res => {
+      console.log(res);
       setProg(res.data.data)
     }).catch(res => {
       console.log(res)
