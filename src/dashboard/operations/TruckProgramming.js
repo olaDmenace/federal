@@ -2,13 +2,11 @@ import FormTitle from "../FormTitle";
 import { XCircleIcon } from "@heroicons/react/outline";
 import React, { useState, useEffect } from "react";
 import endpoint from "../../utils/endpoints/endpoint";
-// import { useDispatch } from "react-redux";
 import PageTitle from "../../utils/PageTitle";
 import PopUp from "../../utils/PopUp";
 import { ThumbUpIcon } from "@heroicons/react/solid";
 import LoadingSpinner from "../../utils/LoadingSpinner";
 import { useLocation } from "react-router-dom";
-// import dotnev from 'dotenv'
 
 function TruckProgramming({ formData, setFormData }) {
   PageTitle("Axle & Cartage - Truck Programming");

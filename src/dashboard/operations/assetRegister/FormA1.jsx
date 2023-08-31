@@ -4,6 +4,7 @@ import states from "./nigeria-states.json";
 import * as xlsx from "xlsx";
 import { ThumbUpIcon, XCircleIcon } from "@heroicons/react/solid";
 import PopUp from "../../../utils/PopUp";
+// import ImageUploader from "../../../utils/ImageUploader";
 // import { readFile } from "xlsx";
 
 function FormA1({ formData, setFormData }) {
