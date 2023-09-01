@@ -17,19 +17,36 @@ function SecondaryWaybill({ index, formData, setFormData }) {
   //         };
   //     });
   // };
+
   const handleChange = (e, frmId, fieldName) => {
-    formData.secondaryWayBills[frmId][fieldName] = +e.target.value;
-    // console.log(e.target.value)
-    // let i = 0
-    // while (i < formData.truckDocuments.length) {
-    //     if (formData.truckDocuments[i].type === type) {
-    //         formData.truckDocuments[i][valToChange] = newVal
-    //         break;
-    //     }
-    //     i += 1
-    // }
-    setFormData({ ...formData });
+    const updatedValue =
+      e.target.type === "number" ? +e.target.value : e.target.value;
+
+    setFormData((prevFormData) => {
+      const updatedSecondaryWayBills = [...prevFormData.secondaryWayBills];
+      updatedSecondaryWayBills[frmId] = {
+        ...updatedSecondaryWayBills[frmId],
+        [fieldName]: updatedValue,
+      };
+
+      return { ...prevFormData, secondaryWayBills: updatedSecondaryWayBills };
+    });
   };
+
+  // const handleChange = (e, frmId, fieldName) => {
+  //   formData.secondaryWayBills[frmId][fieldName] = +e.target.value;
+  //   // console.log(e.target.value)
+  //   // let i = 0
+  //   // while (i < formData.truckDocuments.length) {
+  //   //     if (formData.truckDocuments[i].type === type) {
+  //   //         formData.truckDocuments[i][valToChange] = newVal
+  //   //         break;
+  //   //     }
+  //   //     i += 1
+  //   // }
+  //   setFormData({ ...formData });
+  // };
+
   const [customers, setCustomers] = useState([]);
   useEffect(() => {
     endpoint
