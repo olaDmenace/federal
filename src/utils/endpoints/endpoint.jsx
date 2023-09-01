@@ -1,13 +1,14 @@
-import axios from "axios"
+import axios from "axios";
 import { logout } from "../features/userSlice";
 import { useDispatch } from "react-redux";
 
 const endpoint = axios.create({
-  baseURL: 'https://dev-api.axle-cartage.com/',
+  baseURL: "https://dev-api.axle-cartage.com/",
+  // timeout: 10000,
   headers: {
-    accept: '*/*',
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
+    accept: "*/*",
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
   },
 });
 
@@ -24,7 +25,7 @@ const endpoint = axios.create({
 // Add a request interceptor
 endpoint.interceptors.request.use(
   function (config) {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }

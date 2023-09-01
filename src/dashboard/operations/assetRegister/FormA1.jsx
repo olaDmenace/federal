@@ -4,6 +4,7 @@ import states from "./nigeria-states.json";
 import * as xlsx from "xlsx";
 import { ThumbUpIcon, XCircleIcon } from "@heroicons/react/solid";
 import PopUp from "../../../utils/PopUp";
+// import ImageUploader from "../../../utils/ImageUploader";
 // import { readFile } from "xlsx";
 
 function FormA1({ formData, setFormData }) {
@@ -112,8 +113,10 @@ function FormA1({ formData, setFormData }) {
         function getDateTimestamp(dateString) {
           if (dateString) {
             const dateObject = new Date(dateString);
-            return Math.floor(dateObject.getTime() / 1000);
+            // return Math.floor(dateObject.getTime() / 1000);
+            return dateObject;
           }
+          console.log(dateString);
           return 0; // Return 0 for empty date strings
         }
 
@@ -127,6 +130,9 @@ function FormA1({ formData, setFormData }) {
 
         // Check if any value is non-empty in the entire row
         const hasAnyValue = row.some((value) => value !== "");
+
+        // Convert engineNumber to String
+        const convertEngineBumber = engineNumber.toString();
 
         if (hasAnyValue) {
           // FormA2 - truckDocuments
@@ -179,63 +185,63 @@ function FormA1({ formData, setFormData }) {
           // Make API call with the mapped data
           const payload = {
             // FormA1
-            truckNumber,
-            fleetNumber,
-            licensePlateNumber,
-            tractorChasis,
-            engineNumber,
-            identificationNumber,
-            manufactureDate: convertedManufactureDate,
+            truckNumber: truckNumber || null,
+            fleetNumber: fleetNumber || null,
+            licensePlateNumber: licensePlateNumber || null,
+            tractorChasis: tractorChasis || null,
+            engineNumber: convertEngineBumber || null,
+            identificationNumber: identificationNumber || null,
+            manufactureDate: convertedManufactureDate || null,
             brand: {
-              model: brandModel,
-              manufacturer: brandManufacturer,
+              model: brandModel || null,
+              manufacturer: brandManufacturer || null,
             },
-            registrationState,
-            pictureUrl,
-            logisticsCoordinatorId,
-            journeyOfficerId,
-            deliveryOfficerId,
-            ownership,
-            ownerId,
-            additionalDetails,
+            registrationState: registrationState || null,
+            pictureUrl: pictureUrl || null,
+            logisticsCoordinatorId: logisticsCoordinatorId || null,
+            journeyOfficerId: journeyOfficerId || null,
+            deliveryOfficerId: deliveryOfficerId || null,
+            ownership: ownership || null,
+            ownerId: ownerId || null,
+            additionalDetails: additionalDetails || null,
 
             // FormA2 - truckDocuments
-            truckDocuments: truckDocumentsArray,
+            truckDocuments: truckDocumentsArray || null,
 
             // FormA3 - maintenanceInfo and purchaseInfo
             maintenanceInfo: {
-              lastPreventiveMaintenance,
-              nextPreventiveMaintenance,
-              inServiceDate,
-              inServiceOdometer,
-              estimatedServiceLive,
-              estServiceMet,
-              estimatedResaleValue,
-              outOfServiceDate,
-              outOfServiceOdometer,
+              lastPreventiveMaintenance: lastPreventiveMaintenance || null,
+              nextPreventiveMaintenance: nextPreventiveMaintenance || null,
+              inServiceDate: inServiceDate || null,
+              inServiceOdometer: inServiceOdometer || null,
+              estimatedServiceLive: estimatedServiceLive || null,
+              estServiceMet: estServiceMet || null,
+              estimatedResaleValue: estimatedResaleValue || null,
+              outOfServiceDate: outOfServiceDate || null,
+              outOfServiceOdometer: outOfServiceOdometer || null,
             },
             purchaseInfo: {
-              vendorName,
-              purchaseDate,
-              purchaseValue,
-              odometer,
-              notes,
-              warrantyExpiryDate,
-              warrantyMaxOdometer,
+              vendorName: vendorName || null,
+              purchaseDate: purchaseDate || null,
+              purchaseValue: purchaseValue || null,
+              odometer: odometer || null,
+              notes: notes || null,
+              warrantyExpiryDate: warrantyExpiryDate || null,
+              warrantyMaxOdometer: warrantyMaxOdometer || null,
             },
 
             // FormA4 - specification
             specification: {
-              driveType,
-              brakeSystem,
-              rearAxle,
-              fuelType,
-              fisrtTankCapacity,
-              secondTankCapacity,
-              tankCapacityMetric,
-              oilCapacity,
-              oilCapacityMetric,
-              maintenanceVendor,
+              driveType: driveType || null,
+              brakeSystem: brakeSystem || null,
+              rearAxle: rearAxle || null,
+              fuelType: fuelType || null,
+              fisrtTankCapacity: fisrtTankCapacity || null,
+              secondTankCapacity: secondTankCapacity || null,
+              tankCapacityMetric: tankCapacityMetric || null,
+              oilCapacity: oilCapacity || null,
+              oilCapacityMetric: oilCapacityMetric || null,
+              maintenanceVendor: maintenanceVendor || null,
             },
           };
 
