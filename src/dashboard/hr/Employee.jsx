@@ -8,6 +8,7 @@ import LoadingSpinner from "../../utils/LoadingSpinner";
 import { useLocation } from "react-router-dom";
 import { ThumbUpIcon } from "@heroicons/react/solid";
 import { XCircleIcon } from "@heroicons/react/solid";
+import CloudinaryUpload from "../../utils/CloudinaryUpload";
 
 const Employee = () => {
   PageTitle("Axle & Cartage Employee Form");
@@ -99,7 +100,7 @@ const Employee = () => {
   );
 
   return (
-    <div className='p-5 rounded-lg bg-white'>
+    <div className="p-5 rounded-lg bg-white">
       <FormTitle Title={"Employee Details"} />
       {show && (
         <PopUp>
@@ -168,14 +169,17 @@ const Employee = () => {
             />
           </label>
         </fieldset>
-        <input
+        <CloudinaryUpload
+          onSuccess={(imageURL) => setData({ ...data, photoUrl: imageURL })}
+        />
+        {/* <input
           className="lg:w-1/3 md:w-1/2"
           type="file"
           value={data.photoUrl}
           onChange={(e) => setData({ ...data, photoUrl: e.target.value })}
           name=""
           id=""
-        />
+        /> */}
         <label htmlFor="">
           Classification
           <select
