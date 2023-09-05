@@ -4,6 +4,7 @@ import states from "./nigeria-states.json";
 import * as xlsx from "xlsx";
 import { ThumbUpIcon, XCircleIcon } from "@heroicons/react/solid";
 import PopUp from "../../../utils/PopUp";
+import CloudinaryUpload from "../../../utils/CloudinaryUpload";
 // import ImageUploader from "../../../utils/ImageUploader";
 // import { readFile } from "xlsx";
 
@@ -487,15 +488,10 @@ function FormA1({ formData, setFormData }) {
             />
           </label>
         </fieldset>
-        <input
-          value={formData.pictureUrl}
-          onChange={(e) =>
-            setFormData({ ...formData, pictureUrl: e.target.value })
+        <CloudinaryUpload
+          onSuccess={(imageURL) =>
+            setFormData({ ...formData, pictureUrl: imageURL })
           }
-          className="py-5 lg:w-1/3 md:w-1/2"
-          type="file"
-          src=""
-          alt=""
         />
         <fieldset className="grid gap-3 md:grid-cols-2 lg:grid-cols-3 items-end">
           {/* <label htmlFor="">

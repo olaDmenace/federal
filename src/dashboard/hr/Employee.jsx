@@ -172,14 +172,6 @@ const Employee = () => {
         <CloudinaryUpload
           onSuccess={(imageURL) => setData({ ...data, photoUrl: imageURL })}
         />
-        {/* <input
-          className="lg:w-1/3 md:w-1/2"
-          type="file"
-          value={data.photoUrl}
-          onChange={(e) => setData({ ...data, photoUrl: e.target.value })}
-          name=""
-          id=""
-        /> */}
         <label htmlFor="">
           Classification
           <select
