@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import endpoint from "../../../utils/endpoints/endpoint";
+import CloudinaryUpload from "../../../utils/CloudinaryUpload";
 
 /* This component serves handles the waybill for each customer
 per delivery. It is reflected in the CustomerListDetails component
@@ -47,6 +48,16 @@ function SecondaryWaybill({ index, formData, setFormData }) {
   //   setFormData({ ...formData });
   // };
 
+  const handleImageUpload = (imageURL, index) => {
+    handleChange(
+      {
+        target: { value: imageURL },
+      },
+      index,
+      "documentUrl"
+    );
+  };
+
   const [customers, setCustomers] = useState([]);
   useEffect(() => {
     endpoint
@@ -61,7 +72,7 @@ function SecondaryWaybill({ index, formData, setFormData }) {
   }, []);
 
   return (
-    <form className="text-primary grid gap-5 w-1/2 border border-primary rounded-lg p-5">
+    <form className="text-primary grid gap-5 lg:w-1/2 border border-primary rounded-lg p-5">
       <h6 className="font-medium">{`Secondary Waybill ${index + 1}`}</h6>
       <label htmlFor="">
         Waybill Number
@@ -77,13 +88,16 @@ function SecondaryWaybill({ index, formData, setFormData }) {
       </label>
       <label>
         Upload Waybill
-        <input
+        <CloudinaryUpload
+          onSuccess={(imageURL) => handleImageUpload(imageURL, index)}
+        />
+        {/* <input
           className="pt-4"
           type="file"
           value={formData?.secondaryWayBills[index]?.documentUrl}
           onChange={(e) => handleChange(e, index, "documentUrl")}
           name="documentUrl"
-        ></input>
+        ></input> */}
       </label>
       <label htmlFor="">
         Customer Name

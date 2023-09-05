@@ -97,7 +97,7 @@ function DashMenu(props) {
           alt=""
         />
         <XCircleIcon
-          className="h-10 stroke-1 stroke-white absolute z-30 top-4 right-10 block lg:hidden"
+          className="h-10 stroke-1 stroke-white absolute z-30 top-4 right-10 block cursor-pointer lg:hidden"
           onClick={props.click}
         />
         <img className="w-1/2 mx-auto" src={Logo} alt="" />

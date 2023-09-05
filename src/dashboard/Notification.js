@@ -47,7 +47,7 @@ function Notification() {
         </div>
         {!menu && (
           <MenuAlt3Icon
-            className="h-8 stroke-1 stroke-primary block lg:hidden"
+            className="h-8 stroke-1 stroke-primary block lg:hidden cursor-pointer"
             onClick={showMenu}
           />
         )}
