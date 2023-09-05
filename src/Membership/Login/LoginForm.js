@@ -19,7 +19,7 @@ function LoginForm({ setAuth }) {
   const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (e) => {
-    setLoading(!loading)
+    // setLoading(!loading)
     e.preventDefault();
     setErrMsg("");
     const data = {
@@ -34,7 +34,6 @@ function LoginForm({ setAuth }) {
         setEmail("");
         setPassword("");
         setSuccess(res.data.message);
-        setLoading(!loading)
         dispatch(
           login(
             // {
@@ -44,6 +43,7 @@ function LoginForm({ setAuth }) {
             res.data.data
           )
         );
+        // setLoading(!loading)
         setTimeout(() => {
           navigate("/welcome");
         }, 3000);
@@ -52,8 +52,8 @@ function LoginForm({ setAuth }) {
         setEmail("");
         setPassword("");
         setErrMsg(err.response.data.message);
-        setLoading(!loading)
       });
+      // setLoading(!loading)
   };
 
   return (

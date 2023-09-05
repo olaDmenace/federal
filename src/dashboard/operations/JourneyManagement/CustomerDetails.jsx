@@ -1,6 +1,16 @@
 import React from "react";
+import CloudinaryUpload from "../../../utils/CloudinaryUpload";
 
 function CustomerDetails({ formData, setFormData }) {
+  const handleImageUpload = (imageUrl) => {
+    setFormData({
+      ...formData,
+      primaryWayBill: {
+        ...formData.primaryWayBill,
+        documentUrl: imageUrl,
+      },
+    });
+  };
   return (
     <div className="space-y-2">
       <div className="space-y-2">
@@ -85,7 +95,7 @@ function CustomerDetails({ formData, setFormData }) {
             </label>
             <label>
               Upload Primary Waybill
-              <input
+              {/* <input
                 value={formData.primaryWayBill.documentUrl}
                 onChange={(e) => {
                   setFormData({
@@ -98,7 +108,8 @@ function CustomerDetails({ formData, setFormData }) {
                 }}
                 className="pt-4"
                 type="file"
-              ></input>
+              ></input> */}
+              <CloudinaryUpload onSuccess={handleImageUpload} />
             </label>
           </div>
           {/* <div className='grid text-primary gap-5 w-full md:grid-cols-2 items-end'>
