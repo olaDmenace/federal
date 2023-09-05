@@ -3,7 +3,7 @@ import { Image } from 'cloudinary-react';
 import axios from 'axios';
 
 const CloudinaryUpload = ({ onSuccess }) => {
-  const [image, setImage] = useState(null);
+//   const [image, setImage] = useState(null);
 
   const handleUpload = async (e) => {
     const file = e.target.files[0];
@@ -24,7 +24,7 @@ const CloudinaryUpload = ({ onSuccess }) => {
 
       if (response.data && response.data.secure_url) {
         // Set the uploaded image URL
-        setImage(response.data.secure_url);
+        // setImage(response.data.secure_url);
 
         // Trigger the onSuccess callback with the image URL
         onSuccess(response.data.secure_url);
@@ -41,7 +41,7 @@ const CloudinaryUpload = ({ onSuccess }) => {
         accept="image/*"
         onChange={handleUpload}
       />
-      {image && <Image cloudName="your_cloud_name" publicId={image} />}
+      {/* {image && <Image cloudName="your_cloud_name" publicId={image} />} */}
     </div>
   );
 };
