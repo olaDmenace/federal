@@ -11,7 +11,7 @@ const ChangeStatus = () => {
   PageTitle("Axle & Cartage - Change Status");
 
   const [prog, setProg] = useState([]);
-  const [trucks, setTrucks] = useState([]);
+  // const [trucks, setTrucks] = useState([]);
   useEffect(() => {
     endpoint
       .get("truck/programme")
@@ -24,17 +24,17 @@ const ChangeStatus = () => {
       });
   }, []);
 
-  useEffect(() => {
-    endpoint
-      .get("/truck")
-      .then((res) => {
-        console.log(res.data.data);
-        setTrucks(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  // useEffect(() => {
+  //   endpoint
+  //     .get("/truck")
+  //     .then((res) => {
+  //       console.log(res.data.data);
+  //       setTrucks(res.data.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
 
   const statusList = [
     { id: 0, status: "Assigned" },
