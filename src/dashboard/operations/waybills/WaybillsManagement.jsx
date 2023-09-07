@@ -1,20 +1,22 @@
-import { PlusIcon } from "@heroicons/react/solid";
 import React, { useEffect, useState } from "react";
 import PageTitle from "../../../utils/PageTitle";
 import FormTitle from "../../FormTitle";
 import WaybillItem from "./WaybillItem";
 import endpoint from "../../../utils/endpoints/endpoint";
+import PopUp from "../../../utils/PopUp";
+import { ThumbUpIcon } from "@heroicons/react/solid";
+import { XCircleIcon } from "@heroicons/react/outline";
 
 const WaybillsManagement = () => {
   PageTitle("Axle & Cartage - Waybills Management");
 
-  const [bill, setBill] = useState([0]);
-  const handleAdd = () => {
-    const waybills = [...bill, []];
-    setBill(waybills);
-  };
-
   const [truck, setTruck] = useState([]);
+  const [selectedJourneyManagementId, setSelectedJourneyManagementId] =
+    useState("");
+  const [formData, setFormData] = useState({
+    journeyManagementId: "",
+    wayBills: [],
+  });
 
   useEffect(() => {
     endpoint
@@ -28,19 +30,100 @@ const WaybillsManagement = () => {
       });
   }, []);
 
-  const PrimaryWaybill = truck.some((item) =>
-    item.wayBills.some((i) => i.isPrimaryWayBill === true)
+  useEffect(() => {
+    // Function to set formData based on selectedJourneyManagementId
+    const setFormDataFromJourneyId = () => {
+      // Find the selected journey management
+      const selectedJourney = truck.find(
+        (item) => item.journeyManagementId === selectedJourneyManagementId
+      );
+
+      if (selectedJourney) {
+        // Find the primary waybill in the selected journey
+        const primaryWaybill = selectedTruck?.wayBills.find(
+          (waybill) => waybill.isPrimaryWayBill === true
+        );
+
+        // Set formData based on selected journey and primary waybill
+        const newFormData = {
+          journeyManagementId: selectedJourneyManagementId,
+          wayBills: [
+            {
+              wayBillId: primaryWaybill ? primaryWaybill.wayBillId : "",
+              status: primaryWaybill ? primaryWaybill.status : 0,
+            },
+            ...selectedJourney.wayBills
+              .filter((waybill) => waybill.isPrimaryWayBill === false)
+              .map((waybill) => ({
+                wayBillId: waybill.wayBillId,
+                status: waybill.status,
+              })),
+          ],
+        };
+
+        setFormData(newFormData);
+      }
+    };
+
+    // Check if the selectedJourneyManagementId has changed
+    if (selectedJourneyManagementId === formData.journeyManagementId) {
+      setFormDataFromJourneyId();
+    }
+  }, [selectedJourneyManagementId, truck]);
+
+  const handleJourneyManagementChange = (e) => {
+    setFormData({ ...formData, journeyManagementId: e.target.value });
+    setSelectedJourneyManagementId(e.target.value);
+  };
+
+  // Find primary and secondary waybills for the selected journey management
+  const selectedTruck = truck.find(
+    (item) => item.journeyManagementId === selectedJourneyManagementId
   );
-  console.log(PrimaryWaybill);
-  const [formData, setFormData] = useState({
-    journeyManagementId: "",
-    wayBills: [
-      {
-        wayBillId: "",
-        status: 0,
-      },
-    ],
+
+  // Filter primary waybill
+  const primaryWaybill = selectedTruck?.wayBills.find(
+    (waybill) => waybill.isPrimaryWayBill === true
+  );
+
+  // Filter secondary waybills
+  const secondaryWaybills = selectedTruck?.wayBills.filter(
+    (waybill) => waybill !== primaryWaybill
+  );
+
+  const handleSubmit = () => {
+    console.log(formData);
+    endpoint
+      .put("/truck/journey-management/waybill", formData)
+      .then((res) => {
+        setShow(!show);
+        setReply({
+          icon: <ThumbUpIcon className="mx-auto h-24 text-primary" />,
+          message: res.data.message,
+        });
+        console.log(res);
+      })
+      .catch((err) => {
+        setShow(!show);
+        setReply({
+          icon: <XCircleIcon className="mx-auto h-24 text-red-500" />,
+          message: err.response.data.message,
+        });
+        console.log(err);
+      });
+  };
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [show, setShow] = useState(false);
+  const [reply, setReply] = useState({
+    icon: "",
+    message: "",
   });
+
+  function closePop(e) {
+    setShow(false);
+    setIsLoading(!isLoading);
+  }
 
   return (
     <div className="text-primary grid gap-5 bg-white p-5 rounded-lg overflow-x-scroll">
@@ -48,19 +131,25 @@ const WaybillsManagement = () => {
         <FormTitle Title={"Waybills Management Form"} />
         <hr />
       </div>
+      {show && (
+        <PopUp>
+          {reply.icon}
+          <p className="mx-auto text-center text-primary bg-transparent">
+            {reply.message}
+          </p>
+          <button className="btn btn-primary" onClick={(e) => closePop()}>
+            Confirm
+          </button>
+        </PopUp>
+      )}
       <form className="grid gap-5 pt-5" action="">
         <fieldset className="grid lg:grid-flow-col lg:grid-cols-3 gap-5">
           <label htmlFor="trip_Id">
             Trip ID
             <select
               className="select select-primary w-full"
-              value={formData.journeyManagementId}
-              onChange={(e) =>
-                setFormData({
-                  ...formData,
-                  journeyManagementId: e.target.value,
-                })
-              }
+              value={selectedJourneyManagementId}
+              onChange={handleJourneyManagementChange}
             >
               <option value="">Select Trip ID</option>
               {truck.map((item) => (
@@ -72,72 +161,82 @@ const WaybillsManagement = () => {
                 </option>
               ))}
             </select>
-            {/* <input className='input input-primary w-full' type="text" name="trip_Id" id="trip_Id" /> */}
           </label>
           <label htmlFor="product">
             Product Loaded
             <div className="border border-primary w-full h-12 px-4 rounded-lg grid items-center">
-              {truck
-                .filter(
-                  (i) => i.journeyManagementId === formData.journeyManagementId
-                )
-                .map((item) => (
-                  <p>{item.truckProgramming.product.productName}</p>
-                ))}
+              {selectedTruck?.truckProgramming.product.productName || ""}
             </div>
           </label>
           <label htmlFor="quantity">
             Quantity Loaded
-            <input
-              className="input input-primary w-full"
-              type="text"
-              name="quantity"
-              id="quantity"
-            />
+            <div className="border border-primary w-full h-12 px-4 rounded-lg grid items-center">
+              {primaryWaybill?.quantityLoaded || ""}
+            </div>
           </label>
         </fieldset>
         <fieldset className="grid lg:grid-flow-col lg:grid-cols-2 gap-5">
           <label htmlFor="trip_Id">
             Quantity Delivered
-            <input
-              className="input input-primary w-full"
-              type="text"
-              name="trip_Id"
-              id="trip_Id"
-            />
+            <div className="border border-primary w-full h-12 px-4 rounded-lg grid items-center">
+              {primaryWaybill?.quantityDelivered || ""}
+            </div>
           </label>
           <label htmlFor="product">
             Primary/Direct Waybill Number
-            <input
-              className="input input-primary w-full"
-              type="text"
-              name="product"
-              id="product"
-            />
+            <div className="border border-primary w-full h-12 px-4 rounded-lg grid items-center">
+              {primaryWaybill?.wayBillNumber || ""}
+            </div>
           </label>
         </fieldset>
-
-        {/* Add File Preview Here */}
-        {/* <input type="file" name="" id="" className="w-1/3   " /> */}
-        {/* <img className='h-56 w-56 shadow-xl' src="" alt="" /> */}
         <label htmlFor="status">
           Primary/Direct Waybill Status
           <br />
-          <input
-            className="input input-primary w-full lg:w-1/3"
-            type="text"
+          <select
+            className="select select-primary w-full"
             name=""
             id=""
-          />
+            value={formData.wayBills[0]?.status || ""}
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                wayBills: [
+                  {
+                    ...formData.wayBills[0],
+                    status: +e.target.value,
+                  },
+                  ...formData.wayBills.slice(1),
+                ],
+              })
+            }
+          >
+            <option value="">Select Status</option>
+            <option value="1">Approved</option>
+            <option value="2">Declined</option>
+          </select>
         </label>
-        <div className="grid grid-flow-col items-center gap-5">
-          {bill.map((data, i) => (
-            <WaybillItem />
-          ))}
-          {/* <PlusIcon onClick={handleAdd} className='h-40 text-primary/40' /> */}
-        </div>
+        {/* Secondary Waybills */}
+        {secondaryWaybills && secondaryWaybills.length > 0 && (
+          <WaybillItem
+            secondaryWaybills={secondaryWaybills}
+            formData={formData}
+            onStatusChange={(waybillId, selectedStatus) => {
+              // Update your formData with the selected status
+              setFormData({
+                ...formData,
+                wayBills: formData.wayBills.map((waybill) =>
+                  waybill.wayBillId === waybillId
+                    ? { ...waybill, status: +selectedStatus }
+                    : waybill
+                ),
+              });
+            }}
+          />
+        )}
       </form>
-      <button className="btn btn-primary mx-auto">Submit</button>
+      <button className="btn btn-primary mx-auto" onClick={handleSubmit}>
+        Submit
+      </button>
     </div>
   );
 };
