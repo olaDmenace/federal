@@ -517,7 +517,7 @@ useEffect(() => {
           </label>
           <label htmlFor="">
             Truck Loading Date
-            <input className="w-full input input-primary" disabled={location.state} type="date" name="" id="" />
+            <input className="w-full input input-primary" type="date" name="" id="" />
           </label>
           <label htmlFor="">
             Loading Location
