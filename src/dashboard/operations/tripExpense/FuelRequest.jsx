@@ -28,7 +28,39 @@ const FuelRequest = ({ formData, setFormData }) => {
       });
   }, []);
 
+  //   const handleFuelRequestChange = (field, value) => {
+  //     setFormData((prevData) => ({
+  //       ...prevData,
+  //       fuelRequest: {
+  //         ...prevData.fuelRequest,
+  //         [field]: value,
+  //       },
+  //     }));
+  //   };
+
+  //   const handleTopUpRequestChange = (field, value) => {
+  //     setFormData((prevData) => ({
+  //       ...prevData,
+  //       topUpRequest: {
+  //         ...prevData.topUpRequest,
+  //         [field]: value,
+  //       },
+  //     }));
+  //   };
+
   const handleFuelRequestChange = (field, value) => {
+    if (field === "requestDate" && value) {
+      // Split the date into parts
+      const parts = value.split("/");
+      if (parts.length === 3) {
+        // Create a new date in ISO format (yyyy-mm-dd)
+        value = `${parts[2]}-${parts[0].padStart(2, "0")}-${parts[1].padStart(
+          2,
+          "0"
+        )}`;
+      }
+    }
+
     setFormData((prevData) => ({
       ...prevData,
       fuelRequest: {
@@ -39,6 +71,18 @@ const FuelRequest = ({ formData, setFormData }) => {
   };
 
   const handleTopUpRequestChange = (field, value) => {
+    if (field === "requestDate" && value) {
+      // Split the date into parts
+      const parts = value.split("/");
+      if (parts.length === 3) {
+        // Create a new date in ISO format (yyyy-mm-dd)
+        value = `${parts[2]}-${parts[0].padStart(2, "0")}-${parts[1].padStart(
+          2,
+          "0"
+        )}`;
+      }
+    }
+
     setFormData((prevData) => ({
       ...prevData,
       topUpRequest: {

@@ -11,7 +11,7 @@ const TripExpenses = ({ formData, setFormData }) => {
             <input
               className="w-full input input-primary"
               placeholder="4000"
-              type="text"
+              type="number"
               name=""
               id=""
               value={formData.unionDuesPayable}
@@ -25,7 +25,7 @@ const TripExpenses = ({ formData, setFormData }) => {
             <input
               className="w-full input input-primary"
               placeholder="4000"
-              type="text"
+              type="number"
               name=""
               id=""
               value={formData.unionDuesPaid}
@@ -36,8 +36,21 @@ const TripExpenses = ({ formData, setFormData }) => {
           </label>
           <label htmlFor="">
             Union Dues Status
-            <select className="w-full select select-primary" name="" id="">
-              <option value=""></option>
+            <select
+              className="w-full select select-primary"
+              name=""
+              id=""
+              value={formData.status}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  status: +e.target.value,
+                })
+              }
+            >
+              <option value="">Select Status</option>
+              <option value="1">Paid</option>
+              <option value="2">Refused</option>
             </select>
           </label>
           <label htmlFor="">
@@ -45,7 +58,7 @@ const TripExpenses = ({ formData, setFormData }) => {
             <input
               className="w-full input input-primary"
               placeholder="4000"
-              type="text"
+              type="number"
               name=""
               id=""
               value={formData.roadExpensePayable}
@@ -62,7 +75,7 @@ const TripExpenses = ({ formData, setFormData }) => {
             <input
               className="w-full input input-primary"
               placeholder="4000"
-              type="text"
+              type="number"
               name=""
               id=""
               value={formData.roadExpensePaid}
@@ -73,8 +86,21 @@ const TripExpenses = ({ formData, setFormData }) => {
           </label>
           <label htmlFor="">
             Road Expense Status
-            <select className="w-full select select-primary" name="" id="">
-              <option value=""></option>
+            <select
+              className="w-full select select-primary"
+              name=""
+              id=""
+              value={formData.roadExpenseStatus}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  roadExpenseStatus: +e.target.value,
+                })
+              }
+            >
+              <option value="">Select Status</option>
+              <option value="1">Paid</option>
+              <option value="2">Refused</option>
             </select>
           </label>
           <label htmlFor="">
@@ -82,7 +108,7 @@ const TripExpenses = ({ formData, setFormData }) => {
             <input
               className="w-full input input-primary"
               placeholder="4000"
-              type="text"
+              type="number"
               name=""
               id=""
               value={formData.tripAllowancePayable}
@@ -99,7 +125,7 @@ const TripExpenses = ({ formData, setFormData }) => {
             <input
               className="w-full input input-primary"
               placeholder="4000"
-              type="text"
+              type="number"
               name=""
               id=""
               value={formData.tripAllowancePaid}
@@ -113,8 +139,21 @@ const TripExpenses = ({ formData, setFormData }) => {
           </label>
           <label htmlFor="">
             Trip Allowance Status
-            <select className="w-full select select-primary" name="" id="">
-              <option value=""></option>
+            <select
+              className="w-full select select-primary"
+              name=""
+              id=""
+              value={formData.tripAllowanceStatus}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  tripAllowanceStatus: +e.target.value,
+                })
+              }
+            >
+              <option value="">Select Status</option>
+              <option value="1">Paid</option>
+              <option value="2">Refused</option>
             </select>
           </label>
           <label htmlFor="">
@@ -122,7 +161,7 @@ const TripExpenses = ({ formData, setFormData }) => {
             <input
               className="w-full input input-primary"
               placeholder="4000"
-              type="text"
+              type="number"
               name=""
               id=""
               value={formData.aquilaFlashingPayable}
@@ -139,7 +178,7 @@ const TripExpenses = ({ formData, setFormData }) => {
             <input
               className="w-full input input-primary"
               placeholder="4000"
-              type="text"
+              type="number"
               name=""
               id=""
               value={formData.aquilaFlashingPaid}
@@ -153,8 +192,21 @@ const TripExpenses = ({ formData, setFormData }) => {
           </label>
           <label htmlFor="">
             Aquilla Flashing Status
-            <select className="w-full select select-primary" name="" id="">
-              <option value=""></option>
+            <select
+              className="w-full select select-primary"
+              name=""
+              id=""
+              value={formData.aquilaFlashingStatus}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  aquilaFlashingStatus: +e.target.value,
+                })
+              }
+            >
+              <option value="">Select Status</option>
+              <option value="1">Paid</option>
+              <option value="2">Refused</option>
             </select>
           </label>
           <label htmlFor="">
@@ -162,7 +214,7 @@ const TripExpenses = ({ formData, setFormData }) => {
             <input
               className="w-full input input-primary"
               placeholder="4000"
-              type="text"
+              type="number"
               name=""
               id=""
               value={formData.welfarePayable}
@@ -176,7 +228,7 @@ const TripExpenses = ({ formData, setFormData }) => {
             <input
               className="w-full input input-primary"
               placeholder="4000"
-              type="text"
+              type="number"
               name=""
               id=""
               value={formData.welfarePaid}
@@ -187,8 +239,21 @@ const TripExpenses = ({ formData, setFormData }) => {
           </label>
           <label htmlFor="">
             Welfare Status
-            <select className="w-full select select-primary" name="" id="">
-              <option value=""></option>
+            <select
+              className="w-full select select-primary"
+              name=""
+              id=""
+              value={formData.welfareStatus}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  welfareStatus: +e.target.value,
+                })
+              }
+            >
+              <option value="">Select Status</option>
+              <option value="1">Paid</option>
+              <option value="2">Refused</option>
             </select>
           </label>
         </fieldset>
@@ -198,7 +263,7 @@ const TripExpenses = ({ formData, setFormData }) => {
             <input
               className="w-full input input-primary"
               placeholder="3000"
-              type="text"
+              type="number"
               name=""
               id=""
               value={formData.otherExpensesPaid}
@@ -212,8 +277,21 @@ const TripExpenses = ({ formData, setFormData }) => {
           </label>
           <label htmlFor="">
             Other Expenses Status
-            <select className="w-full select select-primary" name="" id="">
-              <option value="">Paid</option>
+            <select
+              className="w-full select select-primary"
+              name=""
+              id=""
+              value={formData.otherExpensesStatus}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  otherExpensesStatus: +e.target.value,
+                })
+              }
+            >
+              <option value="">Select Status</option>
+              <option value="1">Paid</option>
+              <option value="2">Refused</option>
             </select>
           </label>
         </fieldset>
