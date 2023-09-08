@@ -11,11 +11,13 @@ const TripExpense = () => {
 
   const activeForm = () => {
     if (form === 1) {
-      return <FuelRequest />;
+      return <FuelRequest formData={formData} setFormData={setFormData} />;
     } else if (form === 2) {
-      return <FuelReconciliation />;
+      return (
+        <FuelReconciliation formData={formData} setFormData={setFormData} />
+      );
     } else {
-      return <TripExpenses />;
+      return <TripExpenses formData={formData} setFormData={setFormData} />;
     }
   };
 
@@ -24,44 +26,48 @@ const TripExpense = () => {
     fuelRequest: {
       dispensingStation: "",
       requestDate: "",
-      currentVolume: 0,
-      issuedVolume: 0,
-      baseStock: 0,
+      currentVolume: "",
+      issuedVolume: "",
+      baseStock: "",
       status: 0,
     },
     topUpRequest: {
       dispensingStation: "",
       requestDate: "",
-      currentVolume: 0,
-      issuedVolume: 0,
-      baseStock: 0,
-      status: 0,
+      currentVolume: "",
+      issuedVolume: "",
+      baseStock: "",
+      status: "",
       reason: "",
     },
     fuelReconciliation: {
-      volumeConsumed: 0,
+      volumeConsumed: "",
       comment: "",
       variationReason: "",
     },
-    unionDuesPayable: 0,
-    unionDuesPaid: 0,
+    unionDuesPayable: "",
+    unionDuesPaid: "",
     status: 0,
-    roadExpensePayable: 0,
-    roadExpensePaid: 0,
+    roadExpensePayable: "",
+    roadExpensePaid: "",
     roadExpenseStatus: 0,
-    tripAllowancePayable: 0,
-    tripAllowancePaid: 0,
+    tripAllowancePayable: "",
+    tripAllowancePaid: "",
     tripAllowanceStatus: 0,
-    aquilaFlashingPayable: 0,
-    aquilaFlashingPaid: 0,
+    aquilaFlashingPayable: "",
+    aquilaFlashingPaid: "",
     aquilaFlashingStatus: 0,
-    welfarePayable: 0,
-    welfarePaid: 0,
+    welfarePayable: "",
+    welfarePaid: "",
     welfareStatus: 0,
-    otherExpensesPaid: 0,
+    otherExpensesPaid: "",
     purpose: "",
     otherExpensesStatus: 0,
   });
+
+  const submithandler = () => {
+    form !== 3 ? setForm((currForm) => currForm + 1) : console.log(formData);
+  };
 
   return (
     <div className="space-y-2 grid bg-white p-5 rounded-lg">
@@ -75,7 +81,7 @@ const TripExpense = () => {
       {activeForm()}
       <div class="btn-group mx-auto pt-5">
         <button
-          disabled={form === 0}
+          disabled={form === 1}
           onClick={() => {
             setForm((currForm) => currForm - 1);
           }}
@@ -83,12 +89,7 @@ const TripExpense = () => {
         >
           Prev
         </button>
-        <button
-          class="btn btn-active"
-          onClick={() => {
-            setForm((currForm) => currForm + 1);
-          }}
-        >
+        <button class="btn btn-active" onClick={submithandler}>
           {form === 3 ? "Submit" : "Next"}
         </button>
       </div>

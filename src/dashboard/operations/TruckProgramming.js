@@ -11,7 +11,7 @@ import { useLocation } from "react-router-dom";
 function TruckProgramming({ formData, setFormData }) {
   PageTitle("Axle & Cartage - Truck Programming");
 
-  console.log(process.env.REACT_APP_GEOLOCATE_KEY)
+  // console.log(process.env.REACT_APP_GEOLOCATE_KEY)
   // const dispatch = useDispatch();
 
   const location = useLocation()
@@ -65,6 +65,7 @@ function TruckProgramming({ formData, setFormData }) {
   useEffect(() => {
     endpoint.get("/truck")
       .then((res) => {
+        console.log(res.data.data)
         setTrucks(res.data.data)
       })
       .catch((err) => {
@@ -280,7 +281,7 @@ useEffect(() => {
             Truck Odometer
             <br />
             <div className='border border-primary h-12 rounded-lg grid items-center'>
-                              <p className="px-4">{truck?.odometer}</p>
+              {trucks.filter((t) => (t.truckId === data.truckId)).map(item => <span key={item.truckId} className="px-4">{item.galooliData.odometer}</span>)}
             </div>
           </label>
           <label htmlFor="">

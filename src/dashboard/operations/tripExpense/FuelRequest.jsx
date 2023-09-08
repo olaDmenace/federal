@@ -1,61 +1,336 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import endpoint from "../../../utils/endpoints/endpoint";
 
-const FuelRequest = () => {
-    return (
-        <div className='py-5 text-primary space-y-3'>
-            <h4 className='text-lg font-semibold'>Fuel Request - Top-up</h4>
-            <form action="" className='grid text-primary gap-5 w-full'>
-                <fieldset className='grid md:grid-cols-2 gap-3 items-end'>
-                    <label htmlFor="">
-                        Dispensing Station Name
-                        <select className='w-full select select-primary'>
-                            <option value=""></option>
-                        </select>
-                    </label>
-                    <label htmlFor="">
-                        Request Date
-                        <input className='w-full input input-primary' type="date" name="" id="" />
-                    </label>
-                    <label htmlFor="">
-                        Current Fuel In Tank (L)
-                        <input className='w-full input input-primary' placeholder='20' type="text" name="" id="" />
-                    </label>
-                    <label htmlFor="">
-                        Base Stock Request - Top-up
-                        <input className='w-full input input-primary' placeholder='48 Ltr' type="text" name="" id="" />
-                    </label>
-                    <label htmlFor="">
-                        Fuel Requested
-                        <input className='w-full input input-primary' placeholder='68 Ltr' type="text" name="" id="" />
-                    </label>
-                    <label htmlFor="">
-                        Fuel Issued (Litres)
-                        <input className='w-full input input-primary' placeholder='68' type="text" name="" id="" />
-                    </label>
-                    <label htmlFor="">
-                        Fuel Issued (Price/Litre)
-                        <input className='w-full input input-primary' placeholder='145' type="text" name="" id="" />
-                    </label>
-                    <label htmlFor="">
-                        Fuel Cost (Naira)
-                        <input className='w-full input input-primary' placeholder='6960' type="text" name="" id="" />
-                    </label>
-                </fieldset>
-                <fieldset>
-                    <label htmlFor="">
-                        Top-up Reason
-                        <textarea className='w-full textarea textarea-primary' name="" id="" rows="5"></textarea>
-                    </label>
-                    <label htmlFor="">
-                        Fuel Request - Top-Up Status
-                        <select className='w-full select select-primary' name="" id="">
-                            <option value="">Issued</option>
-                        </select>
-                    </label>
-                </fieldset>
-            </form>
-        </div>
-    )
-}
+const FuelRequest = ({ formData, setFormData }) => {
+  const [truck, setTruck] = useState([]);
+  useEffect(() => {
+    endpoint
+      .get("/truck/journey-management")
+      .then((res) => {
+        console.log(res.data.data);
+        setTruck(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
-export default FuelRequest 
+  const [stations, setStations] = useState([]);
+  useEffect(() => {
+    endpoint
+      .get("/variable/depots")
+      .then((res) => {
+        console.log(res.data.data);
+        setStations(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  const handleFuelRequestChange = (field, value) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      fuelRequest: {
+        ...prevData.fuelRequest,
+        [field]: value,
+      },
+    }));
+  };
+
+  const handleTopUpRequestChange = (field, value) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      topUpRequest: {
+        ...prevData.topUpRequest,
+        [field]: value,
+      },
+    }));
+  };
+
+  return (
+    <div className="py-5 text-primary space-y-3">
+      <h4 className="text-lg font-semibold">Fuel Request - Top-up</h4>
+      <form action="" className="grid text-primary gap-10 w-full">
+        <fieldset className="grid md:grid-cols-2 gap-3 items-end">
+          <label htmlFor="trip_Id">
+            Trip ID
+            <select
+              className="select select-primary w-full"
+              value={formData.journeyManagementId}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  journeyManagementId: e.target.value,
+                })
+              }
+            >
+              <option value="">Select Trip ID</option>
+              {truck.map((item) => (
+                <option
+                  key={item.journeyManagementId}
+                  value={item.journeyManagementId}
+                >
+                  {item.truckProgramming.tripReference}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label htmlFor="">
+            Dispensing Station Name
+            <select
+              className="w-full select select-primary"
+              value={formData.fuelRequest.dispensingStation}
+              onChange={(e) => {
+                handleFuelRequestChange("dispensingStation", e.target.value);
+              }}
+            >
+              {stations.map((station) => (
+                <option key={station.depotId} value={station.depotName}>
+                  {station.depotName}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label htmlFor="">
+            Request Date
+            <input
+              className="w-full input input-primary"
+              type="date"
+              name=""
+              id=""
+              value={formData.fuelRequest.requestDate}
+              onChange={(e) =>
+                handleFuelRequestChange("requestDate", e.target.value)
+              }
+            />
+          </label>
+          <label htmlFor="">
+            Current Fuel In Tank (L)
+            <input
+              className="input input-primary w-full"
+              type="number"
+              name=""
+              id=""
+              placeholder="48 Ltr"
+              value={formData.fuelRequest.currentVolume}
+              onChange={(e) => {
+                const newValue = parseFloat(e.target.value);
+                if (!isNaN(newValue)) {
+                  handleFuelRequestChange("currentVolume", newValue);
+                }
+              }}
+            />
+          </label>
+          <label htmlFor="">
+            Base Stock Request - Top-up
+            <input
+              className="w-full input input-primary"
+              placeholder="48 Ltr"
+              type="text"
+              name=""
+              id=""
+              value={formData.fuelRequest.baseStock}
+              onChange={(e) => {
+                const newValue = parseFloat(e.target.value);
+                if (!isNaN(newValue)) {
+                  handleFuelRequestChange("baseStock", newValue);
+                }
+              }}
+            />
+          </label>
+          <label htmlFor="">
+            Fuel Requested
+            <input
+              className="w-full input input-primary"
+              placeholder="68 Ltr"
+              type="text"
+              name=""
+              id=""
+            />
+          </label>
+          <label htmlFor="">
+            Fuel Issued (Litres)
+            <input
+              className="w-full input input-primary"
+              placeholder="68"
+              type="text"
+              name=""
+              id=""
+              value={formData.fuelRequest.issuedVolume}
+              onChange={(e) => {
+                const newValue = parseFloat(e.target.value);
+                if (!isNaN(newValue)) {
+                  handleFuelRequestChange("issuedVolume", newValue);
+                }
+              }}
+            />
+          </label>
+          <label htmlFor="">
+            Fuel Issued (Price/Litre)
+            <input
+              className="w-full input input-primary"
+              placeholder="145"
+              type="text"
+              name=""
+              id=""
+            />
+          </label>
+        </fieldset>
+        <fieldset>
+          <label htmlFor="">
+            Fuel Request - Top-Up Status
+            <select
+              className="w-full select select-primary"
+              name=""
+              id=""
+              value={formData.fuelRequest.status}
+              onChange={(e) => {
+                handleFuelRequestChange("status", +e.target.value);
+              }}
+            >
+              <option value="">Selecct Status</option>
+              <option value="1">Issued</option>
+              <option value="2">Declined</option>
+            </select>
+          </label>
+        </fieldset>
+        <fieldset className="grid md:grid-cols-2 gap-3 items-end">
+          <label htmlFor="">
+            Dispensing Station Name
+            <select
+              className="w-full select select-primary"
+              value={formData.topUpRequest.dispensingStation}
+              onChange={(e) => {
+                handleTopUpRequestChange("dispensingStation", e.target.value);
+              }}
+            >
+              {stations.map((station) => (
+                <option key={station.depotId} value={station.depotName}>
+                  {station.depotName}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label htmlFor="">
+            Request Date
+            <input
+              className="w-full input input-primary"
+              type="date"
+              name=""
+              id=""
+              value={formData.topUpRequest.requestDate}
+              onChange={(e) =>
+                handleTopUpRequestChange("requestDate", e.target.value)
+              }
+            />
+          </label>
+          <label htmlFor="">
+            Current Fuel In Tank (L)
+            <input
+              className="input input-primary w-full"
+              type="number"
+              name=""
+              id=""
+              placeholder="48 Ltr"
+              value={formData.topUpRequest.currentVolume}
+              onChange={(e) => {
+                const newValue = parseFloat(e.target.value);
+                if (!isNaN(newValue)) {
+                  handleTopUpRequestChange("currentVolume", newValue);
+                }
+              }}
+            />
+          </label>
+          <label htmlFor="">
+            Base Stock Request - Top-up
+            <input
+              className="w-full input input-primary"
+              placeholder="48 Ltr"
+              type="text"
+              name=""
+              id=""
+              value={formData.topUpRequest.baseStock}
+              onChange={(e) => {
+                const newValue = parseFloat(e.target.value);
+                if (!isNaN(newValue)) {
+                  handleTopUpRequestChange("baseStock", newValue);
+                }
+              }}
+            />
+          </label>
+          <label htmlFor="">
+            Fuel Requested
+            <input
+              className="w-full input input-primary"
+              placeholder="68 Ltr"
+              type="text"
+              name=""
+              id=""
+            />
+          </label>
+          <label htmlFor="">
+            Fuel Issued (Litres)
+            <input
+              className="w-full input input-primary"
+              placeholder="68"
+              type="text"
+              name=""
+              id=""
+              value={formData.topUpRequest.issuedVolume}
+              onChange={(e) => {
+                const newValue = parseFloat(e.target.value);
+                if (!isNaN(newValue)) {
+                  handleTopUpRequestChange("issuedVolume", newValue);
+                }
+              }}
+            />
+          </label>
+          <label htmlFor="">
+            Fuel Issued (Price/Litre)
+            <input
+              className="w-full input input-primary"
+              placeholder="145"
+              type="text"
+              name=""
+              id=""
+            />
+          </label>
+        </fieldset>
+        <fieldset>
+          <label htmlFor="">
+            Fuel Request - Top-Up Status
+            <select
+              className="w-full select select-primary"
+              name=""
+              id=""
+              value={formData.topUpRequest.status}
+              onChange={(e) => {
+                handleTopUpRequestChange("status", +e.target.value);
+              }}
+            >
+              <option value="">Selecct Status</option>
+              <option value="1">Issued</option>
+              <option value="2">Declined</option>
+            </select>
+          </label>
+        </fieldset>
+        <label htmlFor="">
+          Top-up Reason
+          <textarea
+            className="w-full textarea textarea-primary"
+            name=""
+            id=""
+            rows="5"
+            value={formData.topUpRequest.reason}
+            onChange={(e) => {
+              handleTopUpRequestChange("reason", e.target.value);
+            }}
+          ></textarea>
+        </label>
+      </form>
+    </div>
+  );
+};
+
+export default FuelRequest;

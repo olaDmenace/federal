@@ -6,6 +6,7 @@ import endpoint from "../../../utils/endpoints/endpoint";
 import PopUp from "../../../utils/PopUp";
 import { ThumbUpIcon } from "@heroicons/react/solid";
 import { XCircleIcon } from "@heroicons/react/outline";
+import LoadingSpinner from "../../../utils/LoadingSpinner";
 
 const WaybillsManagement = () => {
   PageTitle("Axle & Cartage - Waybills Management");
@@ -93,6 +94,7 @@ const WaybillsManagement = () => {
 
   const handleSubmit = () => {
     console.log(formData);
+    setIsLoading(!isLoading);
     endpoint
       .put("/truck/journey-management/waybill", formData)
       .then((res) => {
@@ -234,9 +236,12 @@ const WaybillsManagement = () => {
           />
         )}
       </form>
-      <button className="btn btn-primary mx-auto" onClick={handleSubmit}>
-        Submit
-      </button>
+      {!isLoading && (
+        <button className="btn btn-primary mx-auto" onClick={handleSubmit}>
+          Submit
+        </button>
+      )}
+      {isLoading && <LoadingSpinner />}
     </div>
   );
 };
