@@ -85,7 +85,7 @@ const Employee = () => {
         setShow(true);
         setReply({
           icon: <XCircleIcon className="mx-auto h-24 text-red-500" />,
-          message: "Please, check your form and try again",
+          message: err.response.data.message,
         });
         // setIsLoading(!isLoading)
       });
@@ -368,7 +368,7 @@ const Employee = () => {
               onChange={(e) =>
                 setData({ ...data, employmentNumber: e.target.value })
               }
-              type="number"
+              type="text"
               name=""
               id="employeeNumber"
             />
