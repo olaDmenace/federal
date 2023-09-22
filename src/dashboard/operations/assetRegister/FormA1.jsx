@@ -110,37 +110,40 @@ function FormA1({ formData, setFormData }) {
           ...truckDocumentValues
         ] = row;
 
-        // Function to convert date strings to Unix timestamps
-        function getDateTimestamp(dateString) {
+        // Function to convert date strings to ISO date format
+        function convertToISODate(dateString) {
           if (dateString) {
             const dateObject = new Date(dateString);
-            // return Math.floor(dateObject.getTime() / 1000);
-            return dateObject;
+
+            // Check if the dateObject is valid
+            if (!isNaN(dateObject.getTime())) {
+              return dateObject.toISOString();
+            }
           }
-          console.log(dateString);
-          return 0; // Return 0 for empty date strings
+
+          return null; // Return null for empty or invalid date strings
         }
 
-        // Convert date strings to Unix timestamps
-        const convertedManufactureDate = getDateTimestamp(manufactureDate);
+        // Convert date strings to ISO date format
+        const convertedManufactureDate = convertToISODate(manufactureDate);
 
-        // Convert date strings to Unix timestamps for truckDocument values
+        // Convert date strings to ISO date format for truckDocument values
         const truckDocumentsArray = truckDocumentValues.map((dateString) =>
-          getDateTimestamp(dateString)
+          convertToISODate(dateString)
         );
 
         // Check if any value is non-empty in the entire row
         const hasAnyValue = row.some((value) => value !== "");
 
         // Convert engineNumber to String
-        const convertEngineBumber = engineNumber.toString();
+        const convertEngineNumber = engineNumber.toString();
 
         if (hasAnyValue) {
           // FormA2 - truckDocuments
           const truckDocumentsArray = [];
           for (let i = 0; i <= 10; i++) {
             const startIndex = i * 4;
-            const type = truckDocumentValues[startIndex] || 0;
+            const type = i; // Use i as the value of type to increase from 0 to 10
             const referenceNumber = truckDocumentValues[startIndex + 1] || "";
             const dateIssued = truckDocumentValues[startIndex + 2] || "";
             const expiryDate = truckDocumentValues[startIndex + 3] || "";
@@ -148,8 +151,8 @@ function FormA1({ formData, setFormData }) {
             truckDocumentsArray.push({
               type,
               referenceNumber,
-              dateIssued,
-              expiryDate,
+              dateIssued: convertToISODate(dateIssued) || null,
+              expiryDate: convertToISODate(expiryDate) || null,
             });
           }
 
@@ -160,7 +163,6 @@ function FormA1({ formData, setFormData }) {
             inServiceDate,
             inServiceOdometer,
             estimatedServiceLive,
-            estServiceMet,
             estimatedResaleValue,
             outOfServiceDate,
             outOfServiceOdometer,
@@ -181,16 +183,23 @@ function FormA1({ formData, setFormData }) {
             oilCapacity,
             oilCapacityMetric,
             maintenanceVendor,
-          ] = row.slice(29); // Adjust the index based on your data structure
+          ] = row.slice(62); // Adjust the index based on your data structure
+
+          const convertedOutOfServiceDate = convertToISODate(outOfServiceDate);
+          const convertedWarrantyExpiryDate =
+            convertToISODate(warrantyExpiryDate);
+          const convertedInServiceDate = convertToISODate(inServiceDate);
+          const convertedPurchaseDate = convertToISODate(purchaseDate);
 
           // Make API call with the mapped data
           const payload = {
             // FormA1
+            status: 0,
             truckNumber: truckNumber || null,
-            fleetNumber: fleetNumber || null,
+            fleetNumber: fleetNumber || "",
             licensePlateNumber: licensePlateNumber || null,
             tractorChasis: tractorChasis || null,
-            engineNumber: convertEngineBumber || null,
+            engineNumber: convertEngineNumber || null,
             identificationNumber: identificationNumber || null,
             manufactureDate: convertedManufactureDate || null,
             brand: {
@@ -198,12 +207,12 @@ function FormA1({ formData, setFormData }) {
               manufacturer: brandManufacturer || null,
             },
             registrationState: registrationState || null,
-            pictureUrl: pictureUrl || null,
+            pictureUrl: pictureUrl || "",
             logisticsCoordinatorId: logisticsCoordinatorId || null,
             journeyOfficerId: journeyOfficerId || null,
-            deliveryOfficerId: deliveryOfficerId || null,
+            deliveryOfficerId: deliveryOfficerId.toString() || null,
             ownership: ownership || null,
-            ownerId: ownerId || null,
+            ownerId: ownerId.toString() || null,
             additionalDetails: additionalDetails || null,
 
             // FormA2 - truckDocuments
@@ -211,46 +220,55 @@ function FormA1({ formData, setFormData }) {
 
             // FormA3 - maintenanceInfo and purchaseInfo
             maintenanceInfo: {
-              lastPreventiveMaintenance: lastPreventiveMaintenance || null,
-              nextPreventiveMaintenance: nextPreventiveMaintenance || null,
-              inServiceDate: inServiceDate || null,
+              lastPreventiveMaintenance:
+                convertToISODate(lastPreventiveMaintenance) || null,
+              nextPreventiveMaintenance:
+                convertToISODate(nextPreventiveMaintenance) || null,
+              inServiceDate: convertedInServiceDate || null,
               inServiceOdometer: inServiceOdometer || null,
               estimatedServiceLive: estimatedServiceLive || null,
-              estServiceMet: estServiceMet || null,
               estimatedResaleValue: estimatedResaleValue || null,
-              outOfServiceDate: outOfServiceDate || null,
+              outOfServiceDate: convertedOutOfServiceDate || null,
               outOfServiceOdometer: outOfServiceOdometer || null,
             },
-            purchaseInfo: {
-              vendorName: vendorName || null,
-              purchaseDate: purchaseDate || null,
-              purchaseValue: purchaseValue || null,
-              odometer: odometer || null,
-              notes: notes || null,
-              warrantyExpiryDate: warrantyExpiryDate || null,
-              warrantyMaxOdometer: warrantyMaxOdometer || null,
-            },
+            purchaseInfo: null,
+            // purchaseInfo: {
+            //   vendorName: vendorName !== undefined ? vendorName : null,
+            //   purchaseDate:
+            //     purchaseDate !== undefined ? convertedPurchaseDate : null,
+            //   purchaseValue: purchaseValue !== undefined ? purchaseValue : null,
+            //   odometer: odometer !== undefined ? odometer : null,
+            //   notes: notes !== undefined ? notes : null,
+            //   warrantyExpiryDate:
+            //     warrantyExpiryDate !== undefined
+            //       ? convertedWarrantyExpiryDate
+            //       : null,
+            //   warrantyMaxOdometer:
+            //     warrantyMaxOdometer !== undefined ? warrantyMaxOdometer : null,
+            // },
 
             // FormA4 - specification
-            specification: {
-              driveType: driveType || null,
-              brakeSystem: brakeSystem || null,
-              rearAxle: rearAxle || null,
-              fuelType: fuelType || null,
-              fisrtTankCapacity: fisrtTankCapacity || null,
-              secondTankCapacity: secondTankCapacity || null,
-              tankCapacityMetric: tankCapacityMetric || null,
-              oilCapacity: oilCapacity || null,
-              oilCapacityMetric: oilCapacityMetric || null,
-              maintenanceVendor: maintenanceVendor || null,
-            },
+            specification: null,
+            // specification: {
+            //   driveType: driveType || null,
+            //   brakeSystem: brakeSystem || null,
+            //   rearAxle: rearAxle || null,
+            //   fuelType: fuelType || null,
+            //   fisrtTankCapacity: fisrtTankCapacity || null,
+            //   secondTankCapacity: secondTankCapacity || null,
+            //   tankCapacityMetric: tankCapacityMetric || null,
+            //   oilCapacity: oilCapacity || null,
+            //   oilCapacityMetric: oilCapacityMetric || null,
+            //   maintenanceVendor: maintenanceVendor || null,
+            // },
           };
 
           console.log(payload);
 
           // Make the API call using `payload`
+
           endpoint
-            .post("/truck", payload)
+            .post("/truck/file", payload)
             .then((res) => {
               setShow(true);
               console.log(res);
