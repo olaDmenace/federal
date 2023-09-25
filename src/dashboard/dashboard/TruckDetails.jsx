@@ -1,22 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { TruckIcon } from "@heroicons/react/outline";
-// import Fuel from "../../images/Pump.png";
 import endpoint from "../../utils/endpoints/endpoint";
 import FormTitle from "../FormTitle";
 import { PencilIcon } from "@heroicons/react/solid";
 import { useDispatch } from "react-redux";
-// import { truck } fro   m "../../utils/features/truckSlice";
 import { useNavigate } from "react-router-dom";
 import * as xlsx from "xlsx";
 
 const TruckDetails = () => {
   const [trucks, setTrucks] = useState([]);
+  const [truckLocations, setTruckLocations] = useState({});
 
   useEffect(() => {
     endpoint
       .get("/truck/programme")
       .then((res) => {
-        console.log(res.data.data);
         setTrucks(res.data.data);
       })
       .catch((err) => {
@@ -24,29 +22,50 @@ const TruckDetails = () => {
       });
   }, []);
 
-  function formatDate (arg) {
+  useEffect(() => {
+    const fetchLocations = async () => {
+      const locations = {};
+
+      for (const truck of trucks) {
+        const { truckId, truck: truckData } = truck;
+        const { galooliData } = truckData?.truck || {}; // Ensure galooliData exists
+
+        if (
+          galooliData?.location?.latitude &&
+          galooliData?.location?.longitude
+        ) {
+          try {
+            const response = await fetch(
+              `https://api.openweathermap.org/geo/1.0/reverse?lat=${galooliData.location.latitude}&lon=${galooliData.location.longitude}&appid=${process.env.REACT_APP_GEOLOCATE_KEY}`
+            );
+
+            if (response.ok) {
+              const data = await response.json();
+              locations[truckId] = data;
+            }
+          } catch (error) {
+            console.error("Error fetching location:", error);
+          }
+        } else {
+          // Handle the case when location data is not available
+          locations[truckId] = "N/A";
+        }
+      }
+
+      setTruckLocations(locations);
+      console.log(truckLocations);
+    };
+
+    fetchLocations();
+  }, [trucks]);
+
+  function formatDate(arg) {
     const date = new Date(arg);
     const day = date.getDate().toString().padStart(2, "0");
-    const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Months are zero-based
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
     const year = date.getFullYear();
 
     return `${day}-${month}-${year}`;
-  }
-
-  function shuffleArray(array) {
-    // Create a copy of the array to avoid modifying the original array
-    const shuffledArray = [...array];
-
-    // Fisher-Yates shuffle algorithm
-    for (let i = shuffledArray.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffledArray[i], shuffledArray[j]] = [
-        shuffledArray[j],
-        shuffledArray[i],
-      ];
-    }
-
-    return shuffledArray;
   }
 
   const DATstatus = [
@@ -72,36 +91,6 @@ const TruckDetails = () => {
     }
   };
 
-  const Location = ["Osun", "Kaduna", "Kano", "Abuja", "Lagos", "Benin"];
-  const shuffledValues = (arg) => shuffleArray(arg); // Shuffle the DATstatus array
-  // State for managing the locations of the truck
-  const [truckLocations, setTruckLocations] = useState({});
-  useEffect(() => {
-    const fetchLocations = async () => {
-      const locations = {};
-
-      for (const truck of trucks) {
-        try {
-          const response = await fetch(
-            `https://api.openweathermap.org/geo/1.0/reverse?lat=${truck?.truck.galooliData.location.latitude}&lon=${truck?.truck.galooliData.location.longitude}&appid=${process.env.REACT_APP_GEOLOCATE_KEY}`
-          );
-
-          if (response.ok) {
-            const data = await response.json();
-            locations[truck.truckId] = data; // Store the location data
-            console.log(data);
-          }
-        } catch (error) {
-          console.error("Error fetching location:", error);
-        }
-      }
-
-      setTruckLocations(locations); // Update the state with location data
-    };
-
-    fetchLocations();
-  }, [trucks]);
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [editTruck, setEditTruck] = useState({});
@@ -114,11 +103,10 @@ const TruckDetails = () => {
 
   const tpf = (arg) => {
     setTruckId(arg);
-    console.log(arg)
+    console.log(arg);
     navigate("/dashboard/TruckProgramming", { state: { truck: arg } });
   };
 
-  // CSV Download of Visibility Report
   function downloadDataAsCSV() {
     console.log(trucks);
     const worksheet = xlsx.utils.json_to_sheet(trucks);
@@ -142,9 +130,6 @@ const TruckDetails = () => {
         <button className="btn btn-primary" onClick={downloadDataAsCSV}>
           Download
         </button>
-        {/* <div className="flex gap-5">
-          <button className="btn btn-primary">Create</button>
-        </div> */}
       </div>
       <div className="table w-full text-primary">
         <div className="table-header-group">
@@ -163,23 +148,18 @@ const TruckDetails = () => {
             <div key={truck.truckId} className="table-row">
               <div className="table-cell">{truck.truck.truckNumber}</div>
               <div className="table-cell">
-                {
-                  // shuffledValues(Location)[
-                  //   index % shuffledValues(Location).length
-                  // ]
-                  truckLocations[truck.truckId]?.[0]?.name || "N/A"
-                }
+                {truckLocations[truck.truckId]
+                  ? `${truckLocations[truck.truckId].name}, ${
+                      truckLocations[truck.truckId].state
+                    }, ${truckLocations[truck.truckId].country}`
+                  : "N/A"}
               </div>
               <div className="table-cell">
                 {functionalStatus(truck.truck.functionalStatus)}
               </div>
               <div className="table-cell">{truck.truck.operationalStatus}</div>
               <div className="table-cell">
-                {
-                  shuffledValues(DATstatus)[
-                    index % shuffledValues(DATstatus).length
-                  ]
-                }
+                {DATstatus[index % DATstatus.length]}
               </div>
               <div className="table-cell">
                 {formatDate(truck.lastModifiedAt)}
