@@ -111,7 +111,7 @@ const EmployeeLists = () => {
             <th className="px-4 py-4 text-left">Email</th>
             <th className="px-4 py-4 text-left">Phone Number</th>
             <th className="px-4 py-4 text-left">Start Date</th>
-            <th className="px-4 py-4 text-left">Leave Date</th>
+            <th className="px-4 py-4 text-left">Employee Number</th>
           </tr>
         </thead>
         <tbody>
@@ -136,7 +136,8 @@ const EmployeeLists = () => {
                 {formatDate(user.startDate)}
               </td>
               <td className="px-4 py-4 text-left">
-                {formatDate(user.leaveDate)}
+                {/* {formatDate(user.leaveDate)} */}
+                {user.employeeNumber ? user.employeeNumber : "N/A"}
               </td>
             </tr>
           ))}
