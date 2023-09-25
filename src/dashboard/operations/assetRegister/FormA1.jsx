@@ -183,7 +183,7 @@ function FormA1({ formData, setFormData }) {
             oilCapacity,
             oilCapacityMetric,
             maintenanceVendor,
-          ] = row.slice(62); // Adjust the index based on your data structure
+          ] = row.slice(61); // Adjust the index based on your data structure
 
           const convertedOutOfServiceDate = convertToISODate(outOfServiceDate);
           const convertedWarrantyExpiryDate =
