@@ -137,7 +137,7 @@ const EmployeeLists = () => {
               </td>
               <td className="px-4 py-4 text-left">
                 {/* {formatDate(user.leaveDate)} */}
-                {user ? user.employeeNumber : "N/A"}
+                {user.employeeNumber ? user.employeeNumber : "N/A"}
               </td>
             </tr>
           ))}
