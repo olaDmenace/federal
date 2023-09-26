@@ -76,6 +76,7 @@ const ChangeStatus = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(!isLoading);
+    console.log(formData);
     endpoint
       .put("/truck/programme", formData)
       .then((res) => {
@@ -129,8 +130,8 @@ const ChangeStatus = () => {
               <option value={""}>Select Trip ID</option>
               {prog.map((item) => (
                 <option
-                  value={item.truckProgrammingId}
                   key={item.truckProgrammingId}
+                  value={item.truckProgrammingId}
                 >
                   {item.tripReference}
                 </option>
