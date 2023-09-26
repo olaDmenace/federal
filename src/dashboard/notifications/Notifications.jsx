@@ -53,7 +53,7 @@ const Notifications = () => {
     }
     if (type === "JMF") {
       endpoint.get(`truck/journey-management/${programmeId}`).then((res) => {
-        console.log(res);
+
         navigate("/dashboard/JourneyManagement", {
           state: { truck: res.data.data },
         });
@@ -76,7 +76,7 @@ const Notifications = () => {
 
   const taskInProgress = newTasks?.filter((item) => item.isDone === false);
   const taskDone = newTasks?.filter((item) => item.isDone === true);
-  console.log(newTasks);
+  // console.log(newTasks);
 
   return (
     <div>
@@ -89,7 +89,7 @@ const Notifications = () => {
             setSelectedTasks={setSelectedTasks}
           />
           <div className="rounded-lg shadow-md p-5 grid gap-5 md:col-span-6 md:h-screen md:overflow-y-scroll scrollbar-thin scrollbar-track-green-100 scrollbar-thumb-green-900 relative bg-white">
-            <div>
+            {/* <div>
               <p className="font-semibold text-lg">
                 Tasks
                 <span className="indicator-item badge badge-secondary float-right">
@@ -107,7 +107,7 @@ const Notifications = () => {
                   />
                 ))}
               </div>
-            </div>
+            </div> */}
             <div>
               <p className="font-semibold text-lg">
                 In-Progress
