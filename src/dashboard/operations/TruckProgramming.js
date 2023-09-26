@@ -15,8 +15,6 @@ function TruckProgramming({ formData, setFormData }) {
   // const dispatch = useDispatch();
 
   const location = useLocation()
-  console.log(location)
-
 
   // const [data, setData] = useState({
   const initialState = location?.state ? {
@@ -41,10 +39,10 @@ function TruckProgramming({ formData, setFormData }) {
 
   const [data, setData] = useState(initialState)
 
-  const [formValues, setFormValues] = useState({
-    programmingId: data.programmingId,
-    status: data.status
-  })
+  // const [formValues, setFormValues] = useState({
+  //   programmingId: data.programmingId,
+  //   status: data.status
+  // })
 
   const [trucks, setTrucks] = useState([])
   const [products, setProducts] = useState([])
@@ -101,23 +99,38 @@ function TruckProgramming({ formData, setFormData }) {
 
 
     // Get Location from JourneyManagement form
-const [filteredTrucks, setFilteredTrucks] = useState()
+  const [filteredTrucks, setFilteredTrucks] = useState(null)
+  
+//   useEffect(() => {
+//   // Filter the trucks based on some condition
+//   const filtered = prog.filter((t) => t?.truckProgrammingId === formData.truckProgrammingId);
+//   const truckId = filtered[0]?.truck.truckId;
+//   setFilteredTrucks(truckId)
+// }, [formData]); 
+  
 useEffect(() => {
+  if (!formData || !formData.truckProgrammingId || !Array.isArray(prog)) {
+    return;
+  }
+
   // Filter the trucks based on some condition
-  const filtered = prog.filter((t) => t.truckProgrammingId === formData.truckProgrammingId);
-  const truckId = filtered[0]?.truck.truckId;
-  setFilteredTrucks(truckId)
-  // console.log("first:", filteredTrucks)
-}, [formData]);
+  const filteredTruck = prog.find((t) => t?.truckProgrammingId === formData.truckProgrammingId);
+
+  if (filteredTruck) {
+    const { truck } = filteredTruck;
+    const { truckId } = truck || {};
+    setFilteredTrucks(truckId || null);
+  } else {
+    setFilteredTrucks(null);
+  }
+}, [formData, prog]);
 
   // Truck Information from Galooli
   const [truck, setTruck] = useState()
   const URL = location.pathname === '/dashboard/TruckProgramming'
   useEffect(() => {
     endpoint.get(URL ? `/truck/galooli/${data.truckId}` : `/truck/galooli/${filteredTrucks}`).then(res => {
-
       setTruck(res.data.data)
-      // setCustomers(res.data.data)
     }).catch(err => {
       console.log(err)
     })
@@ -126,7 +139,6 @@ useEffect(() => {
   // Convert to Long & Lat from Galooli to Location
   const [locale, setLocale] = useState()
   useEffect(() => {
-    // fetch(`http://api.geonames.org/findNearestAddress?lat=${truck?.latitude}&lng=${truck?.longitude}&username=demo&type=json`)
     fetch(`https://api.openweathermap.org/geo/1.0/reverse?lat=${truck?.location.latitude}&lon=${truck?.location.longitude}&appid=${process.env.REACT_APP_GEOLOCATE_KEY}`)
       .then(res => res.json())
       .then(res => {
@@ -159,10 +171,15 @@ useEffect(() => {
   })
 
   const updateSubmit = (e) => {
+    console.log('data.status changed to:', data.status);
+    const finalData = {
+      programmingId: data.programmingId,
+      status: data.status
+    }
+    console.log(finalData)
     e.preventDefault()
-    const { truckId, ...formvalues } = data;
     setIsLoading(!isLoading)
-    endpoint.put('/truck/programme', formValues)
+    endpoint.put('/truck/programme', finalData)
       .then(res => {
 
         setShow(!show)
@@ -178,7 +195,6 @@ useEffect(() => {
         })
         console.log(err)
       })
-    // console.log("status:", status);
   }
 
   const handleSubmit = (e) => {
@@ -506,7 +522,7 @@ useEffect(() => {
             <select
               name="truckLoading"
               value={data.status}
-              onChange={(e) => setData({ ...data, status: +e.target.value })}
+              onChange={(e) => {setData({ ...data, status: +e.target.value }) }}
               id="truckLoading"
               className="select select-primary w-full">
               <option value="">Select Loading Status</option>
@@ -656,9 +672,8 @@ useEffect(() => {
           location.pathname === '/dashboard/TruckProgramming' ? <div className="mx-auto">
             {isLoading && <LoadingSpinner />}
             {!isLoading && <button
-              // disabled={data.customerId === '' && !location.state}
               class="btn btn-primary mx-auto"
-              type="submit"
+            type="submit"
             >
               {location.state ? "Update Truck" : "Program Truck"}
             </button>}
