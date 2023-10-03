@@ -310,7 +310,7 @@ const TifForm = () => {
     endpoint
       .get("/truck/programme")
       .then((res) => {
-        console.log(res)
+        console.log(res);
         setTruckPro(res.data.data);
       })
       .catch((err) => {
@@ -338,39 +338,32 @@ const TifForm = () => {
       <fieldset className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 items-end text-primary">
         <label htmlFor="tripId">
           Trip ID
-          <select value={truckProgrammingId} onChange={(e) => { setTruckProgrammingId(e.target.value); }} className="select select-primary w-full" name="" id="tripID">
+          <select
+            value={truckProgrammingId}
+            onChange={(e) => {
+              setTruckProgrammingId(e.target.value);
+            }}
+            className="select select-primary w-full"
+            name=""
+            id="tripID"
+          >
             <option value="">Select Trip</option>
-            {truckPro.map(item => <option value={item.truckProgrammingId}>{item.tripReference}</option>)}
+            {truckPro.map((item) => (
+              <option value={item.truckProgrammingId}>
+                {item.tripReference}
+              </option>
+            ))}
           </select>
         </label>
         <label htmlFor="">
           Truck Number
           <div className="border border-primary h-12 rounded-lg px-4 grid items-center">
-            {truckPro.filter((i) => i.truckProgrammingId === truckProgrammingId)
-              .map(item =>
+            {truckPro
+              .filter((i) => i.truckProgrammingId === truckProgrammingId)
+              .map((item) => (
                 <p>{item.truck.truckNumber}</p>
-              )}
+              ))}
           </div>
-          {/* <select
-            type="text"
-            className="w-full disabled: select select-primary"
-            name=""
-            id=""
-            value={truckProgrammingId}
-            onChange={(e) => {
-              setTruckProgrammingId(e.target.value);
-            }}
-          >
-            <option value="">Select Truck Numbers</option>
-            {truckPro.map((item) => (
-              <option
-                value={item.truckProgrammingId}
-                key={item.truckProgrammingId}
-              >
-                {item.truck.truckNumber}
-              </option>
-            ))}
-          </select> */}
         </label>
         <label htmlFor="">
           Product Type
@@ -386,13 +379,15 @@ const TifForm = () => {
 
         <label htmlFor="">
           Odometer Reading
-          <input
-            className="w-full input input-primary"
-            placeholder="1234"
-            type="text"
-            name=""
-            id=""
-          />
+          <div className="border border-primary h-12 rounded-lg grid items-center px-4">
+            {truckPro
+              .filter((i) => i.truckProgrammingId === truckProgrammingId)
+              .map((item) => (
+                <p key={item.truck.truckProgrammingId}>
+                  {item.truck.galooliData.odometer}
+                </p>
+              ))}
+          </div>
         </label>
       </fieldset>
       {

@@ -50,10 +50,10 @@ const WhiteProduct = ({
               placeholder="Others"
               value={assessments[0].othersInput}
               onChange={(e) => {
-                console.log("selected >> ", e.target.value);
+                // console.log("selected >> ", e.target.value);
                 let ques = [...assessments];
                 assessments[0].othersInput = e.target.value;
-                console.log("data to update ", ques);
+                // console.log("data to update ", ques);
                 setAssessment(ques);
                 // setOtherQ1(value);
               }}
@@ -404,7 +404,7 @@ const WhiteProduct = ({
                   .filter((i) => i.truckProgrammingId === truckProgrammingId)
                   .map((item) => (
                     <p key={item.truck.currentTripId} className="px-4">
-                      {item.truck.currentTripId}
+                      {item.tripReference}
                     </p>
                   ))}
               </div>
