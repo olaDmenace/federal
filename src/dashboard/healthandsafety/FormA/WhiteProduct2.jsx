@@ -929,6 +929,7 @@ const WhiteProduct2 = ({
         {questionsForm("q34")}
         <label htmlFor="">
           General comments
+          <span className="text-red-700"> *</span>
           <br />
           <textarea
             className="w-full textarea textarea-primary"

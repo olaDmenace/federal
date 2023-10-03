@@ -12,29 +12,60 @@ import CloudinaryUpload from "../../utils/CloudinaryUpload";
 
 const Employee = () => {
   PageTitle("Axle & Cartage Employee Form");
-  const [data, setData] = useState({
-    firstName: "",
-    lastName: "",
-    otherNames: "",
-    email: "",
-    photoUrl: "",
-    status: 0,
-    contactInfo: {
-      mobile: "",
-      home: "",
-      address: "",
-      addressLineTwo: "",
-      city: "",
-      state: "",
-      country: "",
-    },
-    startDate: "",
-    endDate: null,
-    dateOfBirth: "",
-    employmentNumber: "",
-    roleId: "",
-    employeeType: 0,
-  });
+
+  const location = useLocation();
+  console.log(location.state.employee);
+  const employeeDetails = location?.state?.employee;
+  const initialState = location?.state
+    ? {
+        firstName: employeeDetails?.firstName,
+        lastName: employeeDetails?.lastName,
+        otherNames: employeeDetails?.otherNames,
+        email: employeeDetails?.email,
+        photoUrl: null,
+        status: 0,
+        contactInfo: {
+          mobile: employeeDetails?.phoneNumber,
+          home: "string",
+          address: "string",
+          addressLineTwo: "string",
+          city: "string",
+          state: "string",
+          country: "string",
+        },
+        startDate: "2023-10-02T12:00:40.662Z",
+        endDate: "2023-10-02T12:00:40.662Z",
+        dateOfBirth: "2023-10-02T12:00:40.662Z",
+        employmentNumber: employeeDetails?.employmentNumber,
+        roleId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        employeeType: employeeDetails?.roleTypw,
+        userId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      }
+    : {
+        firstName: "",
+        lastName: "",
+        otherNames: "",
+        email: "",
+        photoUrl: "",
+        status: 0,
+        contactInfo: {
+          mobile: "",
+          home: "",
+          address: "",
+          addressLineTwo: "",
+          city: "",
+          state: "",
+          country: "",
+        },
+        startDate: "",
+        endDate: null,
+        dateOfBirth: "",
+        employmentNumber: "",
+        roleId: "",
+        employeeType: 0,
+      };
+
+  const [data, setData] = useState(initialState);
   const [role, setRole] = useState([]);
 
   useEffect(() => {
@@ -58,8 +89,6 @@ const Employee = () => {
     icon: "",
     message: "",
   });
-
-  const location = useLocation();
 
   const handleSubmit = (e) => {
     e.preventDefault();

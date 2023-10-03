@@ -74,20 +74,20 @@ function Tif({
   // Handles the submit event
 
   function handleSubmit(e) {
-    console.log(e.cancelable);
-    e.preventDefault();
+    const formData = {
+      truckProgrammingId,
+      assessments,
+      comments,
+    };
+    console.log(formData);
     setIsLoading(true);
     setComment("");
     resetForm();
 
     endpoint
-      .post("/truck/inspect", {
-        truckProgrammingId,
-        assessments,
-        comments,
-      })
+      .post("/truck/inspect", formData)
       .then((res) => {
-        console.log("new data added", res.data);
+        console.log("new data added", res);
         if (res.status === 200) {
           setShow(true);
           setReply({
@@ -130,49 +130,27 @@ function Tif({
         <li className="step step-primary"></li>
         <li className={`step ${form === 1 ? `step-primary` : `step`}`}></li>
       </ul>
-      {/* <div className="flex gap-10 pb-10 overflow-x-scroll scrollbar-thin scrollbar-track-green-100 scrollbar-thumb-green-900"> */}
       <div>{activeForm()}</div>
-
-      {/* </div> */}
-      <div className="btn-group mx-auto pt-5">
-        <button
-          disabled={form === 0}
-          onClick={() => {
-            setForm((currForm) => currForm - 1);
-          }}
-          className="btn btn-active"
-        >
-          Prev
-        </button>
-        <button
-          disabled={form === 1}
-          onClick={() => {
-            setForm((currForm) => currForm + 1);
-          }}
-          className="btn btn-active "
-        >
-          Next
-        </button>
-        {location.pathname === "/dashboard/tifForm" ? (
-          <div className="mx-auto">
-            {" "}
-            {isLoading && <LoadingSpinner />}
-            {!isLoading && (
-              <button
-                disabled={comments === ""}
-                class="btn btn-primary mx-auto"
-                onClick={(e) => {
-                  handleSubmit(e);
-                }}
-              >
-                Submit
-              </button>
-            )}
-          </div>
-        ) : (
-          ""
-        )}
-      </div>
+      {isLoading && <LoadingSpinner />}
+      {!isLoading && (
+        <div className="btn-group mx-auto pt-5">
+          <button
+            disabled={form === 0}
+            className="btn btn-active"
+            onClick={() => setForm((form) => form - 1)}
+          >
+            Prev
+          </button>
+          <button
+            className="btn btn-primary"
+            onClick={
+              form === 1 && !comments === "" ? handleSubmit : () => setForm(1)
+            }
+          >
+            {form === 1 ? "Submit" : "Next"}
+          </button>
+        </div>
+      )}
     </div>
   );
 }

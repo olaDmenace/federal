@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import FormTitle from "../FormTitle";
 import endpoint from "../../utils/endpoints/endpoint";
 import * as xlsx from "xlsx";
+import { PencilAltIcon, PencilIcon } from "@heroicons/react/outline";
+import { useNavigate } from "react-router-dom";
 
 const EmployeeLists = () => {
   const [users, setUsers] = useState([]);
@@ -81,9 +83,10 @@ const EmployeeLists = () => {
     setCurrentPage(pageNumber);
   };
 
-  const handleEmployeeClick = (employee, event) => {
-    event.preventDefault();
-    setSelectedEmployee(employee);
+  const navigate = useNavigate();
+
+  const handleEmployeeClick = (arg) => {
+    navigate("/dashboard/Employee", { state: { employee: arg } });
   };
 
   function formatDate(arg) {
@@ -139,6 +142,10 @@ const EmployeeLists = () => {
                 {/* {formatDate(user.leaveDate)} */}
                 {user.employeeNumber ? user.employeeNumber : "N/A"}
               </td>
+              <PencilAltIcon
+                className="stroke-1 text-primary h-10 w-10 mt-6 lg:h-10 lg:w-10 lg:pt-5"
+                onClick={() => handleEmployeeClick(user)}
+              />
             </tr>
           ))}
         </tbody>
