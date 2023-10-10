@@ -25,7 +25,7 @@ function FormA() {
         // fleetNumber: location.state.truck.fleetNumber,
         // licensePlateNumber: location.state.truck.licensePlateNumber,
 
-        ...location.state.truck,
+        ...location?.state?.truck?.truck,
         // truckNumber: location.state.truck?.truckNumber || '',
         // fleetNumber: '',
         // licensePlateNumber: '',
