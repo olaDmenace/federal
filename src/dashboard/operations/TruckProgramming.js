@@ -26,19 +26,19 @@ function TruckProgramming({ formData, setFormData }) {
         status: mainTruck?.status,
       }
     : {
-        truckId: "",
+        truckId: null,
         isDedicatedDestination: true,
-        customerId: "",
-        loadingLocationId: "",
-        returningLocationId: "",
-        restrictions: "",
-        programmedDestination: "",
-        tripType: "",
-        finalDestination: "",
-        destinationState: "",
-        productId: "",
+        customerId: null,
+        loadingLocationId: null,
+        returningLocationId: null,
+        restrictions: null,
+        programmedDestination: null,
+        tripType: null,
+        finalDestination: null,
+        destinationState: null,
+        productId: null,
         bridgingDepotId: null,
-        numberOfCustomers: "",
+        numberOfCustomers: null,
       };
 
   const [data, setData] = useState(initialState);
