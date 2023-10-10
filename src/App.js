@@ -33,16 +33,12 @@ import TruckDetails from "./dashboard/dashboard/TruckDetails";
 import TruckResolution from "./dashboard/operations/shortageResolution/TruckResolution";
 import ChangeStatus from "./dashboard/operations/ChangeStatus";
 
-
-/* ***IMPORTANT NOTICE***
+/*                        ***IMPORTANT NOTICE***
     This project is a React JS project buitl with Daisy UI Tailwind CSS UI component.
     Below is a list of routes and links on the app. 
 */
 
 function App() {
-  // const user = useSelector(state=>state.isAuthenticated);
-  // console.log(user)
-
   return (
     <div className="App">
       {/* <Reg /> */}
@@ -56,8 +52,8 @@ function App() {
             <Route path="CreatePassword" element={<CreatePassword />} />
           </Route>
           <Route path="/welcome" element={<UserDashboard />} />
-          <Route path="/dashboard"   element={<Dashboard />}>
-            <Route path='' element={<TruckDetails />} />
+          <Route path="/dashboard" element={<Dashboard />}>
+            <Route path="" element={<TruckDetails />} />
             {/* <Route path="" element={<TruckVisibilityReport />} /> */}
             <Route path="TruckProgramming" element={<TruckProgramming />} />
             <Route path="JourneyManagement" element={<Journeymanagement />} />

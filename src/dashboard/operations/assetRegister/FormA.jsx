@@ -105,12 +105,6 @@ function FormA() {
             dateIssued: "",
             expiryDate: "",
           },
-          // {
-          //     type: 11,
-          //     referenceNumber: "",
-          //     dateIssued: "",
-          //     expiryDate: ""
-          // }
         ],
         // FormA3
 
@@ -352,9 +346,6 @@ function FormA() {
       model: formData.brand.model,
       manufacturer: formData.brand.manufacturer,
     },
-    // referenceNumber: formData.referenceNumber || "",
-    // dateIssued: formData.dateIssued || "",
-    // expiryDate: formData.expiryDate || "",
   });
 
   // Controls which form is displayed on the page
