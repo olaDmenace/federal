@@ -71,6 +71,10 @@ function SecondaryWaybill({ index, formData, setFormData }) {
       });
   }, []);
 
+  const shortageClaim = (arg1, arg2) => {
+    return arg1 - arg2;
+  };
+
   return (
     <form className="text-primary grid gap-5 lg:w-1/2 border border-primary rounded-lg p-5">
       <h6 className="font-medium">{`Secondary Waybill ${index + 1}`}</h6>
@@ -164,8 +168,12 @@ function SecondaryWaybill({ index, formData, setFormData }) {
           Estimated Product Shortage
           <input
             class="input input-primary w-full"
+            value={shortageClaim(
+              formData?.secondaryWayBills[index]?.quantityLoaded,
+              formData?.secondaryWayBills[index]?.quantityDelivered
+            )}
             placeholder="20 Ltrs"
-            type="number"
+            type="text"
             name="estimatedProductShortage"
             id=""
           />
