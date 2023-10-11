@@ -83,11 +83,11 @@ function Journeymanagement() {
   const activeForm = () => {
     if (form === 0) {
       return <TruckProgramming formData={formData} setFormData={setFormData} />;
-    } else if (form === 1) {
+    } else if (form === 3) {
       return <ProductDetails formData={formData} setFormData={setFormData} />;
     } else if (form === 2) {
       return <CustomerDetails formData={formData} setFormData={setFormData} />;
-    } else if (form === 3) {
+    } else if (form === 1) {
       return (
         <CustomerListDetails formData={formData} setFormData={setFormData} />
       );
@@ -110,6 +110,7 @@ function Journeymanagement() {
       .post("/truck/journey-management", formData)
       .then((res) => {
         setShow(true);
+        localStorage.removeItem("waybills");
         // console.log(res.response.status)
         // setIsLoading(!isLoading)
         setReply({
