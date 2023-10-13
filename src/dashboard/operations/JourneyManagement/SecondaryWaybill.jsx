@@ -71,8 +71,21 @@ function SecondaryWaybill({ index, formData, setFormData }) {
       });
   }, []);
 
-  const shortageClaim = (arg1, arg2) => {
-    return arg1 - arg2;
+  // const shortageClaim = (arg1, arg2) => {
+  //   return arg1 - arg2;
+  // };
+
+  const shortageClaim = (quantityLoaded, quantityDelivered) => {
+    // Check if quantityLoaded and quantityDelivered are valid numbers
+    if (
+      typeof quantityLoaded === "number" &&
+      typeof quantityDelivered === "number"
+    ) {
+      return quantityLoaded - quantityDelivered;
+    } else {
+      // Handle the case where one or both values are not valid numbers
+      return 0; // Or any other appropriate value or message
+    }
   };
 
   return (
