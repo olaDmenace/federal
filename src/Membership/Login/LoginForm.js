@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { MailIcon } from "@heroicons/react/solid";
 import { LockClosedIcon } from "@heroicons/react/outline";
@@ -16,7 +16,18 @@ function LoginForm({ setAuth }) {
   const dispatch = useDispatch();
   const loginURL = "/auth/login";
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
+
+  useEffect(() => {
+    const storedEmail = localStorage.getItem("email");
+    const storedPassword = localStorage.getItem("password");
+    if (storedEmail && storedPassword) {
+      setEmail(storedEmail);
+      setPassword(storedPassword);
+      setRememberMe(true); // Optionally, you can set the checkbox as checked
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
     // setLoading(!loading)
@@ -26,6 +37,11 @@ function LoginForm({ setAuth }) {
       email: email,
       password: password,
     };
+
+    if (password) {
+      localStorage.setItem("email", email);
+      localStorage.setItem("password", password);
+    }
 
     endpoint
       .post(loginURL, data)
@@ -53,7 +69,7 @@ function LoginForm({ setAuth }) {
         setPassword("");
         setErrMsg(err.response.data.message);
       });
-      // setLoading(!loading)
+    // setLoading(!loading)
   };
 
   return (
@@ -90,17 +106,30 @@ function LoginForm({ setAuth }) {
         </fieldset>
         <fieldset className="flex justify-between items-center gap-16 w-5/6  md:w-2/3">
           <label className="label cursor-pointer space-x-3 flex items-center">
-            <input type="checkbox" className="checkbox checkbox-primary" />
+            <input
+              value={rememberMe}
+              onChange={() => {
+                setRememberMe(!rememberMe);
+              }}
+              type="checkbox"
+              className="checkbox checkbox-primary"
+            />
             <span className="label-text text-primary">Remember me</span>
           </label>
           <Link to={"/ResetPassword"}>
             <p className="text-sm">Forgot Password</p>
           </Link>
         </fieldset>
-        {loading&&<LoadingSpinner />}
-        {!loading&&<button disabled={email==='' && password===''} onClick={handleSubmit} className="btn btn-primary">
-          Sign In
-        </button>}
+        {loading && <LoadingSpinner />}
+        {!loading && (
+          <button
+            disabled={email === "" && password === ""}
+            onClick={handleSubmit}
+            className="btn btn-primary"
+          >
+            Sign In
+          </button>
+        )}
       </form>
       <p className="text-center">
         Do not have an accout yet? <br />{" "}
