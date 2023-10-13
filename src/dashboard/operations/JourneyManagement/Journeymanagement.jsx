@@ -85,9 +85,9 @@ function Journeymanagement() {
       return <TruckProgramming formData={formData} setFormData={setFormData} />;
     } else if (form === 3) {
       return <ProductDetails formData={formData} setFormData={setFormData} />;
-    } else if (form === 2) {
-      return <CustomerDetails formData={formData} setFormData={setFormData} />;
     } else if (form === 1) {
+      return <CustomerDetails formData={formData} setFormData={setFormData} />;
+    } else if (form === 2) {
       return (
         <CustomerListDetails formData={formData} setFormData={setFormData} />
       );
