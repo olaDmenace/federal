@@ -45,15 +45,15 @@ function ProductDetails({ formData, setFormData }) {
               <input
                 class="input input-primary w-full"
                 value={formData.primaryWayBill.quantityLoaded}
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    primaryWayBill: {
-                      ...formData.primaryWayBill,
-                      quantityLoaded: +e.target.value,
-                    },
-                  })
-                }
+                // onChange={(e) =>
+                //   setFormData({
+                //     ...formData,
+                //     primaryWayBill: {
+                //       ...formData.primaryWayBill,
+                //       quantityLoaded: +e.target.value,
+                //     },
+                //   })
+                // }
                 placeholder="33000 LTRS"
                 type="number"
                 min={0}
@@ -68,15 +68,15 @@ function ProductDetails({ formData, setFormData }) {
               <input
                 class="input input-primary w-full"
                 value={formData.primaryWayBill.quantityDelivered}
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    primaryWayBill: {
-                      ...formData.primaryWayBill,
-                      quantityDelivered: +e.target.value,
-                    },
-                  })
-                }
+                // onChange={(e) =>
+                //   setFormData({
+                //     ...formData,
+                //     primaryWayBill: {
+                //       ...formData.primaryWayBill,
+                //       quantityDelivered: +e.target.value,
+                //     },
+                //   })
+                // }
                 placeholder="PMS"
                 type="number"
                 min={0}

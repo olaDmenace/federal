@@ -1,6 +1,6 @@
 import { XCircleIcon } from "@heroicons/react/outline";
 import { ThumbUpIcon } from "@heroicons/react/solid";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import endpoint from "../../../utils/endpoints/endpoint";
 import LoadingSpinner from "../../../utils/LoadingSpinner";
@@ -79,6 +79,30 @@ function Journeymanagement() {
       };
 
   const [formData, setFormData] = useState(initialState);
+
+  // Function to calculate the sum and update primaryWaybill
+  useEffect(() => {
+    const sumQuantityLoaded = formData.secondaryWayBills.reduce(
+      (total, secondaryWayBill) =>
+        total + (parseFloat(secondaryWayBill.quantityLoaded) || 0),
+      0
+    );
+
+    const sumQuantityDelivered = formData.secondaryWayBills.reduce(
+      (total, secondaryWayBill) =>
+        total + (parseFloat(secondaryWayBill.quantityDelivered) || 0),
+      0
+    );
+
+    setFormData({
+      ...formData,
+      primaryWayBill: {
+        ...formData.primaryWayBill,
+        quantityLoaded: sumQuantityLoaded.toFixed(2), // Update with the sum
+        quantityDelivered: sumQuantityDelivered.toFixed(2), // Update with the sum
+      },
+    });
+  }, [formData.secondaryWayBills]);
 
   const activeForm = () => {
     if (form === 0) {
