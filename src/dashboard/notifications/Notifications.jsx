@@ -7,11 +7,6 @@ import endpoint from "../../utils/endpoints/endpoint";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
-// const route = {
-//   JMF: "JourneyManagement",
-//   TPF: "TruckProgramming",
-// };
-
 const Notifications = () => {
   const [notification, setNotification] = useState([]);
   const [tasks, setTasks] = useState([]);
@@ -34,6 +29,7 @@ const Notifications = () => {
     endpoint
       .get("/work-items")
       .then((res) => {
+        console.log(res.data)
         setTasks(res.data);
       })
       .catch((err) => {
@@ -42,10 +38,10 @@ const Notifications = () => {
   }, []);
 
   const truckProgramming = (programmeId, type) => {
-    if (type === "TPF") {
+    if (type === "TruckProgramming") {
       endpoint.get(`truck/programme/${programmeId}`).then((res) => {
-        setProgramme(res.data.data.truck);
 
+        setProgramme(res.data.data.truck);
         navigate("/dashboard/TruckProgramming", {
           state: { truck: res.data.data.truck },
         });
@@ -53,8 +49,15 @@ const Notifications = () => {
     }
     if (type === "JMF") {
       endpoint.get(`truck/journey-management/${programmeId}`).then((res) => {
-
         navigate("/dashboard/JourneyManagement", {
+          state: { truck: res.data.data },
+        });
+      });
+    }
+    if (type === "TruckInspection") {
+      endpoint.get(`truck/assessments/${programmeId}`).then((res) => {
+        console.log(res)
+        navigate("/dashboard/tifForm", {
           state: { truck: res.data.data },
         });
       });
@@ -76,7 +79,7 @@ const Notifications = () => {
 
   const taskInProgress = newTasks?.filter((item) => item.isDone === false);
   const taskDone = newTasks?.filter((item) => item.isDone === true);
-  // console.log(newTasks);
+  console.log(newTasks);
 
   return (
     <div>

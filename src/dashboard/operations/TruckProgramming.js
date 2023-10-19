@@ -16,7 +16,7 @@ function TruckProgramming({ formData, setFormData }) {
 
   const location = useLocation();
   console.log(location);
-  const mainTruck = location?.state?.truck?.truck;
+  const mainTruck = location?.state?.truck;
 
   // const [data, setData] = useState({
   const initialState = location?.state
