@@ -35,16 +35,36 @@ const NotificationsCard = ({
           </span>
         </p>
         <div className="space-y-4">
-          <p className="cursor-pointer" onClick={() => setSelectedTasks("TPF")}>
+          <p
+            className="cursor-pointer"
+            onClick={() => setSelectedTasks("TruckProgramming")}
+          >
             Truck Programming
             <span className="indicator-item badge badge-primary float-right">
-              {tasks?.data?.filter((task) => task.itemType === "TPF").length}
+              {
+                tasks?.data?.filter(
+                  (task) => task.itemType === "TruckProgramming"
+                ).length
+              }
             </span>
           </p>
-          <p className="cursor-pointer">
-            Trip expense request
+          <p
+            className="cursor-pointer"
+            onClick={() => setSelectedTasks("TruckInspection")}
+          >
+            Truck Inspection
             <span className="indicator-item badge badge-primary float-right">
-              {tasks?.data?.filter((task) => task.itemType === "").length}
+              {
+                tasks?.data?.filter(
+                  (task) => task.itemType === "TruckInspection"
+                ).length
+              }
+            </span>
+          </p>
+          <p className="cursor-pointer" onClick={() => setSelectedTasks("TPF")}>
+            Trip Expense
+            <span className="indicator-item badge badge-primary float-right">
+              {tasks?.data?.filter((task) => task.itemType === "TRF").length}
             </span>
           </p>
           <p className="cursor-pointer" onClick={() => setSelectedTasks("JMF")}>
@@ -54,19 +74,13 @@ const NotificationsCard = ({
             </span>
           </p>
           <p className="cursor-pointer">
-            Waybill Management
+            Waybill Verification
             <span className="indicator-item badge badge-primary float-right">
               {tasks?.data?.filter((task) => task.itemType === "").length}
             </span>
           </p>
           <p className="cursor-pointer">
-            Shortage Resolution
-            <span className="indicator-item badge badge-primary float-right">
-              {tasks?.data?.filter((task) => task.itemType === "").length}
-            </span>
-          </p>
-          <p className="cursor-pointer">
-            Truck Assignment
+            Truck Status
             <span className="indicator-item badge badge-primary float-right">
               {tasks?.data?.filter((task) => task.itemType === "").length}
             </span>
