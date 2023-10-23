@@ -29,7 +29,7 @@ const Notifications = () => {
     endpoint
       .get("/work-items")
       .then((res) => {
-        console.log(res.data)
+        console.log(res.data);
         setTasks(res.data);
       })
       .catch((err) => {
@@ -40,7 +40,6 @@ const Notifications = () => {
   const truckProgramming = (programmeId, type) => {
     if (type === "TruckProgramming") {
       endpoint.get(`truck/programme/${programmeId}`).then((res) => {
-
         setProgramme(res.data.data.truck);
         navigate("/dashboard/TruckProgramming", {
           state: { truck: res.data.data.truck },
@@ -55,11 +54,8 @@ const Notifications = () => {
       });
     }
     if (type === "TruckInspection") {
-      endpoint.get(`truck/assessments/${programmeId}`).then((res) => {
-        console.log(res)
-        navigate("/dashboard/tifForm", {
-          state: { truck: res.data.data },
-        });
+      navigate("/dashboard/tifForm", {
+        state: { truckProgrammingId: programmeId },
       });
     }
   };
