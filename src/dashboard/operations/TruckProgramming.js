@@ -11,14 +11,9 @@ import { useLocation } from "react-router-dom";
 function TruckProgramming({ formData, setFormData }) {
   PageTitle("Axle & Cartage - Truck Programming");
 
-  // console.log(process.env.REACT_APP_GEOLOCATE_KEY)
-  // const dispatch = useDispatch();
-
   const location = useLocation();
   console.log(location);
   const mainTruck = location?.state?.truck;
-
-  // const [data, setData] = useState({
   const initialState = location?.state
     ? {
         truckId: mainTruck?.truckId,
