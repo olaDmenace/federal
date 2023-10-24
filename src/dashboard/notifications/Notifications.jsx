@@ -55,7 +55,7 @@ const Notifications = () => {
     }
     if (type === "TruckInspection") {
       navigate("/dashboard/tifForm", {
-        state: { truckId: programmeId },
+        state: { truckProgrammingId: programmeId },
       });
     }
   };
