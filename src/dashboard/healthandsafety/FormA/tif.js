@@ -24,7 +24,7 @@ function Tif({
   ("Axle & Cartage - Pre Trip Inspection Form");
   const [form, setForm] = useState(0);
 
-  console.log(truckProgrammingId)
+  console.log(truckProgrammingId);
 
   const activeForm = () => {
     if (form === 0) {
@@ -81,35 +81,32 @@ function Tif({
       assessments,
       comments,
     };
-    console.log(formData);
 
-    console.log("first");
+    setIsLoading(true);
+    setComment("");
+    resetForm();
 
-    // setIsLoading(true);
-    // setComment("");
-    // resetForm();
-
-    // endpoint
-    //   .post("/truck/inspect", formData)
-    //   .then((res) => {
-    //     console.log("new data added", res);
-    //     if (res.status === 200) {
-    //       setShow(true);
-    //       setReply({
-    //         icon: <ThumbUpIcon className="mx-auto h-24 text-primary" />,
-    //         message: res.data.message,
-    //       });
-    //     } else {
-    //       setReply({
-    //         icon: <XCircleIcon className="mx-auto h-24 text-red-500" />,
-    //         message: res.data.message,
-    //       });
-    //     }
-    //     setIsLoading(!isLoading);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    endpoint
+      .post("/truck/inspect", formData)
+      .then((res) => {
+        console.log("new data added", res);
+        if (res.status === 200) {
+          setShow(true);
+          setReply({
+            icon: <ThumbUpIcon className="mx-auto h-24 text-primary" />,
+            message: res.data.message,
+          });
+        } else {
+          setReply({
+            icon: <XCircleIcon className="mx-auto h-24 text-red-500" />,
+            message: res.data.message,
+          });
+        }
+        setIsLoading(!isLoading);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   const closePop = () => {

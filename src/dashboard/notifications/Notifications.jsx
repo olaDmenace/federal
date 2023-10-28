@@ -37,7 +37,7 @@ const Notifications = () => {
       });
   }, []);
 
-  const truckProgramming = (programmeId, type) => {
+  const truckProgramming = (programmeId, type, ) => {
     if (type === "TruckProgramming") {
       endpoint.get(`truck/programme/${programmeId}`).then((res) => {
         setProgramme(res.data.data.truck);
@@ -119,7 +119,9 @@ const Notifications = () => {
                   <div
                     className="cursor-pointer hover:bg-[#d1fae5]"
                     key={task.itemId}
-                    onClick={() => truckProgramming(task.itemId, task.itemType)}
+                    onClick={() =>
+                      truckProgramming(task.itemId, task.itemType,)
+                    }
                   >
                     <ToDoCard
                       id={task.title}
