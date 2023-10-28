@@ -14,6 +14,8 @@ const TifForm = () => {
   const summ = location?.state;
   // console.log(summ.truckProgrammingId);
 
+  const [truckProgrammingId, setTruckProgrammingId] = useState("");
+
   const initialState = summ
     ? {
         truckProgrammingId: summ.truckProgrammingId,
@@ -435,8 +437,9 @@ const TifForm = () => {
 
   const [truckPro, setTruckPro] = useState([]);
   const [comments, setComment] = useState("");
-  const [truckProgrammingId, setTruckProgrammingId] = useState("");
+  // const [truckProgrammingId, setTruckProgrammingId] = useState("");
   const [truckAssess, setTruckAssess] = useState("");
+
   useEffect(() => {
     endpoint
       .get("/truck/programme")
@@ -461,6 +464,10 @@ const TifForm = () => {
       });
   }, []);
 
+  console.log(data);
+  console.log(data.truckProgrammingId);
+  console.log("truckProgrammingId", truckProgrammingId);
+
   return (
     <div className="space-y-2 bg-white p-5 rounded-lg">
       <FormTitle Title={"Pre Trip Inspection Form"} />
@@ -472,6 +479,7 @@ const TifForm = () => {
           <select
             value={data.truckProgrammingId}
             onChange={(e) =>
+              // setTruckProgrammingI
               setData({ ...data, truckProgrammingId: e.target.value })
             }
             className="select select-primary w-full"
@@ -569,8 +577,8 @@ const TifForm = () => {
                   setData={setData}
                   truckPro={truckPro}
                   setTruckPro={setTruckPro}
-                  truckProgrammingId={truckProgrammingId}
-                  setTruckProgrammingId={setTruckProgrammingId}
+                  truckProgrammingId={data?.truckProgrammingId}
+                  // setTruckProgrammingId={setTruckProgrammingId}
                   truckAssess={truckAssess}
                   comments={comments}
                   setComment={setComment}
@@ -581,8 +589,8 @@ const TifForm = () => {
                   setData={setData}
                   truckPro={truckPro}
                   setTruckPro={setTruckPro}
-                  truckProgrammingId={truckProgrammingId}
-                  setTruckProgrammingId={setTruckProgrammingId}
+                  truckProgrammingId={data?.truckProgrammingId}
+                  // setTruckProgrammingId={setTruckProgrammingId}
                   truckAssess={truckAssess}
                   assessments={assessments}
                   setAssessment={setAssessment}
