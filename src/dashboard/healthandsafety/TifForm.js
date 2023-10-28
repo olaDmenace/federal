@@ -435,7 +435,7 @@ const TifForm = () => {
 
   const [truckPro, setTruckPro] = useState([]);
   const [comments, setComment] = useState("");
-  const [truckProgrammingId, setTruckProgrammingId] = useState("");
+  // const [truckProgrammingId, setTruckProgrammingId] = useState("");
   const [truckAssess, setTruckAssess] = useState("");
   useEffect(() => {
     endpoint
@@ -569,8 +569,8 @@ const TifForm = () => {
                   setData={setData}
                   truckPro={truckPro}
                   setTruckPro={setTruckPro}
-                  truckProgrammingId={truckProgrammingId}
-                  setTruckProgrammingId={setTruckProgrammingId}
+                  truckProgrammingId={data?.truckProgrammingId}
+                  // setTruckProgrammingId={setTruckProgrammingId}
                   truckAssess={truckAssess}
                   comments={comments}
                   setComment={setComment}
@@ -581,8 +581,8 @@ const TifForm = () => {
                   setData={setData}
                   truckPro={truckPro}
                   setTruckPro={setTruckPro}
-                  truckProgrammingId={truckProgrammingId}
-                  setTruckProgrammingId={setTruckProgrammingId}
+                  truckProgrammingId={data?.truckProgrammingId}
+                  // setTruckProgrammingId={setTruckProgrammingId}
                   truckAssess={truckAssess}
                   assessments={assessments}
                   setAssessment={setAssessment}
