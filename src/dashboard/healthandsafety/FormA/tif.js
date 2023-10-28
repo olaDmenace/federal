@@ -24,6 +24,8 @@ function Tif({
   ("Axle & Cartage - Pre Trip Inspection Form");
   const [form, setForm] = useState(0);
 
+  console.log(truckProgrammingId)
+
   const activeForm = () => {
     if (form === 0) {
       return (
@@ -112,6 +114,7 @@ function Tif({
     setShow(false);
   };
   const location = useLocation();
+
   return (
     <div className="space-y-2 grid">
       {show && (
