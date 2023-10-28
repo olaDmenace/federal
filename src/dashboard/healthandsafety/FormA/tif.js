@@ -19,7 +19,7 @@ function Tif({
   setAssessment,
   comments,
   setComment,
-  setTruckProgrammingId,
+  // setTruckProgrammingId,
 }) {
   ("Axle & Cartage - Pre Trip Inspection Form");
   const [form, setForm] = useState(0);
@@ -75,38 +75,41 @@ function Tif({
 
   // Handles the submit event
 
-  function handleSubmit(e) {
+  function handleSubmit() {
     const formData = {
       truckProgrammingId,
       assessments,
       comments,
     };
     console.log(formData);
-    setIsLoading(true);
-    setComment("");
-    resetForm();
 
-    endpoint
-      .post("/truck/inspect", formData)
-      .then((res) => {
-        console.log("new data added", res);
-        if (res.status === 200) {
-          setShow(true);
-          setReply({
-            icon: <ThumbUpIcon className="mx-auto h-24 text-primary" />,
-            message: res.data.message,
-          });
-        } else {
-          setReply({
-            icon: <XCircleIcon className="mx-auto h-24 text-red-500" />,
-            message: res.data.message,
-          });
-        }
-        setIsLoading(!isLoading);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    console.log("first");
+
+    // setIsLoading(true);
+    // setComment("");
+    // resetForm();
+
+    // endpoint
+    //   .post("/truck/inspect", formData)
+    //   .then((res) => {
+    //     console.log("new data added", res);
+    //     if (res.status === 200) {
+    //       setShow(true);
+    //       setReply({
+    //         icon: <ThumbUpIcon className="mx-auto h-24 text-primary" />,
+    //         message: res.data.message,
+    //       });
+    //     } else {
+    //       setReply({
+    //         icon: <XCircleIcon className="mx-auto h-24 text-red-500" />,
+    //         message: res.data.message,
+    //       });
+    //     }
+    //     setIsLoading(!isLoading);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   }
 
   const closePop = () => {
@@ -147,7 +150,7 @@ function Tif({
           <button
             className="btn btn-primary"
             onClick={
-              form === 1 && !comments === "" ? handleSubmit : () => setForm(1)
+              form === 1 && comments !== "" ? handleSubmit : () => setForm(1)
             }
           >
             {form === 1 ? "Submit" : "Next"}

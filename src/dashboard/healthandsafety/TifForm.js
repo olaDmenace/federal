@@ -577,8 +577,8 @@ const TifForm = () => {
                   setData={setData}
                   truckPro={truckPro}
                   setTruckPro={setTruckPro}
-                  truckProgrammingId={data.truckProgrammingId}
-                  setTruckProgrammingId={setTruckProgrammingId}
+                  truckProgrammingId={data?.truckProgrammingId}
+                  // setTruckProgrammingId={setTruckProgrammingId}
                   truckAssess={truckAssess}
                   comments={comments}
                   setComment={setComment}
@@ -589,8 +589,8 @@ const TifForm = () => {
                   setData={setData}
                   truckPro={truckPro}
                   setTruckPro={setTruckPro}
-                  truckProgrammingId={data.truckProgrammingId}
-                  setTruckProgrammingId={setTruckProgrammingId}
+                  truckProgrammingId={data?.truckProgrammingId}
+                  // setTruckProgrammingId={setTruckProgrammingId}
                   truckAssess={truckAssess}
                   assessments={assessments}
                   setAssessment={setAssessment}
