@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import Dash from "../images/Dash.png";
 import Logo from "../images/LogoDark.png";
 import {
+  BellIcon,
   ChevronDownIcon,
   ChipIcon,
   ClipboardIcon,
@@ -32,12 +33,12 @@ function DashMenu(props) {
   const [hrOpen, setHrOpen] = useState(false);
   const [repOpen, setRepOpen] = useState(false);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
-    navigate('/')
+    navigate("/");
   };
 
   const dropdownRefs = {
@@ -109,6 +110,13 @@ function DashMenu(props) {
             >
               <ChipIcon className="h-8 stroke-1" />
               <h4>Dashboard</h4>
+            </NavLink>
+            <NavLink
+              to={"/dashboard/notifications"}
+              className="items-center flex text-white gap-2"
+            >
+              <BellIcon className="h-8 stroke-1" />
+              <h4>Notifications</h4>
             </NavLink>
             <div
               ref={dropdownRefs.operation}
