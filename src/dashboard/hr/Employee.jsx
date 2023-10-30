@@ -14,18 +14,18 @@ const Employee = () => {
   PageTitle("Axle & Cartage Employee Form");
 
   const location = useLocation();
-  console.log(location.state.employee);
-  const employeeDetails = location?.state?.employee;
+  // console.log(location.state);
+  const employeeDetails = location?.state;
   const initialState = location?.state
     ? {
-        firstName: employeeDetails?.firstName,
-        lastName: employeeDetails?.lastName,
-        otherNames: employeeDetails?.otherNames,
-        email: employeeDetails?.email,
+        firstName: employeeDetails?.employee?.firstName,
+        lastName: employeeDetails?.employee?.lastName,
+        otherNames: employeeDetails?.employee?.otherNames,
+        email: employeeDetails?.employee?.email,
         photoUrl: null,
         status: 0,
         contactInfo: {
-          mobile: employeeDetails?.phoneNumber,
+          mobile: employeeDetails?.employee?.phoneNumber,
           home: "string",
           address: "string",
           addressLineTwo: "string",
@@ -36,9 +36,9 @@ const Employee = () => {
         startDate: "2023-10-02T12:00:40.662Z",
         endDate: "2023-10-02T12:00:40.662Z",
         dateOfBirth: "2023-10-02T12:00:40.662Z",
-        employmentNumber: employeeDetails?.employmentNumber,
+        employmentNumber: employeeDetails?.employee?.employmentNumber,
         roleId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        employeeType: employeeDetails?.roleTypw,
+        employeeType: employeeDetails?.employee?.roleTypw,
         userId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
       }
     : {
