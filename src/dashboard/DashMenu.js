@@ -116,7 +116,7 @@ function DashMenu(props) {
               className="items-center flex text-white gap-2"
             >
               <BellIcon className="h-8 stroke-1" />
-              <h4>Notifications</h4>
+              <h4>My Workspace</h4>
             </NavLink>
             <div
               ref={dropdownRefs.operation}
