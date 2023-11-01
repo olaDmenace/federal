@@ -21,9 +21,10 @@ function TruckProgramming({ formData, setFormData }) {
   // const [data, setData] = useState({
   const initialState = location?.state
     ? {
-        truckId: mainTruck?.truckId,
-        programmingId: mainTruck?.programmingId,
-        status: mainTruck?.status,
+        truckId: mainTruck?.truckId || mainTruck?.truck?.truckId,
+        programmingId:
+          mainTruck?.programmingId || mainTruck?.truckProgrammingId,
+        status: mainTruck?.status || mainTruck?.truck?.status,
       }
     : {
         truckId: null,
@@ -344,6 +345,7 @@ function TruckProgramming({ formData, setFormData }) {
               <select
                 className="select select-primary w-full"
                 value={data.truckId}
+                disabled={mainTruck}
                 onChange={(e) => setData({ ...data, truckId: e.target.value })}
                 type="text"
                 name=""
