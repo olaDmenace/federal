@@ -9,24 +9,6 @@ const NotificationsCard = ({
 }) => {
   return (
     <div className="rounded-lg shadow-md p-5  gap-5 md:col-span-4 md:h-screen md:overflow-y-scroll scrollbar-thin scrollbar-track-green-100 scrollbar-thumb-green-900 relative bg-white">
-      {/* <div>
-        <p className="font-semibold mb-6 text-lg">
-          Notification{" "}
-          <span className="indicator-item badge badge-primary float-right">
-            {notification?.total}
-          </span>
-        </p>
-        <div className="flex flex-col space-y-4">
-          {notification?.data?.map((nots) => (
-            <NotificationTypeCard
-              key={nots.notificationId}
-              title={nots.title}
-              state={!nots.isRead}
-              time={nots.deliveredAt}
-            />
-          ))}
-        </div>
-      </div> */}
       <div>
         <p className="font-semibold my-6 text-lg">
           Task
@@ -61,10 +43,16 @@ const NotificationsCard = ({
               }
             </span>
           </p>
-          <p className="cursor-pointer" onClick={() => setSelectedTasks("TPF")}>
+          <p
+            className="cursor-pointer"
+            onClick={() => setSelectedTasks("TripExpense")}
+          >
             Trip Expense
             <span className="indicator-item badge badge-primary float-right">
-              {tasks?.data?.filter((task) => task.itemType === "TRF").length}
+              {
+                tasks?.data?.filter((task) => task.itemType === "TripExpense")
+                  .length
+              }
             </span>
           </p>
           <p className="cursor-pointer" onClick={() => setSelectedTasks("JMF")}>
@@ -73,10 +61,17 @@ const NotificationsCard = ({
               {tasks?.data?.filter((task) => task.itemType === "JMF").length}
             </span>
           </p>
-          <p className="cursor-pointer">
+          <p
+            className="cursor-pointer"
+            onClick={() => setSelectedTasks("WaybillCreation")}
+          >
             Waybill Verification
             <span className="indicator-item badge badge-primary float-right">
-              {tasks?.data?.filter((task) => task.itemType === "").length}
+              {
+                tasks?.data?.filter(
+                  (task) => task.itemType === "WaybillCreation"
+                ).length
+              }
             </span>
           </p>
           <p className="cursor-pointer">

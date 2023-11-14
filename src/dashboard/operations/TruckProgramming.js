@@ -14,6 +14,8 @@ function TruckProgramming({ formData, setFormData }) {
   const location = useLocation();
   console.log(location);
   const mainTruck = location?.state?.truck;
+  const { workItemId } = location?.state;
+
   const initialState = location?.state
     ? {
         truckId: mainTruck?.truckId || mainTruck?.truck?.truckId,
@@ -208,6 +210,7 @@ function TruckProgramming({ formData, setFormData }) {
           icon: <ThumbUpIcon className="mx-auto h-24 text-primary" />,
           message: `${res.data.message} with Trip ID ${res.data.data}`,
         });
+        handleStatus(workItemId);
       })
       .catch((err) => {
         setShow(true);
@@ -217,6 +220,12 @@ function TruckProgramming({ formData, setFormData }) {
         });
         console.log(err);
       });
+  };
+
+  const handleStatus = (workItemId) => {
+    endpoint.put(`/work-items/${workItemId}`).then((res) => {
+      console.log(res);
+    });
   };
 
   const handleSubmit = (e) => {
@@ -230,6 +239,7 @@ function TruckProgramming({ formData, setFormData }) {
           icon: <ThumbUpIcon className="mx-auto h-24 text-primary" />,
           message: `${res.data.message} with Trip ID ${res.data.data}`,
         });
+        handleStatus(workItemId);
         // setIsLoading(!isLoading)
       })
       .catch((err) => {

@@ -9,6 +9,7 @@ import { ThumbUpIcon } from "@heroicons/react/solid";
 import { XCircleIcon } from "@heroicons/react/outline";
 import PopUp from "../../../utils/PopUp";
 import LoadingSpinner from "../../../utils/LoadingSpinner";
+import { useLocation } from "react-router-dom";
 
 const TripExpense = () => {
   PageTitle("Axle & Cartage - Trip Expense Request Form");
@@ -16,7 +17,13 @@ const TripExpense = () => {
 
   const activeForm = () => {
     if (form === 1) {
-      return <FuelRequest formData={formData} setFormData={setFormData} />;
+      return (
+        <FuelRequest
+          formData={formData}
+          setFormData={setFormData}
+          location={location}
+        />
+      );
     } else if (form === 2) {
       return (
         <FuelReconciliation formData={formData} setFormData={setFormData} />
@@ -26,49 +33,99 @@ const TripExpense = () => {
     }
   };
 
-  const [formData, setFormData] = useState({
-    journeyManagementId: "",
-    fuelRequest: {
-      dispensingStation: "",
-      requestDate: "",
-      currentVolume: "",
-      issuedVolume: "",
-      baseStock: "",
-      status: 0,
-    },
-    topUpRequest: {
-      dispensingStation: "",
-      requestDate: "",
-      currentVolume: "",
-      issuedVolume: "",
-      baseStock: "",
-      status: "",
-      reason: "",
-    },
-    fuelReconciliation: {
-      volumeConsumed: "",
-      comment: "",
-      variationReason: "",
-    },
-    unionDuesPayable: "",
-    unionDuesPaid: "",
-    status: 0,
-    roadExpensePayable: "",
-    roadExpensePaid: "",
-    roadExpenseStatus: 0,
-    tripAllowancePayable: "",
-    tripAllowancePaid: "",
-    tripAllowanceStatus: 0,
-    aquilaFlashingPayable: "",
-    aquilaFlashingPaid: "",
-    aquilaFlashingStatus: 0,
-    welfarePayable: "",
-    welfarePaid: "",
-    welfareStatus: 0,
-    otherExpensesPaid: "",
-    purpose: "",
-    otherExpensesStatus: 0,
-  });
+  const location = useLocation();
+  console.log(location)
+  const id = location?.state;
+
+  const initialData = id
+    ? {
+        journeyManagementId: id.truckProgrammingId,
+        fuelRequest: {
+          dispensingStation: "",
+          requestDate: "",
+          currentVolume: "",
+          issuedVolume: "",
+          baseStock: "",
+          status: 0,
+        },
+        topUpRequest: {
+          dispensingStation: "",
+          requestDate: "",
+          currentVolume: "",
+          issuedVolume: "",
+          baseStock: "",
+          status: "",
+          reason: "",
+        },
+        fuelReconciliation: {
+          volumeConsumed: "",
+          comment: "",
+          variationReason: "",
+        },
+        unionDuesPayable: "",
+        unionDuesPaid: "",
+        status: 0,
+        roadExpensePayable: "",
+        roadExpensePaid: "",
+        roadExpenseStatus: 0,
+        tripAllowancePayable: "",
+        tripAllowancePaid: "",
+        tripAllowanceStatus: 0,
+        aquilaFlashingPayable: "",
+        aquilaFlashingPaid: "",
+        aquilaFlashingStatus: 0,
+        welfarePayable: "",
+        welfarePaid: "",
+        welfareStatus: 0,
+        otherExpensesPaid: "",
+        purpose: "",
+        otherExpensesStatus: 0,
+      }
+    : {
+        journeyManagementId: "",
+        fuelRequest: {
+          dispensingStation: "",
+          requestDate: "",
+          currentVolume: "",
+          issuedVolume: "",
+          baseStock: "",
+          status: 0,
+        },
+        topUpRequest: {
+          dispensingStation: "",
+          requestDate: "",
+          currentVolume: "",
+          issuedVolume: "",
+          baseStock: "",
+          status: "",
+          reason: "",
+        },
+        fuelReconciliation: {
+          volumeConsumed: "",
+          comment: "",
+          variationReason: "",
+        },
+        unionDuesPayable: "",
+        unionDuesPaid: "",
+        status: 0,
+        roadExpensePayable: "",
+        roadExpensePaid: "",
+        roadExpenseStatus: 0,
+        tripAllowancePayable: "",
+        tripAllowancePaid: "",
+        tripAllowanceStatus: 0,
+        aquilaFlashingPayable: "",
+        aquilaFlashingPaid: "",
+        aquilaFlashingStatus: 0,
+        welfarePayable: "",
+        welfarePaid: "",
+        welfareStatus: 0,
+        otherExpensesPaid: "",
+        purpose: "",
+        otherExpensesStatus: 0,
+      };
+
+  const [formData, setFormData] = useState(initialData);
 
   const [isLoading, setIsLoading] = useState(false);
   const [show, setShow] = useState(false);
@@ -84,6 +141,7 @@ const TripExpense = () => {
 
   const submithandler = () => {
     if (form === 3) {
+      console.log(formData)
       setIsLoading(!isLoading);
       endpoint
         .post("/truck/journey-management/expenses/trip", formData)
@@ -151,3 +209,4 @@ const TripExpense = () => {
 };
 
 export default TripExpense;
+

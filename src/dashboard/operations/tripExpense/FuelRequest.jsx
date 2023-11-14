@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import endpoint from "../../../utils/endpoints/endpoint";
 
-const FuelRequest = ({ formData, setFormData }) => {
+const FuelRequest = ({ formData, setFormData, location }) => {
   const [truck, setTruck] = useState([]);
   useEffect(() => {
     endpoint
-      .get("/truck/journey-management")
+      .get("/truck/programme")
       .then((res) => {
         console.log(res.data.data);
         setTruck(res.data.data);
@@ -100,6 +100,7 @@ const FuelRequest = ({ formData, setFormData }) => {
           <label htmlFor="trip_Id">
             Trip ID
             <select
+              disabled={location.state ? true : false}
               className="select select-primary w-full"
               value={formData.journeyManagementId}
               onChange={(e) =>
@@ -113,9 +114,9 @@ const FuelRequest = ({ formData, setFormData }) => {
               {truck.map((item) => (
                 <option
                   key={item.journeyManagementId}
-                  value={item.journeyManagementId}
+                  value={item.truckProgrammingId}
                 >
-                  {item.truckProgramming.tripReference}
+                  {item.tripReference}
                 </option>
               ))}
             </select>
