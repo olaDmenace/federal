@@ -75,6 +75,10 @@ function Tif({
 
   // Handles the submit event
 
+  const changeStatus = (workItemId) => {
+    endpoint.put(`/work-items/${workItemId}`);
+  };
+
   function handleSubmit() {
     const formData = {
       truckProgrammingId,
@@ -96,6 +100,7 @@ function Tif({
             icon: <ThumbUpIcon className="mx-auto h-24 text-primary" />,
             message: res.data.message,
           });
+          changeStatus()
         } else {
           setReply({
             icon: <XCircleIcon className="mx-auto h-24 text-red-500" />,
