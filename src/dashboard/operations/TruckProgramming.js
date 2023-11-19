@@ -14,7 +14,7 @@ function TruckProgramming({ formData, setFormData }) {
   const location = useLocation();
   console.log(location);
   const mainTruck = location?.state?.truck;
-  const { workItemId } = location?.state;
+  const workItemId = location?.state?.workItemId;
 
   const initialState = location?.state
     ? {
@@ -193,6 +193,12 @@ function TruckProgramming({ formData, setFormData }) {
     message: "",
   });
 
+   const handleStatus = (workItemId) => {
+     endpoint.put(`/work-items/${workItemId}`).then((res) => {
+       console.log(res);
+     });
+   };
+
   const updateSubmit = (e) => {
     console.log("data.status changed to:", data.status);
     const finalData = {
@@ -222,11 +228,7 @@ function TruckProgramming({ formData, setFormData }) {
       });
   };
 
-  const handleStatus = (workItemId) => {
-    endpoint.put(`/work-items/${workItemId}`).then((res) => {
-      console.log(res);
-    });
-  };
+ 
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -240,7 +242,7 @@ function TruckProgramming({ formData, setFormData }) {
           message: `${res.data.message} with Trip ID ${res.data.data}`,
         });
         handleStatus(workItemId);
-        // setIsLoading(!isLoading)
+        setIsLoading(!isLoading)
       })
       .catch((err) => {
         setShow(true);
