@@ -29,7 +29,6 @@ const Notifications = () => {
     endpoint
       .get("/work-items")
       .then((res) => {
-        console.log(res.data);
         setTasks(res.data);
       })
       .catch((err) => {
@@ -37,12 +36,13 @@ const Notifications = () => {
       });
   }, []);
 
-  const truckProgramming = (programmeId, type) => {
+  const truckProgramming = ({programmeId, type, workItemId}) => {
+
     if (type === "TruckProgramming") {
       endpoint.get(`truck/programme/${programmeId}`).then((res) => {
         setProgramme(res.data.data.truck);
         navigate("/dashboard/TruckProgramming", {
-          state: { truck: res.data.data.truck },
+          state: { truck: res.data.data.truck, workItemId: workItemId },
         });
       });
     }
@@ -55,6 +55,11 @@ const Notifications = () => {
     }
     if (type === "TruckInspection") {
       navigate("/dashboard/tifForm", {
+        state: { truckProgrammingId: programmeId },
+      });
+    }
+    if (type === "TripExpense") {
+      navigate("/dashboard/TripExpense", {
         state: { truckProgrammingId: programmeId },
       });
     }
@@ -88,25 +93,6 @@ const Notifications = () => {
             setSelectedTasks={setSelectedTasks}
           />
           <div className="rounded-lg shadow-md p-5 grid gap-5 md:col-span-6 md:h-screen md:overflow-y-scroll scrollbar-thin scrollbar-track-green-100 scrollbar-thumb-green-900 relative bg-white">
-            {/* <div>
-              <p className="font-semibold text-lg">
-                Tasks
-                <span className="indicator-item badge badge-secondary float-right">
-                  {newTasks?.length}
-                </span>
-              </p>
-              <div className="grid cursor-pointer gap-5 lg:grid-cols-2">
-                {newTasks?.map((task) => (
-                  <ToDoCard
-                    key={task.itemId}
-                    id={task.title}
-                    avatar={Avatar}
-                    name={"John Doe"}
-                    // link={`/dashboard/${route[task?.itemType]}`}
-                  />
-                ))}
-              </div>
-            </div> */}
             <div>
               <p className="font-semibold text-lg">
                 In-Progress
@@ -118,8 +104,10 @@ const Notifications = () => {
                 {taskInProgress?.map((task) => (
                   <div
                     className="cursor-pointer hover:bg-[#d1fae5]"
-                    key={task.itemId}
-                    onClick={() => truckProgramming(task.itemId, task.itemType)}
+                    key={task.workItemId}
+                    onClick={() =>
+                      truckProgramming({programmeId:task.itemId, type:task.itemType, workItemId:task.workItemId})
+                    }
                   >
                     <ToDoCard
                       id={task.title}

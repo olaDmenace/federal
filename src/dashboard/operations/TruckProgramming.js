@@ -11,14 +11,11 @@ import { useLocation } from "react-router-dom";
 function TruckProgramming({ formData, setFormData }) {
   PageTitle("Axle & Cartage - Truck Programming");
 
-  // console.log(process.env.REACT_APP_GEOLOCATE_KEY)
-  // const dispatch = useDispatch();
-
   const location = useLocation();
   console.log(location);
   const mainTruck = location?.state?.truck;
+  const workItemId = location?.state?.workItemId;
 
-  // const [data, setData] = useState({
   const initialState = location?.state
     ? {
         truckId: mainTruck?.truckId || mainTruck?.truck?.truckId,
@@ -196,6 +193,12 @@ function TruckProgramming({ formData, setFormData }) {
     message: "",
   });
 
+   const handleStatus = (workItemId) => {
+     endpoint.put(`/work-items/${workItemId}`).then((res) => {
+       console.log(res);
+     });
+   };
+
   const updateSubmit = (e) => {
     console.log("data.status changed to:", data.status);
     const finalData = {
@@ -213,6 +216,7 @@ function TruckProgramming({ formData, setFormData }) {
           icon: <ThumbUpIcon className="mx-auto h-24 text-primary" />,
           message: `${res.data.message} with Trip ID ${res.data.data}`,
         });
+        handleStatus(workItemId);
       })
       .catch((err) => {
         setShow(true);
@@ -223,6 +227,8 @@ function TruckProgramming({ formData, setFormData }) {
         console.log(err);
       });
   };
+
+ 
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -235,7 +241,8 @@ function TruckProgramming({ formData, setFormData }) {
           icon: <ThumbUpIcon className="mx-auto h-24 text-primary" />,
           message: `${res.data.message} with Trip ID ${res.data.data}`,
         });
-        // setIsLoading(!isLoading)
+        handleStatus(workItemId);
+        setIsLoading(!isLoading)
       })
       .catch((err) => {
         setShow(true);

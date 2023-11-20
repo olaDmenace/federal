@@ -24,6 +24,8 @@ function Tif({
   ("Axle & Cartage - Pre Trip Inspection Form");
   const [form, setForm] = useState(0);
 
+  console.log(truckProgrammingId);
+
   const activeForm = () => {
     if (form === 0) {
       return (
@@ -73,41 +75,43 @@ function Tif({
 
   // Handles the submit event
 
+  const changeStatus = (workItemId) => {
+    endpoint.put(`/work-items/${workItemId}`);
+  };
+
   function handleSubmit() {
     const formData = {
       truckProgrammingId,
       assessments,
       comments,
     };
-    console.log(formData);
 
-    console.log("first");
+    setIsLoading(true);
+    setComment("");
+    resetForm();
 
-    // setIsLoading(true);
-    // setComment("");
-    // resetForm();
-
-    // endpoint
-    //   .post("/truck/inspect", formData)
-    //   .then((res) => {
-    //     console.log("new data added", res);
-    //     if (res.status === 200) {
-    //       setShow(true);
-    //       setReply({
-    //         icon: <ThumbUpIcon className="mx-auto h-24 text-primary" />,
-    //         message: res.data.message,
-    //       });
-    //     } else {
-    //       setReply({
-    //         icon: <XCircleIcon className="mx-auto h-24 text-red-500" />,
-    //         message: res.data.message,
-    //       });
-    //     }
-    //     setIsLoading(!isLoading);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    endpoint
+      .post("/truck/inspect", formData)
+      .then((res) => {
+        console.log("new data added", res);
+        if (res.status === 200) {
+          setShow(true);
+          setReply({
+            icon: <ThumbUpIcon className="mx-auto h-24 text-primary" />,
+            message: res.data.message,
+          });
+          changeStatus()
+        } else {
+          setReply({
+            icon: <XCircleIcon className="mx-auto h-24 text-red-500" />,
+            message: res.data.message,
+          });
+        }
+        setIsLoading(!isLoading);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   const closePop = () => {
@@ -115,6 +119,7 @@ function Tif({
     setShow(false);
   };
   const location = useLocation();
+
   return (
     <div className="space-y-2 grid">
       {show && (

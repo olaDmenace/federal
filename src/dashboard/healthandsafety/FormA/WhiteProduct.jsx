@@ -37,6 +37,7 @@ const WhiteProduct = ({
   //     );
   //   }
   // };
+  console.log(truckProgrammingId)
 
   const questionsForm = (question) => {
     if (question === "q1" && assessments[0].answer === "others") {
