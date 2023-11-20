@@ -32,6 +32,20 @@ const NotificationsCard = ({
           </p>
           <p
             className="cursor-pointer"
+            // onClick={() => setSelectedTasks("TruckProgramming")}
+          >
+            Finance
+            <span className="indicator-item badge badge-primary float-right">
+              {/* {
+                tasks?.data
+                  ?.filter
+                  (task) => task.itemType === "TruckProgramming"
+                  ().length
+              } */}
+            </span>
+          </p>
+          <p
+            className="cursor-pointer"
             onClick={() => setSelectedTasks("TruckInspection")}
           >
             Truck Inspection
