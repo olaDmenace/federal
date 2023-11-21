@@ -94,7 +94,7 @@ const FuelRequest = ({ formData, setFormData, location }) => {
 
   return (
     <div className="py-5 text-primary space-y-3">
-      <h4 className="text-lg font-semibold">Fuel Request - Top-up</h4>
+      <h4 className="text-lg font-semibold">Fuel Expense</h4>
       <form action="" className="grid text-primary gap-10 w-full">
         <fieldset className="grid md:grid-cols-2 gap-3 items-end">
           <label htmlFor="trip_Id">
@@ -168,7 +168,7 @@ const FuelRequest = ({ formData, setFormData, location }) => {
             />
           </label>
           <label htmlFor="">
-            Base Stock Request - Top-up
+            Base Stock Request
             <input
               className="w-full input input-primary"
               placeholder="48 Ltr"
@@ -194,6 +194,127 @@ const FuelRequest = ({ formData, setFormData, location }) => {
               id=""
             />
           </label>
+        </fieldset>
+        <fieldset>
+          <label htmlFor="">
+            Fuel Request Status
+            <select
+              className="w-full select select-primary"
+              name=""
+              id=""
+              value={formData.fuelRequest.status}
+              onChange={(e) => {
+                handleFuelRequestChange("status", +e.target.value);
+              }}
+            >
+              <option value="">Selecct Status</option>
+              <option value="1">Issued</option>
+              <option value="2">Declined</option>
+            </select>
+          </label>
+        </fieldset>
+        <h4 className="text-lg font-semibold">Fuel Request</h4>
+        <fieldset className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 items-end">
+          <label htmlFor="">
+            Union Dues Payable
+            <input
+              className="w-full input input-primary"
+              placeholder="4000"
+              type="number"
+              name=""
+              id=""
+              value={formData.unionDuesPayable}
+              onChange={(e) => {
+                setFormData({ ...formData, unionDuesPayable: +e.target.value });
+              }}
+            />
+          </label>
+          <label htmlFor="">
+            Union Dues Paid
+            <input
+              className="w-full input input-primary"
+              placeholder="4000"
+              type="number"
+              name=""
+              id=""
+              value={formData.unionDuesPaid}
+              onChange={(e) => {
+                setFormData({ ...formData, unionDuesPaid: +e.target.value });
+              }}
+            />
+          </label>
+          <label htmlFor="">
+            Union Dues Status
+            <select
+              className="w-full select select-primary"
+              name=""
+              id=""
+              value={formData.status}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  status: +e.target.value,
+                })
+              }
+            >
+              <option value="">Select Status</option>
+              <option value="1">Paid</option>
+              <option value="2">Refused</option>
+            </select>
+          </label>
+          <label htmlFor="">
+            Road Expense Payable
+            <input
+              className="w-full input input-primary"
+              placeholder="4000"
+              type="number"
+              name=""
+              id=""
+              value={formData.roadExpensePayable}
+              onChange={(e) => {
+                setFormData({
+                  ...formData,
+                  roadExpensePayable: +e.target.value,
+                });
+              }}
+            />
+          </label>
+          <label htmlFor="">
+            Road Expense Paid
+            <input
+              className="w-full input input-primary"
+              placeholder="4000"
+              type="number"
+              name=""
+              id=""
+              value={formData.roadExpensePaid}
+              onChange={(e) => {
+                setFormData({ ...formData, roadExpensePaid: +e.target.value });
+              }}
+            />
+          </label>
+          <label htmlFor="">
+            Road Expense Status
+            <select
+              className="w-full select select-primary"
+              name=""
+              id=""
+              value={formData.roadExpenseStatus}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  roadExpenseStatus: +e.target.value,
+                })
+              }
+            >
+              <option value="">Select Status</option>
+              <option value="1">Paid</option>
+              <option value="2">Refused</option>
+            </select>
+          </label>
+        </fieldset>
+        <h4 className="text-lg font-semibold">Top-up Request</h4>
+        <fieldset className="grid md:grid-cols-2 gap-3 items-end">
           <label htmlFor="">
             Fuel Issued (Litres)
             <input
@@ -221,26 +342,6 @@ const FuelRequest = ({ formData, setFormData, location }) => {
               id=""
             />
           </label>
-        </fieldset>
-        <fieldset>
-          <label htmlFor="">
-            Fuel Request - Top-Up Status
-            <select
-              className="w-full select select-primary"
-              name=""
-              id=""
-              value={formData.fuelRequest.status}
-              onChange={(e) => {
-                handleFuelRequestChange("status", +e.target.value);
-              }}
-            >
-              <option value="">Selecct Status</option>
-              <option value="1">Issued</option>
-              <option value="2">Declined</option>
-            </select>
-          </label>
-        </fieldset>
-        <fieldset className="grid md:grid-cols-2 gap-3 items-end">
           <label htmlFor="">
             Dispensing Station Name
             <select

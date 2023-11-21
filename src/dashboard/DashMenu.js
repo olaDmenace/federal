@@ -178,7 +178,7 @@ function DashMenu(props) {
             {/*Fuel Expense*/}
             <div
               ref={dropdownRefs.fe}
-              onClick={() => setHsopen(!feOpen)}
+              onClick={() => setFeOpen(!feOpen)}
               className="items-center relative flex text-white cursor-pointer justify-between"
             >
               <DashMenuItem
