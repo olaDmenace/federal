@@ -34,6 +34,12 @@ export const HEALTHSAFETY_ROUTES = [
     route: "/dashboard/tifForm",
   },
 ];
+export const FUELEXPENSE_ROUTES = [
+  {
+    label: "Fuel Expense",
+    route: "/dashboard/TripExpense",
+  },
+];
 export const OPSUPPORT_ROUTES = [
   {
     label: "  Maintenance Expenses",
@@ -91,10 +97,10 @@ export const HUMANCAPITAL_ROUTES = [
 export const REPORTS_ROUTES = [
   {
     label: "Visbility Report",
-    route: "/dashboard"
+    route: "/dashboard",
   },
   {
     label: "Employee Report",
-    route: "/dashboard/EmployeeList"
-  }
-]
+    route: "/dashboard/EmployeeList",
+  },
+];

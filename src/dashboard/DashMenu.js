@@ -19,6 +19,7 @@ import { useDispatch } from "react-redux";
 import { logout } from "../utils/features/userSlice";
 import DashMenuItem from "./DashMenuItem";
 import {
+  FUELEXPENSE_ROUTES,
   HEALTHSAFETY_ROUTES,
   HUMANCAPITAL_ROUTES,
   OPERATIONS_ROUTES,
@@ -201,9 +202,9 @@ function DashMenu(props) {
                 }
                 Title={"Fuel Expense"}
               />
-              {/* {feOpen && (
+              {feOpen && (
                 <div className="absolute bg-white text-primary top-10 flex-col rounded-lg p-2 w-60 z-10 space-y-2  px-3 py-5 ">
-                  {HEALTHSAFETY_ROUTES.map((health, index) => (
+                  {FUELEXPENSE_ROUTES.map((health, index) => (
                     <NavLink
                       key={index}
                       to={health.route}
@@ -213,7 +214,7 @@ function DashMenu(props) {
                     </NavLink>
                   ))}
                 </div>
-              )} */}
+              )}
               <ChevronDownIcon className="h-6 stroke-1 hover:scale-125 transition duration-500" />
             </div>
             {/*Operation support*/}

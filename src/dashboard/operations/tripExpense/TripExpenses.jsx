@@ -3,7 +3,7 @@ import React from "react";
 const TripExpenses = ({ formData, setFormData }) => {
   return (
     <div className="py-5 text-primary space-y-3">
-      <h4 className="text-lg font-semibold">Trip Expenses</h4>
+      <h4 className="text-lg font-semibold">Trip Allowance Payable</h4>
       <form action="" className="grid text-primary gap-5 w-full">
         <fieldset className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 items-end">
           <label htmlFor="">

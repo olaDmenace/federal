@@ -25,16 +25,16 @@ const TripExpense = () => {
         />
       );
     } else if (form === 2) {
+      return <TripExpenses formData={formData} setFormData={setFormData} />;
+    } else {
       return (
         <FuelReconciliation formData={formData} setFormData={setFormData} />
       );
-    } else {
-      return <TripExpenses formData={formData} setFormData={setFormData} />;
     }
   };
 
   const location = useLocation();
-  console.log(location)
+  console.log(location);
   const id = location?.state;
 
   const initialData = id
@@ -141,7 +141,7 @@ const TripExpense = () => {
 
   const submithandler = () => {
     if (form === 3) {
-      console.log(formData)
+      console.log(formData);
       setIsLoading(!isLoading);
       endpoint
         .post("/truck/journey-management/expenses/trip", formData)
@@ -209,4 +209,3 @@ const TripExpense = () => {
 };
 
 export default TripExpense;
-
