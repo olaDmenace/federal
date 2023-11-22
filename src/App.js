@@ -34,6 +34,7 @@ import TruckResolution from "./dashboard/operations/shortageResolution/TruckReso
 import ChangeStatus from "./dashboard/operations/ChangeStatus";
 import FuelRequest from "./dashboard/operations/tripExpense/FuelRequest";
 import TripExpenses from "./dashboard/operations/tripExpense/TripExpenses";
+import FuelReconciliation from "./dashboard/operations/tripExpense/FuelReconciliation";
 
 /*                        ***IMPORTANT NOTICE***
     This project is a React JS project buitl with Daisy UI Tailwind CSS UI component.
@@ -66,6 +67,7 @@ function App() {
             {/* <Route path="TripExpense" element={<TripExpense />} /> */}
             <Route path="FuelRequest" element={<FuelRequest />} />
             <Route path="FuelAllowance" element={<TripExpenses />} />
+            <Route path="FuelReconciliation" element={<FuelReconciliation />} />
             <Route path={"AbsenceForm"} element={<AbsenceForm />} />
             <Route
               path={"ConsequenceManagement"}
