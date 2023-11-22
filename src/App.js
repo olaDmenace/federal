@@ -6,12 +6,12 @@ import ResetPassword from "./Membership/UserRecovery/ResetPassword";
 import CreatePassword from "./Membership/UserRecovery/CreateNewPassword";
 import Membership from "./Membership/Membership";
 import Dashboard from "./dashboard/Dashboard";
-import TruckVisibilityReport from "./dashboard/dashboard/TruckVisibiltyReport";
+// import TruckVisibilityReport from "./dashboard/dashboard/TruckVisibiltyReport";
 import TruckProgramming from "./dashboard/operations/TruckProgramming";
 import Journeymanagement from "./dashboard/operations/JourneyManagement/Journeymanagement";
 import AssetRegister from "./dashboard/operations/assetRegister/AssetRegister";
 import ShortageResolution from "./dashboard/operations/shortageResolution/ShortageResolution";
-import TripExpense from "./dashboard/operations/tripExpense/TripExpense";
+// import TripExpense from "./dashboard/operations/tripExpense/TripExpense";
 import AbsenceForm from "./dashboard/hr/AbsenceForm";
 import ConsequenceManagement from "./dashboard/hr/ConsequenceManagement";
 import TrainingForm from "./dashboard/hr/TrainingForm";
@@ -32,6 +32,7 @@ import ProductDetails from "./dashboard/operations/shortageResolution/ProductDet
 import TruckDetails from "./dashboard/dashboard/TruckDetails";
 import TruckResolution from "./dashboard/operations/shortageResolution/TruckResolution";
 import ChangeStatus from "./dashboard/operations/ChangeStatus";
+import FuelRequest from "./dashboard/operations/tripExpense/FuelRequest";
 
 /*                        ***IMPORTANT NOTICE***
     This project is a React JS project buitl with Daisy UI Tailwind CSS UI component.
@@ -61,7 +62,8 @@ function App() {
             <Route path="TruckAssignment" element={<TruckAssignment />} />
             <Route path="ShortageResolution" element={<ShortageResolution />} />
             <Route path="ChangeStatus" element={<ChangeStatus />} />
-            <Route path="TripExpense" element={<TripExpense />} />
+            {/* <Route path="TripExpense" element={<TripExpense />} /> */}
+            <Route path="FuelRequest" element={<FuelRequest />} />
             <Route path={"AbsenceForm"} element={<AbsenceForm />} />
             <Route
               path={"ConsequenceManagement"}

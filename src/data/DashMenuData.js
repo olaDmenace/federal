@@ -37,7 +37,7 @@ export const HEALTHSAFETY_ROUTES = [
 export const FUELEXPENSE_ROUTES = [
   {
     label: "Fuel Request",
-    route: "/dashboard/TripExpense",
+    route: "/dashboard/FuelRequest",
   },
   {
     label: "Fuel Allowance",
