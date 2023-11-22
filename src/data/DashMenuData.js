@@ -41,7 +41,7 @@ export const FUELEXPENSE_ROUTES = [
   },
   {
     label: "Fuel Allowance",
-    route: "/dashboard/TripExpense",
+    route: "/dashboard/FuelAllowance",
   },
   {
     label: "Fuel Reconciliation",
