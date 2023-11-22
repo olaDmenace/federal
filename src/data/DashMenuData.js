@@ -36,7 +36,15 @@ export const HEALTHSAFETY_ROUTES = [
 ];
 export const FUELEXPENSE_ROUTES = [
   {
-    label: "Fuel Expense",
+    label: "Fuel Request",
+    route: "/dashboard/TripExpense",
+  },
+  {
+    label: "Fuel Allowance",
+    route: "/dashboard/TripExpense",
+  },
+  {
+    label: "Fuel Reconciliation",
     route: "/dashboard/TripExpense",
   },
 ];
