@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import endpoint from "../../../utils/endpoints/endpoint";
 import FormTitle from "../../FormTitle";
+import { useLocation } from "react-router-dom";
 
-const FuelRequest = ({ formData, setFormData, location }) => {
+const FuelRequest = ({ formData, setFormData }) => {
+  const location = useLocation();
+  console.log(location.state);
+
   const [truck, setTruck] = useState([]);
   useEffect(() => {
     endpoint
@@ -95,7 +99,7 @@ const FuelRequest = ({ formData, setFormData, location }) => {
 
   return (
     <div className="space-y-2 grid bg-white p-5 rounded-lg">
-      <FormTitle Title={"Fuel Expense"} />
+      <FormTitle Title={"Truck Expense Request Form"} />
       <hr className="pb-5" />
       <div className="py-5 text-primary space-y-3">
         <form action="" className="grid text-primary gap-10 w-full">
@@ -201,6 +205,7 @@ const FuelRequest = ({ formData, setFormData, location }) => {
               Fuel Issued (Litres)
               <input
                 className="w-full input input-primary"
+                disabled={location?.state === null}
                 placeholder="68"
                 type="text"
                 name=""
@@ -218,6 +223,7 @@ const FuelRequest = ({ formData, setFormData, location }) => {
               Fuel Issued (Price/Litre)
               <input
                 className="w-full input input-primary"
+                disabled={location?.state === null}
                 placeholder="145"
                 type="text"
                 name=""
@@ -230,6 +236,7 @@ const FuelRequest = ({ formData, setFormData, location }) => {
               Total Fuel Issued (Price/Litre)
               <input
                 className="w-full input input-primary"
+                disabled={location?.state === null}
                 placeholder="145"
                 type="text"
                 name=""
@@ -240,6 +247,7 @@ const FuelRequest = ({ formData, setFormData, location }) => {
               Fuel Request Status
               <select
                 className="w-full select select-primary"
+                disabled={location?.state === null}
                 name=""
                 id=""
                 // value={formData.fuelRequest.status}
