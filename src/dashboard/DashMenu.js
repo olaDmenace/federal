@@ -88,7 +88,7 @@ function DashMenu(props) {
         dropdownRefs.fe.current &&
         !dropdownRefs.fe.current.contains(e.target)
       ) {
-        setRepOpen(false);
+        setFeOpen(false);
       }
     };
 
