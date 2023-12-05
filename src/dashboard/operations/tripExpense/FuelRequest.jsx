@@ -3,9 +3,8 @@ import endpoint from "../../../utils/endpoints/endpoint";
 import FormTitle from "../../FormTitle";
 import { useLocation } from "react-router-dom";
 
-const FuelRequest = ({ formData, setFormData }) => {
+const FuelRequest = () => {
   const location = useLocation();
-  console.log(location.state);
 
   const [truck, setTruck] = useState([]);
   useEffect(() => {
@@ -33,47 +32,27 @@ const FuelRequest = ({ formData, setFormData }) => {
       });
   }, []);
 
-  //   const handleFuelRequestChange = (field, value) => {
-  //     setFormData((prevData) => ({
-  //       ...prevData,
-  //       fuelRequest: {
-  //         ...prevData.fuelRequest,
-  //         [field]: value,
-  //       },
-  //     }));
-  //   };
+  // const handleFuelRequestChange = (field, value) => {
+  //   if (field === "requestDate" && value) {
+  //     // Split the date into parts
+  //     const parts = value.split("/");
+  //     if (parts.length === 3) {
+  //       // Create a new date in ISO format (yyyy-mm-dd)
+  //       value = `${parts[2]}-${parts[0].padStart(2, "0")}-${parts[1].padStart(
+  //         2,
+  //         "0"
+  //       )}`;
+  //     }
+  //   }
 
-  //   const handleTopUpRequestChange = (field, value) => {
-  //     setFormData((prevData) => ({
-  //       ...prevData,
-  //       topUpRequest: {
-  //         ...prevData.topUpRequest,
-  //         [field]: value,
-  //       },
-  //     }));
-  //   };
-
-  const handleFuelRequestChange = (field, value) => {
-    if (field === "requestDate" && value) {
-      // Split the date into parts
-      const parts = value.split("/");
-      if (parts.length === 3) {
-        // Create a new date in ISO format (yyyy-mm-dd)
-        value = `${parts[2]}-${parts[0].padStart(2, "0")}-${parts[1].padStart(
-          2,
-          "0"
-        )}`;
-      }
-    }
-
-    setFormData((prevData) => ({
-      ...prevData,
-      fuelRequest: {
-        ...prevData.fuelRequest,
-        [field]: value,
-      },
-    }));
-  };
+  //   setFormData((prevData) => ({
+  //     ...prevData,
+  //     fuelRequest: {
+  //       ...prevData.fuelRequest,
+  //       [field]: value,
+  //     },
+  //   }));
+  // };
 
   const handleTopUpRequestChange = (field, value) => {
     if (field === "requestDate" && value) {
@@ -96,6 +75,50 @@ const FuelRequest = ({ formData, setFormData }) => {
       },
     }));
   };
+
+  const [formData, setFormData] = useState({
+    journeyManagementId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    fuelRequest: {
+      dispensingStationId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      requestDate: "2023-12-05T14:40:45.353Z",
+      currentVolume: 0,
+      issuedVolume: 0,
+      baseStock: 0,
+      status: 0,
+    },
+    topUpRequest: {
+      dispensingStationId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      requestDate: "2023-12-05T14:40:45.353Z",
+      currentVolume: 0,
+      issuedVolume: 0,
+      baseStock: 0,
+      status: 0,
+      reason: "string",
+    },
+    fuelReconciliation: {
+      volumeConsumed: 0,
+      comment: "string",
+      variationReason: "string",
+    },
+    unionDuesPayable: 0,
+    unionDuesPaid: 0,
+    status: 0,
+    roadExpensePayable: 0,
+    roadExpensePaid: 0,
+    roadExpenseStatus: 0,
+    tripAllowancePayable: 0,
+    tripAllowancePaid: 0,
+    tripAllowanceStatus: 0,
+    aquilaFlashingPayable: 0,
+    aquilaFlashingPaid: 0,
+    aquilaFlashingStatus: 0,
+    welfarePayable: 0,
+    welfarePaid: 0,
+    welfareStatus: 0,
+    otherExpensesPaid: 0,
+    purpose: "string",
+    otherExpensesStatus: 0,
+  });
 
   return (
     <div className="space-y-2 grid bg-white p-5 rounded-lg">

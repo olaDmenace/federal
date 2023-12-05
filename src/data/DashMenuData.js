@@ -7,10 +7,10 @@ export const OPERATIONS_ROUTES = [
     label: " Journey Management",
     route: "/dashboard/JourneyManagement",
   },
-  {
-    label: "  Trip Expense Request",
-    route: "/dashboard/TripExpense",
-  },
+  // {
+  //   label: "  Trip Expense Request",
+  //   route: "/dashboard/TripExpense",
+  // },
   {
     label: " Waybill Management",
     route: "/dashboard/Waybills",
