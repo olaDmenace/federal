@@ -255,7 +255,7 @@ const FuelRequest = ({ formData, setFormData }) => {
                 //   handleFuelRequestChange("status", +e.target.value);
                 // }}
               >
-                <option value="">Selecct Status</option>
+                <option value="">Select Status</option>
                 <option value="1">Issued</option>
                 <option value="2">Declined</option>
               </select>
@@ -285,6 +285,7 @@ const FuelRequest = ({ formData, setFormData }) => {
               <input
                 className="w-full input input-primary"
                 placeholder="4000"
+                disabled={location?.state === null}
                 type="number"
                 name=""
                 id=""
@@ -299,6 +300,7 @@ const FuelRequest = ({ formData, setFormData }) => {
               <select
                 className="w-full select select-primary"
                 name=""
+                disabled={location?.state === null}
                 id=""
                 // value={formData.status}
                 // onChange={(e) =>
@@ -335,6 +337,7 @@ const FuelRequest = ({ formData, setFormData }) => {
               <input
                 className="w-full input input-primary"
                 placeholder="4000"
+                disabled={location?.state === null}
                 type="number"
                 name=""
                 id=""
@@ -351,6 +354,7 @@ const FuelRequest = ({ formData, setFormData }) => {
               Road Expense Status
               <select
                 className="w-full select select-primary"
+                disabled={location?.state === null}
                 name=""
                 id=""
                 // value={formData.roadExpenseStatus}
@@ -475,6 +479,7 @@ const FuelRequest = ({ formData, setFormData }) => {
                 className="w-full input input-primary"
                 placeholder="68"
                 type="text"
+                disabled={location?.state === null}
                 name=""
                 id=""
                 // value={formData.topUpRequest.issuedVolume}
@@ -492,6 +497,7 @@ const FuelRequest = ({ formData, setFormData }) => {
                 className="w-full input input-primary"
                 placeholder="145"
                 type="text"
+                disabled={location?.state === null}
                 name=""
                 id=""
               />
@@ -501,6 +507,7 @@ const FuelRequest = ({ formData, setFormData }) => {
               <input
                 className="w-full input input-primary"
                 placeholder="145"
+                disabled={location?.state === null}
                 type="text"
                 name=""
                 id=""
@@ -513,13 +520,14 @@ const FuelRequest = ({ formData, setFormData }) => {
               <select
                 className="w-full select select-primary"
                 name=""
+                disabled={location?.state === null}
                 id=""
                 // value={formData.topUpRequest.status}
                 // onChange={(e) => {
                 //   handleTopUpRequestChange("status", +e.target.value);
                 // }}
               >
-                <option value="">Selecct Status</option>
+                <option value="">Select Status</option>
                 <option value="1">Issued</option>
                 <option value="2">Declined</option>
               </select>

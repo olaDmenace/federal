@@ -1,7 +1,9 @@
 import React from "react";
 import FormTitle from "../../FormTitle";
+import { useLocation } from "react-router-dom";
 
 const TripExpenses = ({ formData, setFormData }) => {
+  const location = useLocation();
   return (
     <div className="space-y-2 grid bg-white p-5 rounded-lg">
       <FormTitle Title={"Fuel Allowance"} />
@@ -30,6 +32,7 @@ const TripExpenses = ({ formData, setFormData }) => {
               Trip Allowance Paid
               <input
                 className="w-full input input-primary"
+                disabled={location?.state === null}
                 placeholder="4000"
                 type="number"
                 name=""
@@ -49,6 +52,7 @@ const TripExpenses = ({ formData, setFormData }) => {
                 className="w-full select select-primary"
                 name=""
                 id=""
+                disabled={location?.state === null}
                 // value={formData.tripAllowanceStatus}
                 // onChange={(e) =>
                 //   setFormData({
@@ -84,6 +88,7 @@ const TripExpenses = ({ formData, setFormData }) => {
               <input
                 className="w-full input input-primary"
                 placeholder="4000"
+                disabled={location?.state === null}
                 type="number"
                 name=""
                 id=""
@@ -102,6 +107,7 @@ const TripExpenses = ({ formData, setFormData }) => {
                 className="w-full select select-primary"
                 name=""
                 id=""
+                disabled={location?.state === null}
                 // value={formData.aquilaFlashingStatus}
                 // onChange={(e) =>
                 //   setFormData({
@@ -134,6 +140,7 @@ const TripExpenses = ({ formData, setFormData }) => {
               <input
                 className="w-full input input-primary"
                 placeholder="4000"
+                disabled={location?.state === null}
                 type="number"
                 name=""
                 id=""
@@ -149,6 +156,7 @@ const TripExpenses = ({ formData, setFormData }) => {
                 className="w-full select select-primary"
                 name=""
                 id=""
+                disabled={location?.state === null}
                 // value={formData.welfareStatus}
                 // onChange={(e) =>
                 //   setFormData({
@@ -168,6 +176,7 @@ const TripExpenses = ({ formData, setFormData }) => {
               Other Expenses Paid
               <input
                 className="w-full input input-primary"
+                disabled={location?.state === null}
                 placeholder="3000"
                 type="number"
                 name=""
@@ -186,6 +195,7 @@ const TripExpenses = ({ formData, setFormData }) => {
               <select
                 className="w-full select select-primary"
                 name=""
+                disabled={location?.state === null}
                 id=""
                 // value={formData.otherExpensesStatus}
                 // onChange={(e) =>
