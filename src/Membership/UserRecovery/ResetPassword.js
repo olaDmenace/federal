@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import PageTitle from "../../utils/PageTitle";
 
 function ResetPassword() {
-  PageTitle("A&C Reset Password");
+  PageTitle("FIRS Reset Password");
   return (
     <div className="space-y-10 px-5">
       <h2 className="text-4xl font-bold">Reset Password.</h2>

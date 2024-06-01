@@ -3,7 +3,7 @@ import Mail from "../../images/Mail.svg";
 import PageTitle from "../../utils/PageTitle";
 
 function VerifyMail() {
-  PageTitle("A&C Mail Verification");
+  PageTitle("FIRS Mail Verification");
   return (
     <div className="flex gap-10 flex-col items-center">
       <h2 className="text-4xl font-bold">Verify Your Email.</h2>
