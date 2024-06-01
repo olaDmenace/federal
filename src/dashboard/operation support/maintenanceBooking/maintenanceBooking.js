@@ -28,7 +28,7 @@ function MaintenanceBooking() {
         <li className={`step ${form === 1 ? `step-primary` : `step`}`}></li>
         <li className={`step ${form === 2 ? `step-primary` : `step`}`}></li>
       </ul>
-      <div className="flex gap-10 pb-10 overflow-x-scroll scrollbar-thin scrollbar-track-green-100 scrollbar-thumb-green-900">
+      <div className="flex gap-10 pb-10 overflow-x-scroll scrollbar-thin scrollbar-track-green-100 scrollbar-thumb-red-700">
         <div>{activeForm()}</div>
       </div>
       <div className="btn-group mx-auto pt-5">

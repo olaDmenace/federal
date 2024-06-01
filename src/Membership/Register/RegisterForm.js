@@ -12,7 +12,7 @@ import endpoint from "../../utils/endpoints/endpoint";
  */
 
 function RegisterForm() {
-  PageTitle("A&C Registration");
+  PageTitle("FIRS Registration");
 
   const [name, setName] = useState("");
   const [mail, setMail] = useState("");

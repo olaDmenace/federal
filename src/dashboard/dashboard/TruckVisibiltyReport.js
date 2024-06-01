@@ -57,7 +57,7 @@ function TruckVisibiltyReport() {
           <SearchIcon className="h-6 absolute text-primary top-3 right-14" />
           <FilterIcon className="h-8 text-primary" />
         </div>
-        <div className="max-h-96 scrollbar-thin scrollbar-track-green-100 scrollbar-thumb-green-900 px-3 space-y-3 py-5">
+        <div className="max-h-96 scrollbar-thin scrollbar-track-green-100 scrollbar-thumb-red-700 px-3 space-y-3 py-5">
           <div className="flex justify-around border-b">
             <p className="border-b text-center">All</p>
             <p className="text-center">Available</p>

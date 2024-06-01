@@ -2,7 +2,7 @@ import React from "react";
 import PageTitle from "../../utils/PageTitle";
 
 function CreateNewPassword() {
-  PageTitle("A&C Create New Pssword");
+  PageTitle("FIRS Create New Pssword");
   return (
     <div className="space-y-10 px-5">
       <h2 className="text-4xl font-bold">Cretae New Password.</h2>

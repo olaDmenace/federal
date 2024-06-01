@@ -11,7 +11,7 @@ function MemebershipLeft() {
           alt=""
         />
         <div className="relative space-3">
-          <h1 className="text-8xl font-semibold">
+          <h1 className="text-6xl font-semibold">
             Fleet Management System
             {/* Federal Inland
             <br />

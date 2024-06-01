@@ -91,7 +91,7 @@ const Notifications = () => {
             selectedTasks={selectedTasks}
             setSelectedTasks={setSelectedTasks}
           />
-          <div className="rounded-lg shadow-md p-5 grid gap-5 md:col-span-6 md:h-screen md:overflow-y-auto scrollbar-thin scrollbar-track-green-100 scrollbar-thumb-green-900 relative bg-white">
+          <div className="rounded-lg shadow-md p-5 grid gap-5 md:col-span-6 md:h-screen md:overflow-y-auto scrollbar-thin scrollbar-track-green-100 scrollbar-thumb-red-700 relative bg-white">
             <div>
               <p className="font-semibold text-lg">
                 In-Progress
@@ -141,7 +141,7 @@ const Notifications = () => {
             </div>
           </div>
         </div>
-        {/* <div className="grid md:grid-cols-2 lg:grid-cols-1 lg:col-span-4 lg:h-screen overflow-y-scroll scrollbar-thin scrollbar-track-green-100 scrollbar-thumb-green-900 relative gap-8 pb-10">
+        {/* <div className="grid md:grid-cols-2 lg:grid-cols-1 lg:col-span-4 lg:h-screen overflow-y-scroll scrollbar-thin scrollbar-track-green-100 scrollbar-thumb-red-700 relative gap-8 pb-10">
           <div className="rounded-lg shadow-md py-10 grid gap-5 md:col-span-1 bg-white">
             <div className="justify-items-center grid gap-2">
               <img src={Avatar} className="rounded-full w-20" alt="" />
