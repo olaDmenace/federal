@@ -100,7 +100,7 @@ function DashMenu(props) {
 
   return (
     <div className="">
-      <div className="h-screen w-full bg-black/60 relative grid py-10 z-0">
+      <div className="h-screen w-full bg-black/40 relative grid py-10 z-0">
         <img
           className="mix-blend-color-dodge h-screen w-full absolute"
           src={Dash}
