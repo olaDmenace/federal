@@ -11,7 +11,7 @@ import { XCircleIcon } from "@heroicons/react/solid";
 import CloudinaryUpload from "../../utils/CloudinaryUpload";
 
 const Employee = () => {
-  PageTitle("Axle & Cartage Employee Form");
+  PageTitle("FIRS Employee Form");
 
   const location = useLocation();
   // console.log(location.state);

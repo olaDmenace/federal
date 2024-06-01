@@ -21,7 +21,7 @@ function Tif({
   setComment,
   // setTruckProgrammingId,
 }) {
-  ("Axle & Cartage - Pre Trip Inspection Form");
+  ("FIRS - Pre Trip Inspection Form");
   const [form, setForm] = useState(0);
 
   console.log(truckProgrammingId);
@@ -100,7 +100,7 @@ function Tif({
             icon: <ThumbUpIcon className="mx-auto h-24 text-primary" />,
             message: res.data.message,
           });
-          changeStatus()
+          changeStatus();
         } else {
           setReply({
             icon: <XCircleIcon className="mx-auto h-24 text-red-500" />,

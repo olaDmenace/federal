@@ -36,8 +36,7 @@ const Notifications = () => {
       });
   }, []);
 
-  const truckProgramming = ({programmeId, type, workItemId}) => {
-
+  const truckProgramming = ({ programmeId, type, workItemId }) => {
     if (type === "TruckProgramming") {
       endpoint.get(`truck/programme/${programmeId}`).then((res) => {
         setProgramme(res.data.data.truck);
@@ -92,7 +91,7 @@ const Notifications = () => {
             selectedTasks={selectedTasks}
             setSelectedTasks={setSelectedTasks}
           />
-          <div className="rounded-lg shadow-md p-5 grid gap-5 md:col-span-6 md:h-screen md:overflow-y-scroll scrollbar-thin scrollbar-track-green-100 scrollbar-thumb-green-900 relative bg-white">
+          <div className="rounded-lg shadow-md p-5 grid gap-5 md:col-span-6 md:h-screen md:overflow-y-auto scrollbar-thin scrollbar-track-green-100 scrollbar-thumb-green-900 relative bg-white">
             <div>
               <p className="font-semibold text-lg">
                 In-Progress
@@ -103,10 +102,14 @@ const Notifications = () => {
               <div className="grid cursor-pointer gap-5 lg:grid-cols-2">
                 {taskInProgress?.map((task) => (
                   <div
-                    className="cursor-pointer hover:bg-[#d1fae5]"
+                    className="cursor-pointer"
                     key={task.workItemId}
                     onClick={() =>
-                      truckProgramming({programmeId:task.itemId, type:task.itemType, workItemId:task.workItemId})
+                      truckProgramming({
+                        programmeId: task.itemId,
+                        type: task.itemType,
+                        workItemId: task.workItemId,
+                      })
                     }
                   >
                     <ToDoCard

@@ -1,32 +1,28 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   daisyui: {
-      themes: [
-        {
-          mytheme: {
-            "primary": "#007222",
-            "secondary": "#ff6600",
-            "accent": "#019a4a",
-            "neutral": "#191D24",
-            "place": "#23272e",
-            "base-100": "#FFF",
-            "info": "#3ABFF8",
-            "success": "#36D399",
-            "warning": "#FBBD23",
-            "error": "#F87272",
-          },
-          // "accent": "#019a4a",
+    themes: [
+      {
+        mytheme: {
+          primary: "#616161",
+          secondary: "#ff6600",
+          accent: "#019a4a",
+          neutral: "#AF1C24",
+          place: "#AF1C24",
+          // federal: "#AF1C24",
+          "base-100": "#FFF",
+          info: "#3ABFF8",
+          success: "#36D399",
+          warning: "#FBBD23",
+          error: "#F87272",
         },
-      ],
-    },
+        // "accent": "#019a4a",
+      },
+    ],
+  },
   theme: {
     extend: {},
   },
-  plugins: [
-    require("daisyui"),
-    require('tailwind-scrollbar')
-  ],
-}
+  plugins: [require("daisyui"), require("tailwind-scrollbar")],
+};

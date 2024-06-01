@@ -10,7 +10,7 @@ import ProgrammingDetails from "./ProgrammingDetails";
 import useFetch from "../../../useFetch";
 
 function ShortageResolution() {
-  PageTitle("Axle & Cartage - Shortage Resolution");
+  PageTitle("FIRS - Shortage Resolution");
   const { trucks, formData, setFormData } = useFetch(
     "/truck/journey-management"
   );

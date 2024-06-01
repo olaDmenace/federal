@@ -6,7 +6,7 @@ import FormB from "./FormB";
 import FormC from "./FormC";
 
 function Utilities() {
-  PageTitle("Axle & Cartage - Utilities");
+  PageTitle("FIRS - Utilities");
 
   const [select, setSelect] = useState();
   const [formA, setFormA] = useState(false);

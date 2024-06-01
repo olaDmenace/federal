@@ -6,7 +6,7 @@ import Form2 from "./Form2";
 import Form3 from "./Form3";
 
 function MaintenanceBooking() {
-  PageTitle("Axle & Cartage - Journey Management");
+  PageTitle("FIRS - Journey Management");
   const [form, setForm] = useState(0);
 
   const activeForm = () => {

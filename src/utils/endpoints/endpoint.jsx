@@ -3,7 +3,7 @@ import { logout } from "../features/userSlice";
 import { useDispatch } from "react-redux";
 
 const endpoint = axios.create({
-  baseURL: "https://dev-api.axle-cartage.com/",
+  baseURL: "https://trucking-api.axle-cartage.com",
   // timeout: 10000,
   headers: {
     accept: "*/*",

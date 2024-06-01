@@ -2,7 +2,7 @@ import PageTitle from "../../../utils/PageTitle";
 import FormTitle from "../../FormTitle";
 
 const InventoryRequest = () => {
-  PageTitle("Axle & Cartage - ");
+  PageTitle("FIRS - ");
   return (
     <div className="p-5 rounded-lg text-primary y-3 bg-white">
       <FormTitle Title={"Inventory Request Form"} />

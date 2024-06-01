@@ -16,9 +16,8 @@ function Tif2({
   truckProgrammingId,
   truckAssess,
 }) {
-  ("Axle & Cartage - Pre Trip Inspection Form");
+  ("FIRS - Pre Trip Inspection Form");
   const [form, setForm] = useState(0);
-
 
   const [data, setData] = useState({
     truckProgrammingId: "",

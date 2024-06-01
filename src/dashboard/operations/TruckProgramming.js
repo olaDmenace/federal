@@ -9,7 +9,7 @@ import LoadingSpinner from "../../utils/LoadingSpinner";
 import { useLocation } from "react-router-dom";
 
 function TruckProgramming({ formData, setFormData }) {
-  PageTitle("Axle & Cartage - Truck Programming");
+  PageTitle("FIRS - Truck Programming");
 
   const location = useLocation();
   console.log(location);
@@ -193,11 +193,11 @@ function TruckProgramming({ formData, setFormData }) {
     message: "",
   });
 
-   const handleStatus = (workItemId) => {
-     endpoint.put(`/work-items/${workItemId}`).then((res) => {
-       console.log(res);
-     });
-   };
+  const handleStatus = (workItemId) => {
+    endpoint.put(`/work-items/${workItemId}`).then((res) => {
+      console.log(res);
+    });
+  };
 
   const updateSubmit = (e) => {
     console.log("data.status changed to:", data.status);
@@ -228,8 +228,6 @@ function TruckProgramming({ formData, setFormData }) {
       });
   };
 
- 
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -242,7 +240,7 @@ function TruckProgramming({ formData, setFormData }) {
           message: `${res.data.message} with Trip ID ${res.data.data}`,
         });
         handleStatus(workItemId);
-        setIsLoading(!isLoading)
+        setIsLoading(!isLoading);
       })
       .catch((err) => {
         setShow(true);

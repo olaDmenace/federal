@@ -16,7 +16,7 @@ import ReportedShortage from "./ReportedShortage";
 // import TripDetails from './TripDetails'
 
 function Journeymanagement() {
-  PageTitle("Axle & Cartage - Journey Management");
+  PageTitle("FIRS - Journey Management");
   const [form, setForm] = useState(0);
 
   const location = useLocation();

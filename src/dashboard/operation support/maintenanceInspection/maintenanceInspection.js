@@ -8,7 +8,7 @@ import Form4 from "./Form4";
 import FormTitle from "../../FormTitle";
 
 function MaintenanceInspection() {
-  PageTitle("Axle & Cartage - maintenance Inspection ");
+  PageTitle("FIRS - maintenance Inspection ");
   const [form, setForm] = useState(0);
 
   const activeForm = () => {

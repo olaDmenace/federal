@@ -8,7 +8,7 @@ import Tif2 from "./FormB/Tif2";
 import { useLocation } from "react-router";
 
 const TifForm = () => {
-  PageTitle("Axle & Cartage - TifForm");
+  PageTitle("FIRS - TifForm");
 
   const location = useLocation();
   const summ = location?.state;

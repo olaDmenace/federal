@@ -9,7 +9,7 @@ import { XCircleIcon } from "@heroicons/react/outline";
 import PopUp from "../../../utils/PopUp";
 
 function TruckAssignment() {
-  PageTitle("Axle & Cartage - Truck Assigment");
+  PageTitle("FIRS - Truck Assigment");
 
   const [trucks, setTrucks] = useState([]);
   const [truckId, setTruckId] = useState("");

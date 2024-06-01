@@ -8,7 +8,7 @@ const NotificationsCard = ({
   setSelectedTasks,
 }) => {
   return (
-    <div className="rounded-lg shadow-md p-5  gap-5 md:col-span-4 md:h-screen md:overflow-y-scroll scrollbar-thin scrollbar-track-green-100 scrollbar-thumb-green-900 relative bg-white">
+    <div className="rounded-lg shadow-md p-5  gap-5 md:col-span-4 md:h-screen md:overflow-y-auto scrollbar-thin scrollbar-track-green-100 scrollbar-thumb-green-900 relative bg-white">
       <div>
         <p className="font-semibold my-6 text-lg">
           Task

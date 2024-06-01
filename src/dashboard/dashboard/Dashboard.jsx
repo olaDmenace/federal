@@ -16,7 +16,7 @@ import DashCard from "./DashCard";
 import PageTitle from "../../utils/PageTitle";
 
 const Dashboard = () => {
-  PageTitle("Welcome to Axle & Cartage");
+  PageTitle("Welcome to FIRS");
   return (
     <div className="grid gap-5 my-10">
       <Notification />
@@ -25,7 +25,6 @@ const Dashboard = () => {
           Link={"/dashboard/Notifications"}
           icon={BellIcon}
           title={"My Workspace"}
-
         />
         <DashCard
           Link={"/dashboard/TruckProgramming"}

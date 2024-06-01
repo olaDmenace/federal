@@ -2,7 +2,7 @@ import PageTitle from "../../../utils/PageTitle";
 import FormTitle from "../../FormTitle";
 
 const MaintenanceExpenses = () => {
-  PageTitle("Axle & Cartage - Maintenance Expenses Form ");
+  PageTitle("FIRS - Maintenance Expenses Form ");
   return (
     <div className="py-5 text-primary space-y-3 bg-white rounded-lg p-5">
       <FormTitle Title={"Maintenance Expenses Form"} />

@@ -12,7 +12,7 @@ import LoadingSpinner from "../../../utils/LoadingSpinner";
 import { useLocation } from "react-router-dom";
 
 const TripExpense = () => {
-  PageTitle("Axle & Cartage - Trip Expense Request Form");
+  PageTitle("FIRS - Trip Expense Request Form");
   const [form, setForm] = useState(1);
 
   const activeForm = () => {

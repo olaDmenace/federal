@@ -9,7 +9,7 @@ import { XCircleIcon } from "@heroicons/react/outline";
 import LoadingSpinner from "../../../utils/LoadingSpinner";
 
 const WaybillsManagement = () => {
-  PageTitle("Axle & Cartage - Waybills Management");
+  PageTitle("FIRS - Waybills Management");
 
   const [truck, setTruck] = useState([]);
   const [selectedJourneyManagementId, setSelectedJourneyManagementId] =

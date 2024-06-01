@@ -8,7 +8,7 @@ import { XCircleIcon } from "@heroicons/react/outline";
 import { ThumbUpIcon } from "@heroicons/react/solid";
 
 const ChangeStatus = () => {
-  PageTitle("Axle & Cartage - Change Status");
+  PageTitle("FIRS - Change Status");
 
   const [prog, setProg] = useState([]);
   // const [trucks, setTrucks] = useState([]);

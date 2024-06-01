@@ -5,7 +5,7 @@ const ToDoCard = (props) => {
   const navigate = useNavigate();
   return (
     <div
-      className="card rounded-lg shadow-md grid gap-2 p-5"
+      className="card rounded-lg shadow-md grid gap-2 p-5 hover:bg-neutral/30"
       // onClick={() => navigate(props.link)}
     >
       <div className="flex gap-2 items-center">
