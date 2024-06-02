@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import Dash from "../images/Dash.jpg";
+import Dash from "../images/Dash.jpeg";
 import Logo from "../images/LogoLight.png";
 import {
   BellIcon,
@@ -100,7 +100,7 @@ function DashMenu(props) {
 
   return (
     <div className="">
-      <div className="h-screen w-full bg-black/40 relative grid py-10 z-0">
+      <div className="h-screen w-full bg-black/80 relative grid py-10 z-0">
         <img
           className="mix-blend-color-dodge h-screen w-full absolute"
           src={Dash}
